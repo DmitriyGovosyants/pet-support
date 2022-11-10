@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const PublicRoute = ({ restricted, redirectTo = '/' }) => {
   // const { user } = useUser();
-  const user = false;
+  const user = false; //временная заглушка
   const shouldRedirect = user && restricted;
 
   return shouldRedirect ? <Navigate to={redirectTo} replace /> : <Outlet />;

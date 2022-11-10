@@ -1,14 +1,12 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container } from 'components';
-// import { Header } from 'components';
+import { Container, Header } from 'components';
 
 export const SharedLayout = () => {
   return (
     <>
       <Container>
-        !!!HEADER!!!
-        {/* <Header /> */}
+        <Header />
       </Container>
       <main>
         <Container>

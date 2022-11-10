@@ -3,6 +3,6 @@ export const routesPath = {
   login: 'login',
   user: 'user',
   news: 'news',
-  notices: 'notices',
+  notices: 'notices/:categoryName',
   friends: 'friends',
 };

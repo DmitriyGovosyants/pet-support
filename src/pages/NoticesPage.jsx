@@ -1,5 +1,19 @@
+import {
+  NoticesSearch,
+  NoticesCategoriesNav,
+  NoticesCategoriesList,
+  AddNoticeButton,
+} from 'components';
+
 const NoticesPage = () => {
-  return <div>NoticesPage</div>;
+  return (
+    <>
+      <NoticesSearch />
+      <NoticesCategoriesNav />
+      <NoticesCategoriesList />
+      <AddNoticeButton />
+    </>
+  );
 };
 
 export default NoticesPage;

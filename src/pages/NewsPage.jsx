@@ -1,5 +1,10 @@
 const NewsPage = () => {
-  return <div>NewsPage</div>;
+  return (
+    <>
+      <div>Search</div>
+      <div>News</div>
+    </>
+  );
 };
 
 export default NewsPage;
