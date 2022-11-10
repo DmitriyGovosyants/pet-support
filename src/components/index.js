@@ -15,7 +15,7 @@ export * from './NoticesSearch/NoticesSearch';
 export * from './NoticesCategoriesNav/NoticesCategoriesNav';
 export * from './NoticesCategoriesList/NoticesCategoriesList';
 export * from './NoticeCategoryItem/NoticeCategoryItem';
-export * from './NoticeModal/NoticeModal';
+export * from './ModalNotice/ModalNotice';
 export * from './AddNoticeButton/AddNoticeButton';
 
 export * from './UserData/UserData';

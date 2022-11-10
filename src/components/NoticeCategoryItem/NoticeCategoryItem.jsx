@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, NoticeModal } from 'components';
+import { Modal, ModalNotice } from 'components';
 
 export const NoticeCategoryItem = () => {
   const [showModal, setShowModal] = useState(false);
@@ -8,11 +8,11 @@ export const NoticeCategoryItem = () => {
     <>
       <div>NoticeCategoryItem</div>
       <button type="button" onClick={() => setShowModal(true)}>
-        OPEN MODAL
+        LEARNMORE
       </button>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <NoticeModal toggleModal={() => setShowModal(s => !s)} />
+          <ModalNotice toggleModal={() => setShowModal(s => !s)} />
         </Modal>
       )}
     </>

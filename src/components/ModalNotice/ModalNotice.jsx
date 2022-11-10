@@ -1,7 +1,7 @@
-export const NoticeModal = ({ toggleModal }) => {
+export const ModalNotice = ({ toggleModal }) => {
   return (
     <>
-      <div>NoticeModal</div>
+      <div>ModalNotice</div>
       <button type="button" onClick={() => toggleModal()}>
         CLOSE MODAL
       </button>
