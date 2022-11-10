@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/home-page.cd9bd144.chunk.js","mappings":"0JASA,UATiB,WACf,OACE,iCACE,uCACA,iEAGL,C","sources":["pages/HomePage.jsx"],"sourcesContent":["const HomePage = () => {\n  return (\n    <>\n      <div>HomePage</div>\n      <div>Take good care of your small pets</div>\n    </>\n  );\n};\n\nexport default HomePage;\n"],"names":[],"sourceRoot":""}
