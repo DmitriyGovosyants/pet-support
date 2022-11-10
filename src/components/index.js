@@ -17,3 +17,10 @@ export * from './NoticesCategoriesList/NoticesCategoriesList';
 export * from './NoticeCategoryItem/NoticeCategoryItem';
 export * from './NoticeModal/NoticeModal';
 export * from './AddNoticeButton/AddNoticeButton';
+
+export * from './UserData/UserData';
+export * from './UserDataItem/UserDataItem';
+export * from './Logout/Logout';
+export * from './PetsData/PetsData';
+export * from './ModalAddsPet/ModalAddsPet';
+export * from './PetsList/PetsList';

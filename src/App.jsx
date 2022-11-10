@@ -4,25 +4,29 @@ import { SharedLayout } from 'components';
 import { routesPath, PrivateRoute, PublicRoute } from 'router';
 
 const Home = lazy(() =>
-  import('pages/HomePage' /* webpackChunkName: "home-page" */)
+  import('pages/HomePage/HomePage' /* webpackChunkName: "home-page" */)
 );
 const Register = lazy(() =>
-  import('pages/RegisterPage' /* webpackChunkName: "register-page" */)
+  import(
+    'pages/RegisterPage/RegisterPage' /* webpackChunkName: "register-page" */
+  )
 );
 const Login = lazy(() =>
-  import('pages/LoginPage' /* webpackChunkName: "login-page" */)
+  import('pages/LoginPage/LoginPage' /* webpackChunkName: "login-page" */)
 );
 const News = lazy(() =>
-  import('pages/NewsPage' /* webpackChunkName: "news-page" */)
+  import('pages/NewsPage/NewsPage' /* webpackChunkName: "news-page" */)
 );
 const Notices = lazy(() =>
-  import('pages/NoticesPage' /* webpackChunkName: "notices-page" */)
+  import('pages/NoticesPage/NoticesPage' /* webpackChunkName: "notices-page" */)
 );
 const Friends = lazy(() =>
-  import('pages/OurFriendsPage' /* webpackChunkName: "friends-page" */)
+  import(
+    'pages/OurFriendsPage/OurFriendsPage' /* webpackChunkName: "friends-page" */
+  )
 );
 const User = lazy(() =>
-  import('pages/UserPage' /* webpackChunkName: "user-page" */)
+  import('pages/UserPage/UserPage' /* webpackChunkName: "user-page" */)
 );
 
 export const App = () => {

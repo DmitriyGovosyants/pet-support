@@ -13,6 +13,9 @@ export const AddNoticeButton = () => {
       {showModal && user && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
           <div>ADD PET MODAL</div>
+          <button type="button" onClick={() => setShowModal(false)}>
+            CLOSE MODAL
+          </button>
         </Modal>
       )}
     </>

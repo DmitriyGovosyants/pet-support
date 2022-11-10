@@ -1,7 +1,7 @@
-export const NoticeModal = ({ toggleModal }) => {
+export const ModalAddsPet = ({ toggleModal }) => {
   return (
     <>
-      <div>NoticeModal</div>
+      <div>ADD YOUR PET</div>
       <button type="button" onClick={() => toggleModal()}>
         CLOSE MODAL
       </button>
