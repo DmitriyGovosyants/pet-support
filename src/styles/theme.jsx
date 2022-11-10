@@ -1,0 +1,28 @@
+export const theme = Object.freeze({
+  colors: {
+    textMain: '#111111',
+    textSecond: '#ffffff',
+    textThird: '#111321',
+    textLowOpacity: '#11111199',
+    textLink: '#3091EB',
+
+    accent: '#F59256',
+    hover: '#FF6101',
+
+    bgMain: '#fdf7f2',
+    bgSecond: '#ffffff',
+  },
+  spacing: value => `${4 * value}px`,
+  // fontSizes: {
+  //   titleMain: '30px',
+  //   titleBig: '40px',
+  //   small: '14px',
+  //   medium: '18px',
+  //   large: '24px',
+  // },
+  // 12, 14, 16, 18, 20, 24, 28, 32
+  // animation: {
+  //   cubicBezierAverageSpeed: '250ms cubic-bezier(0.7, 0.98, 0.86, 0.98)',
+  //   cubicBezierMaxSpeed: '400ms cubic-bezier(0.7, 0.98, 0.86, 0.98)',
+  // },
+});
