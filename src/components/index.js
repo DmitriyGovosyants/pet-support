@@ -1,5 +1,5 @@
 export * from './SharedLayout/SharedLayout';
-export * from './Container/Container.styled';
+export * from './Container/Container';
 export * from './Modal/Modal';
 
 export * from './Header/Header';
