@@ -1,5 +1,6 @@
 export * from './SharedLayout/SharedLayout';
 export * from './Container/Container.styled';
+export * from './Modal/Modal';
 
 export * from './Header/Header';
 export * from './Logo/Logo';

@@ -1,3 +1,3 @@
-export const NoticeModal = () => {
-  return <div>NoticeModal</div>;
+export const AddNoticeButton = () => {
+  return <div>AddNoticeButton</div>;
 };
