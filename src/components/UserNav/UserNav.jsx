@@ -1,3 +1,5 @@
+import { UserNavLink } from './UserNav.styled';
+
 export const UserNav = () => {
-  return <div>Account</div>;
+      <UserNavLink to="/user">Account</UserNavLink>
 };
