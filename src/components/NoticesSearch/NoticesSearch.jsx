@@ -1,3 +1,12 @@
+import { Wrapper, Label, Input, Icon } from './NoticesSearch.styled';
+
 export const NoticesSearch = () => {
-  return <div>NoticesSearch</div>;
+  return (
+    <Wrapper>
+      <Label>
+        <Input placeholder="Search" />
+        <Icon />
+      </Label>
+    </Wrapper>
+  );
 };
