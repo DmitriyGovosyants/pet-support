@@ -1,27 +1,28 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaquery';
 
 export const List = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
-  @media screen and (min-width: 768px) {
+  ${device.tablet} {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (min-width: 1280px) {
+  ${device.desktop} {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 export const Item = styled.li`
   width: 280px;
-  background: #ffffff;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
-  @media screen and (min-width: 768px) {
+  background: ${props => props.theme.colors.textSecond};
+  box-shadow: 7px 4px 14px ${props => props.theme.colors.shadow};
+  ${device.tablet} {
     width: 336px;
     border-radius: 0px 0px 40px 40px;
   }
-  @media screen and (min-width: 1280px) {
+  ${device.desktop} {
     width: 288px;
   }
 `;

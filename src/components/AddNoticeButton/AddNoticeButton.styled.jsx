@@ -1,19 +1,19 @@
 import styled from '@emotion/styled';
 
 export const Button = styled.button`
-  box-sizing: border-box;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  background-color: #f59256;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   cursor: pointer;
+  background-color: ${props => props.theme.colors.accent};
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
-    background-color: #ff6101;
+    background-color: ${props => props.theme.colors.hover};
   }
 `;
 

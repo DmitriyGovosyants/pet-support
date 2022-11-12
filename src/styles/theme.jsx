@@ -11,6 +11,9 @@ export const theme = Object.freeze({
 
     bgMain: '#fdf7f2',
     bgSecond: '#ffffff',
+
+    btnTransperent: 'rgba(255, 255, 255, 0.6)',
+    shadow: 'rgba(49, 21, 4, 0.07)',
   },
   spacing: value => `${4 * value}px`,
   // fontSizes: {

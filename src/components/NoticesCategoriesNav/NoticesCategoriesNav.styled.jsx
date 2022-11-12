@@ -7,9 +7,4 @@ export const List = styled.ul`
   column-gap: 12px;
 `;
 
-export const Item = styled.li`
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
-`;
+export const Item = styled.li``;

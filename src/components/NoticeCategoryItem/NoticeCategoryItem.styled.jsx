@@ -5,31 +5,31 @@ export const ImgWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: 12px;
   right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: ${props => props.theme.colors.btnTransperent};
   cursor: pointer;
 `;
 
 export const Category = styled.span`
   position: absolute;
   top: 20px;
-  background-color: rgba(255, 255, 255, 0.6);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  letter-spacing: 0.04em;
   padding: 6px 0 6px 20px;
   width: 158px;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  background-color: ${props => props.theme.colors.btnTransperent};
 `;
 
 export const Title = styled.h2`
@@ -59,21 +59,21 @@ export const Text = styled.span`
 
 export const LearnMore = styled.button`
   width: 248px;
-  border: 2px solid #f59256;
-  border-radius: 40px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border: 2px solid ${props => props.theme.colors.accent};
+  border-radius: 40px;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.33;
   letter-spacing: 0.04em;
-  color: #f59256;
+  color: ${props => props.theme.colors.accent};
+  cursor: pointer;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
   :hover,
   :focus {
-    border-color: #ff6101;
-    color: #ff6101;
+    border-color: ${props => props.theme.colors.hover};
+    color: ${props => props.theme.colors.hover};
   }
 `;
