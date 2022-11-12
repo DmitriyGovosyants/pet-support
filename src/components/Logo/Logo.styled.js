@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const LogoWrap = styled.p`
 display: inline;
 color: ${p => p.theme.colors.textMain};
-font-family: 'Poppins';
+font-family: 'Poppins', sans-serif;
 font-style: normal;
 font-weight: 700;
 font-size: 28px;

@@ -15,4 +15,5 @@ cursor: pointer;
   background-color: ${p => (p.active ? p.theme.colors.textSecond : p.theme.colors.accent)};
   border-color: ${p => p.theme.colors.accent};
   color: ${p => (p.active ? p.theme.colors.accent : p.theme.colors.textSecond)};
+}
 `;

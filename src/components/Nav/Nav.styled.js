@@ -4,7 +4,6 @@ import { device } from "styles/mediaquery";
 
 
 export const NavList = styled.ul`
-aligm-items: center;
 ${device.desktop} {
     display: flex;
   }
@@ -26,11 +25,12 @@ export const NavLinkStyled = styled(NavLink)`
   font-size: 32px;
   line-height: 1.37;
   letter-spacing: 0.04em;
-  color: #181C27;
+  color: color: ${p => p.theme.colors.dark};
   &.active {
     color: ${p => p.theme.colors.accent};
+    border-bottom: 2px solid ${p => p.theme.colors.accent};
   }
-  
+
   ${device.tablet}  {
     font-size: 48px;
   }

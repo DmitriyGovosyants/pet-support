@@ -1,9 +1,8 @@
 import { Btn } from './BurgerBtn.styled';
 
-
-export default function BurgerBtn({ toggleNav }) {
+export const BurgerBtn = ({ toggleNavBar }) => {
   return (
-    <Btn onClick={toggleNav} type="button">
+    <Btn onClick={toggleNavBar} type="button">
       <svg
         width="40"
         height="40"

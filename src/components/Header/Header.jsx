@@ -1,7 +1,7 @@
 import { Logo, Nav, UserNav, AuthNav } from 'components';
 import { HeaderStyled, NavBox, AuthBox, AuthBoxMob } from './Header.styled';
 import { useState } from 'react';
-import BurgerBtn from 'components/BurgerBtn/BurgerBtn';
+import { BurgerBtn } from 'components/BurgerBtn/BurgerBtn';
 
 export const Header = () => {
   const user = false; 
@@ -24,7 +24,7 @@ export const Header = () => {
       <AuthBox>
         {user ? <UserNav /> : <AuthNav />}
       </AuthBox>
-      <BurgerBtn toggleNav={showNavBar} />
+      <BurgerBtn toggleNavBar={showNavBar} />
     </HeaderStyled>
   );
 };

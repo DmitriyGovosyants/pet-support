@@ -1,15 +1,16 @@
 import { AuthNavItem, AuthNavList, AuthNavLink } from './AuthNav.styled';
+import { routesPath } from 'router'
 
 export const AuthNav = () => {
   return (
     <AuthNavList>
       <AuthNavItem>
 
-          <AuthNavLink to="/login">Login</AuthNavLink>
+          <AuthNavLink activ={true} to={routesPath.login}>Login</AuthNavLink>
 
       </AuthNavItem>
       <AuthNavItem>
-          <AuthNavLink to="/register">Registration</AuthNavLink>
+          <AuthNavLink to={routesPath.register}>Registration</AuthNavLink>
       </AuthNavItem>
     </AuthNavList>
   );
