@@ -1,7 +1,11 @@
+import { LogoutButton, LogoutWrapper } from './Logout.styled';
+
 export const Logout = () => {
   return (
     <>
-      <div>Logout</div>
+      <LogoutWrapper>
+        <LogoutButton>Logout</LogoutButton>
+      </LogoutWrapper>
     </>
   );
 };

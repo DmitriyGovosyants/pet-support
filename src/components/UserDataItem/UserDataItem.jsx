@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   AvatarWrapper,
   Avatar,
@@ -5,10 +6,46 @@ import {
   ItemWrapper,
   Item,
   EditWrapper,
+  FormChangeUserInfo,
+  InputChangeUserInfo,
 } from './UserDataItem.styled';
+import React from 'react';
+
+const UserInfoElement = ({ info, onClick }) => {
+  return (
+    <>
+      <EditWrapper>
+        {info}
+        <button onClick={onClick}>/</button>
+      </EditWrapper>
+    </>
+  );
+};
+
+const FormElement = ({ info, onSubmit }) => {
+  return (
+    <>
+      <FormChangeUserInfo onSubmit={onSubmit}>
+        <InputChangeUserInfo defaultValue={info} />
+        <button>?</button>
+      </FormChangeUserInfo>
+    </>
+  );
+};
+
 export const UserDataItem = ({
   user: { avatar, name, email, birthDay, phone, city },
 }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const handleChange = () => {
+    setIsEdit(true);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setIsEdit(false);
+  };
+
   return (
     <>
       <div>
@@ -21,46 +58,51 @@ export const UserDataItem = ({
           <ItemWrapper>
             <Item>
               Name:
-              <EditWrapper>
-                {name}
-                <button>Edit</button>
-              </EditWrapper>
+              {!isEdit ? (
+                <UserInfoElement info={name} onClick={handleChange} />
+              ) : (
+                <FormElement info={name} onSubmit={handleSubmit} />
+              )}
             </Item>
           </ItemWrapper>
           <ItemWrapper>
             <Item>
               Email:
-              <EditWrapper>
-                {email}
-                <button>Edit</button>
-              </EditWrapper>
+              {!isEdit ? (
+                <UserInfoElement info={email} onClick={handleChange} />
+              ) : (
+                <FormElement info={email} onSubmit={handleSubmit} />
+              )}
             </Item>
           </ItemWrapper>
           <ItemWrapper>
             <Item>
               Birthday:
-              <EditWrapper>
-                {birthDay}
-                <button>Edit</button>
-              </EditWrapper>
+              {!isEdit ? (
+                <UserInfoElement info={birthDay} onClick={handleChange} />
+              ) : (
+                <FormElement info={birthDay} onSubmit={handleSubmit} />
+              )}
             </Item>
           </ItemWrapper>
           <ItemWrapper>
             <Item>
               Phone:
-              <EditWrapper>
-                {phone}
-                <button>Edit</button>
-              </EditWrapper>
+              {!isEdit ? (
+                <UserInfoElement info={phone} onClick={handleChange} />
+              ) : (
+                <FormElement info={phone} onSubmit={handleSubmit} />
+              )}
             </Item>
           </ItemWrapper>
           <ItemWrapper>
             <Item>
               City:
-              <EditWrapper>
-                {city}
-                <button>Edit</button>
-              </EditWrapper>
+              {!isEdit ? (
+                <UserInfoElement info={city} onClick={handleChange} />
+              ) : (
+                <FormElement info={city} onSubmit={handleSubmit} />
+              )}
             </Item>
           </ItemWrapper>
         </UserInfoWrapper>
