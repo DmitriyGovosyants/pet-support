@@ -1,12 +1,20 @@
-import { NavLink } from 'react-router-dom';
-import { routesPath } from 'router';
+import { NavLinkStyled, NavItem, NavList } from "./Nav.styled";
+import { routesPath } from 'router'
 
 export const Nav = () => {
   return (
-    <>
-      <NavLink to={routesPath.news}>News</NavLink>
-      <NavLink to={routesPath.notices}>Find pet</NavLink>
-      <NavLink to={routesPath.friends}>Our friend</NavLink>
-    </>
+    <nav>
+      <NavList>
+        <NavItem>
+          <NavLinkStyled to={routesPath.news}>News</NavLinkStyled>
+        </NavItem>
+        <NavItem>
+          <NavLinkStyled to={routesPath.notices}>Find pet</NavLinkStyled>
+        </NavItem>
+        <NavItem>
+          <NavLinkStyled to={routesPath.friends}>Our friend</NavLinkStyled>
+        </NavItem>
+      </NavList>
+    </nav>
   );
 };
