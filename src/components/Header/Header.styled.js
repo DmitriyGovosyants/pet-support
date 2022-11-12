@@ -19,15 +19,15 @@ export const HeaderStyled = styled.header`
 export const NavBox = styled.div`
   ${device.notDesktop} {
     justify-content: flex-start;
-    background-color: #fdf7f2;
+    background-color: ${p => p.theme.colors.bgMain};
     position: absolute;
     top: 100px;
     width: 100%;
     display: flex;
     flex-direction: column;
     transition: 1s;
-    transform: ${p => p.menu ? 'none' : 'translateY(-100vh)'};
-    height: ${p => p.menu ? '100vh' : "100%"};
+    transform: ${p => p.menu ? 'none' : 'translateY(-150vh)'};
+    height: ${p => p.menu ? '150vh' : "100%"};
   }
 
   ${device.desktop} {

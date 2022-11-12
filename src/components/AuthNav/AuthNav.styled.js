@@ -17,6 +17,7 @@ export const AuthNavItem = styled.li`
     :not(:last-child) {
       margin-right: 20px;
     }
+  }
 `;
 
 export const AuthNavLink = styled(NavLink)`
