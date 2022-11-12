@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  UserWrapper,
   AvatarWrapper,
   Avatar,
   UserInfoWrapper,
@@ -48,7 +49,7 @@ export const UserDataItem = ({
 
   return (
     <>
-      <div>
+      <UserWrapper>
         <AvatarWrapper>
           <Avatar src="#" alt={avatar} />
           <button>Edit photo</button>
@@ -106,7 +107,7 @@ export const UserDataItem = ({
             </Item>
           </ItemWrapper>
         </UserInfoWrapper>
-      </div>
+      </UserWrapper>
     </>
   );
 };
