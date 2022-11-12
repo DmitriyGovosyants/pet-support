@@ -7,21 +7,20 @@ export const Header = () => {
   const user = false; 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const showNavBar = () => {
-    setIsMenuOpen(s => !s);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <HeaderStyled>
       <Logo />
       <NavBox menu={isMenuOpen}>
-        <AuthBoxMob>
+        <AuthBoxMob toggleNavBar={showNavBar}>
           {user ? <UserNav /> : <AuthNav />}
         </AuthBoxMob>
-        <Nav />
+        <Nav toggleNavBar={showNavBar}/>
       </NavBox>
-      <AuthBox>
+      <AuthBox toggleNavBar={showNavBar}>
         {user ? <UserNav /> : <AuthNav />}
       </AuthBox>
       <BurgerBtn toggleNavBar={showNavBar} />

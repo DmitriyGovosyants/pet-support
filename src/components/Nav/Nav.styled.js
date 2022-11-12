@@ -4,8 +4,13 @@ import { device } from "styles/mediaquery";
 
 
 export const NavList = styled.ul`
+${device.tablet} {
+  margin-top: 95px;
+}
+
 ${device.desktop} {
     display: flex;
+    margin-top: 5px;
   }
 `;
 export const NavItem = styled.li`
@@ -25,10 +30,12 @@ export const NavLinkStyled = styled(NavLink)`
   font-size: 32px;
   line-height: 1.37;
   letter-spacing: 0.04em;
+  display: block;
+  width: 100%;
   color: ${p => p.theme.colors.dark};
   &.active {
     color: ${p => p.theme.colors.accent};
-    border-bottom: 2px solid ${p => p.theme.colors.accent};
+    text-decoration: underline;
   }
 
   ${device.tablet}  {
