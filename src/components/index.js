@@ -1,6 +1,7 @@
 export * from './SharedLayout/SharedLayout';
 export * from './Container/Container';
 export * from './Modal/Modal';
+export * from './Button/Button';
 
 export * from './Header/Header';
 export * from './Logo/Logo';

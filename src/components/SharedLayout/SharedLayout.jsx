@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Header } from 'components';
+import { Container, Header, Button } from 'components';
 
 export const SharedLayout = () => {
   return (
@@ -15,6 +15,12 @@ export const SharedLayout = () => {
           </Suspense>
         </Container>
       </main>
+      <div>LOGIN</div>
+      <Button type={'submit'}>Login</Button>
+      <div>REGISTRATION</div>
+      <Button>Next</Button>
+      <Button type={'submit'}>Register</Button>
+      <Button option={'black'}>Back</Button>
       {/* <Footer /> */}
     </>
   );
