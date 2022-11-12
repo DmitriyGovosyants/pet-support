@@ -65,7 +65,7 @@ const ContentButton2 = styled.div`
   position: absolute;
 `;
 
-export const AddPet = ({ children }) => {
+export const AddUsersPet = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const user = true; //временная заглушка
 
