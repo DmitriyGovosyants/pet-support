@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import { device } from 'styles/mediaquery';
 import { ReactComponent as SearchIcon } from 'data/img/search-icon.svg';
 
@@ -15,6 +15,21 @@ export const Label = styled.label`
   position: relative;
 `;
 
+export const Icon = styled(SearchIcon)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  fill: ${props => props.theme.colors.textMain};
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  ${device.tablet} {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
 export const Input = styled.input`
   width: 280px;
   height: 40px;
@@ -26,9 +41,14 @@ export const Input = styled.input`
   line-height: 1.375;
   background: ${props => props.theme.colors.textSecond};
   box-shadow: 7px 4px 14px ${props => props.theme.colors.shadow};
+  outline-color: transparent;
+  transition: outline-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
-    outline: none;
+    outline: 2px solid ${props => props.theme.colors.hover};
+    & + ${Icon} {
+      fill: ${props => props.theme.colors.hover};
+    }
   }
   ${device.tablet} {
     width: 608px;
@@ -38,10 +58,4 @@ export const Input = styled.input`
     font-size: 20px;
     line-height: 1.35;
   }
-`;
-
-export const Icon = styled(SearchIcon)`
-  position: absolute;
-  top: 10px;
-  right: 10px;
 `;

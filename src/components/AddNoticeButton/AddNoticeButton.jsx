@@ -9,7 +9,7 @@ export const AddNoticeButton = () => {
   return (
     <>
       <Wrapper>
-        <Text>Add pat</Text>
+        <Text>Add pet</Text>
         <Button type="button" onClick={() => setShowModal(true)}>
           <PlusIcon />
         </Button>

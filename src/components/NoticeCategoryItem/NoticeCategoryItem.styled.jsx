@@ -1,7 +1,25 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
+import { ReactComponent as FavouriteIcon } from 'data/img/favourite-icon.svg';
+import { ReactComponent as ToFavouriteIcon } from 'data/img/to-favourite-icon.svg';
 
 export const ImgWrapper = styled.div`
   position: relative;
+`;
+
+export const StyledFavouriteIcon = styled(FavouriteIcon)`
+  scale: 1;
+  stroke: ${props => props.theme.colors.accent};
+  fill: ${props => props.theme.colors.accent};
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const StyledToFavouriteIcon = styled(ToFavouriteIcon)`
+  scale: 1;
+  stroke: ${props => props.theme.colors.accent};
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Button = styled.button`
@@ -16,6 +34,18 @@ export const Button = styled.button`
   border-radius: 50%;
   background-color: ${props => props.theme.colors.btnTransperent};
   cursor: pointer;
+  :hover,
+  :focus {
+    & ${StyledFavouriteIcon} {
+      scale: 1.05;
+      stroke: ${props => props.theme.colors.hover};
+      fill: ${props => props.theme.colors.hover};
+    }
+    & ${StyledToFavouriteIcon} {
+      scale: 1.05;
+      stroke: ${props => props.theme.colors.hover};
+    }
+  }
 `;
 
 export const Category = styled.span`
