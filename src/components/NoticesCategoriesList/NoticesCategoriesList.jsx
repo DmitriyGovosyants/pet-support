@@ -1,5 +1,7 @@
 import { NoticeCategoryItem } from 'components';
 import { List, Item } from './NoticesCategoriesList.styled';
+import { useParams } from 'react-router-dom';
+import { useGetNoticesQuery } from 'redux/noticesApi';
 
 const petMock = {
   name: 'Catdog',
@@ -11,7 +13,9 @@ const petMock = {
 };
 const petsMock = [petMock, petMock, petMock, petMock, petMock, petMock];
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({ selectedCategory }) => {
+  const { data, isFetching } = useGetNoticesQuery(selectedCategory);
+
   return (
     <>
       <List>

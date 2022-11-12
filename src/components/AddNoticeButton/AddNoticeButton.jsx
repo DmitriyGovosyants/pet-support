@@ -6,7 +6,6 @@ import { Button, Wrapper, Text } from './AddNoticeButton.styled';
 export const AddNoticeButton = () => {
   const [showModal, setShowModal] = useState(false);
   const user = true; //временная заглушка
-
   return (
     <>
       <Wrapper>
