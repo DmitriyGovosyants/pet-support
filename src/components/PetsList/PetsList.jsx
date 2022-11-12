@@ -6,9 +6,10 @@ import {
   HeadLine,
   Text,
   ButtonEdit,
-  IconEdit,
   ButtonDelete,
 } from './PetsList.styled';
+import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
+import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
 
 //раскоментить, когда появится redux
 // import { useFetchPetsQuery, useDeletePetMutation } from '../redux/pets/petApi';
@@ -68,12 +69,8 @@ export const PetsList = () => {
                 <img src={image} alt="pet" />
               </Image>
               <ThumbText>
-                <button>{/* <IconEditSvg /> */}</button>
                 <ButtonEdit type="button" onClick={handleEditPet}>
-                  Edit
-                  <IconEdit>
-                    {/* <use href="./data/img/icon.svg#icon-menu-open"></use> */}
-                  </IconEdit>
+                  <EditIcon />
                 </ButtonEdit>
 
                 {/*
@@ -91,10 +88,7 @@ export const PetsList = () => {
                     // deletePet(id)
                   }
                 >
-                  Delete
-                  <IconEdit>
-                    <use href="./icon.svg#icon-menu-open"></use>
-                  </IconEdit>
+                  <DeleteIcon />
                 </ButtonDelete>
                 <Text>
                   <HeadLine>Name: </HeadLine>
