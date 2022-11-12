@@ -6,7 +6,7 @@ export const AuthNav = () => {
     <AuthNavList>
       <AuthNavItem>
 
-          <AuthNavLink activ={true} to={routesPath.login}>Login</AuthNavLink>
+          <AuthNavLink to={routesPath.login}>Login</AuthNavLink>
 
       </AuthNavItem>
       <AuthNavItem>
