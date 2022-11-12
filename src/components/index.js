@@ -13,6 +13,7 @@ export * from './LoginForm/LoginForm';
 
 export * from './NoticesSearch/NoticesSearch';
 export * from './NoticesCategoriesNav/NoticesCategoriesNav';
+export * from './NoticesCategoriesNavButton/NoticesCategoriesNavButton';
 export * from './NoticesCategoriesList/NoticesCategoriesList';
 export * from './NoticeCategoryItem/NoticeCategoryItem';
 export * from './ModalNotice/ModalNotice';
