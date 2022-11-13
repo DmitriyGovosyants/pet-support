@@ -15,13 +15,13 @@ export const Header = () => {
     <HeaderStyled>
       <Logo />
       <NavBox menu={isMenuOpen}>
-        <AuthBoxMob toggleNavBar={showNavBar}>
-          {user ? <UserNav /> : <AuthNav />}
+        <AuthBoxMob>
+          {user ? <UserNav toggleNavBar={showNavBar}/> : <AuthNav toggleNavBar={showNavBar}/>}
         </AuthBoxMob>
         <Nav toggleNavBar={showNavBar}/>
       </NavBox>
-      <AuthBox toggleNavBar={showNavBar}>
-        {user ? <UserNav /> : <AuthNav />}
+      <AuthBox>
+        {user ? <UserNav toggleNavBar={showNavBar}/> : <AuthNav toggleNavBar={showNavBar}/>}
       </AuthBox>
       <BurgerBtn toggleNavBar={showNavBar} />
     </HeaderStyled>
