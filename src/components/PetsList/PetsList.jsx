@@ -81,11 +81,10 @@ export const PetsList = () => {
       )} */}
                 <ButtonDelete
                   type="button"
-                  onClick={
-                    () =>
-                      //заменить console.log("delete") на deletePet(id), когда повится useDeletePetMutation
-                      console.log('delete')
-                    // deletePet(id)
+                  onClick={() =>
+                    //заменить console.log("delete") на deletePet(id), когда повится useDeletePetMutation
+                    // console.log('delete')
+                    deletePet(id)
                   }
                 >
                   <DeleteIcon />

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const petApi = createApi({
   reducerPath: 'petApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://unknown', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:7777', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
     prepareHeaders: (headers, { getState }) => {
       const { token = '' } = getState().user;
       headers.set('Authorization', token);
@@ -14,14 +14,14 @@ export const petApi = createApi({
   endpoints: builder => ({
     //----- useFetchPetsQuery --------
     fetchPets: builder.query({
-      query: () => `/pets`, //-----home?   '/' or '/pets' - поки що немає роутів
+      query: () => `/pets`,
       providesTags: ['Pet'],
     }),
 
     //------ useDeletePetMutation -------
     deletePet: builder.mutation({
       query: PetId => ({
-        url: `/pets/${PetId}`, //-----home?   '/' or '/pets' - поки що немає роутів
+        url: `/pets/${PetId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Pet'],
@@ -30,7 +30,7 @@ export const petApi = createApi({
     //------ useEditPetMutation ---------
     editPet: builder.mutation({
       query: pet => ({
-        url: `/pets/${pet.id}`, //-----home?   '/' or '/pets' - поки що немає роутів
+        url: `/pets/${pet.id}`,
         method: 'PATCH',
         body: {
           name: pet.name,
@@ -45,7 +45,7 @@ export const petApi = createApi({
     //------- useCreatePetMutation -------
     createPet: builder.mutation({
       query: newPet => ({
-        url: '/pets', //-----home?   '/' or '/pets' - поки що немає роутів
+        url: '/pets',
         method: 'POST',
         body: newPet,
       }),
