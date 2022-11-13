@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from 'components';
+import { Modal, ModalAddsPet } from 'components';
 import { Button, Wrapper, Text, StyledPlusIcon } from './AddUsersPet.styled';
 
 export const AddUsersPet = ({ children }) => {
@@ -16,10 +16,7 @@ export const AddUsersPet = ({ children }) => {
       </Wrapper>
       {showModal && user && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <div>ADD PET MODAL</div>
-          <button type="button" onClick={() => setShowModal(false)}>
-            CLOSE MODAL
-          </button>
+          <ModalAddsPet />
         </Modal>
       )}
     </>

@@ -12,9 +12,10 @@ import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
 
 //раскоментить, когда появится redux
-import { useFetchPetsQuery, useDeletePetMutation } from 'redux/petApi';
+import { useFetchPetsQuery } from 'redux/petApi';
 import { useState } from 'react';
-import { Modal } from 'components';
+import { Modal, ModalDelete } from 'components';
+const user = true; //временная заглушка
 
 const pets = [
   {
@@ -41,7 +42,7 @@ export const PetsList = () => {
   const [showModal, setShowModal] = useState(false);
   //раскоментить, когда появится redux
   // const { data: pets } = useFetchPetsQuery();
-  const [deletePet] = useDeletePetMutation();
+
   const [editPet, setEditPet] = useState('');
 
   const handleEditPet = () => {
@@ -79,14 +80,7 @@ export const PetsList = () => {
           <ModalEditPet toggleModal={() => setShowModal(s => !s)} />
         </Modal>
       )} */}
-                <ButtonDelete
-                  type="button"
-                  onClick={() =>
-                    //заменить console.log("delete") на deletePet(id), когда повится useDeletePetMutation
-                    // console.log('delete')
-                    deletePet(id)
-                  }
-                >
+                <ButtonDelete type="button" onClick={() => setShowModal(true)}>
                   <DeleteIcon />
                 </ButtonDelete>
                 <Text>
@@ -106,6 +100,12 @@ export const PetsList = () => {
                   {comments}
                 </Text>
               </ThumbText>
+
+              {showModal && user && (
+                <Modal toggleModal={() => setShowModal(s => !s)}>
+                  <ModalDelete id={id} closeModal={() => setShowModal(false)} />
+                </Modal>
+              )}
             </PetItem>
           );
         })}
