@@ -2,14 +2,13 @@ import styled from '@emotion/styled';
 import { size, device } from 'styles/mediaquery';
 import { bckgImages, contentImages } from '../../data/img/homePage';
 
-// console.log(bckgImages);
-
 const retina =
   '@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)';
 
 export const Wrapper = styled.div`
-  outline: 1px solid green;
-  height: 100vh;
+  position: relative;
+
+  min-height: 600px;
 
   margin-left: ${p => p.theme.spacing(-5)};
   margin-right: ${p => p.theme.spacing(-5)};
@@ -24,6 +23,8 @@ export const Wrapper = styled.div`
   }
 
   ${device.tablet} {
+    min-height: 1193px;
+
     margin-left: ${p => p.theme.spacing(-8)};
     margin-right: ${p => p.theme.spacing(-8)};
 
@@ -36,13 +37,15 @@ export const Wrapper = styled.div`
   }
 
   ${device.desktop} {
+    min-height: 768px;
+
     margin-left: ${p => p.theme.spacing(-4)};
     margin-right: ${p => p.theme.spacing(-4)};
 
     background-image: url(${bckgImages.curveRightDesktop1x}),
       url(${bckgImages.curveLeftDesktop1x}), url(${bckgImages.circleDesktop1x}),
       url(${bckgImages.heartDesktop1x});
-    background-position: right bottom, left bottom, left 470px bottom 200px,
+    background-position: right bottom, left bottom, left 460px bottom 200px,
       right 500px bottom 510px;
     background-repeat: no-repeat;
     background-size: 511px auto, 1178px auto, 63px 63px, 92px 89px;
@@ -56,6 +59,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
+  position: relative;
+  z-index: 6;
+
   padding-top: 60px;
   padding-left: ${p => p.theme.spacing(5)};
   padding-right: ${p => p.theme.spacing(5)};
@@ -65,8 +71,6 @@ export const Title = styled.h1`
   line-height: 1.375;
   text-align: left;
   color: ${p => p.theme.colors.textMain};
-
-  outline: 1px solid blue;
 
   ${device.tablet} {
     max-width: 620px;
@@ -85,3 +89,50 @@ export const Title = styled.h1`
     padding-left: ${p => p.theme.spacing(4)};
   }
 `;
+
+const PictureStyled = styled.picture`
+  width: 100%;
+  max-width: 320px;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+
+  ${device.tablet} {
+    max-width: 699px;
+  }
+
+  ${device.desktop} {
+    max-width: 624px;
+
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+`;
+
+export const MainPicture = () => {
+  return (
+    <PictureStyled>
+      <source
+        srcSet={`${contentImages.womanDesktop1x} 1x, ${contentImages.womanDesktop2x} 2x`}
+        media={`(min-width: ${size.desktop})`}
+        type="image/jpeg"
+      />
+      <source
+        srcSet={`${contentImages.womanTablet1x} 1x, ${contentImages.womanTablet2x} 2x`}
+        media={`(min-width: ${size.tablet})`}
+        type="image/jpeg"
+      />
+      <source
+        srcSet={`${contentImages.womanMobile1x} 1x, ${contentImages.womanMobile2x} 2x`}
+        media={`(min-width: ${size.mobile})`}
+        type="image/jpeg"
+      />
+      <img
+        src={contentImages.womanMobile1x}
+        alt="American-woman-enjoys-company-of-small-pedigree-dog"
+      />
+    </PictureStyled>
+  );
+};
