@@ -7,6 +7,10 @@ export const UserWrapper = styled.div`
     display: flex;
     flex-direction: row-reverse;
   }
+
+  ${device.desktop} {
+    flex-direction: column;
+  }
 `;
 export const UserInfoWrapper = styled.div`
   margin-bottom: 42px;
@@ -23,6 +27,10 @@ export const ItemWrapper = styled.div`
   display: flex;
   height: 24px;
   margin-bottom: 8px;
+
+  ${device.tablet} {
+    margin-bottom: 12px;
+  }
 `;
 
 export const Item = styled.div`
@@ -30,15 +38,33 @@ export const Item = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  color: #111111;
+
+  ${device.tablet} {
+    font-size: 18px;
+    line-height: 25px;
+  }
 `;
 
 export const EditWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  min-width: 160px;
+  width: 190px;
+  padding-left: 19px;
 
-  ${device.tabletOnly} {
-    min-width: 260px;
+  ${device.tablet} {
+    width: 272px;
+    padding-left: 13px;
+  }
+  ${device.desktop} {
+    width: 272px;
   }
 `;
 export const AvatarWrapper = styled.div`
@@ -51,6 +77,10 @@ export const AvatarWrapper = styled.div`
   ${device.tabletOnly} {
     padding: 25px 0;
     margin-bottom: 0;
+  }
+
+  ${device.desktop} {
+    padding: 0 90px;
   }
 `;
 export const Avatar = styled.img`
@@ -78,21 +108,67 @@ export const EditButton = styled.button`
 
 export const FormChangeUserInfo = styled.form`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  /* 
+  ${device.desktop} {
+    width: 272px;
+  } */
 `;
 
 export const InputChangeUserInfo = styled.input`
-  width: 160px;
   height: 24px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   padding: 4px 18px;
+  width: 160px;
 
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
 
-  ${device.tabletOnly} {
-    width: 260px;
-    margin-right: 24px;
+  color: #111111;
+
+  ${device.tablet} {
+    height: 24px;
+    width: 216px;
+    font-size: 18px;
+    line-height: 25px;
+    padding: 4px 12px;
+  }
+`;
+
+export const ToggleButton = styled.button`
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  background-color: blue;
+
+  ${device.tablet} {
+    width: 32px;
+    height: 32px;
+    margin-left: 24px;
+  }
+`;
+
+export const UserInfoTitle = styled.p`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  color: #111111;
+
+  ${device.tablet} {
+    font-size: 18px;
+    line-height: 25px;
   }
 `;

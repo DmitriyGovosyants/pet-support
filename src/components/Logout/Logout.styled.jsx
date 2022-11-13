@@ -14,5 +14,10 @@ export const LogoutWrapper = styled.div`
     bottom: 24px;
     padding: 0;
   }
+
+  ${device.desktop} {
+    left: 16px;
+    bottom: 40px;
+  }
 `;
 export const LogoutButton = styled.button``;

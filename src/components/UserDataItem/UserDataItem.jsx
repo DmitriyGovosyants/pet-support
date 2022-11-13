@@ -9,6 +9,8 @@ import {
   EditWrapper,
   FormChangeUserInfo,
   InputChangeUserInfo,
+  ToggleButton,
+  UserInfoTitle,
 } from './UserDataItem.styled';
 import React from 'react';
 
@@ -16,8 +18,8 @@ const UserInfoElement = ({ info, onClick }) => {
   return (
     <>
       <EditWrapper>
-        {info}
-        <button onClick={onClick}>/</button>
+        <UserInfoTitle>{info}</UserInfoTitle>
+        <ToggleButton onClick={onClick}>/</ToggleButton>
       </EditWrapper>
     </>
   );
@@ -28,7 +30,7 @@ const FormElement = ({ info, onSubmit }) => {
     <>
       <FormChangeUserInfo onSubmit={onSubmit}>
         <InputChangeUserInfo defaultValue={info} />
-        <button>?</button>
+        <ToggleButton>?</ToggleButton>
       </FormChangeUserInfo>
     </>
   );

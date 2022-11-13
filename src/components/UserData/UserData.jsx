@@ -1,4 +1,5 @@
 import { UserDataItem } from 'components';
+// import { UserDataTitle } from './UserData.styled';
 
 const initialState = {
   avatar: '',
