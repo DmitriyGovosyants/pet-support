@@ -12,7 +12,7 @@ import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
 
 //раскоментить, когда появится redux
-// import { useFetchPetsQuery, useDeletePetMutation } from '../redux/pets/petApi';
+import { useFetchPetsQuery, useDeletePetMutation } from 'redux/petApi';
 import { useState } from 'react';
 import { Modal } from 'components';
 
@@ -41,8 +41,8 @@ export const PetsList = () => {
   const [showModal, setShowModal] = useState(false);
   //раскоментить, когда появится redux
   // const { data: pets } = useFetchPetsQuery();
-  // const [deletePet] = useDeletePetMutation();
-  // const [editPet, setEditPet] = useState('');
+  const [deletePet] = useDeletePetMutation();
+  const [editPet, setEditPet] = useState('');
 
   const handleEditPet = () => {
     const newCont = {
@@ -54,7 +54,7 @@ export const PetsList = () => {
       comments: pets.comments,
     };
 
-    // setEditContact(newCont);
+    setEditPet(newCont);
     console.log('edit');
     setShowModal(true);
   };

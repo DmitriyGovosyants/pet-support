@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Modal } from 'components';
-import { ReactComponent as PlusIcon } from 'data/img/plus-icon.svg';
-import { Button, Wrapper, Text } from './AddUsersPet.styled';
+import { Button, Wrapper, Text, StyledPlusIcon } from './AddUsersPet.styled';
 
 export const AddUsersPet = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
@@ -12,7 +11,7 @@ export const AddUsersPet = ({ children }) => {
       <Wrapper>
         <Text>Add pet</Text>
         <Button type="button" onClick={() => setShowModal(true)}>
-          <PlusIcon />
+          <StyledPlusIcon />
         </Button>
       </Wrapper>
       {showModal && user && (

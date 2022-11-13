@@ -6,7 +6,7 @@ import {
   AddNoticeButton,
 } from 'components';
 
-import { Title, Section, Wrapper } from './NoticePage.styled';
+import { Title, Section, Wrapper } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('sell');
