@@ -1,6 +1,7 @@
 import styled from '@emotion/styled/macro';
 import { ReactComponent as FavouriteIcon } from 'data/img/favourite-icon.svg';
 import { ReactComponent as ToFavouriteIcon } from 'data/img/to-favourite-icon.svg';
+import { device } from 'styles/mediaquery';
 
 export const ImgWrapper = styled.div`
   position: relative;
@@ -16,6 +17,7 @@ export const StyledFavouriteIcon = styled(FavouriteIcon)`
 `;
 
 export const StyledToFavouriteIcon = styled(ToFavouriteIcon)`
+  fill: ${props => props.theme.colors.btnTransperent};
   scale: 1;
   stroke: ${props => props.theme.colors.accent};
   transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,9 +74,15 @@ export const Title = styled.h2`
 
 export const Description = styled.div`
   display: grid;
-  grid-template-columns: 87px 161px;
+  grid-template-columns: 82px 150px;
   gap: 8px;
   margin-bottom: 50px;
+  ${device.tablet} {
+    grid-template-columns: 82px 206px;
+  }
+  ${device.desktop} {
+    grid-template-columns: 79px 161px;
+  }
 `;
 
 export const About = styled.div`

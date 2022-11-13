@@ -41,11 +41,10 @@ export const Input = styled.input`
   line-height: 1.375;
   background: ${props => props.theme.colors.textSecond};
   box-shadow: 7px 4px 14px ${props => props.theme.colors.shadow};
-  outline-color: transparent;
+  outline: none;
   transition: outline-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
-    outline: 2px solid ${props => props.theme.colors.hover};
     & + ${Icon} {
       fill: ${props => props.theme.colors.hover};
     }

@@ -14,7 +14,13 @@ export const Title = styled.h1`
 `;
 
 export const Section = styled.section`
-  padding-top: 40px;
+  padding-top: 42px;
+  ${device.tablet} {
+    padding-top: 92px;
+  }
+  ${device.desktop} {
+    padding-top: 59px;
+  }
 `;
 
 export const Wrapper = styled.div`

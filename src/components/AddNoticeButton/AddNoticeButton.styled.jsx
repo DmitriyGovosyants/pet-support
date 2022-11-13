@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
+import { ReactComponent as PlusIcon } from 'data/img/plus-icon.svg';
 
 export const Button = styled.button`
   display: flex;
@@ -21,6 +22,15 @@ export const Button = styled.button`
   :hover,
   :focus {
     background-color: ${props => props.theme.colors.hover};
+  }
+`;
+
+export const StyledPlusIcon = styled(PlusIcon)`
+  width: 32px;
+  height: 32px;
+  ${device.tablet} {
+    width: 24px;
+    height: 24px;
   }
 `;
 
