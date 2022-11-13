@@ -9,6 +9,7 @@ export const UserDataWrapper = styled.div`
   align-items: flex-end;
   background-color: ${theme.colors.bgSecond};
   padding: 20px 0;
+  border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
   ${device.tablet} {

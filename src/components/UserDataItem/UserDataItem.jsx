@@ -1,8 +1,14 @@
 import { useState } from 'react';
+import { HiCamera } from 'react-icons/hi';
+import { MdEdit } from 'react-icons/md';
+import { BsCheckLg } from 'react-icons/bs';
+import { theme } from 'styles';
+
 import {
   UserWrapper,
   AvatarWrapper,
   Avatar,
+  ButtonPhotoEdit,
   UserInfoWrapper,
   ItemWrapper,
   Item,
@@ -19,7 +25,9 @@ const UserInfoElement = ({ info, onClick }) => {
     <>
       <EditWrapper>
         <UserInfoTitle>{info}</UserInfoTitle>
-        <ToggleButton onClick={onClick}>/</ToggleButton>
+        <ToggleButton id={info} onClick={onClick}>
+          <MdEdit color="rgba(17, 17, 17, 0.6)" />
+        </ToggleButton>
       </EditWrapper>
     </>
   );
@@ -30,7 +38,9 @@ const FormElement = ({ info, onSubmit }) => {
     <>
       <FormChangeUserInfo onSubmit={onSubmit}>
         <InputChangeUserInfo defaultValue={info} />
-        <ToggleButton>?</ToggleButton>
+        <ToggleButton id={info}>
+          <BsCheckLg color="rgba(17, 17, 17, 0.6)" />
+        </ToggleButton>
       </FormChangeUserInfo>
     </>
   );
@@ -40,7 +50,8 @@ export const UserDataItem = ({
   user: { avatar, name, email, birthDay, phone, city },
 }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const handleChange = () => {
+
+  const handleChange = e => {
     setIsEdit(true);
   };
 
@@ -54,7 +65,10 @@ export const UserDataItem = ({
       <UserWrapper>
         <AvatarWrapper>
           <Avatar src="#" alt={avatar} />
-          <button>Edit photo</button>
+          <ButtonPhotoEdit>
+            <HiCamera size={20} color={theme.colors.accent} />
+            <span>Edit photo</span>
+          </ButtonPhotoEdit>
         </AvatarWrapper>
 
         <UserInfoWrapper>

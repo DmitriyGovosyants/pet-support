@@ -1,11 +1,13 @@
-import { LogoutButton, LogoutWrapper } from './Logout.styled';
+import { LogoutButton } from './Logout.styled';
+import { TbLogout } from 'react-icons/tb';
 
 export const Logout = () => {
   return (
     <>
-      <LogoutWrapper>
-        <LogoutButton>Logout</LogoutButton>
-      </LogoutWrapper>
+      <LogoutButton>
+        <TbLogout size={22} color="F59256" />
+        <span>Log Out</span>
+      </LogoutButton>
     </>
   );
 };

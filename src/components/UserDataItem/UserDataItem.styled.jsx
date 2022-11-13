@@ -90,9 +90,10 @@ export const Avatar = styled.img`
   border-radius: 50%;
   margin-bottom: 12px;
 `;
-export const EditAvatarButton = styled.button`
+export const ButtonPhotoEdit = styled.button`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
 `;
 // export const AvatarButton = styled.button`
 //   display: flex;
@@ -145,10 +146,14 @@ export const InputChangeUserInfo = styled.input`
 `;
 
 export const ToggleButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   margin-left: 10px;
-  background-color: blue;
+  background-color: ${theme.colors.bgMain};
+  border-radius: 50%;
 
   ${device.tablet} {
     width: 32px;
