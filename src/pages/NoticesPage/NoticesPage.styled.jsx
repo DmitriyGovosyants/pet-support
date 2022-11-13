@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaquery';
 
 export const Title = styled.h1`
   margin-bottom: 28px;
@@ -6,14 +7,20 @@ export const Title = styled.h1`
   font-weight: 700;
   font-size: 24px;
   line-height: 1.375;
-  @media screen and (min-width: 768px) {
+  ${device.tablet} {
     margin-bottom: 40px;
     font-size: 48px;
   }
 `;
 
 export const Section = styled.section`
-  padding-top: 40px;
+  padding-top: 42px;
+  ${device.tablet} {
+    padding-top: 92px;
+  }
+  ${device.desktop} {
+    padding-top: 59px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -21,7 +28,10 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: start;
   margin-bottom: 30px;
-  @media screen and (min-width: 768px) {
+  ${device.mobileOnly} {
+    position: relative;
+  }
+  ${device.tablet} {
     margin-bottom: 60px;
   }
 `;

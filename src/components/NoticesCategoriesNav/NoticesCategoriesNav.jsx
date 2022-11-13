@@ -11,7 +11,7 @@ const categoriesMock = [
 ];
 
 export const NoticesCategoriesNav = () => {
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState('sell');
 
   const categoryToggler = category => {
     setSelected(category);
