@@ -16,8 +16,10 @@ export const NavList = styled.ul`
 export const NavItem = styled.li`
   text-align: center;
 
-  :not(:last-child) {
-    margin-bottom: 40px;
+  ${device.notDesktop}  {
+    :not(:last-child) {
+      margin-bottom: 40px;
+    }
   }
 
   ${device.desktop}  {
