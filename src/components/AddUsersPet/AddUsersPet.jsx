@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Modal, ModalAddsPet } from 'components';
 import { Button, Wrapper, Text, StyledPlusIcon } from './AddUsersPet.styled';
 
@@ -6,17 +7,21 @@ export const AddUsersPet = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const user = true; //временная заглушка
 
+  const handleAddPet = () => {
+    user ? setShowModal(true) : toast.error('Please login');
+  };
+
   return (
     <>
       <Wrapper>
         <Text>Add pet</Text>
-        <Button type="button" onClick={() => setShowModal(true)}>
+        <Button type="button" onClick={() => handleAddPet()}>
           <StyledPlusIcon />
         </Button>
       </Wrapper>
-      {showModal && user && (
+      {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <ModalAddsPet />
+          <ModalAddsPet closeModal={() => setShowModal(false)} />
         </Modal>
       )}
     </>

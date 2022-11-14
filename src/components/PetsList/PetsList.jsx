@@ -10,13 +10,12 @@ import {
 } from './PetsList.styled';
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
-
-//раскоментить, когда появится redux
 import { useFetchPetsQuery } from 'redux/petApi';
 import { useState } from 'react';
 import { Modal, ModalDelete } from 'components';
 const user = true; //временная заглушка
 
+//удалить const pets, когда прийдут данные из бекенда
 const pets = [
   {
     id: '1',
@@ -39,26 +38,13 @@ const pets = [
 ];
 
 export const PetsList = () => {
-  const [showModal, setShowModal] = useState(false);
-  //раскоментить, когда появится redux
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+
+  //раскоментить, когда прийдут данные из бекенда
   // const { data: pets } = useFetchPetsQuery();
 
   const [editPet, setEditPet] = useState('');
-
-  const handleEditPet = () => {
-    const newCont = {
-      id: pets.id,
-      image: pets.image,
-      name: pets.name,
-      dateOfBirth: pets.dateOfBirth,
-      breed: pets.breed,
-      comments: pets.comments,
-    };
-
-    setEditPet(newCont);
-    console.log('edit');
-    setShowModal(true);
-  };
 
   return (
     <>
@@ -70,17 +56,17 @@ export const PetsList = () => {
                 <img src={image} alt="pet" />
               </Image>
               <ThumbText>
-                <ButtonEdit type="button" onClick={handleEditPet}>
+                <ButtonEdit
+                  type="button"
+                  onClick={() => setShowModalEdit(true)}
+                >
                   <EditIcon />
                 </ButtonEdit>
 
-                {/*
-                если будет функционал по изменению петов и будет реализована модалка ModalEditPet {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)}>
-          <ModalEditPet toggleModal={() => setShowModal(s => !s)} />
-        </Modal>
-      )} */}
-                <ButtonDelete type="button" onClick={() => setShowModal(true)}>
+                <ButtonDelete
+                  type="button"
+                  onClick={() => setShowModalDelete(true)}
+                >
                   <DeleteIcon />
                 </ButtonDelete>
                 <Text>
@@ -100,10 +86,26 @@ export const PetsList = () => {
                   {comments}
                 </Text>
               </ThumbText>
-
-              {showModal && user && (
-                <Modal toggleModal={() => setShowModal(s => !s)}>
-                  <ModalDelete id={id} closeModal={() => setShowModal(false)} />
+              {showModalDelete && user && (
+                <Modal toggleModal={() => setShowModalDelete(s => !s)}>
+                  <ModalDelete
+                    id={id}
+                    closeModal={() => setShowModalDelete(false)}
+                  />
+                </Modal>
+              )}
+              {showModalEdit && user && (
+                <Modal toggleModal={() => setShowModalEdit(s => !s)}>
+                  {/* раскоментить когда появится компонент ModalEdit
+                  <ModalEdit
+                    id={id}
+                    image={image}
+                    name={name}
+                    dateOfBirth={dateOfBirth}
+                    breed={breed}
+                    comments={comments}
+                    closeModal={() => setShowModalDelete(false)}
+                  /> */}
                 </Modal>
               )}
             </PetItem>

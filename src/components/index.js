@@ -25,8 +25,5 @@ export * from './Logout/Logout';
 export * from './PetsData/PetsData';
 export * from './ModalAddsPet/ModalAddsPet';
 export * from './PetsList/PetsList';
-export * from './AddPet/AddUsersPet';
-
-export * from './ModalDelete/ModalDelete';
-
+export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';

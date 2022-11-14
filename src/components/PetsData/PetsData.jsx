@@ -4,7 +4,6 @@ import { ThumbText, Text } from './PetsData.styled';
 export const PetsData = () => {
   return (
     <>
-      <h1>Ihor Melnyk's task</h1>
       <ThumbText>
         <Text>My pets:</Text>
         <AddUsersPet />
