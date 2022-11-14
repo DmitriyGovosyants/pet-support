@@ -1,7 +1,9 @@
+import { LogoWrap, LogoAccent } from './Logo.styled';
+
 export const Logo = () => {
   return (
-    <div>
-      <p>petly</p>
-    </div>
+    <LogoWrap>
+      pe<LogoAccent>t</LogoAccent>ly
+    </LogoWrap>
   );
 };
