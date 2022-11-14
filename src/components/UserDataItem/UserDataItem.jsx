@@ -8,27 +8,28 @@ import {
   UserWrapper,
   AvatarWrapper,
   Avatar,
-  ButtonPhotoEdit,
-  UserInfoWrapper,
-  ItemWrapper,
-  Item,
-  EditWrapper,
-  FormChangeUserInfo,
-  InputChangeUserInfo,
-  ToggleButton,
-  UserInfoTitle,
+  AvatarPhotoEditButton,
+  UserDescriptionWrapper,
+  UserDescriptionItemWrapper,
+  UserDescriptionItem,
+  BasicUserDataWrapper,
+  UserForm,
+  UserFormInput,
+  UserFormSubmitButton,
+  BasicUserDataEditButton,
+  BasicUserDataTitle,
 } from './UserDataItem.styled';
 import React from 'react';
 
-const UserInfoElement = ({ info, onClick }) => {
+const BasicUserInfoElement = ({ info, onClick }) => {
   return (
     <>
-      <EditWrapper>
-        <UserInfoTitle>{info}</UserInfoTitle>
-        <ToggleButton id={info} onClick={onClick}>
+      <BasicUserDataWrapper>
+        <BasicUserDataTitle>{info}</BasicUserDataTitle>
+        <BasicUserDataEditButton id={info} onClick={onClick}>
           <MdEdit color="rgba(17, 17, 17, 0.6)" />
-        </ToggleButton>
-      </EditWrapper>
+        </BasicUserDataEditButton>
+      </BasicUserDataWrapper>
     </>
   );
 };
@@ -36,12 +37,12 @@ const UserInfoElement = ({ info, onClick }) => {
 const FormElement = ({ info, onSubmit }) => {
   return (
     <>
-      <FormChangeUserInfo onSubmit={onSubmit}>
-        <InputChangeUserInfo defaultValue={info} />
-        <ToggleButton id={info}>
+      <UserForm onSubmit={onSubmit}>
+        <UserFormInput defaultValue={info} />
+        <UserFormSubmitButton id={info}>
           <BsCheckLg color="rgba(17, 17, 17, 0.6)" />
-        </ToggleButton>
-      </FormChangeUserInfo>
+        </UserFormSubmitButton>
+      </UserForm>
     </>
   );
 };
@@ -64,65 +65,65 @@ export const UserDataItem = ({
     <>
       <UserWrapper>
         <AvatarWrapper>
-          <Avatar src="#" alt={avatar} />
-          <ButtonPhotoEdit>
+          <Avatar alt={avatar} />
+          <AvatarPhotoEditButton>
             <HiCamera size={20} color={theme.colors.accent} />
             <span>Edit photo</span>
-          </ButtonPhotoEdit>
+          </AvatarPhotoEditButton>
         </AvatarWrapper>
 
-        <UserInfoWrapper>
-          <ItemWrapper>
-            <Item>
+        <UserDescriptionWrapper>
+          <UserDescriptionItemWrapper>
+            <UserDescriptionItem>
               Name:
               {!isEdit ? (
-                <UserInfoElement info={name} onClick={handleChange} />
+                <BasicUserInfoElement info={name} onClick={handleChange} />
               ) : (
                 <FormElement info={name} onSubmit={handleSubmit} />
               )}
-            </Item>
-          </ItemWrapper>
-          <ItemWrapper>
-            <Item>
+            </UserDescriptionItem>
+          </UserDescriptionItemWrapper>
+          <UserDescriptionItemWrapper>
+            <UserDescriptionItem>
               Email:
               {!isEdit ? (
-                <UserInfoElement info={email} onClick={handleChange} />
+                <BasicUserInfoElement info={email} onClick={handleChange} />
               ) : (
                 <FormElement info={email} onSubmit={handleSubmit} />
               )}
-            </Item>
-          </ItemWrapper>
-          <ItemWrapper>
-            <Item>
+            </UserDescriptionItem>
+          </UserDescriptionItemWrapper>
+          <UserDescriptionItemWrapper>
+            <UserDescriptionItem>
               Birthday:
               {!isEdit ? (
-                <UserInfoElement info={birthDay} onClick={handleChange} />
+                <BasicUserInfoElement info={birthDay} onClick={handleChange} />
               ) : (
                 <FormElement info={birthDay} onSubmit={handleSubmit} />
               )}
-            </Item>
-          </ItemWrapper>
-          <ItemWrapper>
-            <Item>
+            </UserDescriptionItem>
+          </UserDescriptionItemWrapper>
+          <UserDescriptionItemWrapper>
+            <UserDescriptionItem>
               Phone:
               {!isEdit ? (
-                <UserInfoElement info={phone} onClick={handleChange} />
+                <BasicUserInfoElement info={phone} onClick={handleChange} />
               ) : (
                 <FormElement info={phone} onSubmit={handleSubmit} />
               )}
-            </Item>
-          </ItemWrapper>
-          <ItemWrapper>
-            <Item>
+            </UserDescriptionItem>
+          </UserDescriptionItemWrapper>
+          <UserDescriptionItemWrapper>
+            <UserDescriptionItem>
               City:
               {!isEdit ? (
-                <UserInfoElement info={city} onClick={handleChange} />
+                <BasicUserInfoElement info={city} onClick={handleChange} />
               ) : (
                 <FormElement info={city} onSubmit={handleSubmit} />
               )}
-            </Item>
-          </ItemWrapper>
-        </UserInfoWrapper>
+            </UserDescriptionItem>
+          </UserDescriptionItemWrapper>
+        </UserDescriptionWrapper>
       </UserWrapper>
     </>
   );

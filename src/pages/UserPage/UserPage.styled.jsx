@@ -7,8 +7,8 @@ export const UserDataWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding: 20px 0 84px 0;
   background-color: ${theme.colors.bgSecond};
-  padding: 20px 0;
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
@@ -20,7 +20,7 @@ export const UserDataWrapper = styled.div`
   }
 
   ${device.desktop} {
-    padding: 20px 16px 40px 16px;
+    padding: 20px 0 103px 0;
   }
 `;
 
@@ -29,16 +29,16 @@ export const UserDataTitle = styled.p`
   margin-bottom: 18px;
   font-weight: 500;
   font-size: 20px;
-  line-height: 27px;
+  line-height: 1.35;
   letter-spacing: 0.04em;
 
-  color: #000000;
+  color: ${theme.colors.textMain};
 
   ${device.tablet} {
     padding-top: 88px;
     margin-bottom: 40px;
     font-size: 28px;
-    line-height: 38px;
+    line-height: 1.36;
   }
 
   ${device.desktop} {

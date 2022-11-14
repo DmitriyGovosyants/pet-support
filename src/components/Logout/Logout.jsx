@@ -5,7 +5,7 @@ export const Logout = () => {
   return (
     <>
       <LogoutButton>
-        <TbLogout size={22} color="F59256" />
+        <TbLogout size={18} color="F59256" />
         <span>Log Out</span>
       </LogoutButton>
     </>
