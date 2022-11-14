@@ -5,9 +5,7 @@ import { bgImgs, contImgs } from '../../data/img/homePage';
 export const Wrapper = styled.div`
   position: relative;
 
-  /* min-height: 600px; */
-  height: calc(100vh - 55px);
-  /* height: 94.2vh; */
+  height: calc(100vh - 67.39px);
 
   margin-left: ${p => p.theme.spacing(-5)};
   margin-right: ${p => p.theme.spacing(-5)};
@@ -22,7 +20,7 @@ export const Wrapper = styled.div`
   }
 
   ${device.tablet} {
-    /* min-height: 1193px; */
+    height: calc(100vh - 83.39px);
 
     margin-left: ${p => p.theme.spacing(-8)};
     margin-right: ${p => p.theme.spacing(-8)};
@@ -36,9 +34,7 @@ export const Wrapper = styled.div`
   }
 
   ${device.desktop} {
-    /* min-height: 768px; */
-    height: calc(100vh - 62px);
-    /* height: 94vh; */
+    height: calc(100vh - 82.39px);
 
     margin-left: ${p => p.theme.spacing(-4)};
     margin-right: ${p => p.theme.spacing(-4)};
