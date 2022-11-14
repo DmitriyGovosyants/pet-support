@@ -21,15 +21,21 @@ export const NavBox = styled.div`
     justify-content: flex-start;
     background-color: ${p => p.theme.colors.bgMain};
     position: absolute;
-    top: 100px;
+    top: 55px;
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     transition: 1s;
-    transform: ${p => p.menu ? 'none' : 'translateY(-150vh)'};
-    height: ${p => p.menu ? '150vh' : "100%"};
+    transform: ${p => p.menu ? 'none' : 'translateY(-200vh)'};
+    height: ${p => p.menu ? '200vh' : "100%"};
+    z-index: 10;
   }
 
+  ${device.tablet} {
+    top: 65px;
+  }
+  
   ${device.desktop} {
     display: flex;
     align-items: center;
@@ -54,6 +60,7 @@ ${device.desktop} {
 
 export const AuthBoxMob = styled.div`
 margin-bottom: 60px;
+margin-top: 45px;
 
 ${device.tablet} {
   display: none;

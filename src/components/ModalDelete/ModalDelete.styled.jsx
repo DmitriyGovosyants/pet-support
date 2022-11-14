@@ -33,6 +33,7 @@ export const ButtonClose = styled.button`
   top: 20px;
   right: 20px;
 
+  cursor: pointer;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
@@ -67,6 +68,7 @@ export const ButtonDel = styled.button`
   border-radius: 40px;
   color: ${props => props.theme.colors.bgSecond};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 
   :hover,
   :focus {
@@ -88,6 +90,7 @@ export const ButtonCancel = styled.button`
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   color: #111111;
+  cursor: pointer;
 
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
