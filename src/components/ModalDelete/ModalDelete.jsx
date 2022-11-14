@@ -16,6 +16,7 @@ export const ModalDelete = ({ id, closeModal }) => {
   const handleDelete = async () => {
     try {
       //   await deletePet(id).unwrap();
+      toast.success('The pet has been successfully removed');
     } catch (error) {
       if (error.status === 401) {
         toast.error(error.data.message);
@@ -36,7 +37,7 @@ export const ModalDelete = ({ id, closeModal }) => {
       <ButtonClose type="button" onClick={() => closeModal()}>
         <CloseIcon />
       </ButtonClose>
-      <TittleModal>DELETE YOUR PET</TittleModal>
+      <TittleModal>Are you sure you want to delete it?</TittleModal>
       <ButtonDel type="button" onClick={() => handleDelete()}>
         DELETE
       </ButtonDel>

@@ -7,9 +7,8 @@ export const Header = () => {
   const user = false; 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const showNavBar = () => {
-    setIsMenuOpen(s => !s);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -17,12 +16,12 @@ export const Header = () => {
       <Logo />
       <NavBox menu={isMenuOpen}>
         <AuthBoxMob>
-          {user ? <UserNav /> : <AuthNav />}
+          {user ? <UserNav toggleNavBar={showNavBar}/> : <AuthNav toggleNavBar={showNavBar}/>}
         </AuthBoxMob>
-        <Nav />
+        <Nav toggleNavBar={showNavBar}/>
       </NavBox>
       <AuthBox>
-        {user ? <UserNav /> : <AuthNav />}
+        {user ? <UserNav toggleNavBar={showNavBar}/> : <AuthNav toggleNavBar={showNavBar}/>}
       </AuthBox>
       <BurgerBtn toggleNavBar={showNavBar} />
     </HeaderStyled>
