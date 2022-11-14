@@ -1,6 +1,7 @@
 export * from './SharedLayout/SharedLayout';
 export * from './Container/Container';
 export * from './Modal/Modal';
+export * from './BurgerBtn/BurgerBtn';
 
 export * from './Header/Header';
 export * from './Logo/Logo';
@@ -13,6 +14,7 @@ export * from './LoginForm/LoginForm';
 
 export * from './NoticesSearch/NoticesSearch';
 export * from './NoticesCategoriesNav/NoticesCategoriesNav';
+export * from './NoticesCategoriesNavButton/NoticesCategoriesNavButton';
 export * from './NoticesCategoriesList/NoticesCategoriesList';
 export * from './NoticeCategoryItem/NoticeCategoryItem';
 export * from './ModalNotice/ModalNotice';
@@ -24,3 +26,5 @@ export * from './Logout/Logout';
 export * from './PetsData/PetsData';
 export * from './ModalAddsPet/ModalAddsPet';
 export * from './PetsList/PetsList';
+
+export * from './ModalDelete/ModalDelete';

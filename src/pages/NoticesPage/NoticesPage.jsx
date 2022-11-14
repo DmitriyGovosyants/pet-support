@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   NoticesSearch,
   NoticesCategoriesNav,
@@ -5,14 +6,24 @@ import {
   AddNoticeButton,
 } from 'components';
 
+import { Title, Section, Wrapper } from './NoticesPage.styled';
+
 const NoticesPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState('sell');
+
+  const changeCategory = newCategory => {
+    setSelectedCategory(newCategory);
+  };
   return (
-    <>
+    <Section>
+      <Title>Find your favorite pet</Title>
       <NoticesSearch />
-      <NoticesCategoriesNav />
-      <NoticesCategoriesList />
-      <AddNoticeButton />
-    </>
+      <Wrapper>
+        <NoticesCategoriesNav changeCategory={changeCategory} />
+        <AddNoticeButton />
+      </Wrapper>
+      <NoticesCategoriesList selectedCategory={selectedCategory} />
+    </Section>
   );
 };
 
