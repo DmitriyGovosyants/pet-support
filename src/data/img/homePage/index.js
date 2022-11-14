@@ -17,7 +17,7 @@ import womanTablet2x from './hp-woman-tablet@2x.png';
 import womanDesktop1x from './hp-woman-desktop@1x.png';
 import womanDesktop2x from './hp-woman-desktop@2x.png';
 
-export const bckgImages = {
+export const bgImgs = {
   curveMobile1x,
   curveMobile2x,
   curveTablet1x,
@@ -32,7 +32,7 @@ export const bckgImages = {
   heartDesktop2x,
 };
 
-export const contentImages = {
+export const contImgs = {
   womanMobile1x,
   womanMobile2x,
   womanTablet1x,
