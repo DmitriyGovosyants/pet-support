@@ -16,7 +16,7 @@ export const ModalDelete = ({ id, closeModal }) => {
   const handleDelete = async () => {
     try {
       //   await deletePet(id).unwrap();
-      toast.success('The pet has been successfully removed');
+      toast.success('Successfully removed');
     } catch (error) {
       if (error.status === 401) {
         toast.error(error.data.message);
