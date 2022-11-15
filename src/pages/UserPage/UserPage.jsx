@@ -5,9 +5,7 @@ const UserPage = () => {
   return (
     <>
       <div>USER PAGE</div>
-      <>
-        <UserDataTitle>My information:</UserDataTitle>
-      </>
+      <UserDataTitle>My information:</UserDataTitle>
       <UserDataWrapper>
         <UserData />
         <Logout />

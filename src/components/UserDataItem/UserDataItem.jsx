@@ -1,17 +1,10 @@
 import { useState } from 'react';
-import { HiCamera } from 'react-icons/hi';
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
-import { theme } from 'styles';
 
 import {
-  UserWrapper,
-  AvatarWrapper,
-  Avatar,
-  AvatarPhotoEditButton,
-  UserDescriptionWrapper,
-  UserDescriptionItemWrapper,
   UserDescriptionItem,
+  ItemTitle,
   BasicUserDataWrapper,
   UserForm,
   UserFormInput,
@@ -47,9 +40,7 @@ const FormElement = ({ info, onSubmit }) => {
   );
 };
 
-export const UserDataItem = ({
-  user: { avatar, name, email, birthDay, phone, city },
-}) => {
+export const UserDataItem = ({ title, value }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const handleChange = e => {
@@ -63,68 +54,15 @@ export const UserDataItem = ({
 
   return (
     <>
-      <UserWrapper>
-        <AvatarWrapper>
-          <Avatar alt={avatar} />
-          <AvatarPhotoEditButton>
-            <HiCamera size={20} color={theme.colors.accent} />
-            <span>Edit photo</span>
-          </AvatarPhotoEditButton>
-        </AvatarWrapper>
+      <UserDescriptionItem>
+        <ItemTitle> {title}:</ItemTitle>
 
-        <UserDescriptionWrapper>
-          <UserDescriptionItemWrapper>
-            <UserDescriptionItem>
-              Name:
-              {!isEdit ? (
-                <BasicUserInfoElement info={name} onClick={handleChange} />
-              ) : (
-                <FormElement info={name} onSubmit={handleSubmit} />
-              )}
-            </UserDescriptionItem>
-          </UserDescriptionItemWrapper>
-          <UserDescriptionItemWrapper>
-            <UserDescriptionItem>
-              Email:
-              {!isEdit ? (
-                <BasicUserInfoElement info={email} onClick={handleChange} />
-              ) : (
-                <FormElement info={email} onSubmit={handleSubmit} />
-              )}
-            </UserDescriptionItem>
-          </UserDescriptionItemWrapper>
-          <UserDescriptionItemWrapper>
-            <UserDescriptionItem>
-              Birthday:
-              {!isEdit ? (
-                <BasicUserInfoElement info={birthDay} onClick={handleChange} />
-              ) : (
-                <FormElement info={birthDay} onSubmit={handleSubmit} />
-              )}
-            </UserDescriptionItem>
-          </UserDescriptionItemWrapper>
-          <UserDescriptionItemWrapper>
-            <UserDescriptionItem>
-              Phone:
-              {!isEdit ? (
-                <BasicUserInfoElement info={phone} onClick={handleChange} />
-              ) : (
-                <FormElement info={phone} onSubmit={handleSubmit} />
-              )}
-            </UserDescriptionItem>
-          </UserDescriptionItemWrapper>
-          <UserDescriptionItemWrapper>
-            <UserDescriptionItem>
-              City:
-              {!isEdit ? (
-                <BasicUserInfoElement info={city} onClick={handleChange} />
-              ) : (
-                <FormElement info={city} onSubmit={handleSubmit} />
-              )}
-            </UserDescriptionItem>
-          </UserDescriptionItemWrapper>
-        </UserDescriptionWrapper>
-      </UserWrapper>
+        {!isEdit ? (
+          <BasicUserInfoElement info={value} onClick={handleChange} />
+        ) : (
+          <FormElement info={value} onSubmit={handleSubmit} />
+        )}
+      </UserDescriptionItem>
     </>
   );
 };

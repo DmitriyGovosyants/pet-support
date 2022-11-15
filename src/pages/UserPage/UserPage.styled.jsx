@@ -13,14 +13,15 @@ export const UserDataWrapper = styled.div`
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
   ${device.tablet} {
-    position: absolute;
-    left: 0px;
     border-radius: 0px 40px 40px 0px;
     padding: 0 40px 0 32px;
+    margin-left: -32px;
   }
 
   ${device.desktop} {
+    width: 410px;
     padding: 20px 0 103px 0;
+    margin-left: -16px;
   }
 `;
 

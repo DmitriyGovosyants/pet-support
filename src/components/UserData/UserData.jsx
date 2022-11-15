@@ -1,5 +1,13 @@
 import { UserDataItem } from 'components';
-// import { UserDataTitle } from './UserData.styled';
+import {
+  UserWrapper,
+  AvatarWrapper,
+  Avatar,
+  AvatarPhotoEditButton,
+  UserDescriptionWrapper,
+} from './UserData.styled';
+import { theme } from 'styles';
+import { HiCamera } from 'react-icons/hi';
 
 const initialState = {
   avatar: '',
@@ -13,7 +21,23 @@ const initialState = {
 export const UserData = () => {
   return (
     <>
-      <UserDataItem user={initialState} />
+      <UserWrapper>
+        <AvatarWrapper>
+          <Avatar alt={initialState.avatar} />
+          <AvatarPhotoEditButton>
+            <HiCamera size={20} color={theme.colors.accent} />
+            <span>Edit photo</span>
+          </AvatarPhotoEditButton>
+        </AvatarWrapper>
+
+        <UserDescriptionWrapper>
+          <UserDataItem title="name" value={initialState.name} />
+          <UserDataItem title="email" value={initialState.email} />
+          <UserDataItem title="birthDay" value={initialState.birthDay} />
+          <UserDataItem title="phone" value={initialState.phone} />
+          <UserDataItem title="city" value={initialState.city} />
+        </UserDescriptionWrapper>
+      </UserWrapper>
     </>
   );
 };
