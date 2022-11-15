@@ -63,68 +63,14 @@ export const Text = styled.p`
   color: #000000;
 `;
 
-export const ButtonEdit = styled.button`
+export const ListButton = styled.ul`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: inherit;
-  color: #111111;
-  fill-opacity: 0.6;
-  backdrop-filter: blur(2px);
-
+  gap: 15px;
   position: absolute;
-  right: 30px;
   top: -3px;
-
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  ${device.tablet} {
-    width: 44px;
-    height: 44px;
-    background-color: #fdf7f2;
-
-    right: 50px;
-    top: 0;
-  }
-
-  :hover,
-  :focus {
-    color: ${props => props.theme.colors.accent};
-  }
-`;
-
-export const ButtonDelete = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: inherit;
-  color: #111111;
-  fill-opacity: 0.6;
-  backdrop-filter: blur(2px);
-
-  position: absolute;
   right: 0;
-  top: -3px;
-
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
   ${device.tablet} {
-    width: 44px;
-    height: 44px;
-    background-color: #fdf7f2;
-
-    right: 0;
     top: 0;
-  }
-
-  :hover,
-  :focus {
-    color: ${props => props.theme.colors.accent};
+    right: 0;
   }
 `;

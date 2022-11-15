@@ -12,7 +12,7 @@ export const Button = styled.button`
   color: #111111;
   fill-opacity: 0.6;
   backdrop-filter: blur(2px);
-
+  cursor: pointer;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   ${device.tablet} {

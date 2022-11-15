@@ -4,8 +4,7 @@ import {
   ThumbText,
   HeadLine,
   Text,
-  ButtonEdit,
-  ButtonDelete,
+  ListButton,
 } from './PetItem.styled';
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
@@ -25,27 +24,24 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
           <img src={image} alt="pet" />
         </Image>
         <ThumbText>
-          <ul>
+          <ListButton>
             <li>
-              <PetsInterfaceButton>
+              <PetsInterfaceButton
+                type="button"
+                onClick={() => setShowModalEdit(true)}
+              >
                 <EditIcon />
               </PetsInterfaceButton>
             </li>
-
-            {/* <li>
-              <ButtonEdit type="button" onClick={() => setShowModalEdit(true)}>
-                <EditIcon />
-              </ButtonEdit>
-            </li> */}
             <li>
-              <ButtonDelete
+              <PetsInterfaceButton
                 type="button"
                 onClick={() => setShowModalDelete(true)}
               >
                 <DeleteIcon />
-              </ButtonDelete>
+              </PetsInterfaceButton>
             </li>
-          </ul>
+          </ListButton>
 
           <Text>
             <HeadLine>Name: </HeadLine>
