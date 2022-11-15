@@ -25,3 +25,6 @@ export * from './Logout/Logout';
 export * from './PetsData/PetsData';
 export * from './ModalAddsPet/ModalAddsPet';
 export * from './PetsList/PetsList';
+
+export * from './OurFriendsList/OurFriendsList';
+export * from './OurFriendsItem/OurFriendsItem';

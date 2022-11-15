@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
-export const friendsList = styled.ul`
+export const FriendsList = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;

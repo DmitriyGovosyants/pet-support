@@ -1,21 +1,19 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
+export const ItemTitle = styled.h3`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #f59256;
+  padding-top: 12px;
+  padding-bottom: 12px;
+`;
 
-  export const itemTitle = styled.h3`
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 16px;
-    text-align: center;
-    text-decoration-line: underline;
-    color: #F59256;
-    padding-top: 12px;
-    padding-bottom: 12px;
-`;  
-    
-
-export const friendsList = styled.ul`
+export const FriendsList = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
@@ -25,33 +23,33 @@ export const friendsList = styled.ul`
   }
 `;
 
-export const friendItem = styled.li`
+export const FriendItem = styled.li`
   border-radius: 20px;
-    margin-bottom: 12px;
-    width: 280px;
+  margin-bottom: 12px;
+  width: 280px;
 `;
 
 export const ItemNetwork = styled.div`
   display: flex;
 `;
 
-export const imgItem = styled.img`
+export const ImgItem = styled.img`
   margin-left: 4px;
-    margin-right: 12px;
-    width: 110px;
-    height: 78px;
+  margin-right: 12px;
+  width: 110px;
+  height: 78px;
 `;
 
-export const infoItem = styled.div`
+export const InfoItem = styled.div`
   font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
 `;
 
-export const infoItemUl = styled.ul`
+export const InfoItemUl = styled.ul`
   margin-bottom: -4px;
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 `;
 
 // export const itemInfoList = styled.li`
@@ -65,28 +63,25 @@ export const infoItemUl = styled.ul`
 //     background: none;
 // `;
 
-export const infoItemWork = styled.li`
-  
-`;
+// export const infoItemWork = styled.li`
 
-export const itemInfoList = styled.li`
-  
-`;
+// `;
 
-export const infoItemTime = styled.li`
-  
-`;
+// export const itemInfoList = styled.li`
 
-export const infoItemAddress = styled.address`
-  
-`;
+// `;
 
-export const friendItemEmail = styled.a`
-  
-`;
-export const friendItemPhone = styled.a`
-  
-`;
+// export const infoItemTime = styled.li`
 
+// `;
 
+// export const infoItemAddress = styled.address`
 
+// `;
+
+// export const friendItemEmail = styled.a`
+
+// `;
+// export const friendItemPhone = styled.a`
+
+// `;

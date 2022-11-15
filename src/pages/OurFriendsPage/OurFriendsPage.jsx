@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-// import { OurFriendsList } from 'components';
+import { OurFriendsList } from 'components';
 import { Title, Section, Wrapper } from './OurFriendsPage.styled';
 
 const OurFriendsPage = () => {
@@ -7,7 +7,7 @@ const OurFriendsPage = () => {
     <Section>
       <Title>Our friends</Title>
       <Wrapper>
-        
+        <OurFriendsList />
       </Wrapper>
     </Section>
   );
