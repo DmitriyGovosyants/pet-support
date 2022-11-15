@@ -1,4 +1,4 @@
-export * from './SharedLayout/SharedLayout';
+export * from './UserData/SharedLayout/SharedLayout';
 export * from './Container/Container';
 export * from './Modal/Modal';
 
@@ -24,4 +24,4 @@ export * from './UserDataItem/UserDataItem';
 export * from './Logout/Logout';
 export * from './PetsData/PetsData';
 export * from './ModalAddsPet/ModalAddsPet';
-export * from './PetsList/PetsList';
+export * from './PetsData/PetsList/PetsList';
