@@ -6,7 +6,7 @@ export const ThumbText = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 `;
 
 export const Text = styled.p`
