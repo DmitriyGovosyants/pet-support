@@ -2,26 +2,31 @@ import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
 export const Btn = styled.button`
-  width: 100%;
-  padding: ${p => p.option === 'black' ? '6.5px' : '8.5px'} 0px;
+  min-width: 100%;
+  padding: 6.5px 0px;
 
-  font-size: 20px;
+  font-size: ${p => p.size === 'small' ? '16px' : '20px'};
   line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${p => p.option === 'black' ? p.theme.colors.textMain : p.theme.colors.textSecond};
 
   background-color: ${p => p.option === 'black' ? 'transparent' : p.theme.colors.accent};
   border-radius: 40px;
-  border-width: ${p => p.option === 'black' ? '2px' : 0};
-  border-style: ${p => p.option === 'black' ? 'solid' : 'none'};
+  border-width: 2px;
+  border-style: solid;
   border-color: ${p => p.option === 'black' ?  p.theme.colors.accent : 'transparent'};
   cursor: pointer;
   
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  ${device.tablet} {
+    min-width: ${p => p.size === 'small' ? '180px' : '100%'};
+    font-size: 20px;
+  }
 
   ${device.desktop} {
-    padding: ${p => p.option === 'black' ? '8.5px' : '10.5px'} 0px;
+    padding: 8.5px 0px;
   }
 
   :hover,

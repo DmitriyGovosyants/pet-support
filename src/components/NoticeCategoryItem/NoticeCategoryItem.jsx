@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Modal, ModalNotice } from 'components';
-import { ReactComponent as FavouriteIcon } from 'data/img/favourite-icon.svg';
-import { ReactComponent as ToFavouriteIcon } from 'data/img/to-favourite-icon.svg';
 import {
   ImgWrapper,
   Button,
+  StyledFavouriteIcon,
+  StyledToFavouriteIcon,
   Category,
   Title,
   Description,
@@ -31,7 +31,7 @@ export const NoticeCategoryItem = ({
         <Category>{categoryNameMock}</Category>
         <img src={photo} alt={breed} />
         <Button type="button" onClick={toggleFavourites}>
-          {isFavourite ? <FavouriteIcon /> : <ToFavouriteIcon />}
+          {isFavourite ? <StyledFavouriteIcon /> : <StyledToFavouriteIcon />}
         </Button>
       </ImgWrapper>
       <About>

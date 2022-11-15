@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Button } from 'components';
+import { Container, Header, MainButton } from 'components';
 
 export const SharedLayout = () => {
   return (
@@ -16,11 +16,25 @@ export const SharedLayout = () => {
         </Container>
       </main>
       <div>LOGIN</div>
-      <Button type={'submit'}>Login</Button>
+      <MainButton type={'submit'}>Login</MainButton>
       <div>REGISTRATION</div>
-      <Button>Next</Button>
-      <Button type={'submit'}>Register</Button>
-      <Button option={'black'}>Back</Button>
+      <MainButton>Next</MainButton>
+      <MainButton type={'submit'}>Register</MainButton>
+      <MainButton option={'black'}>Back</MainButton>
+      <div>ADD USER PET MODAL</div>
+      <MainButton option={'black'} size={'small'}>
+        Cancel
+      </MainButton>
+      <MainButton size={'small'}>Next</MainButton>
+      <MainButton option={'black'} size={'small'}>
+        Back
+      </MainButton>
+      <MainButton type={'submit'} size={'small'}>
+        Done
+      </MainButton>
+      {/* 40 44 44 */}
+      {/* 44 44 48 были */}
+      {/* 100% 180px 180px */}
       {/* <Footer /> */}
     </>
   );
