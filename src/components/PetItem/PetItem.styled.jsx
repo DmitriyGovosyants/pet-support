@@ -11,6 +11,10 @@ export const PetItemStyled = styled.li`
     gap: 32px;
   }
 
+  ${device.desktop} {
+    padding-right: 28px;
+  }
+
   background: #ffffff;
 
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -25,7 +29,7 @@ export const PetItemStyled = styled.li`
   }
 `;
 
-export const Image = styled.div`
+export const ThumbImage = styled.div`
   width: 240px;
   height: 240px;
   border-radius: 20px;
@@ -33,6 +37,13 @@ export const Image = styled.div`
   ${device.tablet} {
     width: 161px;
     height: 161px;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  ${device.tablet} {
+    min-width: 161px;
   }
 `;
 

@@ -1,5 +1,6 @@
 import {
   PetItemStyled,
+  ThumbImage,
   Image,
   ThumbText,
   HeadLine,
@@ -20,9 +21,9 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
   return (
     <>
       <PetItemStyled>
-        <Image>
-          <img src={image} alt="pet" />
-        </Image>
+        <ThumbImage>
+          <Image width={'161px'} src={image} alt="pet" />
+        </ThumbImage>
         <ThumbText>
           <ListButton>
             <li>
