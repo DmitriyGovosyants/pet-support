@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { Modal, ModalAddsPet } from 'components';
 import { Button, Wrapper, Text, StyledPlusIcon } from './AddUsersPet.styled';
 
-export const AddUsersPet = ({ children }) => {
+export const AddUsersPet = () => {
   const [showModal, setShowModal] = useState(false);
   const user = true; //временная заглушка
 

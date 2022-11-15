@@ -20,12 +20,8 @@ export const Button = styled.button`
 `;
 
 export const StyledPlusIcon = styled(PlusIcon)`
-  width: 32px;
-  height: 32px;
-  ${device.tablet} {
-    width: 24px;
-    height: 24px;
-  }
+  width: 24px;
+  height: 24px;
 `;
 
 export const Wrapper = styled.div`
@@ -34,13 +30,13 @@ export const Wrapper = styled.div`
   gap: 15px;
   flex-shrink: 0;
 
-  ${`${device.tabletOnly} {
+  ${device.tabletOnly} {
     display: none;
-  }`}
-  ${`${device.desktop} {
+  }
+  ${device.desktop} {
     margin-right: 16px;
     gap: 12px;
-  }`}
+  }
 `;
 
 export const Text = styled.span`

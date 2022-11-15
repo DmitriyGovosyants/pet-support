@@ -18,8 +18,8 @@ export const Text = styled.p`
   letter-spacing: 0.04em;
   color: ${theme.colors.textMain};
 
-  ${`${device.tabletOnly} {
+  ${device.tabletOnly} {
     font-weight: 500;
     font-size: 28px;
-  }`}
+  }
 `;
