@@ -75,9 +75,11 @@ export const BasicUserDataEditButton = styled.button`
   width: 20px;
   height: 20px;
   margin-left: 10px;
+  color: ${props =>
+    props.disabled ? 'rgba(17, 17, 17, 0.6)' : theme.colors.accent};
   background-color: ${theme.colors.bgMain};
   border-radius: 50%;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
 
   ${device.tablet} {
     width: 32px;
@@ -119,6 +121,10 @@ export const UserFormInput = styled.input`
     font-size: 18px;
     line-height: 1.39px;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const UserFormSubmitButton = styled.button`
@@ -128,6 +134,7 @@ export const UserFormSubmitButton = styled.button`
   width: 20px;
   height: 20px;
   margin-left: 10px;
+  color: ${theme.colors.accent};
   background-color: ${theme.colors.bgMain};
   border-radius: 50%;
   cursor: pointer;

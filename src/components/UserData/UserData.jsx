@@ -1,5 +1,7 @@
 import { UserDataItem } from 'components';
 import {
+  UserDataTitle,
+  UserCardWrapper,
   UserWrapper,
   AvatarWrapper,
   Avatar,
@@ -8,6 +10,8 @@ import {
 } from './UserData.styled';
 import { theme } from 'styles';
 import { HiCamera } from 'react-icons/hi';
+import { useState } from 'react';
+import imageURL from '../../data/img/team-img2-tab.jpg';
 
 const initialState = {
   avatar: '',
@@ -19,25 +23,51 @@ const initialState = {
 };
 
 export const UserData = () => {
+  const [isShowForm, setIsShowForm] = useState('');
+  const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
+
+  const handleShowForm = e => {
+    const id = e.currentTarget.id;
+    setIsShowForm(id);
+    setIsEditBtnDisabled(true);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setIsShowForm('');
+    setIsEditBtnDisabled(false);
+  };
+
   return (
     <>
-      <UserWrapper>
-        <AvatarWrapper>
-          <Avatar alt={initialState.avatar} />
-          <AvatarPhotoEditButton>
-            <HiCamera size={20} color={theme.colors.accent} />
-            <span>Edit photo</span>
-          </AvatarPhotoEditButton>
-        </AvatarWrapper>
+      <UserDataTitle>My information:</UserDataTitle>
+      <UserCardWrapper>
+        <UserWrapper>
+          <AvatarWrapper>
+            <Avatar src={imageURL} alt={initialState.avatar} />
+            <AvatarPhotoEditButton>
+              <HiCamera size={20} color={theme.colors.accent} />
+              <span>Edit photo</span>
+            </AvatarPhotoEditButton>
+          </AvatarWrapper>
 
-        <UserDescriptionWrapper>
-          <UserDataItem title="name" value={initialState.name} />
-          <UserDataItem title="email" value={initialState.email} />
-          <UserDataItem title="birthDay" value={initialState.birthDay} />
-          <UserDataItem title="phone" value={initialState.phone} />
-          <UserDataItem title="city" value={initialState.city} />
-        </UserDescriptionWrapper>
-      </UserWrapper>
+          <UserDescriptionWrapper>
+            {Object.entries(initialState)
+              .slice(1)
+              .map(([title, value]) => (
+                <UserDataItem
+                  key={title}
+                  title={title}
+                  value={value}
+                  isShowForm={isShowForm}
+                  onShowForm={handleShowForm}
+                  onSubmit={handleSubmit}
+                  isEditBtnDisabled={isEditBtnDisabled}
+                />
+              ))}
+          </UserDescriptionWrapper>
+        </UserWrapper>
+      </UserCardWrapper>
     </>
   );
 };
