@@ -6,6 +6,6 @@ export const routesPath = {
   notices: 'notices',
   friends: 'friends',
   noticesCat: 'notices/:categoryName',
-  cantegotyName: ':categoryName',
+  cantegoryName: ':categoryName',
   sell: 'sell',
 };

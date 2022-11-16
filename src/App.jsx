@@ -43,7 +43,7 @@ export const App = () => {
         <Route path={routesPath.news} element={<News />} />
         <Route path={routesPath.notices} element={<Notices />}>
           <Route
-            path={routesPath.cantegotyName}
+            path={routesPath.cantegoryName}
             element={<NoticesCategoriesList />}
           />
         </Route>
