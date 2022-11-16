@@ -1,8 +1,11 @@
+import { Wrapper, Title, MainPicture } from './HomePage.styled';
+
 const HomePage = () => {
   return (
-    <>
-      <div>Take good care of your small pets</div>
-    </>
+    <Wrapper>
+      <Title>Take good care of your small pets</Title>
+      <MainPicture />
+    </Wrapper>
   );
 };
 

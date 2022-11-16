@@ -7,7 +7,7 @@ import {
   InfoItem,
   InfoItemUl,
   InfoItemLi,
-  InfoItemTime,
+  // InfoItemTime,
 } from './OurFriendsItem.styled';
 
 export const OurFriendsItem = ({
