@@ -30,9 +30,6 @@ export const Wrapper = styled.div`
   gap: 15px;
   flex-shrink: 0;
 
-  ${device.tabletOnly} {
-    display: none;
-  }
   ${device.desktop} {
     margin-right: 16px;
     gap: 12px;
