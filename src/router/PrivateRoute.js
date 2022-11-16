@@ -5,5 +5,5 @@ export const PrivateRoute = ({ redirectTo = '/' }) => {
   // const { user } = useUser();
   const user = false; //временная заглушка
 
-  return user ? <Outlet /> : <Navigate to={redirectTo} replace />
+  return user ? <Outlet /> : <Navigate to={redirectTo} replace />;
 };
