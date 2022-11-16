@@ -6,11 +6,18 @@ export const MainButton = ({
   type = 'button',
   option,
   size,
-  // isCheck,
-  // size = 'medium',
+  width,
+  disabled = false,
 }) => {
   return (
-    <Btn onClick={onClick} type={type} option={option} size={size}>
+    <Btn
+      onClick={onClick}
+      type={type}
+      option={option}
+      size={size}
+      width={width}
+      disabled={disabled}
+    >
       {children}
     </Btn>
   );

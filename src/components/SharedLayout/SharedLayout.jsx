@@ -21,21 +21,29 @@ export const SharedLayout = () => {
       <MainButton>Next</MainButton>
       <MainButton type={'submit'}>Register</MainButton>
       <MainButton option={'black'}>Back</MainButton>
-      <div>ADD USER PET MODAL</div>
-      <MainButton option={'black'} size={'small'}>
+      <div>MODAL</div>
+      <MainButton option={'black'} size={'medium'} width={'fixed'}>
         Cancel
       </MainButton>
-      <MainButton size={'small'}>Next</MainButton>
-      <MainButton option={'black'} size={'small'}>
+      <MainButton size={'medium'} width={'fixed'}>
+        Next
+      </MainButton>
+      <MainButton option={'black'} size={'medium'} width={'fixed'}>
         Back
       </MainButton>
-      <MainButton type={'submit'} size={'small'}>
+      <MainButton type={'submit'} size={'medium'} width={'fixed'}>
         Done
       </MainButton>
-      {/* 40 44 44 */}
-      {/* 44 44 48 были */}
-      {/* 100% 180px 180px */}
-      {/* <Footer /> */}
+      <div>FindPetNav and ModalAddNoticeSelect</div>
+      <MainButton
+        onClick={() => console.log('yes')}
+        option={'black'}
+        size={'small'}
+        width={'small'}
+        disabled={false}
+      >
+        sell
+      </MainButton>
     </>
   );
 };
