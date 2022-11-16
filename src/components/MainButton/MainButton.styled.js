@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
 export const Btn = styled.button`
-  min-width: ${p => p.width === 'small' ? 'none' : '100%'};
+  min-width: ${p => p.width === 'small' ? 'unset' : '100%'};
   padding: ${p => p.width === 'small' ? '6px 26px' : '6.5px 0px'};
 
   font-size: ${p => {
@@ -31,7 +31,7 @@ export const Btn = styled.button`
   ${device.tablet} {
     min-width: ${p => {
       if (p.width === 'small') {
-        return 'none';
+        return 'unset';
       }
       if (p.width === 'fixed') {
         return '180px';
