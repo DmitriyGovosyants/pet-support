@@ -1,15 +1,15 @@
 import { UserData, Logout, PetsData } from 'components';
+import { UserPageWrapper, UserDataWrapper } from './UserPage.styled';
 
 const UserPage = () => {
   return (
-    <>
-      <div>USER PAGE</div>
-      <div>
+    <UserPageWrapper>
+      <UserDataWrapper>
         <UserData />
         <Logout />
-      </div>
+      </UserDataWrapper>
       <PetsData />
-    </>
+    </UserPageWrapper>
   );
 };
 

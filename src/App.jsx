@@ -28,6 +28,9 @@ const Friends = lazy(() =>
 const User = lazy(() =>
   import('pages/UserPage/UserPage' /* webpackChunkName: "user-page" */)
 );
+const NoticesCategoriesList = lazy(() =>
+  import('./components/NoticesCategoriesList/NoticesCategoriesList')
+);
 
 export const App = () => {
   return (
@@ -38,7 +41,12 @@ export const App = () => {
         </Route>
 
         <Route path={routesPath.news} element={<News />} />
-        <Route path={routesPath.notices} element={<Notices />} />
+        <Route path={routesPath.notices} element={<Notices />}>
+          <Route
+            path={routesPath.cantegoryName}
+            element={<NoticesCategoriesList />}
+          />
+        </Route>
         <Route path={routesPath.friends} element={<Friends />} />
 
         <Route element={<PrivateRoute redirectTo={routesPath.login} />}>
