@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/register-page.53746705.chunk.js","mappings":"mKAMA,UAJqB,WACnB,OAAO,SAAC,KAAD,GACR,C","sources":["pages/RegisterPage/RegisterPage.jsx"],"sourcesContent":["import { RegisterForm } from 'components';\n\nconst RegisterPage = () => {\n  return <RegisterForm />;\n};\n\nexport default RegisterPage;\n"],"names":[],"sourceRoot":""}

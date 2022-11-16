@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[921],{199:function(e,r,t){t.r(r);var c=t(184);r.default=function(){return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)("div",{children:"Search"}),(0,c.jsx)("div",{children:"News"})]})}}}]);
-//# sourceMappingURL=news-page.216b00fe.chunk.js.map
