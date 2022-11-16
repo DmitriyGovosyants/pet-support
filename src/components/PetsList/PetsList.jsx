@@ -1,5 +1,5 @@
 import { PetsListStyled } from './PetsList.styled';
-import { useFetchPetsQuery } from 'redux/petApi';
+// import { useFetchPetsQuery } from 'redux/petApi';
 import { PetItem } from 'components';
 
 //удалить const pets, когда прийдут данные из бекенда
