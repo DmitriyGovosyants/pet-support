@@ -3,8 +3,6 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const UserPageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   padding-top: 60px;
 
   ${device.tablet} {
@@ -12,7 +10,7 @@ export const UserPageWrapper = styled.div`
   }
 
   ${device.desktop} {
-    flex-direction: row;
+    display: flex;
     padding-top: 58px;
   }
 `;
@@ -25,7 +23,6 @@ export const UserDataWrapper = styled.div`
 
   ${device.tablet} {
     margin-left: -32px;
-    margin-right: 32px;
     margin-bottom: 20px;
   }
   ${device.desktop} {
