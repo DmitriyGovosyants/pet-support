@@ -1,14 +1,11 @@
-// import { useState } from 'react';
 import { OurFriendsList } from 'components';
-import { Title, Section, Wrapper } from './OurFriendsPage.styled';
+import { Title, Section } from './OurFriendsPage.styled';
 
 const OurFriendsPage = () => {
   return (
     <Section>
       <Title>Our friends</Title>
-      <Wrapper>
-        <OurFriendsList />
-      </Wrapper>
+      <OurFriendsList />
     </Section>
   );
 };

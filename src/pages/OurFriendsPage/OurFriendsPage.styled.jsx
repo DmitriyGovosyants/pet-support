@@ -2,36 +2,29 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const Section = styled.section`
-  padding-top: ${p => p.theme.spacing(10.5)};
+  padding-top: 31px;
   ${device.tablet} {
-    padding-top: ${p => p.theme.spacing(23)};
+    padding-top: 72px;
   }
   ${device.desktop} {
-    padding-top: ${p => p.theme.spacing(15)};
+    padding-top: 41px;
   }
 `;
 
 export const Title = styled.h1`
-  margin-bottom: ${p => p.theme.spacing(10)};
-  text-align: center;
-  font-weight: 700;
-  font-size: ${p => p.theme.spacing(6)};
-  line-height: 1.375;
-  ${device.tablet} {
-    margin-bottom: ${p => p.theme.spacing(10)};
-    font-size: ${p => p.theme.spacing(12)};
-  }
-`;
+  margin-bottom: 40px;
 
-export const Wrapper = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: ${p => p.theme.spacing(7.5)};
-  ${device.mobileOnly} {
-    position: relative;
-  }
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.375;
+  text-align: center;
+
   ${device.tablet} {
-    margin-bottom: ${p => p.theme.spacing(15)};
-      }
+    margin-bottom: 45px;
+    font-size: 48px;
+  }
+
+  ${device.desktop} {
+    margin-bottom: 60px;
+  }
 `;

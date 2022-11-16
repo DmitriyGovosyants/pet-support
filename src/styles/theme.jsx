@@ -5,6 +5,7 @@ export const theme = Object.freeze({
     textThird: '#111321',
     textLowOpacity: '#11111199',
     textLink: '#3091EB',
+    black: '#000000',
 
     accent: '#F59256',
     hover: '#FF6101',
@@ -14,8 +15,7 @@ export const theme = Object.freeze({
 
     dark: '#181C27',
     btnTransperent: 'rgba(255, 255, 255, 0.6)',
-    shadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
-    hoverShadow: '7px 4px 14px rgba(49, 21, 4, 0.2)',
+    shadow: 'rgba(49, 21, 4, 0.07)',
   },
   spacing: value => `${4 * value}px`,
   // fontSizes: {

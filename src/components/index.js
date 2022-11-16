@@ -33,4 +33,4 @@ export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';
 
 export * from './OurFriendsList/OurFriendsList';
-export * from './OurFriendsItem/OurFriendsItem';
+export * from './OurFriendItem/OurFriendItem';
