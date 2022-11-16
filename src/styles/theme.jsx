@@ -12,11 +12,10 @@ export const theme = Object.freeze({
     bgMain: '#fdf7f2',
     bgSecond: '#ffffff',
 
-
     dark: '#181C27',
     btnTransperent: 'rgba(255, 255, 255, 0.6)',
-    shadow: 'rgba(49, 21, 4, 0.07)',
-
+    shadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+    hoverShadow: '7px 4px 14px rgba(49, 21, 4, 0.2)',
   },
   spacing: value => `${4 * value}px`,
   // fontSizes: {

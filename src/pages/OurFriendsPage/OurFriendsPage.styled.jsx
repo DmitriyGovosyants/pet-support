@@ -12,7 +12,7 @@ export const Section = styled.section`
 `;
 
 export const Title = styled.h1`
-  margin-bottom: ${p => p.theme.spacing(7)};
+  margin-bottom: ${p => p.theme.spacing(10)};
   text-align: center;
   font-weight: 700;
   font-size: ${p => p.theme.spacing(6)};
@@ -33,5 +33,5 @@ export const Wrapper = styled.ul`
   }
   ${device.tablet} {
     margin-bottom: ${p => p.theme.spacing(15)};
-  }
+      }
 `;
