@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   max-width: 450px;
   margin-left: auto;
   margin-right: auto;
-  padding: 50px 20px;
+  padding: 60px 20px 40px;
   box-shadow: rgb(199 123 27) 3px 3px 10px, rgb(199 123 27) -3px -3px 10px;
   background-color: ${props => props.theme.colors.bgSecond};
   border-radius: 20px;
@@ -30,8 +30,8 @@ export const ButtonClose = styled.button`
   background-color: ${props => props.theme.colors.bgMain};
 
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
 
   cursor: pointer;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -58,7 +58,7 @@ export const ButtonDel = styled.button`
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding: 9px 0;
+  padding: 11px 0;
   margin-bottom: 12px;
   font-weight: 500;
   font-size: 16px;
