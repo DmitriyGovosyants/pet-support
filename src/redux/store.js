@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { noticesApi } from './noticesApi';
+import { friendsApi } from './friendsApi';
 import { authApi } from './authApi';
 import { petApi } from './petApi';
 import { combineReducers } from 'redux';
@@ -25,6 +26,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   [noticesApi.reducerPath]: noticesApi.reducer,
+  [friendsApi.reducerPath]: friendsApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [petApi.reducerPath]: petApi.reducer,
   auth: authReducer,

@@ -31,3 +31,6 @@ export * from './PetItem/PetItem';
 export * from './PetsInterfaceButton/PetsInterfaceButton';
 export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';
+
+export * from './OurFriendsList/OurFriendsList';
+export * from './OurFriendItem/OurFriendItem';
