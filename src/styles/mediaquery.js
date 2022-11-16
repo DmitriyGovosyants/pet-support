@@ -13,3 +13,6 @@ export const device = {
   tabletOnly: `@media screen and (min-width: ${size.tablet}) and (max-width: 1279.99px)`,
   notDesktop: `@media screen and (max-width: 1279.99px)`,
 };
+
+export const retina =
+  '@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)';
