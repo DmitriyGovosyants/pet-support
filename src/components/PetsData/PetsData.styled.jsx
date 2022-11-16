@@ -2,6 +2,13 @@ import styled from '@emotion/styled';
 import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
+export const PetsDataStyled = styled.div`
+  ${device.desktop} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 export const ThumbText = styled.div`
   display: flex;
   align-items: center;

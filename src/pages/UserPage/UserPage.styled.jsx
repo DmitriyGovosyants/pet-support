@@ -12,6 +12,7 @@ export const UserPageWrapper = styled.div`
   ${device.desktop} {
     display: flex;
     padding-top: 58px;
+    gap: 32px;
   }
 `;
 
