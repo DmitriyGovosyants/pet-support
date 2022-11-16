@@ -1,4 +1,4 @@
-export * from './UserData/SharedLayout/SharedLayout';
+export * from './SharedLayout/SharedLayout';
 export * from './Container/Container';
 export * from './Modal/Modal';
 export * from './MainButton/MainButton';
