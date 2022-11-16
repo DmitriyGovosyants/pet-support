@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const PrivateRoute = ({ redirectTo = '/' }) => {
   // const { user } = useUser();
-  const user = false; //временная заглушка
+  const user = true; //временная заглушка
 
   return user ? <Outlet /> : <Navigate to={redirectTo} replace />;
 };

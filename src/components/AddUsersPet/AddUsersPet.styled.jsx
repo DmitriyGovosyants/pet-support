@@ -7,8 +7,8 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   background-color: ${props => props.theme.colors.accent};
