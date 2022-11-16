@@ -42,11 +42,7 @@ export const ModalAdd1 = ({
           /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
         setInputActiveName(pattern.test(valueToLower));
 
-        if (value.length < 2) {
-          setInputActiveName(false);
-        }
-
-        if (value.length > 16) {
+        if (value.length < 2 || value.length > 16) {
           setInputActiveName(false);
         }
 
@@ -70,11 +66,7 @@ export const ModalAdd1 = ({
           )
         );
 
-        if (value.length < 2) {
-          setInputActiveBreed(false);
-        }
-
-        if (value.length > 16) {
+        if (value.length < 2 || value.length > 16) {
           setInputActiveBreed(false);
         }
 

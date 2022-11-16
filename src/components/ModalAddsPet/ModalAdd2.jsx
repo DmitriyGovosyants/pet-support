@@ -43,11 +43,7 @@ export const ModalAdd2 = ({
 
     switch (name) {
       case 'comments':
-        if (value.length < 8) {
-          setInputActiveComments(false);
-        }
-
-        if (value.length > 120) {
+        if (value.length < 8 || value.length > 120) {
           setInputActiveComments(false);
         }
 
