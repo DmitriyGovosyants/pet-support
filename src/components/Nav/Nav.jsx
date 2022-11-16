@@ -1,5 +1,5 @@
-import { NavLinkStyled, NavItem, NavList } from "./Nav.styled";
-import { routesPath } from 'router'
+import { NavLinkStyled, NavItem, NavList } from './Nav.styled';
+import { routesPath } from 'router';
 
 export const Nav = ({toggleNavBar}) => {
   return (

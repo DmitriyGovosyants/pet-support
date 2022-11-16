@@ -1,30 +1,45 @@
 import { NoticeCategoryItem } from 'components';
 import { List, Item } from './NoticesCategoriesList.styled';
-// import { useParams } from 'react-router-dom';
-// import { useGetNoticesQuery } from 'redux/noticesApi';
+import { useParams } from 'react-router-dom';
+import { useGetNoticesQuery, useGetFavoritesQuery } from 'redux/noticesApi';
+import { useState, useEffect } from 'react';
+import useRequest from 'hooks/useRequest';
 
-const petMock = {
-  name: 'Catdog',
-  breed: 'Сheshire bulldog',
-  place: 'Mom Odessa',
-  age: 'Fifth ten ',
-  photo:
-    'https://media1.popsugar-assets.com/files/thumbor/wh0y9TxHHfw73Je1ETKQJAyEJ38/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2014/11/26/625/n/1922398/a3dbbb89b318aa5b_thumb_temp_image35315381417010330/i/Dog-Dancing-Flo-Rida-Low-Video.jpg',
-};
-const petsMock = [petMock, petMock, petMock, petMock, petMock, petMock];
+const NoticesCategoriesList = () => {
+  const [pets, setPets] = useState([]);
+  const { categoryName } = useParams();
+  const [request, setRequest] = useState(categoryName);
+  useRequest(categoryName, setRequest);
+  const { data } = useGetNoticesQuery(request);
+  const { data: favoritesPets } = useGetFavoritesQuery();
 
-export const NoticesCategoriesList = ({ selectedCategory }) => {
-  // const { data, isFetching } = useGetNoticesQuery(selectedCategory);
+  useEffect(() => {
+    if (data) {
+      setPets(data.data.notices);
+    } else {
+      setPets([]);
+    }
+  }, [data]);
 
   return (
     <>
       <List>
-        {petsMock.map((itm, idx) => (
-          <Item key={idx}>
-            <NoticeCategoryItem petData={itm} />
-          </Item>
-        ))}
+        {pets.map(itm => {
+          let favorite;
+          if (favoritesPets && favoritesPets.some(el => el._id === itm._id)) {
+            favorite = true;
+          } else {
+            favorite = false;
+          }
+          return (
+            <Item key={itm._id}>
+              <NoticeCategoryItem petData={itm} favorite={favorite} />
+            </Item>
+          );
+        })}
       </List>
     </>
   );
 };
+
+export default NoticesCategoriesList;
