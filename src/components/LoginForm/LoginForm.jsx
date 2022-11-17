@@ -66,7 +66,6 @@ export const LoginForm = () => {
     try {
       const data = dataFormConverter(formState);
       const result = await login(data);
-      console.log('data: ', result.data.data);
       if (result.data.data.token) {
         dispatch(setCredentials(result.data.data.token));
         navigate('/');
