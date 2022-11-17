@@ -1,39 +1,56 @@
-// import { List, Item } from './OurFriendsList.styled';
-// import { useParams } from 'react-router-dom';
-// import { useGetFriendsQuery } from 'redux/noticesApi';
+import { useGetFriendsQuery } from 'redux/friendsApi';
 import { OurFriendItem } from 'components';
 import { FriendsList } from './OurFriendsList.styled';
-import data from './friends.json';
 
 export const OurFriendsList = () => {
-  return (
-    <FriendsList>
-      {data.map(
-        ({
-          title,
-          url,
-          imageUrl,
-          workDays,
-          address,
-          addressUrl,
-          email,
-          phone,
-        }) => {
-          return (
-            <OurFriendItem
-              key={url}
-              title={title}
-              url={url}
-              imageUrl={imageUrl}
-              workDays={workDays}
-              address={address}
-              addressUrl={addressUrl}
-              email={email}
-              phone={phone}
-            />
-          );
-        }
-      )}
-    </FriendsList>
-  );
+  const { data: news, isLoading, isError, error } = useGetFriendsQuery('');
+
+  if (isLoading) return <div>... Loading ...</div>;
+
+  if (isError) {
+    if (error?.status === 404) {
+      return (
+        <div style={{ textAlign: 'center' }}>... Resourses not found ...</div>
+      );
+    }
+    if (error?.status === 500) {
+      return (
+        <div style={{ textAlign: 'center' }}>... Server not response ...</div>
+      );
+    }
+    return <div style={{ textAlign: 'center' }}>... Error ...</div>;
+  }
+
+  if (news) {
+    return (
+      <FriendsList>
+        {news.data.map(
+          ({
+            title,
+            url,
+            imageUrl,
+            workDays,
+            address,
+            addressUrl,
+            email,
+            phone,
+          }) => {
+            return (
+              <OurFriendItem
+                key={url}
+                title={title}
+                url={url}
+                imageUrl={imageUrl}
+                workDays={workDays}
+                address={address}
+                addressUrl={addressUrl}
+                email={email}
+                phone={phone}
+              />
+            );
+          }
+        )}
+      </FriendsList>
+    );
+  }
 };
