@@ -3,7 +3,7 @@ import { OurFriendItem } from 'components';
 import { FriendsList } from './OurFriendsList.styled';
 
 export const OurFriendsList = () => {
-  const { data: news, isLoading, isError, error } = useGetFriendsQuery('');
+  const { data: friends, isLoading, isError, error } = useGetFriendsQuery('');
 
   if (isLoading) return <div>... Loading ...</div>;
 
@@ -21,10 +21,10 @@ export const OurFriendsList = () => {
     return <div style={{ textAlign: 'center' }}>... Error ...</div>;
   }
 
-  if (news) {
+  if (friends) {
     return (
       <FriendsList>
-        {news.data.map(
+        {friends.data.map(
           ({
             title,
             url,
