@@ -3,8 +3,8 @@ import { device } from "styles/mediaquery";
 
 export const HeaderStyled = styled.header`
   display: flex;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 
   ${device.tablet} {
     padding-top: 20px;
@@ -66,10 +66,7 @@ export const AuthBox = styled.div`
 export const AuthBoxMob = styled.div`
   display: flex;
   justify-content: center;
-  /* width: 100vw; */
-  /* height: 100vh; */
   margin-bottom: 60px;
-  /* margin-top: 45px; */
 
   ${device.tablet} {
     display: none;
