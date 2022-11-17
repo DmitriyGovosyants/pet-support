@@ -8,25 +8,27 @@ import useRequest from 'hooks/useRequest';
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
   const { categoryName } = useParams();
-  const [request, setRequest] = useState(categoryName);
+  const [request, setRequest] = useState('?category=sell');
   useRequest(categoryName, setRequest);
   const { data } = useGetNoticesQuery(request);
   const { data: favoritesPets } = useGetFavoritesQuery();
 
   useEffect(() => {
     if (data) {
-      setPets(data.data.notices);
+      setPets(data.data.notices || data.data.favoriteNotices);
     } else {
       setPets([]);
     }
-  }, [data]);
+  }, [data, favoritesPets]);
 
   return (
     <>
       <List>
         {pets.map(itm => {
           let favorite;
-          if (favoritesPets && favoritesPets.some(el => el._id === itm._id)) {
+          if (
+            favoritesPets?.data.favoriteNotices.some(el => el._id === itm._id)
+          ) {
             favorite = true;
           } else {
             favorite = false;
