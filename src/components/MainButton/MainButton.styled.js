@@ -25,8 +25,16 @@ export const Btn = styled.button`
   border-color: ${p => p.option === 'black' ?  p.theme.colors.accent : 'transparent'};
   cursor: pointer;
   
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.textSecond};
+    background-color: ${p => p.theme.colors.hover};
+    border-color: ${p => p.option === 'black' ?  p.theme.colors.hover : 'transparent'};
+  }
   
   ${device.tablet} {
     min-width: ${p => {
@@ -45,11 +53,5 @@ export const Btn = styled.button`
 
   ${device.desktop} {
     padding: ${p => p.width === 'small' ? '8px 26px' : '8.5px 0px'};
-  }
-
-  :hover,
-  :focus {
-    background-color: ${p => p.theme.colors.hover};
-    border-color: ${p => p.option === 'black' ?  p.theme.colors.hover : 'transparent'};
   }
 `

@@ -7,7 +7,7 @@ import { useAuth } from 'redux/useAuth';
 export const NoticesCategoriesNav = () => {
   const [selected, setSelected] = useState('sell');
   const [navCategories, setNavCategories] = useState(categoriesWithoutAuth);
-  const auth = useAuth;
+  const auth = useAuth();
 
   useEffect(() => {
     if (auth.user) {

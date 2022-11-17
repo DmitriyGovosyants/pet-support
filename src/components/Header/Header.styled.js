@@ -3,8 +3,8 @@ import { device } from "styles/mediaquery";
 
 export const HeaderStyled = styled.header`
   display: flex;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 
   ${device.tablet} {
     padding-top: 20px;
@@ -18,34 +18,33 @@ export const HeaderStyled = styled.header`
 `;
 
 export const NavBox = styled.div`
-  ${device.mobileOnly} {
-    padding-top: 34px;
-  }
-
-  ${device.tablet} {
-    top: 83px;
-  }
-
   ${device.notDesktop} {  
     justify-content: flex-start;
     background-color: ${p => p.theme.colors.bgMain};
     position: absolute;
-    top: 67px;
+    top: 75px;
     left: 0;
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: 500ms;
-    transform: ${p => p.menu ? 'none' : 'translateY(-200vh)'};
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: ${p => p.menu ? 'none' : 'translateX(100%)'};
     z-index: 10;
+  }
+
+  ${device.mobileOnly} {
+    padding-top: 30px;
+  }
+
+  ${device.tablet} {
+    top: 83px;
   }
   
   ${device.desktop} {
     display: flex;
     align-items: center;
     margin-left: 80px;
-    margin-top: 5px;
   }
 `;
 
@@ -66,10 +65,7 @@ export const AuthBox = styled.div`
 export const AuthBoxMob = styled.div`
   display: flex;
   justify-content: center;
-  /* width: 100vw; */
-  /* height: 100vh; */
   margin-bottom: 60px;
-  /* margin-top: 45px; */
 
   ${device.tablet} {
     display: none;
