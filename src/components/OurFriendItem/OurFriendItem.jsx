@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { daysOfWeek } from '../../constants/constants';
 import partnerImg from '../../data/img/partner.png';
 import {
   Card,
@@ -10,6 +11,7 @@ import {
   AddressLink,
   TimeBtn,
   TimeDetails,
+  TimeDetailsItem,
 } from './OurFriendItem.styled';
 
 const empty = '-'.repeat(30);
@@ -70,34 +72,16 @@ export const OurFriendItem = ({
             </TimeBtn>
             {showDetails && (
               <TimeDetails>
-                <span>MN</span>
-                <span>
-                  {workDays[0].from} - {workDays[0].to}
-                </span>
-                <span>TU</span>
-                <span>
-                  {workDays[1].from} - {workDays[1].to}
-                </span>
-                <span>WE</span>
-                <span>
-                  {workDays[2].from} - {workDays[2].to}
-                </span>
-                <span>TH</span>
-                <span>
-                  {workDays[3].from} - {workDays[3].to}
-                </span>
-                <span>FR</span>
-                <span>
-                  {workDays[4].from} - {workDays[4].to}
-                </span>
-                <span>SA</span>
-                <span>
-                  {workDays[5].from} - {workDays[5].to}
-                </span>
-                <span>SU</span>
-                <span>
-                  {workDays[6].from} - {workDays[6].to}
-                </span>
+                {workDays.map((el, idx) => {
+                  return (
+                    <TimeDetailsItem key={daysOfWeek[idx]}>
+                      <span>{daysOfWeek[idx]}</span>
+                      <span>
+                        {el.from} - {el.to}
+                      </span>
+                    </TimeDetailsItem>
+                  );
+                })}
               </TimeDetails>
             )}
           </InfoItem>
