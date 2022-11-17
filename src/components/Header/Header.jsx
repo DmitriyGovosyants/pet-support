@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { useAuth } from 'redux/useAuth';
 import { Logo, Nav, UserNav, AuthNav, BurgerBtn } from 'components';
 import { HeaderStyled, NavBox, AuthBox, AuthBoxMob } from './Header.styled';
 
 const body = document.getElementsByTagName('body')[0];
 
 export const Header = () => {
-  const user = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (isMenuOpen) {
