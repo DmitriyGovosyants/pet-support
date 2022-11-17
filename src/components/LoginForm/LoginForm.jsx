@@ -14,10 +14,11 @@ import {
 } from 'components';
 import { isPassword } from 'helpers';
 import isEmail from 'validator/lib/isEmail';
+import { dataFormConverter } from 'helpers/dataFormConverter';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const { push } = useNavigate();
+  const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     email: {
@@ -63,10 +64,12 @@ export const LoginForm = () => {
     }
 
     try {
-      const result = await login(formState);
-      if (result.data) {
-        dispatch(setCredentials(result.data));
-        push('/');
+      const data = dataFormConverter(formState);
+      const result = await login(data);
+      console.log('data: ', result.data.data);
+      if (result.data.data.token) {
+        dispatch(setCredentials(result.data.data.token));
+        navigate('/');
       }
     } catch (err) {
       console.log(err);
