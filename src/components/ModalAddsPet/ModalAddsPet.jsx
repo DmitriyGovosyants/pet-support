@@ -1,80 +1,194 @@
-import { useEffect, useState } from 'react';
-import { ModalAdd1 } from './ModalAdd1';
-import { ModalAdd2 } from './ModalAdd2';
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import {
-  AddModalWrap,
-  AddModal,
+  ModalWrap,
   ButtonClose,
-  CloseIcon
+  CloseIcon,
+  Label,
+  Form,
+  Input,
+  BtnBox,
+  ErrorText,
+  FotoWrap,
+  InputFoto,
+  ErrorTextFoto,
+  Textarea,
+  Title,
+  SubTitle,
+  StyledPlusIcon,
+  Button
 } from './ModalAddsPets.styled';
 
 export const ModalAddsPet = ({ toggleModal }) => {
-  const [page, setPage] = useState(1);
-  const [modal1Values, setModal1Values] = useState({
-    name: '',
-    birthday: '',
-    breed: '',
-  });
-  const [modal2Values, setModal2Values] = useState({
-    comments: '',
-    avatar: '',
+  const [nextPage, setNextPage] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
   });
 
-  const takesInputeValues = data => {
-    setModal1Values(data);
+  const onClickCancelBtn = e => {
+    e.preventDefault();
+    toggleModal();
   };
 
-  useEffect(() => {
-    if ( toggleModal(true)) {
-      setPage(1);
-      setModal1Values({
-        name: '',
-        birthday: '',
-        breed: '',
-      });
-
-      setModal2Values({
-        comments: '',
-        avatar: '',
-      });
-    }
-  }, [toggleModal]);
-
-  const createPetsPost = data => {
-    const formData = new FormData();
-    formData.append('name', modal1Values.name);
-    formData.append('birthday', modal1Values.birthday);
-    formData.append('breed', modal1Values.breed);
-    formData.append('comments', data.comments);
-    formData.append('avatar', data.file);
+  const handleSubmitClick = formData => {
+    console.log("formData", formData);
+    toggleModal();
   };
+
+  const onClickNextBtn = () => {
+    setNextPage(true);
+  };
+
+  const onClickBackBtn = () => {
+    setNextPage(false);
+  };
+
+  const textRegexp = /[a-zA-Z]+/;
+  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
   return (
     <>
-      <AddModalWrap>
+      <ModalWrap>
         <ButtonClose type="button" onClick={() =>  toggleModal()}>
           <CloseIcon />
         </ButtonClose>
-        <AddModal>
-          {page === 1 && (
-            <ModalAdd1
-              toggleModal={toggleModal}
-              setPage={setPage}
-              createPetsPost={takesInputeValues}
-              modalDefaultValues={modal1Values}
+       <Title>Add pet</Title>
+      <Form onSubmit={handleSubmit(handleSubmitClick)}>
+        {!nextPage && (
+          <>
+            <Label htmlFor="petName">Name pet</Label>
+            <Input
+              id="petName"
+              type="text"
+              placeholder="Type name pet"
+              {...register("petName", {
+                required: "Name is required",
+                minLength: {
+                  value: 2,
+                  message: "Should exceed at least 2 characters",
+                },
+                maxLength: {
+                  value: 16,
+                  message:
+                    "Should exceed not more than 16 characters",
+                },
+                pattern: {
+                  value: textRegexp,
+                  message: "Name should contain only letters.",
+                },
+              })}
+              aria-invalid={errors.petName ? "true" : "false"}
             />
-          )}
-          {page === 2 && (
-            <ModalAdd2
-              setPage={setPage}
-              createPetsPost={createPetsPost}
-              toggleModal={toggleModal}
-              setModal2Values={setModal2Values}
-              modalDefaultValues={modal2Values}
+            {errors.petName && <ErrorText>{errors.petName?.message}</ErrorText>}
+            <Label htmlFor="dateOfBirth">Date of birth</Label>
+            <Input
+              id="dateOfBirth"
+              placeholder="Type date of birth"
+              {...register("dateOfBirth", {
+                required: "Date of birth is required.",
+                pattern: {
+                  value: dateRegexp,
+                  message: "Should exceed only numbers. As: 12.12.2012",
+                },
+              })}
             />
+            {errors.dateOfBirth && (
+              <ErrorText role="alert">{errors.dateOfBirth?.message}</ErrorText>
+            )}
+            <Label htmlFor="breed">Breed</Label>
+            <Input
+              id="breed"
+              type="text"
+              placeholder="Type breed"
+              {...register("breed", {
+                required: "Breed is required",
+                maxLength: {
+                  value: 16,
+                  message:
+                    "Should exceed not more than 16 characters",
+                },
+                minLength: {
+                  value: 2,
+                  message: "Should exceed at least 2 characters",
+                },
+                pattern: {
+                  value: textRegexp,
+                  message: "Breed should contain only letters.",
+                },
+              })}
+              aria-invalid={errors.breed ? "true" : "false"}
+            />
+            {errors.breed && (
+              <ErrorText role="alert">{errors.breed?.message}</ErrorText>
+            )}
+          </>
+        )}
+        {nextPage && (
+          <>
+            <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+              <FotoWrap>
+                <InputFoto
+                  type="file"
+                  id="addPhoto"
+                  {...register("addPhoto", {
+                    required: "Photo is required.",
+                  })}
+                />
+                <StyledPlusIcon />
+              </FotoWrap>
+              {errors.addPhoto && (
+                <ErrorTextFoto role="alert">{errors.addPhoto?.message}</ErrorTextFoto>
+              )}
+              <Label htmlFor="addPhoto">Comments</Label>
+              <Textarea
+                id="Comments"
+                {...register("comments", {
+                  required: "Comments is required.",
+                  maxLength: {
+                    value: 120,
+                    message:
+                      "Should exceed not more than 120 characters",
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Should exceed at least 2 characters",
+                  },
+                })}
+              />
+              {errors.comments && (
+                <ErrorText role="alert">{errors.comments?.message}</ErrorText>
+              )}
+          </>
+        )}
+        <BtnBox>
+          {!nextPage && (
+            <>
+              <Button size={'medium'} width={'fixed'} onClick={onClickNextBtn} active>
+                Next
+              </Button>
+              <Button option={'black'} size={'medium'} width={'fixed'} onClick={onClickCancelBtn}>
+                Cancel
+              </Button>
+            </>
           )}
-        </AddModal>
-      </AddModalWrap>
+          {nextPage && (
+            <>
+              <Button type={'submit'} size={'medium'} width={'fixed'}>
+                Done
+              </Button>
+              <Button option={'black'} size={'medium'} width={'fixed'} onClick={onClickBackBtn}>
+                Back
+              </Button>     
+            </>
+          )}
+        </BtnBox>
+      </Form>
+      </ModalWrap>
     </>
   );
 };
