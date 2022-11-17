@@ -18,34 +18,33 @@ export const HeaderStyled = styled.header`
 `;
 
 export const NavBox = styled.div`
-  ${device.mobileOnly} {
-    padding-top: 34px;
-  }
-
-  ${device.tablet} {
-    top: 83px;
-  }
-
   ${device.notDesktop} {  
     justify-content: flex-start;
     background-color: ${p => p.theme.colors.bgMain};
     position: absolute;
-    top: 67px;
+    top: 75px;
     left: 0;
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     transition: 500ms;
-    transform: ${p => p.menu ? 'none' : 'translateY(-200vh)'};
+    transform: ${p => p.menu ? 'none' : 'translateX(100%)'};
     z-index: 10;
+  }
+
+  ${device.mobileOnly} {
+    padding-top: 30px;
+  }
+
+  ${device.tablet} {
+    top: 83px;
   }
   
   ${device.desktop} {
     display: flex;
     align-items: center;
     margin-left: 80px;
-    margin-top: 5px;
   }
 `;
 

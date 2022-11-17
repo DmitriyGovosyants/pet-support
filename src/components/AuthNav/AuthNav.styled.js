@@ -26,24 +26,27 @@ export const AuthNavLink = styled(NavLink)`
   display: inline-flex;
   align-items: center;
   padding: 10px 28px;
-  color: ${p => (p.active ? p.theme.colors.textSecond : p.theme.colors.accent)};
 
-  background-color: ${p => (p.active ? p.theme.colors.accent : p.theme.colors.textSecond)};
-  border: ${p => (p.active ? "none" : "2px solid")};
+  color: ${p => p.option === 'main' ? p.theme.colors.textSecond : p.theme.colors.textThird};
+  background-color: ${p => p.option === 'main' ? p.theme.colors.accent : p.theme.colors.textSecond};
+  border: 2px solid ${p => p.theme.colors.accent};
   border-radius: 40px;
 
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &.active {
-    background-color: ${p => (p.active ? p.theme.colors.textSecond : p.theme.colors.accent)};
-    border-color: ${p => p.theme.colors.accent};
-    color: ${p => (p.active ? p.theme.colors.accent : p.theme.colors.textSecond)};
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.hover};
+    border-color: ${p => p.theme.colors.hover};
+    color: ${p => p.theme.colors.textSecond};
   }
 
-  :hover:not(:disabled),
-  :focus:not(:disabled) {
-    background-color: ${p => (p.active ? p.theme.colors.textSecond : p.theme.colors.accent)};
-    border-color: ${p => p.theme.colors.accent};
-    color: ${p => (p.active ? p.theme.colors.accent : p.theme.colors.textSecond)};
+  &.active {
+    color: ${p => p.option === 'main' ? p.theme.colors.textSecond : p.theme.colors.textThird};
+    background-color: ${p => p.option  === 'main'? p.theme.colors.accent : p.theme.colors.textSecond};
+    border: 2px solid ${p => p.theme.colors.accent};
   }
 `;

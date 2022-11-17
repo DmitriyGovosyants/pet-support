@@ -18,6 +18,8 @@ export const Header = () => {
     }
   }, [isMenuOpen]);
 
+  window.addEventListener('resize', () => setIsMenuOpen(false));
+
   const showNavBar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -35,13 +37,7 @@ export const Header = () => {
         </AuthBoxMob>
         <Nav toggleNavBar={showNavBar} />
       </NavBox>
-      <AuthBox>
-        {user ? (
-          <UserNav toggleNavBar={showNavBar} />
-        ) : (
-          <AuthNav toggleNavBar={showNavBar} />
-        )}
-      </AuthBox>
+      {!isMenuOpen && <AuthBox>{user ? <UserNav /> : <AuthNav />}</AuthBox>}
       <BurgerBtn toggleNavBar={showNavBar} />
     </HeaderStyled>
   );
