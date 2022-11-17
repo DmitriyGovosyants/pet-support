@@ -76,7 +76,6 @@ export const Description = styled.div`
   display: grid;
   grid-template-columns: 82px 150px;
   gap: 8px;
-  margin-bottom: 50px;
   ${device.tablet} {
     grid-template-columns: 82px 206px;
   }
@@ -86,7 +85,7 @@ export const Description = styled.div`
 `;
 
 export const About = styled.div`
-  padding: 20px 20px 32px 20px;
+  padding: 20px 20px 0 20px;
 `;
 
 export const Text = styled.span`
@@ -96,9 +95,13 @@ export const Text = styled.span`
 `;
 
 export const LearnMore = styled.button`
+  display: block;
   width: 248px;
   padding-top: 8px;
   padding-bottom: 8px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   font-weight: 500;

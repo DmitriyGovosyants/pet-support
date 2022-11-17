@@ -15,6 +15,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   width: 280px;
+  padding-bottom: 32px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.textSecond};
   box-shadow: 7px 4px 14px ${props => props.theme.colors.shadow};
