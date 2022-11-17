@@ -4,13 +4,12 @@ import { device } from "styles/mediaquery";
 
 
 export const NavList = styled.ul`
-  ${device.tablet} {
-    margin-top: 95px;
+  ${device.tabletOnly} {
+    padding-top: 68px;
   }
 
   ${device.desktop} {
     display: flex;
-    margin-top: 0px;
   }
 `;
 export const NavItem = styled.li`
@@ -25,8 +24,8 @@ export const NavItem = styled.li`
   ${device.desktop}  {
     :not(:last-child) {
       margin-right: 80px;
+    }
   }
-}
 `;
 
 export const NavLinkStyled = styled(NavLink)`
@@ -40,6 +39,12 @@ export const NavLinkStyled = styled(NavLink)`
 
   &.active {
     color: ${p => p.theme.colors.accent};
+    text-decoration: underline;
+  }
+
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.hover};
     text-decoration: underline;
   }
 

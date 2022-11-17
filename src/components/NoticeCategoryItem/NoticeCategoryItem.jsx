@@ -23,14 +23,14 @@ import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
 
 export const NoticeCategoryItem = ({
-  petData: { name, breed, location, birthdate, photo, category },
+  petData: { _id, name, breed, location, birthdate, photo, category },
   favorite,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [isFavourite, setIsFavourite] = useState(favorite);
   const [age, setAge] = useState('');
   const [categoryName, setCategoryName] = useState('sell');
-  const auth = useAuth;
+  const auth = useAuth();
   useCategories(category, setCategoryName);
   useDate(birthdate, setAge);
 
@@ -44,9 +44,9 @@ export const NoticeCategoryItem = ({
     }
     setIsFavourite(!isFavourite);
     if (isFavourite) {
-      removeNoticeFromFavourite();
+      removeNoticeFromFavourite(_id);
     } else {
-      AddNoticeToFavourite();
+      AddNoticeToFavourite(_id);
     }
   };
 
