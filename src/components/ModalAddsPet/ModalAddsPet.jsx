@@ -25,7 +25,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
@@ -168,7 +168,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         <BtnBox>
           {!nextPage && (
             <>
-              <Button size={'medium'} width={'fixed'} onClick={onClickNextBtn} active>
+              <Button size={'medium'} width={'fixed'} onClick={onClickNextBtn} active disabled={!isValid}>
                 Next
               </Button>
               <Button option={'black'} size={'medium'} width={'fixed'} onClick={onClickCancelBtn}>
