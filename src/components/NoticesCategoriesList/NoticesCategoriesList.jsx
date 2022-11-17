@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useGetNoticesQuery, useGetFavoritesQuery } from 'redux/noticesApi';
 import { useState, useEffect } from 'react';
 import useRequest from 'hooks/useRequest';
-import useResponse from 'hooks/useResponse';
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
