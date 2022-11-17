@@ -44,6 +44,7 @@ export const store = configureStore({
     }),
     noticesApi.middleware,
     authApi.middleware,
+    friendsApi.middleware,
   ],
 });
 
