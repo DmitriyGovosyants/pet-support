@@ -33,9 +33,9 @@ export const AuthNavLink = styled(NavLink)`
   border-radius: 40px;
 
   cursor: pointer;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
   :focus {
