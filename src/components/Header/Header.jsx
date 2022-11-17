@@ -20,25 +20,21 @@ export const Header = () => {
 
   window.addEventListener('resize', () => setIsMenuOpen(false));
 
-  const showNavBar = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <HeaderStyled>
       <Logo />
       <NavBox menu={isMenuOpen}>
         <AuthBoxMob>
           {user ? (
-            <UserNav toggleNavBar={showNavBar} />
+            <UserNav toggleNavBar={() => setIsMenuOpen(false)} />
           ) : (
-            <AuthNav toggleNavBar={showNavBar} />
+            <AuthNav toggleNavBar={() => setIsMenuOpen(false)} />
           )}
         </AuthBoxMob>
-        <Nav toggleNavBar={showNavBar} />
+        <Nav toggleNavBar={() => setIsMenuOpen(false)} />
       </NavBox>
       {!isMenuOpen && <AuthBox>{user ? <UserNav /> : <AuthNav />}</AuthBox>}
-      <BurgerBtn toggleNavBar={showNavBar} />
+      <BurgerBtn toggleNavBar={() => setIsMenuOpen(!isMenuOpen)} />
     </HeaderStyled>
   );
 };
