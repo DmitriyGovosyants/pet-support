@@ -7,3 +7,5 @@ export const categories = [
 ];
 
 export const categoriesWithoutAuth = ['sell', 'lost/found', 'In good hands'];
+
+export const daysOfWeek = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];

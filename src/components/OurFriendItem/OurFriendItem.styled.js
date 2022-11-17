@@ -132,7 +132,7 @@ export const TimeBtn = styled.button`
   }
 `
 
-export const TimeDetails = styled.div`
+export const TimeDetails = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
@@ -140,8 +140,7 @@ export const TimeDetails = styled.div`
   transform: translateY(4px);
 
   display: grid;
-  grid-template-columns: 20px 80px;
-  gap: 4px 12px;
+  row-gap: 4px;
   padding: 12px;
 
   font-size: 12px;
@@ -159,4 +158,10 @@ export const TimeDetails = styled.div`
   ${device.desktop} {
     transform: translateY(12px);
   }
+`
+
+export const TimeDetailsItem = styled.li`
+  display: grid;
+  grid-template-columns: 20px 80px;
+  column-gap:12px;
 `
