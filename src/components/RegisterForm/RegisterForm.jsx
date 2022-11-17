@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { useLogInMutation } from '../../redux/authApi';
+import { useSignUpMutation } from '../../redux/authApi';
 import { setCredentials } from '../../redux/authSlice';
 
 import {
@@ -16,6 +16,7 @@ import isEmail from 'validator/lib/isEmail';
 import { isCity, isPassword } from 'helpers';
 import isAlpha from 'validator/lib/isAlpha';
 import isMobilePhone from 'validator/lib/isMobilePhone';
+import { dataFormConverter } from 'helpers/dataFormConverter';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export const RegisterForm = () => {
     },
   });
 
-  const [login, { isLoading }] = useLogInMutation();
+  const [signUp, { isLoading }] = useSignUpMutation();
 
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
@@ -57,7 +58,8 @@ export const RegisterForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const result = await login(formState);
+      const data = dataFormConverter(formState);
+      const result = await signUp(data);
       if (result.data) {
         dispatch(setCredentials(result.data));
         push('/');
