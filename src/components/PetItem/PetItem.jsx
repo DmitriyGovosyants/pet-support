@@ -16,7 +16,6 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   //   const [editPet, setEditPet] = useState('');
-  const user = true; //временная заглушка
 
   return (
     <>
@@ -61,12 +60,12 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
             {comments}
           </Text>
         </ThumbText>
-        {showModalDelete && user && (
+        {showModalDelete && (
           <Modal toggleModal={() => setShowModalDelete(s => !s)}>
             <ModalDelete id={id} closeModal={() => setShowModalDelete(false)} />
           </Modal>
         )}
-        {showModalEdit && user && (
+        {showModalEdit && (
           <Modal toggleModal={() => setShowModalEdit(s => !s)}>
             {/* раскоментить когда появится компонент ModalEdit
                   <ModalEdit

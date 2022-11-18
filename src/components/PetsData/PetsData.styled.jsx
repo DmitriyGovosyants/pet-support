@@ -5,6 +5,7 @@ import { device } from 'styles/mediaquery';
 export const PetsDataStyled = styled.div`
   ${device.desktop} {
     display: flex;
+    width: 100%;
     flex-direction: column;
   }
 `;

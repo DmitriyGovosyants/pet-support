@@ -41,14 +41,19 @@ export const ThumbImage = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
+  border-radius: 40px;
+  width: 240px;
+  height: 240px;
   ${device.tablet} {
-    min-width: 161px;
+    width: 161px;
+    height: 161px;
   }
 `;
 
 export const ThumbText = styled.div`
   display: flex;
+  width: 100%;
+  width: 100%;
   gap: 12px;
   flex-direction: column;
   position: relative;
