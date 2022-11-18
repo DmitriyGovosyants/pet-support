@@ -18,6 +18,10 @@ export const theme = Object.freeze({
     shadow: 'rgba(49, 21, 4, 0.07)',
   },
   spacing: value => `${4 * value}px`,
+  header: {
+    mobileHeight: '74px',
+    tabletAndDesktopHeight: '88px',
+  },
   // fontSizes: {
   //   titleMain: '30px',
   //   titleBig: '40px',
