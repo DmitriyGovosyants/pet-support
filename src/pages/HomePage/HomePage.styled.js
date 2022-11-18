@@ -5,7 +5,7 @@ import { bgImgs } from '../../data/img/homePage';
 export const Wrapper = styled.div`
   position: relative;
 
-  height: calc(100vh - 67.39px);
+  height: calc(100vh - (${p => p.theme.header.mobileHeight}));
 
   /* margin-left: ${p => p.theme.spacing(-5)};
   margin-right: ${p => p.theme.spacing(-5)}; */
@@ -13,17 +13,17 @@ export const Wrapper = styled.div`
   background-image: url(${bgImgs.curveMobile1x});
   background-position: left bottom;
   background-repeat: no-repeat;
-  /* background-size: ${size.mobile} auto; */
+  background-size: ${size.mobile} auto;
 
   ${retina} {
     background-image: url(${bgImgs.curveMobile2x});
   }
 
   ${device.tablet} {
-    height: calc(100vh - 83.39px);
+    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
 
-    margin-left: ${p => p.theme.spacing(-8)};
-    margin-right: ${p => p.theme.spacing(-8)};
+    /* margin-left: ${p => p.theme.spacing(-8)};
+    margin-right: ${p => p.theme.spacing(-8)}; */
 
     background-image: url(${bgImgs.curveTablet1x});
     background-size: ${size.tablet} auto;
@@ -34,10 +34,8 @@ export const Wrapper = styled.div`
   }
 
   ${device.desktop} {
-    height: calc(100vh - 82.39px);
-
-    margin-left: ${p => p.theme.spacing(-4)};
-    margin-right: ${p => p.theme.spacing(-4)};
+    /* margin-left: ${p => p.theme.spacing(-4)};
+    margin-right: ${p => p.theme.spacing(-4)}; */
 
     background-image: url(${bgImgs.curveRightDesktop1x}),
       url(${bgImgs.curveLeftDesktop1x}), url(${bgImgs.circleDesktop1x}),
