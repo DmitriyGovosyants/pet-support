@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useEditPetMutation } from "../../redux/petApi";
 import {
   ModalWrap,
   ButtonClose,
@@ -16,11 +17,12 @@ import {
   Title,
   SubTitle,
   StyledPlusIcon,
-  Button
+  Button,
 } from './ModalAddsPets.styled';
 
 export const ModalAddsPet = ({ toggleModal }) => {
   const [nextPage, setNextPage] = useState(false);
+  const [addPet] = useEditPetMutation();
 
   const {
     register,
@@ -36,7 +38,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
   };
 
   const handleSubmitClick = formData => {
-    console.log("formData", formData);
+    addPet(formData);
     toggleModal();
   };
 
@@ -66,7 +68,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
               id="petName"
               type="text"
               placeholder="Type name pet"
-              {...register("petName", {
+              {...register("name", {
                 required: "Name is required",
                 minLength: {
                   value: 2,
@@ -84,12 +86,12 @@ export const ModalAddsPet = ({ toggleModal }) => {
               })}
               aria-invalid={errors.petName ? "true" : "false"}
             />
-            {errors.petName && <ErrorText>{errors.petName?.message}</ErrorText>}
+            {errors.name && <ErrorText>{errors.name?.message}</ErrorText>}
             <Label htmlFor="dateOfBirth">Date of birth</Label>
             <Input
               id="dateOfBirth"
               placeholder="Type date of birth"
-              {...register("dateOfBirth", {
+              {...register("date", {
                 required: "Date of birth is required.",
                 pattern: {
                   value: dateRegexp,
@@ -97,8 +99,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
                 },
               })}
             />
-            {errors.dateOfBirth && (
-              <ErrorText role="alert">{errors.dateOfBirth?.message}</ErrorText>
+            {errors.date && (
+              <ErrorText role="alert">{errors.date?.message}</ErrorText>
             )}
             <Label htmlFor="breed">Breed</Label>
             <Input
@@ -135,14 +137,14 @@ export const ModalAddsPet = ({ toggleModal }) => {
                 <InputFoto
                   type="file"
                   id="addPhoto"
-                  {...register("addPhoto", {
+                  {...register("avatar", {
                     required: "Photo is required.",
                   })}
                 />
                 <StyledPlusIcon />
               </FotoWrap>
-              {errors.addPhoto && (
-                <ErrorTextFoto role="alert">{errors.addPhoto?.message}</ErrorTextFoto>
+              {errors.avatar && (
+                <ErrorTextFoto role="alert">{errors.avatar?.message}</ErrorTextFoto>
               )}
               <Label htmlFor="addPhoto">Comments</Label>
               <Textarea
