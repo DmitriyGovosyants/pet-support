@@ -5,7 +5,7 @@ import { bgImgs, contImgs } from '../../data/img/homePage';
 export const Wrapper = styled.div`
   position: relative;
 
-  height: calc(100vh - 75.94px);
+  height: calc(100vh - 67.39px);
 
   margin-left: ${p => p.theme.spacing(-5)};
   margin-right: ${p => p.theme.spacing(-5)};
