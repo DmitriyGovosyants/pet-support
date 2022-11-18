@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, ModalNotice } from 'components';
+import { Modal, ModalLearnMore } from 'components';
 import {
   ImgWrapper,
   Button,
@@ -75,7 +75,7 @@ export const NoticeCategoryItem = ({
       </LearnMore>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <ModalNotice toggleModal={() => setShowModal(s => !s)} />
+          <ModalLearnMore toggleModal={() => setShowModal(s => !s)} />
         </Modal>
       )}
     </>
