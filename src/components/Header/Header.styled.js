@@ -19,26 +19,28 @@ export const HeaderStyled = styled.header`
 
 export const NavBox = styled.div`
   ${device.notDesktop} {  
-    justify-content: flex-start;
-    background-color: ${p => p.theme.colors.bgMain};
-    position: absolute;
-    top: 75px;
+    position: fixed;
+    top: ${p => p.theme.header.mobileHeight};
     left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+    z-index: 10;
+    
+    width: 100vw;
+    height: calc(100vh - (${p => p.theme.header.mobileHeight}));
+
+    background-color: ${p => p.theme.colors.bgMain};
+
     transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
     transform: ${p => p.menu ? 'none' : 'translateX(100%)'};
-    z-index: 10;
+    
   }
 
   ${device.mobileOnly} {
     padding-top: 30px;
   }
 
-  ${device.tablet} {
-    top: 83px;
+  ${device.tabletOnly} {
+    top: ${p => p.theme.header.tabletAndDesktopHeight};
+    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
   }
   
   ${device.desktop} {

@@ -5,7 +5,7 @@ import { bgImgs, contImgs } from '../../data/img/homePage';
 export const Wrapper = styled.div`
   position: relative;
 
-  height: calc(100vh - 67.39px);
+  height: calc(100vh - 75.94px);
 
   margin-left: ${p => p.theme.spacing(-5)};
   margin-right: ${p => p.theme.spacing(-5)};
@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   }
 
   ${device.tablet} {
-    height: calc(100vh - 83.39px);
+    height: calc(100vh - 88px);
 
     margin-left: ${p => p.theme.spacing(-8)};
     margin-right: ${p => p.theme.spacing(-8)};
