@@ -3,6 +3,7 @@ export * from './Container/Container';
 export * from './Modal/Modal';
 export * from './MainButton/MainButton';
 export * from './BurgerBtn/BurgerBtn';
+export * from './Spinner/Spinner';
 
 export * from './Header/Header';
 export * from './Logo/Logo';
