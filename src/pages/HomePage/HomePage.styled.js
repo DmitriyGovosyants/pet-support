@@ -2,31 +2,27 @@ import styled from '@emotion/styled';
 import { size, device, retina } from 'styles/mediaquery';
 import { bgImgs } from '../../data/img/homePage';
 
-export const Wrapper = styled.div`
+export const BackgroundWrapper = styled.div`
   position: relative;
-
-  height: calc(100vh - (${p => p.theme.header.mobileHeight}));
-
-  /* margin-left: ${p => p.theme.spacing(-5)};
-  margin-right: ${p => p.theme.spacing(-5)}; */
-
+  /* height: calc(100vh - (${p => p.theme.header.mobileHeight})); */
+  height: 100vh;
   background-image: url(${bgImgs.curveMobile1x});
-  background-position: left bottom;
+  background-position: left 33% bottom -14px;
   background-repeat: no-repeat;
-  background-size: ${size.mobile} auto;
+  background-attachment: fixed;
+  /* background-size: auto; */
+  background-size: 620px 470px;
 
   ${retina} {
     background-image: url(${bgImgs.curveMobile2x});
   }
 
   ${device.tablet} {
-    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
-
-    /* margin-left: ${p => p.theme.spacing(-8)};
-    margin-right: ${p => p.theme.spacing(-8)}; */
+    /* height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight})); */
 
     background-image: url(${bgImgs.curveTablet1x});
-    background-size: ${size.tablet} auto;
+    background-position: left 28% bottom -159.48px;
+    background-size: 1572.76px 1267.48px;
 
     ${retina} {
       background-image: url(${bgImgs.curveTablet2x});
@@ -54,10 +50,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  position: relative;
-  z-index: 6;
+  /* position: relative;
+  z-index: 6; */
 
-  padding-top: 60px;
+  padding-top: 44px;
+  margin-bottom: 58px;
   /* padding-left: ${p => p.theme.spacing(5)};
   padding-right: ${p => p.theme.spacing(5)}; */
 
@@ -87,12 +84,15 @@ export const Title = styled.h1`
 
 export const PictureStyled = styled.picture`
   width: 100%;
-  max-width: 320px;
 
-  position: absolute;
-  top: 100%;
+  /* margin-top: auto; */
+  
+  /* max-width: 320px; */
+
+  /* position: absolute; */
+  /* top: 100%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%); */
 
   ${device.tablet} {
     max-width: 699px;
@@ -105,3 +105,16 @@ export const PictureStyled = styled.picture`
     transform: translate(-100%, -100%);
   }
 `;
+
+export const PositionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 100%; */
+  /* height: calc(100vh - (${p => p.theme.header.mobileHeight})); */
+  
+
+  ${device.tablet} {
+
+  }
+`

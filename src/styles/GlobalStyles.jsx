@@ -17,14 +17,14 @@ export const GlobalStyles = css`
 
     background-color: #fdf7f2;
 
-    /* overflow: auto;
+    overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
 
     ::-webkit-scrollbar {
       width: 0;
       height: 0;
-    } */
+    }
   }
   h1,
   h2,
