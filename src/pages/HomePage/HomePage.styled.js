@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   }
 
   ${device.tablet} {
-    height: calc(100vh - 88px);
+    height: calc(100vh - 83.39px);
 
     margin-left: ${p => p.theme.spacing(-8)};
     margin-right: ${p => p.theme.spacing(-8)};
@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
   }
 
   ${device.desktop} {
-    height: calc(100vh - 83.39px);
+    height: calc(100vh - 82.39px);
 
     margin-left: ${p => p.theme.spacing(-4)};
     margin-right: ${p => p.theme.spacing(-4)};
