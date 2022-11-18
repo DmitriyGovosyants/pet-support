@@ -2,11 +2,15 @@ import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
 export const Btn = styled.button`
-cursor: pointer;
-background-color: transparent;
-border: none;
-padding: 0;
-${device.desktop} {
-  display: none;
-}
+  display: flex;
+  padding: 0;
+  
+  background-color: transparent;
+  border: none;
+  
+  cursor: pointer;
+
+  ${device.desktop} {
+    display: none;
+  }
 `;
