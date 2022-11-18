@@ -9,13 +9,13 @@ export const SharedLayout = () => {
         <Header />
       </Container>
       <main>
-        <Container>
-          <Suspense fallback={<Spinner />}>
-            <Outlet />
-          </Suspense>
-        </Container>
+        {/* <Container> */}
+        <Suspense fallback={<Spinner />}>
+          <Outlet />
+        </Suspense>
+        {/* </Container> */}
       </main>
-      <div>LOGIN</div>
+      {/* <div>LOGIN</div>
       <MainButton type={'submit'}>Login</MainButton>
       <div>REGISTRATION</div>
       <MainButton>Next</MainButton>
@@ -43,7 +43,7 @@ export const SharedLayout = () => {
         disabled={false}
       >
         sell
-      </MainButton>
+      </MainButton> */}
     </>
   );
 };

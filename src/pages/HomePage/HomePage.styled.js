@@ -1,19 +1,19 @@
 import styled from '@emotion/styled';
 import { size, device, retina } from 'styles/mediaquery';
-import { bgImgs, contImgs } from '../../data/img/homePage';
+import { bgImgs } from '../../data/img/homePage';
 
 export const Wrapper = styled.div`
   position: relative;
 
   height: calc(100vh - 67.39px);
 
-  margin-left: ${p => p.theme.spacing(-5)};
-  margin-right: ${p => p.theme.spacing(-5)};
+  /* margin-left: ${p => p.theme.spacing(-5)};
+  margin-right: ${p => p.theme.spacing(-5)}; */
 
   background-image: url(${bgImgs.curveMobile1x});
   background-position: left bottom;
   background-repeat: no-repeat;
-  background-size: ${size.mobile} auto;
+  /* background-size: ${size.mobile} auto; */
 
   ${retina} {
     background-image: url(${bgImgs.curveMobile2x});
@@ -60,8 +60,8 @@ export const Title = styled.h1`
   z-index: 6;
 
   padding-top: 60px;
-  padding-left: ${p => p.theme.spacing(5)};
-  padding-right: ${p => p.theme.spacing(5)};
+  /* padding-left: ${p => p.theme.spacing(5)};
+  padding-right: ${p => p.theme.spacing(5)}; */
 
   font-size: 32px;
   font-weight: 700;
@@ -87,7 +87,7 @@ export const Title = styled.h1`
   }
 `;
 
-const PictureStyled = styled.picture`
+export const PictureStyled = styled.picture`
   width: 100%;
   max-width: 320px;
 
@@ -107,29 +107,3 @@ const PictureStyled = styled.picture`
     transform: translate(-100%, -100%);
   }
 `;
-
-export const MainPicture = () => {
-  return (
-    <PictureStyled>
-      <source
-        srcSet={`${contImgs.womanDesktop1x} 1x, ${contImgs.womanDesktop2x} 2x`}
-        media={`(min-width: ${size.desktop})`}
-        type="image/jpeg"
-      />
-      <source
-        srcSet={`${contImgs.womanTablet1x} 1x, ${contImgs.womanTablet2x} 2x`}
-        media={`(min-width: ${size.tablet})`}
-        type="image/jpeg"
-      />
-      <source
-        srcSet={`${contImgs.womanMobile1x} 1x, ${contImgs.womanMobile2x} 2x`}
-        media={`(min-width: ${size.mobile})`}
-        type="image/jpeg"
-      />
-      <img
-        src={contImgs.womanMobile1x}
-        alt="American-woman-enjoys-company-of-small-pedigree-dog"
-      />
-    </PictureStyled>
-  );
-};
