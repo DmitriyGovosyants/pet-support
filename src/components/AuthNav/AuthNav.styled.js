@@ -25,17 +25,22 @@ export const AuthNavItem = styled.li`
 export const AuthNavLink = styled(NavLink)`
   display: inline-flex;
   align-items: center;
-  padding: 10px 28px;
+  padding: 6px 26px;
+  gap: 12px;
 
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
   color: ${p => p.option === 'main' ? p.theme.colors.textSecond : p.theme.colors.textThird};
+
   background-color: ${p => p.option === 'main' ? p.theme.colors.accent : p.theme.colors.textSecond};
   border: 2px solid ${p => p.theme.colors.accent};
   border-radius: 40px;
 
   cursor: pointer;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
   :focus {
@@ -48,5 +53,9 @@ export const AuthNavLink = styled(NavLink)`
     color: ${p => p.option === 'main' ? p.theme.colors.textSecond : p.theme.colors.textThird};
     background-color: ${p => p.option  === 'main'? p.theme.colors.accent : p.theme.colors.textSecond};
     border: 2px solid ${p => p.theme.colors.accent};
+  }
+
+  ${device.tablet} {
+    font-size: 20px;
   }
 `;

@@ -4,14 +4,27 @@ import { useParams } from 'react-router-dom';
 import { useGetNoticesQuery, useGetFavoritesQuery } from 'redux/noticesApi';
 import { useState, useEffect } from 'react';
 import useRequest from 'hooks/useRequest';
+import { useAuth } from 'redux/useAuth';
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
+  const [skip, setSkip] = useState(true);
+  const auth = useAuth();
   const { categoryName } = useParams();
   const [request, setRequest] = useState('?category=sell');
   useRequest(categoryName, setRequest);
   const { data } = useGetNoticesQuery(request);
-  const { data: favoritesPets } = useGetFavoritesQuery();
+  const { data: favoritesPets } = useGetFavoritesQuery('', {
+    skip,
+  });
+
+  useEffect(() => {
+    if (!auth.user) {
+      setSkip(true);
+    } else {
+      setSkip(false);
+    }
+  }, [auth]);
 
   useEffect(() => {
     if (data) {

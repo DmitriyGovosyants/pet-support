@@ -69,10 +69,10 @@ export const NoticeCategoryItem = ({
           <Text>Age:</Text>
           <Text>{age}</Text>
         </Description>
-        <LearnMore type="button" onClick={() => setShowModal(true)}>
-          Learn more
-        </LearnMore>
       </About>
+      <LearnMore type="button" onClick={() => setShowModal(true)}>
+        Learn more
+      </LearnMore>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
           <ModalNotice toggleModal={() => setShowModal(s => !s)} />

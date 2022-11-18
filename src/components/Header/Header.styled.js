@@ -28,7 +28,7 @@ export const NavBox = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: 500ms;
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
     transform: ${p => p.menu ? 'none' : 'translateX(100%)'};
     z-index: 10;
   }
