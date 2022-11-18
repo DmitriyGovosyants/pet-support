@@ -5,8 +5,10 @@ export const HeaderStyled = styled.header`
   display: flex;
   padding-top: 16px;
   padding-bottom: 16px;
+  min-height: 74px;
 
   ${device.tablet} {
+    min-height: 88px;
     padding-top: 20px;
     padding-bottom: 20px;
   }
