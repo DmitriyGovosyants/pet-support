@@ -1,11 +1,11 @@
 import { useGetFriendsQuery } from 'redux/friendsApi';
-import { OurFriendItem } from 'components';
+import { OurFriendItem, Spinner } from 'components';
 import { FriendsList } from './OurFriendsList.styled';
 
 export const OurFriendsList = () => {
   const { data: friends, isLoading, isError, error } = useGetFriendsQuery('');
 
-  if (isLoading) return <div>... Loading ...</div>;
+  if (isLoading) return <Spinner />;
 
   if (isError) {
     if (error?.status === 404) {
