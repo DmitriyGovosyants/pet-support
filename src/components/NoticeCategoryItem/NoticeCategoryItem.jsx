@@ -23,7 +23,7 @@ import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
 
 export const NoticeCategoryItem = ({
-  petData: { _id, name, breed, location, birthdate, photo, category },
+  petData: { _id, title, breed, location, birthdate, photo, category },
   favorite,
 }) => {
   const [showModal, setShowModal] = useState(false);
@@ -60,7 +60,7 @@ export const NoticeCategoryItem = ({
         </Button>
       </ImgWrapper>
       <About>
-        <Title>{name}</Title>
+        <Title>{title}</Title>
         <Description>
           <Text>Breed:</Text>
           <Text>{breed}</Text>
