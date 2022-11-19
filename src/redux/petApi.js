@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const petApi = createApi({
   reducerPath: 'petApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api/users', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:8080/api/user', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 

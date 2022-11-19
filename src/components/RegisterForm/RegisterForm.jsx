@@ -61,7 +61,7 @@ export const RegisterForm = () => {
       const data = dataFormConverter(formState);
       const result = await signUp(data);
       if (result.data) {
-        dispatch(setCredentials(result.data));
+        dispatch(setCredentials(result.data.data.token));
         push('/');
       }
     } catch (err) {

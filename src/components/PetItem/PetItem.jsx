@@ -9,6 +9,7 @@ import {
 } from './PetItem.styled';
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
+import dogImage from 'data/img/dog.png';
 import { Modal, ModalDelete, PetsInterfaceButton } from 'components';
 import { useState } from 'react';
 
@@ -20,7 +21,7 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
   return (
     <PetItemStyled>
       <ThumbImage>
-        <Image width={'161px'} src={image} alt="pet" />
+        <Image width={'161px'} src={image || dogImage} alt="pet" />
       </ThumbImage>
       <InfoList>
         <li>
