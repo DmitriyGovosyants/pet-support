@@ -29,7 +29,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   const onClickCancelBtn = e => {
@@ -138,9 +138,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
                 <InputFoto
                   type="file"
                   id="addPhoto"
-                  {...register('avatar', {
-                    required: 'Photo is required.',
-                  })}
+                  {...register('avatar')}
                 />
                 <StyledPlusIcon />
               </FotoWrap>
