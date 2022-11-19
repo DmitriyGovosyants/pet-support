@@ -3,10 +3,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const petApi = createApi({
   reducerPath: 'petApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:8080/api/users', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
     prepareHeaders: (headers, { getState }) => {
-      const { token = '' } = getState().user;
-      headers.set('Authorization', token);
+      const token = getState().auth.token;
+
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
       return headers;
     },
   }),
@@ -31,11 +35,12 @@ export const petApi = createApi({
     editPet: builder.mutation({
       query: pet => ({
         url: `/pets/${pet.id}`,
-        method: 'PATCH',
+        method: 'PUT',
         body: {
           name: pet.name,
-          date: pet.date,
+          birthdate: pet.birthdate,
           breed: pet.breed,
+          avatar: pet.avatar,
           comments: pet.comments,
         },
       }),

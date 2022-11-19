@@ -1,13 +1,13 @@
 import { PetsList, AddUsersPet } from 'components';
-import { PetsDataStyled, ThumbText, Text } from './PetsData.styled';
+import { PetsDataStyled, PetsDataHeader, Title } from './PetsData.styled';
 
 export const PetsData = () => {
   return (
     <PetsDataStyled>
-      <ThumbText>
-        <Text>My pets:</Text>
+      <PetsDataHeader>
+        <Title>My pets:</Title>
         <AddUsersPet />
-      </ThumbText>
+      </PetsDataHeader>
       <PetsList />
     </PetsDataStyled>
   );
