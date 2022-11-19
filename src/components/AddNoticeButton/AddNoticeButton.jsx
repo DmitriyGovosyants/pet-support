@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from 'components';
+import { Modal, AddNoticeModal } from 'components';
 import {
   Button,
   Wrapper,
@@ -29,11 +29,8 @@ export const AddNoticeButton = () => {
         </Button>
       </Wrapper>
       {showModal && auth.user && (
-        <Modal toggleModal={() => setShowModal(s => !s)}>
-          <div>ADD PET MODAL</div>
-          <button type="button" onClick={() => setShowModal(false)}>
-            CLOSE MODAL
-          </button>
+        <Modal toggleModal={() => setShowModal(s => !s)} main>
+          <AddNoticeModal toggleModal={() => setShowModal(s => !s)} />
         </Modal>
       )}
     </>
