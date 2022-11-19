@@ -14,14 +14,13 @@ import { noticesApi } from './noticesApi';
 import { friendsApi } from './friendsApi';
 import { authApi } from './authApi';
 import { usersApi } from './usersApi';
-import { combineReducers } from 'redux';
-import authReducer from './authSlice';
+import { authSlice } from './authSlice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'auth',
   version: 1,
   storage,
-  whitelist: ['auth'],
+  whitelist: ['token'],
 };
 
 const reducers = combineReducers({
@@ -35,7 +34,14 @@ const reducers = combineReducers({
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    [noticesApi.reducerPath]: noticesApi.reducer,
+    [friendsApi.reducerPath]: friendsApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+    [petApi.reducerPath]: petApi.reducer,
+    auth: persistReducer(persistConfig, authSlice.reducer),
+  },
+  devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {

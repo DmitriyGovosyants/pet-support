@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 
 import { useLogInMutation } from '../../redux/authApi';
-import { setCredentials } from '../../redux/authSlice';
+// import { setCredentials } from '../../redux/authSlice';
 
 import {
   FormTitle,
@@ -17,8 +17,8 @@ import isEmail from 'validator/lib/isEmail';
 import { dataFormConverter } from 'helpers/dataFormConverter';
 
 export const LoginForm = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     email: {
@@ -65,12 +65,12 @@ export const LoginForm = () => {
 
     try {
       const data = dataFormConverter(formState);
-      const result = await login(data);
-      console.log(data);
-      if (result.data.data.token) {
-        dispatch(setCredentials(result.data.data.token));
-        navigate('/');
-      }
+      await login(data).unwrap();
+      // console.log(data);
+      // if (result.data.data.token) {
+      //   dispatch(setCredentials(result.data.data.token));
+      //   navigate('/');
+      // }
     } catch (err) {
       console.log(err);
     }

@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const authApi = createApi({
-  reducerPath: 'authfetch',
+  reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:8080/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
@@ -17,7 +17,7 @@ export const authApi = createApi({
   tagTypes: ['Auth'],
   endpoints: builder => ({
     getUser: builder.query({
-      query: () => `/user/current`,
+      query: () => `/auth/current`,
       providesTags: ['Auth'],
     }),
     signUp: builder.mutation({

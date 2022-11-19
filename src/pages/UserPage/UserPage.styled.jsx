@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-// import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
-export const UserPageWrapper = styled.div`
+export const Section = styled.div`
   padding-top: 60px;
 
   ${device.tablet} {
@@ -10,8 +9,13 @@ export const UserPageWrapper = styled.div`
   }
 
   ${device.desktop} {
-    display: flex;
     padding-top: 58px;
+  }
+`;
+
+export const UserPageWrapper = styled.div`
+  ${device.desktop} {
+    display: flex;
     gap: 32px;
   }
 `;
