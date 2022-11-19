@@ -9,11 +9,9 @@ export const SharedLayout = () => {
         <Header />
       </Container>
       <main>
-        {/* <Container> */}
         <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
-        {/* </Container> */}
       </main>
       {/* <div>LOGIN</div>
       <MainButton type={'submit'}>Login</MainButton>
