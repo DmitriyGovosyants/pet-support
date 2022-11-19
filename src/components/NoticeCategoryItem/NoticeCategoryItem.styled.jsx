@@ -5,6 +5,7 @@ import { device } from 'styles/mediaquery';
 
 export const ImgWrapper = styled.div`
   position: relative;
+  margin-bottom: 20px;
 `;
 
 export const StyledFavouriteIcon = styled(FavouriteIcon)`
@@ -66,6 +67,7 @@ export const Category = styled.span`
 
 export const Title = styled.h2`
   margin-bottom: 20px;
+  padding: 0 20px;
   font-weight: 700;
   font-size: 28px;
   line-height: 1.36;
@@ -73,6 +75,7 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.div`
+  padding: 0 20px;
   display: grid;
   grid-template-columns: 82px 150px;
   gap: 8px;
@@ -85,7 +88,9 @@ export const Description = styled.div`
 `;
 
 export const About = styled.div`
-  padding: 20px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 `;
 
 export const Text = styled.span`
@@ -99,7 +104,7 @@ export const LearnMore = styled.button`
   width: 248px;
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   border: 2px solid ${props => props.theme.colors.accent};
