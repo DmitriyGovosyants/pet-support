@@ -35,20 +35,19 @@ export const authSlice = createSlice({
           state.token = null;
           state.isLoggedIn = false;
         },
-    )
-      // .addMatcher(
-      //   authApi.endpoints.getCurrentUser.matchPending,
-      //   (state) => {
-      //     state.isRefreshing = true;
-      //   },
-      // ).addMatcher(
-      //   authApi.endpoints.getCurrentUser.matchFulfilled,
-      //   (state, { payload }) => {
-      //     state.user = payload;
-      //     state.isLoggedIn = true;
-      //     state.isRefreshing = false;
-      //   },
-      // );
+      ).addMatcher(
+        authApi.endpoints.getUser.matchPending,
+        (state) => {
+          state.isRefreshing = true;
+        },
+      ).addMatcher(
+        authApi.endpoints.getUser.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        },
+      );
   }
 });
 
@@ -56,4 +55,4 @@ export const authSlice = createSlice({
 
 export const selectCurrentUser = state => state.auth.token;
 export const getIsLoggedIn = state => state.auth.isLoggedIn;
-// export const isRefreshing = state => state.auth.isRefreshing;
+export const isRefreshing = state => state.auth.isRefreshing;

@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components';
 import { routesPath, PrivateRoute, PublicRoute } from 'router';
-import { RefreshToken } from 'redux/refreshToken';
+import { GetCurrentUser } from 'redux/refreshToken';
 
 const Home = lazy(() =>
   import('pages/HomePage/HomePage' /* webpackChunkName: "home-page" */)
@@ -34,7 +34,7 @@ const NoticesCategoriesList = lazy(() =>
 );
 
 export const App = () => {
-  RefreshToken();
+  GetCurrentUser();
 
   return (
     <Routes>

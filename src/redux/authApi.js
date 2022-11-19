@@ -16,10 +16,10 @@ export const authApi = createApi({
   }),
   tagTypes: ['Auth'],
   endpoints: builder => ({
-    // getUser: builder.query({
-    //   query: () => `/auth/current`,
-    //   providesTags: ['Auth'],
-    // }),
+    getUser: builder.query({
+      query: () => `/auth/current`,
+      providesTags: ['Auth'],
+    }),
     signUp: builder.mutation({
       query: value => ({
         url: `/auth/signup`,
@@ -48,7 +48,7 @@ export const authApi = createApi({
 });
 
 export const {
-  // useGetUserQuery,
+  useGetUserQuery,
   useSignUpMutation,
   useLogInMutation,
   useLogOutMutation,
