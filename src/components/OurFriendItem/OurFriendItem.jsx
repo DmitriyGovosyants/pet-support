@@ -34,7 +34,7 @@ export const OurFriendItem = ({
       return;
     }
 
-    const oneDay = workDays.find(e => e.isOpen === true);
+    const oneDay = workDays.find(el => el.isOpen === true);
     setWorkDay(oneDay);
   }, [workDays]);
 
@@ -72,12 +72,12 @@ export const OurFriendItem = ({
             </TimeBtn>
             {showDetails && (
               <TimeDetails>
-                {workDays.map((e, idx) => {
+                {workDays.map((el, idx) => {
                   return (
                     <TimeDetailsItem key={daysOfWeek[idx]}>
                       <span>{daysOfWeek[idx]}</span>
                       <span>
-                        {e.from} - {e.to}
+                        {el.from} - {el.to}
                       </span>
                     </TimeDetailsItem>
                   );

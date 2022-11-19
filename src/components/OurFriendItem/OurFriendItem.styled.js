@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const Card = styled.li`
-  padding: ${props => props.theme.spacing(3)} ${props => props.theme.spacing(1)};
+  padding: 12px 4px;
 
   background-color: ${p => p.theme.colors.bgSecond};
   border-radius: ${props => props.theme.spacing(5)};
@@ -17,8 +17,7 @@ export const Card = styled.li`
   }
 
   ${device.tablet} {
-    padding: ${props => props.theme.spacing(4)}
-      ${props => props.theme.spacing(4)} ${props => props.theme.spacing(4)} 4px;
+    padding: 16px 16px 16px 4px;
     border-radius: ${props => props.theme.spacing(10)};
   }
 `;
@@ -166,7 +165,6 @@ export const TimeDetails = styled.ul`
 
 export const TimeDetailsItem = styled.li`
   display: grid;
-  grid-template-columns: ${props => props.theme.spacing(5)} ${props =>
-      props.theme.spacing(20)};
+  grid-template-columns: 20px 100px;
   column-gap: ${props => props.theme.spacing(3)};
 `;
