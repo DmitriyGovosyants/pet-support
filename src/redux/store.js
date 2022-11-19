@@ -23,22 +23,12 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
-const reducers = combineReducers({
-  [noticesApi.reducerPath]: noticesApi.reducer,
-  [friendsApi.reducerPath]: friendsApi.reducer,
-  [authApi.reducerPath]: authApi.reducer,
-  [usersApi.reducerPath]: usersApi.reducer,
-  auth: authReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, reducers);
-
 export const store = configureStore({
   reducer: {
     [noticesApi.reducerPath]: noticesApi.reducer,
     [friendsApi.reducerPath]: friendsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    [petApi.reducerPath]: petApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     auth: persistReducer(persistConfig, authSlice.reducer),
   },
   devTools: process.env.NODE_ENV === 'development',

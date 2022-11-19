@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const noticesApi = createApi({
   reducerPath: 'notices',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api/notices', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:8081/api/notices', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 

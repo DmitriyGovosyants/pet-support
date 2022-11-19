@@ -1,17 +1,17 @@
 import { LogoutButton } from './Logout.styled';
 import { TbLogout } from 'react-icons/tb';
 import { useLogOutMutation } from 'redux/authApi';
-import { clearCredentials } from 'redux/authSlice';
-import { useDispatch } from 'react-redux';
+// import { clearCredentials } from 'redux/authSlice';
+// import { useDispatch } from 'react-redux';
 
 export const Logout = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [logout] = useLogOutMutation();
 
   const handleLogout = () => {
     logout();
-    dispatch(clearCredentials());
+    // dispatch(clearCredentials());
   };
 
   return (
