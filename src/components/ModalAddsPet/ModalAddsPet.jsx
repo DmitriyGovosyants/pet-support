@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useCreatePetMutation } from '../../redux/petApi';
+import { isName, isBreed, isComment } from 'helpers';
 import {
   ModalWrap,
   ButtonClose,
@@ -9,50 +9,98 @@ import {
   Form,
   Input,
   BtnBox,
-  ErrorText,
-  FotoWrap,
-  InputFoto,
-  ErrorTextFoto,
   Textarea,
   Title,
   SubTitle,
+  FotoWrap,
+  InputFoto,
   StyledPlusIcon,
   Button,
 } from './ModalAddsPets.styled';
 
 export const ModalAddsPet = ({ toggleModal }) => {
-  const [nextPage, setNextPage] = useState(false);
+  //const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+  const [step, setStep] = useState(0);
   const [addPet] = useCreatePetMutation();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({
-    mode: 'all',
-  });
 
   const onClickCancelBtn = e => {
     e.preventDefault();
     toggleModal();
   };
 
-  const handleSubmitClick = formData => {
-    console.log(addPet(formData));
-    addPet(formData);
-    toggleModal();
-  };
+  const [formState, setFormState] = useState({
+    name: {
+      value: '',
+      isValid: true,
+    },
+    date: {
+      value: '',
+      isValid: true,
+    },
+    breed: {
+      value: '',
+      isValid: true,
+    },
 
-  const onClickNextBtn = () => {
-    setNextPage(true);
-  };
+    avatar: {
+      value: '',
+      isValid: true,
+    },
+    comments: {
+      value: '',
+      isValid: true,
+    },
+  });
 
-  const onClickBackBtn = () => {
-    setNextPage(false);
-  };
+  const handleChange = ({ target: { name, value, isValid = true } }) =>
+    setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
 
-  const textRegexp = /[a-zA-Z]+/;
-  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+  const handleSubmit = formState => {
+    console.log(addPet(formState));
+    addPet(formState);
+     toggleModal();
+  };
+   
+  const onHandleClick = e => {
+    if (step === 0) {
+      e.preventDefault();
+      const isNameValid = isName(formState.name.value);
+      const isDateValid = (formState.date.value);
+      const isBreedValid = isBreed(formState.breed.value);
+      
+      if (isNameValid && isDateValid && isBreedValid) {
+        setStep(1);
+      } else {
+        setFormState(prevState => ({
+          ...prevState,
+          name: {
+            value: formState.name.value,
+            isValid: isNameValid,
+          },
+          date: {
+            value: formState.date.value,
+            isValid: isDateValid,
+          },
+          breed: {
+            value: formState.breed.value,
+            isValid: isBreedValid,
+          },
+        }));
+      }
+    } else {
+      const isCommentsValid = isComment(formState.comments.value);
+      if (!isCommentsValid) {
+        setFormState(prevState => ({
+          ...prevState,
+          comments: {
+            value: formState.comments.value,
+            isValid: isCommentsValid,
+          },
+        }));
+        e.preventDefault();
+      }
+    }
+  }  
 
   return (
     <>
@@ -60,151 +108,93 @@ export const ModalAddsPet = ({ toggleModal }) => {
         <ButtonClose type="button" onClick={() => toggleModal()}>
           <CloseIcon />
         </ButtonClose>
-        <Title>Add pet</Title>
-        <Form onSubmit={handleSubmit(handleSubmitClick)}>
-          {!nextPage && (
-            <>
-              <Label htmlFor="petName">Name pet</Label>
-              <Input
-                id="petName"
-                type="text"
-                placeholder="Type name pet"
-                {...register('name', {
-                  required: 'Name is required',
-                  minLength: {
-                    value: 2,
-                    message: 'Should exceed at least 2 characters',
-                  },
-                  maxLength: {
-                    value: 16,
-                    message: 'Should exceed not more than 16 characters',
-                  },
-                  pattern: {
-                    value: textRegexp,
-                    message: 'Name should contain only letters.',
-                  },
-                })}
-                aria-invalid={errors.petName ? 'true' : 'false'}
-              />
-              {errors.name && <ErrorText>{errors.name?.message}</ErrorText>}
-              <Label htmlFor="dateOfBirth">Date of birth</Label>
-              <Input
-                id="dateOfBirth"
-                placeholder="Type date of birth"
-                {...register('date', {
-                  required: 'Date of birth is required.',
-                  pattern: {
-                    value: dateRegexp,
-                    message: 'Should exceed only numbers. As: 12.12.2012',
-                  },
-                })}
-              />
-              {errors.date && (
-                <ErrorText role="alert">{errors.date?.message}</ErrorText>
-              )}
-              <Label htmlFor="breed">Breed</Label>
-              <Input
-                id="breed"
-                type="text"
-                placeholder="Type breed"
-                {...register('breed', {
-                  required: 'Breed is required',
-                  maxLength: {
-                    value: 16,
-                    message: 'Should exceed not more than 16 characters',
-                  },
-                  minLength: {
-                    value: 2,
-                    message: 'Should exceed at least 2 characters',
-                  },
-                  pattern: {
-                    value: textRegexp,
-                    message: 'Breed should contain only letters.',
-                  },
-                })}
-                aria-invalid={errors.breed ? 'true' : 'false'}
-              />
-              {errors.breed && (
-                <ErrorText role="alert">{errors.breed?.message}</ErrorText>
-              )}
-            </>
-          )}
-          {nextPage && (
-            <>
-              <SubTitle htmlFor="addPhoto">
-                Add photo and some comments
-              </SubTitle>
-              <FotoWrap>
-                <InputFoto
-                  type="file"
-                  id="addPhoto"
-                  {...register('avatar')}
-                />
-                <StyledPlusIcon />
-              </FotoWrap>
-              {errors.avatar && (
-                <ErrorTextFoto role="alert">
-                  {errors.avatar?.message}
-                </ErrorTextFoto>
-              )}
-              <Label htmlFor="addPhoto">Comments</Label>
-              <Textarea
-                id="Comments"
-                {...register('comments', {
-                  required: 'Comments is required.',
-                  maxLength: {
-                    value: 120,
-                    message: 'Should exceed not more than 120 characters',
-                  },
-                  minLength: {
-                    value: 8,
-                    message: 'Should exceed at least 2 characters',
-                  },
-                })}
-              />
-              {errors.comments && (
-                <ErrorText role="alert">{errors.comments?.message}</ErrorText>
-              )}
-            </>
-          )}
-          <BtnBox>
-            {!nextPage && (
-              <>
-                <Button
-                  size={'medium'}
-                  width={'fixed'}
-                  onClick={onClickNextBtn}
-                  active
-                  disabled={!isValid}
-                >
-                  Next
-                </Button>
-                <Button
-                  option={'black'}
-                  size={'medium'}
-                  width={'fixed'}
-                  onClick={onClickCancelBtn}
-                >
-                  Cancel
-                </Button>
-              </>
-            )}
-            {nextPage && (
-              <>
-                <Button type={'submit'} size={'medium'} width={'fixed'}>
-                  Done
-                </Button>
-                <Button
-                  option={'black'}
-                  size={'medium'}
-                  width={'fixed'}
-                  onClick={onClickBackBtn}
-                >
-                  Back
-                </Button>
-              </>
-            )}
+        <Form onSubmit={handleSubmit}>
+          <div style={{ display: step === 0 ? 'block' : 'none' }}>
+            <Title>Add pet</Title>
+            <Label htmlFor="name">Name pet</Label>
+            <Input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              placeholder="Type name pet"
+              isValid={formState.name.isValid}
+              errorMessage="Should be from 2 till 16 characters"
+            />
+            <Label htmlFor="date">Date of birth</Label>
+            <Input
+              type="text"
+              name="date"
+              onChange={handleChange}
+              placeholder="Type date of birth"
+              isValid={formState.date.isValid}
+              errorMessage="Should be DD.MM.YYYY"
+            />
+            <Label htmlFor="breed">Breed</Label>
+            <Input
+              type="text"
+              name="breed"
+              onChange={handleChange}
+              placeholder="Type breed"
+              isValid={formState.breed.isValid}
+              errorMessage="Should be from 2 till 16 characters"
+            />
+            <BtnBox>
+            <Button
+              type={'submit'}
+              size={'medium'}
+              width={'fixed'}
+              onClick={onHandleClick}
+            >
+              Next
+            </Button>
+            <Button
+              option={'black'}
+              size={'medium'}
+              width={'fixed'}
+              onClick={onClickCancelBtn}
+            >
+              Cancel
+            </Button>
           </BtnBox>
+          </div>
+          <div style={{ display: step === 1 ? 'block' : 'none' }}>
+            <SubTitle htmlFor="addPhoto">
+              Add photo and some comments
+            </SubTitle>
+            <FotoWrap>
+              <InputFoto
+                type="file"
+                name="file"
+                accept="image/*, image/jpeg, image/jpg"
+                multiple
+                onChange={handleChange}
+              />
+              <StyledPlusIcon />
+            </FotoWrap>              
+            <Textarea
+              name="comments"
+              onChange={handleChange}
+              placeholder="Type comments"
+              rows="5"
+              isValid={formState.comments.isValid}
+              errorMessage="Should be from 2 till 16 characters"
+            />
+             <BtnBox>
+            <Button type={'submit'} size={'medium'} width={'fixed'} onClick={onHandleClick}>
+              Done
+            </Button>
+            <Button
+              option={'black'}
+              size={'medium'}
+              width={'fixed'}
+              onClick={() => {
+                setStep(0);
+              }}
+            >
+              Back
+            </Button>
+          </BtnBox>
+          </div>
         </Form>
       </ModalWrap>
     </>

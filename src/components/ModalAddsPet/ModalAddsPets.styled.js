@@ -3,6 +3,7 @@ import { device } from "styles/mediaquery";
 import { ReactComponent as Close } from 'data/img/close-icon.svg';
 import { ReactComponent as PlusIcon } from 'data/img/plus-icon.svg';
 import { MainButton } from 'components';
+import { FormInput } from 'components';
 
 export const ModalWrap = styled.div`
 display: flex;
@@ -102,7 +103,7 @@ ${device.tablet} {
 }
 `;
 
-export const Input = styled.input`
+export const Input = styled(FormInput)`
 width: 100%;
 :not(:last-child) {
   margin-bottom: 2px;
