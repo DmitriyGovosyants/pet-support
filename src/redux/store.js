@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { noticesApi } from './noticesApi';
 import { friendsApi } from './friendsApi';
 import { authApi } from './authApi';
-import { petApi } from './petApi';
+import { usersApi } from './usersApi';
 import { combineReducers } from 'redux';
 import authReducer from './authSlice';
 
@@ -28,7 +28,7 @@ const reducers = combineReducers({
   [noticesApi.reducerPath]: noticesApi.reducer,
   [friendsApi.reducerPath]: friendsApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
-  [petApi.reducerPath]: petApi.reducer,
+  [usersApi.reducerPath]: usersApi.reducer,
   auth: authReducer,
 });
 
@@ -45,7 +45,7 @@ export const store = configureStore({
     noticesApi.middleware,
     authApi.middleware,
     friendsApi.middleware,
-    petApi.middleware,
+    usersApi.middleware,
   ],
 });
 

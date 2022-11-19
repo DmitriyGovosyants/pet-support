@@ -7,10 +7,13 @@ const slice = createSlice({
     setCredentials: (state, { payload: token }) => {
       state.token = token;
     },
+    clearCredentials: state => {
+      state.token = null;
+    },
   },
 });
 
-export const { setCredentials } = slice.actions;
+export const { setCredentials, clearCredentials } = slice.actions;
 
 export default slice.reducer;
 
