@@ -1,15 +1,19 @@
-import { UserData, Logout, PetsData } from 'components';
-import { UserPageWrapper, UserDataWrapper } from './UserPage.styled';
+import { UserData, Logout, PetsData, Container } from 'components';
+import { UserPageWrapper, UserDataWrapper, Section } from './UserPage.styled';
 
 const UserPage = () => {
   return (
-    <UserPageWrapper>
-      <UserDataWrapper>
-        <UserData />
-        <Logout />
-      </UserDataWrapper>
-      <PetsData />
-    </UserPageWrapper>
+    <Section>
+      <Container>
+        <UserPageWrapper>
+          <UserDataWrapper>
+            <UserData />
+            <Logout />
+          </UserDataWrapper>
+          <PetsData />
+        </UserPageWrapper>
+      </Container>
+    </Section>
   );
 };
 
