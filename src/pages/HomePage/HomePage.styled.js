@@ -1,32 +1,25 @@
 import styled from '@emotion/styled';
 import { size, device, retina } from 'styles/mediaquery';
-import { bgImgs, contImgs } from '../../data/img/homePage';
+import { bgImgs } from '../../data/img/homePage';
 
-export const Wrapper = styled.div`
-  position: relative;
-
-  height: calc(100vh - 67.39px);
-
-  margin-left: ${p => p.theme.spacing(-5)};
-  margin-right: ${p => p.theme.spacing(-5)};
-
+export const BackgroundWrapper = styled.div`
+  height: calc(100vh - (${p => p.theme.header.mobileHeight}));
   background-image: url(${bgImgs.curveMobile1x});
-  background-position: left bottom;
+  background-position: left 33% bottom -14px;
   background-repeat: no-repeat;
-  background-size: ${size.mobile} auto;
+  background-attachment: fixed;
+  background-size: 620px 470px;
 
   ${retina} {
     background-image: url(${bgImgs.curveMobile2x});
   }
 
   ${device.tablet} {
-    height: calc(100vh - 83.39px);
-
-    margin-left: ${p => p.theme.spacing(-8)};
-    margin-right: ${p => p.theme.spacing(-8)};
+    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
 
     background-image: url(${bgImgs.curveTablet1x});
-    background-size: ${size.tablet} auto;
+    background-position: left 28% bottom -159.48px;
+    background-size: 1572.76px 1267.48px;
 
     ${retina} {
       background-image: url(${bgImgs.curveTablet2x});
@@ -34,102 +27,86 @@ export const Wrapper = styled.div`
   }
 
   ${device.desktop} {
-    height: calc(100vh - 82.39px);
-
-    margin-left: ${p => p.theme.spacing(-4)};
-    margin-right: ${p => p.theme.spacing(-4)};
-
-    background-image: url(${bgImgs.curveRightDesktop1x}),
-      url(${bgImgs.curveLeftDesktop1x}), url(${bgImgs.circleDesktop1x}),
-      url(${bgImgs.heartDesktop1x});
-    background-position: right bottom, left bottom, left 460px bottom 200px,
-      right 500px bottom 510px;
-    background-repeat: no-repeat;
-    background-size: 511px auto, 1178px auto, 63px 63px, 92px 89px;
+    background-image: url(${bgImgs.bgdDesktop1x});
+    background-position: bottom;
+    background-size: 1379px 598px;
 
     ${retina} {
-      background-image: url(${bgImgs.curveRightDesktop2x}),
-        url(${bgImgs.curveLeftDesktop2x}), url(${bgImgs.circleDesktop2x}),
-        url(${bgImgs.heartDesktop2x});
+      background-image: url(${bgImgs.bgdDesktop2x});
     }
   }
 `;
 
-export const Title = styled.h1`
-  position: relative;
-  z-index: 6;
+export const HomePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
 
-  padding-top: 60px;
+  margin: 0 auto;
+  padding-top: 44px;
   padding-left: ${p => p.theme.spacing(5)};
   padding-right: ${p => p.theme.spacing(5)};
 
+  ${device.mobile} {
+    width: ${size.mobile};
+  }
+  ${device.tablet} {
+    width: ${size.tablet};
+    padding-top: 72px;
+    padding-left: ${p => p.theme.spacing(8)};
+    padding-right: ${p => p.theme.spacing(8)};
+  }
+  ${device.desktop} {
+    flex-direction: row;
+    width: ${size.desktop};
+    padding-top: 25px;
+    padding-left: ${p => p.theme.spacing(4)};
+    padding-right: ${p => p.theme.spacing(4)};
+  }
+`;
+
+export const Title = styled.h1`
   font-size: 32px;
   font-weight: 700;
   line-height: 1.375;
   text-align: left;
   color: ${p => p.theme.colors.textMain};
 
+  ${device.mobileOnly} {
+    margin-bottom: 58px;
+  }
+
   ${device.tablet} {
-    max-width: 620px;
-
-    padding-top: 92px;
-    padding-left: ${p => p.theme.spacing(8)};
-    padding-right: ${p => p.theme.spacing(0)};
-
+    max-width: 588px;
     font-size: 68px;
     line-height: 1.47;
   }
 
-  ${device.desktop} {
-    max-width: 604px;
+  ${device.tabletOnly} {
+    margin-bottom: 100px;
+  }
 
-    padding-left: ${p => p.theme.spacing(4)};
+  ${device.desktop} {
+    padding-top: 47px;
   }
 `;
 
-const PictureStyled = styled.picture`
-  width: 100%;
-  max-width: 320px;
+export const PictureStyled = styled.picture`
+  width: 320px;
 
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, -100%);
+  ${device.mobileOnly} {
+    margin: 0 -20px;
+  }
 
   ${device.tablet} {
-    max-width: 699px;
+    width: 699px;
   }
 
   ${device.desktop} {
-    max-width: 624px;
-
-    left: 100%;
-    transform: translate(-100%, -100%);
+    width: 624px;
+    margin-top: auto;
+    margin-right: -16px;
   }
 `;
-
-export const MainPicture = () => {
-  return (
-    <PictureStyled>
-      <source
-        srcSet={`${contImgs.womanDesktop1x} 1x, ${contImgs.womanDesktop2x} 2x`}
-        media={`(min-width: ${size.desktop})`}
-        type="image/jpeg"
-      />
-      <source
-        srcSet={`${contImgs.womanTablet1x} 1x, ${contImgs.womanTablet2x} 2x`}
-        media={`(min-width: ${size.tablet})`}
-        type="image/jpeg"
-      />
-      <source
-        srcSet={`${contImgs.womanMobile1x} 1x, ${contImgs.womanMobile2x} 2x`}
-        media={`(min-width: ${size.mobile})`}
-        type="image/jpeg"
-      />
-      <img
-        src={contImgs.womanMobile1x}
-        alt="American-woman-enjoys-company-of-small-pedigree-dog"
-      />
-    </PictureStyled>
-  );
-};

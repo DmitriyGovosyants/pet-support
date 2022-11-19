@@ -2,14 +2,8 @@ import curveMobile1x from './hp-bckg-mobile@1x.png';
 import curveMobile2x from './hp-bckg-mobile@2x.png';
 import curveTablet1x from './hp-bckg-tablet@1x.png';
 import curveTablet2x from './hp-bckg-tablet@2x.png';
-import curveLeftDesktop1x from './hp-bckg-left-desktop@1x.png';
-import curveLeftDesktop2x from './hp-bckg-left-desktop@2x.png';
-import curveRightDesktop1x from './hp-bckg-right-desktop@1x.png';
-import curveRightDesktop2x from './hp-bckg-right-desktop@2x.png';
-import circleDesktop1x from './hp-bckg-circle-desktop@1x.png';
-import circleDesktop2x from './hp-bckg-circle-desktop@2x.png';
-import heartDesktop1x from './hp-bckg-heart-desktop@1x.png';
-import heartDesktop2x from './hp-bckg-heart-desktop@2x.png';
+import bgdDesktop1x from './hp-bckg-desktop@1x.png';
+import bgdDesktop2x from './hp-bckg-desktop@2x.png';
 import womanMobile1x from './hp-woman-mobile@1x.png';
 import womanMobile2x from './hp-woman-mobile@2x.png';
 import womanTablet1x from './hp-woman-tablet@1x.png';
@@ -22,14 +16,8 @@ export const bgImgs = {
   curveMobile2x,
   curveTablet1x,
   curveTablet2x,
-  curveLeftDesktop1x,
-  curveLeftDesktop2x,
-  curveRightDesktop1x,
-  curveRightDesktop2x,
-  circleDesktop1x,
-  circleDesktop2x,
-  heartDesktop1x,
-  heartDesktop2x,
+  bgdDesktop1x,
+  bgdDesktop2x,
 };
 
 export const contImgs = {
