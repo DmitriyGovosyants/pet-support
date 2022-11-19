@@ -6,7 +6,7 @@ import {
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { routesPath } from 'router';
-
+import { Container } from 'components';
 import { Title, Section, Wrapper } from './NoticesPage.styled';
 
 const NoticesPage = () => {
@@ -20,13 +20,15 @@ const NoticesPage = () => {
   }, [navigate, isFirstMount]);
   return (
     <Section>
-      <Title>Find your favorite pet</Title>
-      <NoticesSearch />
-      <Wrapper>
-        <NoticesCategoriesNav />
-        <AddNoticeButton />
-      </Wrapper>
-      <Outlet />
+      <Container>
+        <Title>Find your favorite pet</Title>
+        <NoticesSearch />
+        <Wrapper>
+          <NoticesCategoriesNav />
+          <AddNoticeButton />
+        </Wrapper>
+        <Outlet />
+      </Container>
     </Section>
   );
 };
