@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Spinner } from 'components';
+import { Container, Header, Spinner, Footer } from 'components';
 import { useSelector } from 'react-redux';
 import { isRefreshing as refresh } from 'redux/authSlice';
 
@@ -18,6 +18,7 @@ export const SharedLayout = () => {
             <Outlet />
           </Suspense>
         </main>
+        <Footer />
       </>
     )
   );

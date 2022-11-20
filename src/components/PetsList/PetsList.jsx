@@ -3,6 +3,7 @@ import { useFetchPetsQuery } from 'redux/petApi';
 import { PetItem, Spinner } from 'components';
 
 export const PetsList = () => {
+  // eslint-disable-next-line no-unused-vars
   const { data, isLoading, isError, error } = useFetchPetsQuery();
 
   if (isLoading) return <Spinner />;

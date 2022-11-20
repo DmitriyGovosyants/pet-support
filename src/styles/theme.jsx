@@ -6,7 +6,8 @@ export const theme = Object.freeze({
     textLowOpacity: '#11111199',
     textLink: '#3091EB',
     black: '#000000',
-
+    red: '#f8064be1',
+    
     accent: '#F59256',
     hover: '#FF6101',
 

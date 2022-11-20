@@ -40,3 +40,4 @@ export * from './ModalDelete/ModalDelete';
 
 export * from './OurFriendsList/OurFriendsList';
 export * from './OurFriendItem/OurFriendItem';
+export * from './Footer/Footer'
