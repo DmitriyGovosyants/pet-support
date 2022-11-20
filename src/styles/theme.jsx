@@ -9,6 +9,7 @@ export const theme = Object.freeze({
 
     accent: '#F59256',
     hover: '#FF6101',
+    placeholder: 'rgba(17, 17, 17, 0.6)',
 
     bgMain: '#fdf7f2',
     bgSecond: '#ffffff',
