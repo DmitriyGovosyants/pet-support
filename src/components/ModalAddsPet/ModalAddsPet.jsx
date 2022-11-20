@@ -55,10 +55,18 @@ export const ModalAddsPet = ({ toggleModal }) => {
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
 
-  const handleSubmit = formState => {
-    console.log(addPet(formState));
-    addPet(formState);
-     toggleModal();
+  const handleSubmit = async => {
+    const petsData = Object.entries(formState).reduce((acc, itm) => {
+      acc[itm[0]] = itm[1].value;
+      return acc;
+    }, {});
+    console.log(petsData);
+
+    try {
+      addPet(petsData);
+    } catch (error) {
+      console.log(error);
+    }
   };
    
   const onHandleClick = e => {
