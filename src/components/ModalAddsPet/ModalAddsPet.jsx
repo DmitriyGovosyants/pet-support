@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useCreatePetMutation } from '../../redux/petApi';
 import { isName, isBreed, isComment } from 'helpers';
+import { useCreatePetMutation } from '../../redux/usersApi';
+
 import {
   ModalWrap,
   ButtonClose,
@@ -68,14 +69,14 @@ export const ModalAddsPet = ({ toggleModal }) => {
       console.log(error);
     }
   };
-   
+
   const onHandleClick = e => {
     if (step === 0) {
       e.preventDefault();
       const isNameValid = isName(formState.name.value);
-      const isDateValid = (formState.date.value);
+      const isDateValid = formState.date.value;
       const isBreedValid = isBreed(formState.breed.value);
-      
+
       if (isNameValid && isDateValid && isBreedValid) {
         setStep(1);
       } else {
@@ -108,7 +109,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         e.preventDefault();
       }
     }
-  }  
+  };
 
   return (
     <>
@@ -147,28 +148,26 @@ export const ModalAddsPet = ({ toggleModal }) => {
               errorMessage="Should be from 2 till 16 characters"
             />
             <BtnBox>
-            <Button
-              type={'submit'}
-              size={'medium'}
-              width={'fixed'}
-              onClick={onHandleClick}
-            >
-              Next
-            </Button>
-            <Button
-              option={'black'}
-              size={'medium'}
-              width={'fixed'}
-              onClick={onClickCancelBtn}
-            >
-              Cancel
-            </Button>
-          </BtnBox>
+              <Button
+                type={'submit'}
+                size={'medium'}
+                width={'fixed'}
+                onClick={onHandleClick}
+              >
+                Next
+              </Button>
+              <Button
+                option={'black'}
+                size={'medium'}
+                width={'fixed'}
+                onClick={onClickCancelBtn}
+              >
+                Cancel
+              </Button>
+            </BtnBox>
           </div>
           <div style={{ display: step === 1 ? 'block' : 'none' }}>
-            <SubTitle htmlFor="addPhoto">
-              Add photo and some comments
-            </SubTitle>
+            <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
             <FotoWrap>
               <InputFoto
                 type="file"
@@ -178,7 +177,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
                 onChange={handleChange}
               />
               <StyledPlusIcon />
-            </FotoWrap>              
+            </FotoWrap>
             <Textarea
               name="comments"
               onChange={handleChange}
@@ -187,21 +186,26 @@ export const ModalAddsPet = ({ toggleModal }) => {
               isValid={formState.comments.isValid}
               errorMessage="Should be from 2 till 16 characters"
             />
-             <BtnBox>
-            <Button type={'submit'} size={'medium'} width={'fixed'} onClick={onHandleClick}>
-              Done
-            </Button>
-            <Button
-              option={'black'}
-              size={'medium'}
-              width={'fixed'}
-              onClick={() => {
-                setStep(0);
-              }}
-            >
-              Back
-            </Button>
-          </BtnBox>
+            <BtnBox>
+              <Button
+                type={'submit'}
+                size={'medium'}
+                width={'fixed'}
+                onClick={onHandleClick}
+              >
+                Done
+              </Button>
+              <Button
+                option={'black'}
+                size={'medium'}
+                width={'fixed'}
+                onClick={() => {
+                  setStep(0);
+                }}
+              >
+                Back
+              </Button>
+            </BtnBox>
           </div>
         </Form>
       </ModalWrap>

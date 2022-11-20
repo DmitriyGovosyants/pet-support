@@ -15,11 +15,13 @@ export const Title = styled.h1`
 
 export const Section = styled.section`
   padding-top: 42px;
+  padding-bottom: 100px;
   ${device.tablet} {
     padding-top: 92px;
   }
   ${device.desktop} {
     padding-top: 59px;
+    padding-bottom: 200px;
   }
 `;
 

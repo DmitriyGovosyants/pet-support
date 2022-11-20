@@ -72,6 +72,7 @@ export const Title = styled.h2`
   font-size: 28px;
   line-height: 1.36;
   letter-spacing: -0.01em;
+  flex-grow: 1;
 `;
 
 export const Description = styled.div`
@@ -90,7 +91,6 @@ export const Description = styled.div`
 export const About = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: end;
 `;
 
 export const Text = styled.span`

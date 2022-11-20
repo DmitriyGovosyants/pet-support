@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const Section = styled.section`
-  padding-top: 31px;
+  padding: 31px 0;
   ${device.tablet} {
-    padding-top: 72px;
+    padding: 72px 0;
   }
   ${device.desktop} {
-    padding-top: 41px;
+    padding: 41px 0;
   }
 `;
 

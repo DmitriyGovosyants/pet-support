@@ -16,12 +16,20 @@ import { useState } from 'react';
 export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-  //   const [editPet, setEditPet] = useState('');
+
+  const addDefaultSrc = ev => {
+    ev.target.src = dogImage;
+  };
 
   return (
     <PetItemStyled>
       <ThumbImage>
-        <Image width={'161px'} src={image || dogImage} alt="pet" />
+        <Image
+          width={'161px'}
+          onError={addDefaultSrc}
+          src={image || dogImage}
+          alt="pet"
+        />
       </ThumbImage>
       <InfoList>
         <li>
