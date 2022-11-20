@@ -23,14 +23,6 @@ export const theme = Object.freeze({
     mobileHeight: '74px',
     tabletAndDesktopHeight: '88px',
   },
-  // fontSizes: {
-  //   titleMain: '30px',
-  //   titleBig: '40px',
-  //   small: '14px',
-  //   medium: '18px',
-  //   large: '24px',
-  // },
-  // 12, 14, 16, 18, 20, 24, 28, 32
   // animation: {
   //   cubicBezierAverageSpeed: '250ms cubic-bezier(0.7, 0.98, 0.86, 0.98)',
   //   cubicBezierMaxSpeed: '400ms cubic-bezier(0.7, 0.98, 0.86, 0.98)',

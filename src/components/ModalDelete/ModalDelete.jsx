@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 //все коменты расскоментировать, после petApi
-import { useDeletePetMutation } from 'redux/petApi';
+import { useDeletePetMutation } from 'redux/usersApi';
 import {
   ModalContainer,
   ButtonClose,

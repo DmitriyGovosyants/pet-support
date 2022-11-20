@@ -13,8 +13,9 @@ import storage from 'redux-persist/lib/storage';
 import { noticesApi } from './noticesApi';
 import { friendsApi } from './friendsApi';
 import { authApi } from './authApi';
-import { petApi } from './petApi';
-import {authSlice} from './authSlice';
+import { usersApi } from './usersApi';
+import { authSlice } from './authSlice';
+import filterReducer from './filterSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -28,8 +29,9 @@ export const store = configureStore({
     [noticesApi.reducerPath]: noticesApi.reducer,
     [friendsApi.reducerPath]: friendsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    [petApi.reducerPath]: petApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     auth: persistReducer(persistConfig, authSlice.reducer),
+    filter: filterReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => [
@@ -41,7 +43,7 @@ export const store = configureStore({
     noticesApi.middleware,
     authApi.middleware,
     friendsApi.middleware,
-    petApi.middleware,
+    usersApi.middleware,
   ],
 });
 
