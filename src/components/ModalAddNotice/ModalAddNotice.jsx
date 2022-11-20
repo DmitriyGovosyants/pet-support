@@ -37,11 +37,12 @@ import { useAddNoticeMutation } from 'redux/noticesApi';
 import { toast } from 'react-toastify';
 
 export const ModalAddNotice = ({ toggleModal }) => {
+  const [formState, setFormState] = useState(addNoticeValidationModel);
   const [addNotice] = useAddNoticeMutation();
   const [step, setStep] = useState(1);
+  const [avatar, setAvatar] = useState();
 
-  const [formState, setFormState] = useState(addNoticeValidationModel);
-  console.log(formState);
+  // console.log(formState);
   const formData = new FormData();
 
   const handleFirstBtn = () => {
@@ -154,6 +155,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
       setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
       return;
     }
+
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
     formData.append('avatar', file);
@@ -179,8 +181,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
       console.log(error);
     }
   };
-
-  // enctype = 'multipart/form-data';
 
   return (
     <ModalCard onSubmit={() => handleSubmit()}>
