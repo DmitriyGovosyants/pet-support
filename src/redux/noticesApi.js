@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const noticesApi = createApi({
   reducerPath: 'notices',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api/notices', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:8080/api', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
@@ -18,16 +18,16 @@ export const noticesApi = createApi({
   endpoints: builder => ({
     getNotices: builder.query({
       query: ({ request, page, search }) =>
-        `${request}&page=${page}&search=${search}`,
+        `/notices${request}&page=${page}&search=${search}`,
       providesTags: ['Notices'],
     }),
     getFavorites: builder.query({
-      query: () => '/favorites',
+      query: () => '/notices/favorites',
       providesTags: ['Notices'],
     }),
     addNoticeToFavourite: builder.mutation({
       query: noticeId => ({
-        url: `/favorites/${noticeId}`,
+        url: `/notices/favorites/${noticeId}`,
         method: 'PATCH',
         body: '',
       }),
@@ -35,25 +35,25 @@ export const noticesApi = createApi({
     }),
     removeNoticeFromFavourite: builder.mutation({
       query: noticeId => ({
-        url: `/favorites/${noticeId}`,
+        url: `/notices/favorites/${noticeId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Notices'],
     }),
     getPrivateNotices: builder.query({
-      query: () => '/private',
+      query: () => '/notices/private',
       providesTags: ['Notices'],
     }),
     removePrivateNotice: builder.mutation({
       query: noticeId => ({
-        url: `/private/${noticeId}`,
+        url: `/notices/private/${noticeId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Notices'],
     }),
     addNotice: builder.mutation({
       query: value => ({
-        url: `/`,
+        url: `/notices`,
         method: 'POST',
         body: value,
       }),

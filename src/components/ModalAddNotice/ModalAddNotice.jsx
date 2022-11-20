@@ -2,7 +2,15 @@ import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import maleImg from '../../data/img/male.png';
 import femaleImg from '../../data/img/female.png';
-import { isBreed, isCity, isComments, isName, isPrice, isTitle } from 'helpers';
+import {
+  addNoticeValidationModel,
+  isBreed,
+  isCity,
+  isComments,
+  isName,
+  isPrice,
+  isTitle,
+} from 'helpers';
 import isDate from 'validator/lib/isDate';
 import isEmpty from 'validator/lib/isEmpty';
 import { MainButton } from 'components';
@@ -32,45 +40,9 @@ export const ModalAddNotice = ({ toggleModal }) => {
   const [addNotice] = useAddNoticeMutation();
   const [step, setStep] = useState(1);
 
-  const [formState, setFormState] = useState({
-    category: {
-      value: '',
-      isValid: true,
-    },
-    title: {
-      value: '',
-      isValid: true,
-    },
-    name: {
-      value: '',
-      isValid: true,
-    },
-    birthdate: {
-      value: '',
-      isValid: true,
-    },
-    breed: {
-      value: '',
-      isValid: true,
-    },
-    sex: {
-      value: '',
-      isValid: true,
-    },
-    location: {
-      value: '',
-      isValid: true,
-    },
-    price: {
-      value: '',
-      isValid: true,
-    },
-    comments: {
-      value: '',
-      isValid: true,
-    },
-  });
+  const [formState, setFormState] = useState(addNoticeValidationModel);
   console.log(formState);
+  const formData = new FormData();
 
   const handleFirstBtn = () => {
     if (step === 1) {
@@ -138,9 +110,17 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
   const validateSecondPage = () => {
     const { sex, location, price, comments } = formState;
+
+    const handlePriceValidate = () => {
+      if (formState.category.value === 'sell') {
+        return isPrice(price.value);
+      }
+      return true;
+    };
+
     const isSexValid = !isEmpty(sex.value);
     const isLocationValid = isCity(location.value);
-    const isPriceValid = isPrice(price.value);
+    const isPriceValid = handlePriceValidate();
     const isCommentsValid = isComments(comments.value);
 
     if (!isSexValid || !isLocationValid || !isPriceValid || !isCommentsValid) {
@@ -169,24 +149,38 @@ export const ModalAddNotice = ({ toggleModal }) => {
     handleSubmit();
   };
 
-  const handleChange = ({ target: { name, value, isValid = true } }) =>
-    setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
+  const handleChange = ({ target: { name, value, isValid = true } }) => {
+    if (name !== 'avatar') {
+      setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
+      return;
+    }
+    const fileInput = document.getElementById('file-id');
+    const file = fileInput.files[0];
+    formData.append('avatar', file);
+  };
 
   const handleSubmit = async () => {
-    const noticeData = Object.entries(formState).reduce((acc, itm) => {
-      acc[itm[0]] = itm[1].value;
-      return acc;
-    }, {});
-    console.log(noticeData);
+    const data = Object.entries(formState);
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (formState.category.value === 'sell') {
+        formData.append(data[i][0], data[i][1].value);
+      }
+      if (formState.category.value !== 'sell' && data[i][0] !== 'price') {
+        formData.append(data[i][0], data[i][1].value);
+      }
+    }
 
     try {
-      await addNotice(noticeData);
+      await addNotice(formData);
       toggleModal();
       toast.success('Your notice is added');
     } catch (error) {
       console.log(error);
     }
   };
+
+  // enctype = 'multipart/form-data';
 
   return (
     <ModalCard onSubmit={() => handleSubmit()}>
@@ -236,7 +230,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             </FormInputLabel>
             <FormInput
               placeholder={'Type title'}
-              type={'Title'}
+              type={'text'}
               name={'title'}
               onChange={handleChange}
               isValid={formState.title.isValid}
@@ -251,7 +245,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             <FormInputLabel>Name pet</FormInputLabel>
             <FormInput
               placeholder={'Type name pet'}
-              type={'Name'}
+              type={'text'}
               name={'name'}
               onChange={handleChange}
               isValid={formState.name.isValid}
@@ -266,7 +260,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             <FormInputLabel>Date of birth</FormInputLabel>
             <FormInput
               placeholder={'Type date of birth'}
-              type={'Birthdate'}
+              type={'date'}
               name={'birthdate'}
               onChange={handleChange}
               isValid={formState.birthdate.isValid}
@@ -281,7 +275,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             <FormInputLabel>Breed</FormInputLabel>
             <FormInput
               placeholder={'Type breed'}
-              type={'Breed'}
+              type={'text'}
               name={'breed'}
               onChange={handleChange}
               isValid={formState.breed.isValid}
@@ -338,7 +332,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             </FormInputLabel>
             <FormInput
               placeholder={'Type location'}
-              type={'Location'}
+              type={'text'}
               name={'location'}
               onChange={handleChange}
               isValid={formState.location.isValid}
@@ -349,34 +343,39 @@ export const ModalAddNotice = ({ toggleModal }) => {
               </div>
             )}
           </InputItem>
+          {formState.category.value === 'sell' && (
+            <InputItem>
+              <FormInputLabel>
+                Price<RequiredSymbol>*</RequiredSymbol>
+              </FormInputLabel>
+              <FormInput
+                placeholder={'Type price'}
+                type={'number'}
+                name={'price'}
+                onChange={handleChange}
+                isValid={formState.price.isValid}
+              />
+              {!formState.price.isValid && (
+                <div style={{ color: 'red' }}>
+                  Price couldn't start from 0, 1-10 numbers
+                </div>
+              )}
+            </InputItem>
+          )}
           <InputItem>
-            <FormInputLabel>
-              Price<RequiredSymbol>*</RequiredSymbol>
-            </FormInputLabel>
+            <FormInputLabel>Load the pet’s image</FormInputLabel>
             <FormInput
               placeholder={'Type price'}
-              type={'Price'}
-              name={'price'}
+              type={'file'}
+              name={'avatar'}
               onChange={handleChange}
-              isValid={formState.price.isValid}
+              id={'file-id'}
+              accept=".png, .jpeg, .jpg, .webp"
             />
-            {!formState.price.isValid && (
+            {/* {!formState.price.isValid && (
               <div style={{ color: 'red' }}>
                 Price couldn't start from 0, 1-10 numbers
               </div>
-            )}
-          </InputItem>
-          <InputItem>
-            <FormInputLabel>Load the pet’s image</FormInputLabel>
-            {/* <FormInput
-              placeholder={'Type location'}
-              type={'Location'}
-              name={'location'}
-              onChange={handleChange}
-              isValid={formState.location.isValid}
-            /> */}
-            {/* {!formState.location.isValid && (
-              <div style={{ color: 'red' }}>Invalid Location</div>
             )} */}
           </InputItem>
           <InputItem>
@@ -385,7 +384,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             </FormInputLabel>
             <FormInput
               placeholder={'Type comments'}
-              type={'Comments'}
+              type={'text'}
               name={'comments'}
               onChange={handleChange}
               isValid={formState.comments.isValid}

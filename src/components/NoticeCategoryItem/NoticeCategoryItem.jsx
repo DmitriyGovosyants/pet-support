@@ -23,7 +23,16 @@ import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
 
 export const NoticeCategoryItem = ({
-  petData: { _id, title, breed, location, birthdate, photo, category, price },
+  petData: {
+    _id,
+    title,
+    breed,
+    location,
+    birthdate,
+    avatarURL,
+    category,
+    price,
+  },
   favorite,
 }) => {
   const [showModal, setShowModal] = useState(false);
@@ -54,7 +63,7 @@ export const NoticeCategoryItem = ({
     <>
       <ImgWrapper>
         <Category>{categoryName}</Category>
-        <img src={photo || dogImage} alt={breed} />
+        <img src={avatarURL || dogImage} alt={breed} />
         <Button type="button" onClick={toggleFavourites}>
           {isFavourite ? <StyledFavouriteIcon /> : <StyledToFavouriteIcon />}
         </Button>
