@@ -40,7 +40,7 @@ export const CloseBtn = styled.button`
 
   &:hover,
   &:focus {
-    background-color: ${props => props.theme.colors.accent};
+    background-color: ${props => props.theme.colors.hover};
   }
 
   ${device.tablet} {
@@ -51,16 +51,16 @@ export const CloseBtn = styled.button`
 export const ImgWrapper = styled.div`
   position: relative;
 
-  max-width: 240px;
-  min-height: 240px;
+  width: 240px;
+  height: 240px;
   margin-bottom: 16px;
 
   border-radius: 0px 0px 40px 40px;
   overflow: hidden;
 
   ${device.tablet} {
-    max-width: 288px;
-    min-height: 328px;
+    width: 288px;
+    height: 328px;
     margin-right: 20px;
     margin-bottom: 0;
   }
@@ -118,19 +118,19 @@ export const FeaturesList = styled.ul`
 
 export const FeaturesItem = styled.li`
   display: flex;
-  justify-content: left;
+
   &:not(:last-child) {
     margin-bottom: 8px;
   }
 `;
 
 export const FeaturesDescription = styled.p`
-  min-width: 140px;
+  min-width: 118px;
 
   font-weight: 600;
   font-size: 14px;
   line-height: 1.35;
-  color: #000000;
+  color: ${props => props.theme.colors.black};
 
   ${device.tablet} {
     min-width: 120px;
@@ -143,7 +143,7 @@ export const FeaturesDescription = styled.p`
 export const FeaturesDefinition = styled.p`
   font-size: 14px;
   line-height: 1.35;
-  color: #000000;
+  color: ${props => props.theme.colors.black};
 
   ${device.tablet} {
     font-size: 16px;
@@ -154,7 +154,7 @@ export const FeaturesDefinition = styled.p`
 export const ContactLink = styled.a`
   font-size: 14px;
   line-height: 1.35;
-  color: #000000;
+  color: ${props => props.theme.colors.black};
 
   transition: color 250ms linear;
 
@@ -185,11 +185,17 @@ export const ContactButton = styled.a`
 
   background-color: ${props => props.theme.colors.accent};
   border-radius: 40px;
+  transition: background-color 250ms linear;
 
   ${device.tablet} {
     width: 160px;
     margin-right: 20px;
     margin-bottom: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${props => props.theme.colors.hover};
   }
 `;
 
@@ -203,11 +209,12 @@ export const ChangeFavoriteStatusBtn = styled.button`
   font-size: 16px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: #111111;
+  color: ${props => props.theme.colors.textMain};
 
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   cursor: pointer;
+  transition: border-color 250ms linear;
 
   & > svg {
     width: 16px;
@@ -215,11 +222,21 @@ export const ChangeFavoriteStatusBtn = styled.button`
     margin-left: 8px;
 
     fill: ${props => props.theme.colors.accent};
+    transition: fill 250ms linear;
   }
 
   ${device.tablet} {
     width: 160px;
     margin-right: 12px;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: ${props => props.theme.colors.hover};
+
+    & > svg {
+      fill: ${props => props.theme.colors.hover};
+    }
   }
 `;
 
