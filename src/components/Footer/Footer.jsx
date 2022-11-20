@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 export const Footer = () => {
   const [isShow, setIsShow] = useState(true);
   const { pathname } = useLocation();
-  console.log(pathname);
 
   useEffect(() => {
     if (
