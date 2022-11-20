@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 
 import { useSignUpMutation } from '../../redux/authApi';
-import { setCredentials } from '../../redux/authSlice';
+// import { setCredentials } from '../../redux/authSlice';
 
 import {
   FormTitle,
@@ -19,8 +19,8 @@ import isMobilePhone from 'validator/lib/isMobilePhone';
 import { dataFormConverter } from 'helpers/dataFormConverter';
 
 export const RegisterForm = () => {
-  const dispatch = useDispatch();
-  const { push } = useNavigate();
+  // const dispatch = useDispatch();
+  // const { push } = useNavigate();
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
@@ -59,11 +59,11 @@ export const RegisterForm = () => {
     e.preventDefault();
     try {
       const data = dataFormConverter(formState);
-      const result = await signUp(data);
-      if (result.data) {
-        dispatch(setCredentials(result.data));
-        push('/');
-      }
+      await signUp(data).unwrap();
+      // if (result.data) {
+      //   dispatch(setCredentials(result.data.data.token));
+      //   push('/');
+      // }
     } catch (err) {
       console.log(err);
     }

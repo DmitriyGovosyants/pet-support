@@ -23,7 +23,7 @@ import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
 
 export const NoticeCategoryItem = ({
-  petData: { _id, name, breed, location, birthdate, photo, category },
+  petData: { _id, title, breed, location, birthdate, photo, category, price },
   favorite,
 }) => {
   const [showModal, setShowModal] = useState(false);
@@ -59,8 +59,8 @@ export const NoticeCategoryItem = ({
           {isFavourite ? <StyledFavouriteIcon /> : <StyledToFavouriteIcon />}
         </Button>
       </ImgWrapper>
+      <Title>{title}</Title>
       <About>
-        <Title>{name}</Title>
         <Description>
           <Text>Breed:</Text>
           <Text>{breed}</Text>
@@ -68,11 +68,22 @@ export const NoticeCategoryItem = ({
           <Text>{location}</Text>
           <Text>Age:</Text>
           <Text>{age}</Text>
+          {categoryName === 'sell' ? (
+            <>
+              <Text>Price:</Text>
+              <Text>{price}</Text>
+            </>
+          ) : (
+            <>
+              <Text></Text>
+              <Text></Text>
+            </>
+          )}
         </Description>
+        <LearnMore type="button" onClick={() => setShowModal(true)}>
+          Learn more
+        </LearnMore>
       </About>
-      <LearnMore type="button" onClick={() => setShowModal(true)}>
-        Learn more
-      </LearnMore>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
           <ModalLearnMore toggleModal={() => setShowModal(s => !s)} />

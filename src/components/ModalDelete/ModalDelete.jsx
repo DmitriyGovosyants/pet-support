@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 //все коменты расскоментировать, после petApi
-// import { useDeletePetMutation } from 'redux/petApi';
+import { useDeletePetMutation } from 'redux/usersApi';
 import {
   ModalContainer,
   ButtonClose,
@@ -11,11 +11,11 @@ import {
 } from './ModalDelete.styled';
 
 export const ModalDelete = ({ id, closeModal }) => {
-  //   const [deletePet] = useDeletePetMutation();
+  const [deletePet] = useDeletePetMutation();
 
   const handleDelete = async () => {
     try {
-      //   await deletePet(id).unwrap();
+      await deletePet(id).unwrap();
       toast.success('Successfully removed');
     } catch (error) {
       if (error.status === 401) {
