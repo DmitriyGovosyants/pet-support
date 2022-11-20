@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCreatePetMutation } from '../../redux/petApi';
+import { useCreatePetMutation } from '../../redux/usersApi';
 import { isName, isBreed, isComment } from 'helpers';
 import {
   ModalWrap,
