@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreatePetMutation } from '../../redux/petApi';
+import { useCreatePetMutation } from '../../redux/usersApi';
 import {
   ModalWrap,
   ButtonClose,

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const petApi = createApi({
-  reducerPath: 'petApi',
+export const usersApi = createApi({
+  reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8080/api/users', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
     prepareHeaders: (headers, { getState }) => {
@@ -14,8 +14,15 @@ export const petApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Pet'],
+  tagTypes: ['Info', 'Pet'],
   endpoints: builder => ({
+    //=========useFetchUserQuery=======
+    fetchUser: builder.query({
+      query: () => ({
+        url: '/info',
+      }),
+      invalidatesTags: ['Info'],
+    }),
     //----- useFetchPetsQuery --------
     fetchPets: builder.query({
       query: () => `/pets`,
@@ -60,8 +67,9 @@ export const petApi = createApi({
 });
 
 export const {
+  useFetchUserQuery,
   useFetchPetsQuery,
   useDeletePetMutation,
   useEditPetMutation,
   useCreatePetMutation,
-} = petApi;
+} = usersApi;
