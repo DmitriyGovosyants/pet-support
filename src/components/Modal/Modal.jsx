@@ -6,7 +6,7 @@ import { Overlay } from './Modal.styled';
 const modalRoot = document.querySelector('#modal-root');
 const body = document.getElementsByTagName('body')[0];
 
-export const Modal = ({ children, toggleModal }) => {
+export const Modal = ({ children, toggleModal, main }) => {
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -33,7 +33,11 @@ export const Modal = ({ children, toggleModal }) => {
   };
 
   return createPortal(
-    <Overlay onClick={handleBackdropClick} mounted={isMounted.current}>
+    <Overlay
+      onClick={handleBackdropClick}
+      mounted={isMounted.current}
+      main={main}
+    >
       {children}
     </Overlay>,
     modalRoot
