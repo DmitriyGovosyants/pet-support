@@ -17,7 +17,8 @@ export const noticesApi = createApi({
   tagTypes: ['Notices'],
   endpoints: builder => ({
     getNotices: builder.query({
-      query: categoryName => `${categoryName}`,
+      query: ({ request, page, search }) =>
+        `${request}&page=${page}&search=${search}`,
       providesTags: ['Notices'],
     }),
     getFavorites: builder.query({
