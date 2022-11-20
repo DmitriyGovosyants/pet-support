@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import maleImg from '../../data/img/male.png';
 import femaleImg from '../../data/img/female.png';
+import { isBreed, isCity, isComments, isName, isPrice, isTitle } from 'helpers';
+import isDate from 'validator/lib/isDate';
+import isEmpty from 'validator/lib/isEmpty';
 import { MainButton } from 'components';
 import {
   ModalCard,
@@ -23,6 +26,7 @@ import {
   BtnClose,
 } from './ModalAddNotice.styled';
 import { useAddNoticeMutation } from 'redux/noticesApi';
+import { toast } from 'react-toastify';
 
 export const ModalAddNotice = ({ toggleModal }) => {
   const [addNotice] = useAddNoticeMutation();
@@ -66,13 +70,14 @@ export const ModalAddNotice = ({ toggleModal }) => {
       isValid: true,
     },
   });
+  console.log(formState);
 
   const handleFirstBtn = () => {
     if (step === 1) {
-      setStep(2);
+      validateFirstPage();
     }
     if (step === 2) {
-      handleSubmit();
+      validateSecondPage();
     }
   };
 
@@ -83,6 +88,85 @@ export const ModalAddNotice = ({ toggleModal }) => {
     if (step === 2) {
       setStep(1);
     }
+  };
+
+  const validateFirstPage = () => {
+    const { category, title, name, birthdate, breed } = formState;
+    const isCategoryValid = !isEmpty(category.value);
+    const isTitleValid = isTitle(title.value);
+    const isNameValid = isName(name.value) || isEmpty(name.value);
+    const isDateValid =
+      isDate(birthdate.value, { format: 'DD-MM-YYYY' }) ||
+      isEmpty(birthdate.value);
+    const isBreedValid = isBreed(breed.value) || isEmpty(breed.value);
+
+    if (
+      !isCategoryValid ||
+      !isTitleValid ||
+      !isNameValid ||
+      !isDateValid ||
+      !isBreedValid
+    ) {
+      setFormState(prevState => ({
+        ...prevState,
+        category: {
+          value: category.value,
+          isValid: isCategoryValid,
+        },
+        title: {
+          value: title.value,
+          isValid: isTitleValid,
+        },
+        name: {
+          value: name.value,
+          isValid: isNameValid,
+        },
+        birthdate: {
+          value: birthdate.value,
+          isValid: isDateValid,
+        },
+        breed: {
+          value: breed.value,
+          isValid: isBreedValid,
+        },
+      }));
+      return;
+    }
+
+    setStep(2);
+  };
+
+  const validateSecondPage = () => {
+    const { sex, location, price, comments } = formState;
+    const isSexValid = !isEmpty(sex.value);
+    const isLocationValid = isCity(location.value);
+    const isPriceValid = isPrice(price.value);
+    const isCommentsValid = isComments(comments.value);
+
+    if (!isSexValid || !isLocationValid || !isPriceValid || !isCommentsValid) {
+      setFormState(prevState => ({
+        ...prevState,
+        sex: {
+          value: sex.value,
+          isValid: isSexValid,
+        },
+        location: {
+          value: location.value,
+          isValid: isLocationValid,
+        },
+        price: {
+          value: price.value,
+          isValid: isPriceValid,
+        },
+        comments: {
+          value: comments.value,
+          isValid: isCommentsValid,
+        },
+      }));
+      return;
+    }
+
+    handleSubmit();
   };
 
   const handleChange = ({ target: { name, value, isValid = true } }) =>
@@ -97,6 +181,8 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
     try {
       await addNotice(noticeData);
+      toggleModal();
+      toast.success('Your notice is added');
     } catch (error) {
       console.log(error);
     }
@@ -139,6 +225,9 @@ export const ModalAddNotice = ({ toggleModal }) => {
             onChange={handleChange}
           />
           <CategoryLabel htmlFor="sell">sell</CategoryLabel>
+          {!formState.category.isValid && (
+            <div style={{ color: 'red' }}>Choose Category</div>
+          )}
         </SelectCategory>
         <InputList>
           <InputItem>
@@ -151,10 +240,11 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'title'}
               onChange={handleChange}
               isValid={formState.title.isValid}
-              errorMessage="Invalid Title"
             />
             {!formState.title.isValid && (
-              <div style={{ color: 'red' }}>Invalid Title</div>
+              <div style={{ color: 'red' }}>
+                Title should have only 2-48 letters
+              </div>
             )}
           </InputItem>
           <InputItem>
@@ -165,10 +255,11 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'name'}
               onChange={handleChange}
               isValid={formState.name.isValid}
-              errorMessage="Invalid Name"
             />
             {!formState.name.isValid && (
-              <div style={{ color: 'red' }}>Invalid Name</div>
+              <div style={{ color: 'red' }}>
+                Name should have only 2-16 letters
+              </div>
             )}
           </InputItem>
           <InputItem>
@@ -179,10 +270,11 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'birthdate'}
               onChange={handleChange}
               isValid={formState.birthdate.isValid}
-              errorMessage="Invalid Birthdate"
             />
             {!formState.birthdate.isValid && (
-              <div style={{ color: 'red' }}>Invalid Birthdate</div>
+              <div style={{ color: 'red' }}>
+                Please, type in DD-MM-YYYY format
+              </div>
             )}
           </InputItem>
           <InputItem>
@@ -193,10 +285,11 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'breed'}
               onChange={handleChange}
               isValid={formState.breed.isValid}
-              errorMessage="Invalid Breed"
             />
             {!formState.breed.isValid && (
-              <div style={{ color: 'red' }}>Invalid Breed</div>
+              <div style={{ color: 'red' }}>
+                Breed should have only 2-24 letters
+              </div>
             )}
           </InputItem>
         </InputList>
@@ -234,6 +327,9 @@ export const ModalAddNotice = ({ toggleModal }) => {
             </ImgWrapper>
             Female
           </SexLabel>
+          {!formState.sex.isValid && (
+            <div style={{ color: 'red' }}>Choose Sex</div>
+          )}
         </SelectSex>
         <InputList>
           <InputItem>
@@ -246,10 +342,11 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'location'}
               onChange={handleChange}
               isValid={formState.location.isValid}
-              errorMessage="Invalid Location"
             />
             {!formState.location.isValid && (
-              <div style={{ color: 'red' }}>Invalid Location</div>
+              <div style={{ color: 'red' }}>
+                You should type in City, Region
+              </div>
             )}
           </InputItem>
           <InputItem>
@@ -262,10 +359,11 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'price'}
               onChange={handleChange}
               isValid={formState.price.isValid}
-              errorMessage="Invalid Price"
             />
             {!formState.price.isValid && (
-              <div style={{ color: 'red' }}>Invalid Price</div>
+              <div style={{ color: 'red' }}>
+                Price couldn't start from 0, 1-10 numbers
+              </div>
             )}
           </InputItem>
           <InputItem>
@@ -276,7 +374,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'location'}
               onChange={handleChange}
               isValid={formState.location.isValid}
-              errorMessage="Invalid Location"
             /> */}
             {/* {!formState.location.isValid && (
               <div style={{ color: 'red' }}>Invalid Location</div>
@@ -292,17 +389,17 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'comments'}
               onChange={handleChange}
               isValid={formState.comments.isValid}
-              errorMessage="Invalid Comments"
             />
             {!formState.comments.isValid && (
-              <div style={{ color: 'red' }}>Invalid Comments</div>
+              <div style={{ color: 'red' }}>
+                Comments should have only 8-120 letters
+              </div>
             )}
           </InputItem>
         </InputList>
       </div>
       <BtnBox>
         <MainButton
-          // type={step === 1 ? 'button' : 'submit'}
           size={'medium'}
           width={'fixed'}
           onClick={() => handleFirstBtn()}
