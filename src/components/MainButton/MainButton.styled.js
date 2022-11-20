@@ -29,8 +29,7 @@ export const Btn = styled.button`
    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  :hover,
-  :focus {
+  :hover {
     color: ${p => p.theme.colors.textSecond};
     background-color: ${p => p.theme.colors.hover};
     border-color: ${p => p.option === 'black' ?  p.theme.colors.hover : 'transparent'};
