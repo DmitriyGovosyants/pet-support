@@ -88,7 +88,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
 
-  const handleSubmit = async => {
+  const handleSubmit = async () => {
     const noticeData = Object.entries(formState).reduce((acc, itm) => {
       acc[itm[0]] = itm[1].value;
       return acc;
@@ -96,7 +96,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
     console.log(noticeData);
 
     try {
-      addNotice(noticeData);
+      await addNotice(noticeData);
     } catch (error) {
       console.log(error);
     }
@@ -118,6 +118,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             value="lost-found"
             isValid={formState.category.isValid}
             onChange={handleChange}
+            required
           />
           <CategoryLabel htmlFor="lost-found">lost/found</CategoryLabel>
           <CategoryInput
