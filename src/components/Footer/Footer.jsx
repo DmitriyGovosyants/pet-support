@@ -1,14 +1,27 @@
-import { Wrapper, Text, TextAccent, Textuary } from './Footer.styled';
-// import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Container } from 'components';
+import {
+  FooterStyled,
+  Text,
+  TextAccent,
+  StyledFavouriteIcon,
+} from './Footer.styled';
 
- export const Footer = () => {
-    return(
-        <Wrapper>
-            <Text><TextAccent>©</TextAccent> 2022 - Pe<TextAccent>t</TextAccent>ly. All Rights Reserved. Developed with <Textuary>"heart"</Textuary>by GoIT
-            Students.</Text>
-        </Wrapper>
+export const Footer = () => {
+  const { pathname } = useLocation();
+
+  return (
+    pathname !== '/' && (
+      <FooterStyled>
+        <Container>
+          <Text>
+            ©2022 - Pe<TextAccent>t</TextAccent>ly. All Rights Reserved.
+          </Text>
+          <Text>
+            Developed with <StyledFavouriteIcon /> by GoIT Students.
+          </Text>
+        </Container>
+      </FooterStyled>
     )
-      
-    
+  );
 };
-

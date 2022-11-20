@@ -1,45 +1,39 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
+import { ReactComponent as FavouriteIcon } from 'data/img/favourite-icon.svg';
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  padding-top: 40px;
+export const FooterStyled = styled.footer`
+  margin-top: auto;
+  padding-top: 20px;
   padding-bottom: 20px;
-  min-height: 30px;
-  cursor: pointer;
-  /* background-color: ${props => props.theme.colors.accent}; */
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  :hover,
-  :focus {
-    background-color: ${props => props.theme.colors.accent};
-  }
 
-  ${device.tablet} {
-    min-height: 88px;
-    padding-top: 40px;
-    padding-bottom: 20px;
-  }
-
-  ${device.notDesktop} {
-    align-items: center;
-    justify-content: space-between;
-  }
+  background-color: ${p => p.theme.colors.bgSecond};
 `;
 
 export const Text = styled.p`
+  text-align: center;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 1.35;
+  font-size: 16px;
+  line-height: 2;
   color: ${p => p.theme.colors.textMain};
-  
+
+  ${device.tablet} {
+    font-size: 20px;
+  }
 `;
 
 export const TextAccent = styled.span`
-  color: ${p => p.theme.colors.hover};
+  color: ${p => p.theme.colors.accent};
 `;
-export const Textuary = styled.span`
-  color: ${p => p.theme.colors.red};
+
+export const StyledFavouriteIcon = styled(FavouriteIcon)`
+  padding-top: 12px;
+  scale: 1.3;
+  stroke: ${props => props.theme.colors.accent};
+  fill: ${props => props.theme.colors.accent};
+
+  ${device.tablet} {
+    padding-top: 10px;
+    scale: 1.5;
+  }
 `;
