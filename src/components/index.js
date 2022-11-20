@@ -1,5 +1,6 @@
 export * from './SharedLayout/SharedLayout';
 export * from './Container/Container';
+export * from './Footer/Footer';
 export * from './Modal/Modal';
 export * from './MainButton/MainButton';
 export * from './BurgerBtn/BurgerBtn';
@@ -40,4 +41,3 @@ export * from './ModalDelete/ModalDelete';
 
 export * from './OurFriendsList/OurFriendsList';
 export * from './OurFriendItem/OurFriendItem';
-export * from './Footer/Footer'
