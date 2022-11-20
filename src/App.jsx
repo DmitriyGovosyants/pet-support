@@ -4,7 +4,6 @@ import { SharedLayout } from 'components';
 import { routesPath, PrivateRoute, PublicRoute } from 'router';
 import { GetCurrentUser } from 'redux/refreshToken';
 
-
 const Home = lazy(() =>
   import('pages/HomePage/HomePage' /* webpackChunkName: "home-page" */)
 );
