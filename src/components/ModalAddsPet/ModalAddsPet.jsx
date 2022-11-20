@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { isName, isBreed, isComment } from 'helpers';
 import { useCreatePetMutation } from '../../redux/usersApi';
 
@@ -34,7 +35,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
       value: '',
       isValid: true,
     },
-    date: {
+    birthdate: {
       value: '',
       isValid: true,
     },
@@ -53,10 +54,13 @@ export const ModalAddsPet = ({ toggleModal }) => {
     },
   });
 
+  console.log(formState);
+
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
 
-  const handleSubmit = async => {
+  async function handleSubmit(e) {
+    e.preventDefault();
     const petsData = Object.entries(formState).reduce((acc, itm) => {
       acc[itm[0]] = itm[1].value;
       return acc;
@@ -68,13 +72,14 @@ export const ModalAddsPet = ({ toggleModal }) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   const onHandleClick = e => {
+    // e.preventDefault();
     if (step === 0) {
       e.preventDefault();
       const isNameValid = isName(formState.name.value);
-      const isDateValid = formState.date.value;
+      const isDateValid = formState.birthdate.value;
       const isBreedValid = isBreed(formState.breed.value);
 
       if (isNameValid && isDateValid && isBreedValid) {
@@ -86,8 +91,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
             value: formState.name.value,
             isValid: isNameValid,
           },
-          date: {
-            value: formState.date.value,
+          birthdate: {
+            value: formState.birthdate.value,
             isValid: isDateValid,
           },
           breed: {
@@ -106,6 +111,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
             isValid: isCommentsValid,
           },
         }));
+
         e.preventDefault();
       }
     }
@@ -129,13 +135,13 @@ export const ModalAddsPet = ({ toggleModal }) => {
               isValid={formState.name.isValid}
               errorMessage="Should be from 2 till 16 characters"
             />
-            <Label htmlFor="date">Date of birth</Label>
+            <Label htmlFor="birthdate">Date of birth</Label>
             <Input
               type="text"
-              name="date"
+              name="birthdate"
               onChange={handleChange}
               placeholder="Type date of birth"
-              isValid={formState.date.isValid}
+              isValid={formState.birthdate.isValid}
               errorMessage="Should be DD.MM.YYYY"
             />
             <Label htmlFor="breed">Breed</Label>
