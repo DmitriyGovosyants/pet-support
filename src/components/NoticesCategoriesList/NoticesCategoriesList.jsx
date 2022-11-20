@@ -26,7 +26,7 @@ const NoticesCategoriesList = () => {
   const { categoryName } = useParams();
   const [request, setRequest] = useState('?category=sell');
   useRequest(categoryName, setRequest);
-  const { data, isSuccess, error } = useGetNoticesQuery({
+  const { data, isSuccess } = useGetNoticesQuery({
     request,
     page,
     search,
