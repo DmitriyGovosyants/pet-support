@@ -74,7 +74,7 @@ export const Paginate = styled(ReactPaginate)`
       padding: 6px 22px;
     }
   }
-  li.active a {
+  li.selected a {
     background-color: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.textSecond};
     min-width: 32px;

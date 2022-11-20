@@ -81,7 +81,11 @@ const NoticesCategoriesList = () => {
             }
             return (
               <Item key={itm._id}>
-                <NoticeCategoryItem petData={itm} favorite={favorite} />
+                <NoticeCategoryItem
+                  petData={itm}
+                  favorite={favorite}
+                  isPrivate={categoryName === 'my-ads' ? true : false}
+                />
               </Item>
             );
           })}
@@ -105,7 +109,7 @@ const NoticesCategoriesList = () => {
           pageCount={pageCount}
           previousLabel={isMobile ? '<' : 'previous'}
           renderOnZeroPageCount={null}
-          activeClassName="active"
+          activeClassName="selected"
         />
       )}
     </>

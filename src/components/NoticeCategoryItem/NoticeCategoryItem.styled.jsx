@@ -2,6 +2,7 @@ import styled from '@emotion/styled/macro';
 import { ReactComponent as FavouriteIcon } from 'data/img/favourite-icon.svg';
 import { ReactComponent as ToFavouriteIcon } from 'data/img/to-favourite-icon.svg';
 import { device } from 'styles/mediaquery';
+import { TiDelete } from 'react-icons/ti';
 
 export const ImgWrapper = styled.div`
   position: relative;
@@ -25,10 +26,17 @@ export const StyledToFavouriteIcon = styled(ToFavouriteIcon)`
   transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
+export const StyledDelete = styled(TiDelete)`
+  scale: 1;
+  fill: ${props => props.theme.colors.accent};
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
 export const Button = styled.button`
   position: absolute;
   top: 12px;
-  right: 12px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,6 +56,16 @@ export const Button = styled.button`
       scale: 1.05;
       stroke: ${props => props.theme.colors.hover};
     }
+    & ${StyledDelete} {
+      scale: 1.05;
+      fill: ${props => props.theme.colors.hover};
+    }
+  }
+  :nth-of-type(1) {
+    right: 12px;
+  }
+  :nth-of-type(2) {
+    right: 62px;
   }
 `;
 
