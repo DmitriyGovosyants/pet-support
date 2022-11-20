@@ -38,32 +38,32 @@ export const App = () => {
 
   return (
     <Routes>
-    <Route path="/" element={<SharedLayout />}>
-      <Route element={<PublicRoute />}>
-        <Route index element={<Home />} />
-      </Route>
+      <Route path="/" element={<SharedLayout />}>
+        <Route element={<PublicRoute />}>
+          <Route index element={<Home />} />
+        </Route>
 
-      <Route path={routesPath.news} element={<News />} />
-      <Route path={routesPath.notices} element={<Notices />}>
+        <Route path={routesPath.news} element={<News />} />
+        <Route path={routesPath.notices} element={<Notices />}>
+          <Route
+            path={routesPath.cantegoryName}
+            element={<NoticesCategoriesList />}
+          />
+        </Route>
+        <Route path={routesPath.friends} element={<Friends />} />
+
+        <Route element={<PrivateRoute redirectTo={routesPath.login} />}>
+          <Route path={routesPath.user} element={<User />} />
+        </Route>
+
         <Route
-          path={routesPath.cantegoryName}
-          element={<NoticesCategoriesList />}
-        />
+          element={<PublicRoute restricted redirectTo={routesPath.user} />}
+        >
+          <Route path={routesPath.login} element={<Login />} />
+          <Route path={routesPath.register} element={<Register />} />
+        </Route>
       </Route>
-      <Route path={routesPath.friends} element={<Friends />} />
-
-      <Route element={<PrivateRoute redirectTo={routesPath.login} />}>
-        <Route path={routesPath.user} element={<User />} />
-      </Route>
-
-      <Route
-        element={<PublicRoute restricted redirectTo={routesPath.user} />}
-      >
-        <Route path={routesPath.login} element={<Login />} />
-        <Route path={routesPath.register} element={<Register />} />
-      </Route>
-    </Route>
-    <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
