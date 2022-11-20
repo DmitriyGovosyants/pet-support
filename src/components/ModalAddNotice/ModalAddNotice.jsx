@@ -77,7 +77,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
     const isTitleValid = isTitle(title.value);
     const isNameValid = isName(name.value) || isEmpty(name.value);
     const isDateValid =
-      isDate(birthdate.value, { format: 'DD-MM-YYYY' }) ||
+      isDate(birthdate.value, { format: 'DD.MM.YYYY' }) ||
       isEmpty(birthdate.value);
     const isBreedValid = isBreed(breed.value) || isEmpty(breed.value);
 
