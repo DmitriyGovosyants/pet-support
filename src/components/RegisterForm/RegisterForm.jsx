@@ -8,13 +8,13 @@ import { useSignUpMutation } from '../../redux/authApi';
 import {
   FormTitle,
   FormInput,
-  FormButton,
   FormText,
   FormWrapper,
+  MainButton,
 } from 'components';
+import { Wrapper, Button } from './RegisterForm.styled';
 import isEmail from 'validator/lib/isEmail';
-import { isCity, isPassword } from 'helpers';
-import isAlpha from 'validator/lib/isAlpha';
+import { isCity, isPassword, isName } from 'helpers';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { dataFormConverter } from 'helpers/dataFormConverter';
 
@@ -70,8 +70,8 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormWrapper>
+    <FormWrapper>
+      <form onSubmit={handleSubmit}>
         <FormTitle title={'Registration'} />
         <div style={{ display: step === 0 ? 'block' : 'none' }}>
           <FormInput
@@ -124,85 +124,92 @@ export const RegisterForm = () => {
             isValid={formState.phone.isValid}
             errorMessage="Should be a correct mobile phone"
           />
-          <FormButton
+        </div>
+        <Wrapper>
+          <MainButton
             btnType={'submit'}
             isLoading={isLoading}
-            onClick={() => {
-              setStep(0);
+            onClick={e => {
+              if (step === 0) {
+                e.preventDefault();
+                const isEmailValid = isEmail(formState.email.value);
+                const isPasswordValid = isPassword(formState.password.value);
+                const isConfirmPasswordValid =
+                  isPasswordValid &&
+                  formState.password.value === formState.confirmPassword.value;
+                if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+                  setStep(1);
+                } else {
+                  setFormState(prevState => ({
+                    ...prevState,
+                    email: {
+                      value: formState.email.value,
+                      isValid: isEmailValid,
+                    },
+                    password: {
+                      value: formState.password.value,
+                      isValid: isPasswordValid,
+                    },
+                    confirmPassword: {
+                      value: formState.confirmPassword.value,
+                      isValid: isConfirmPasswordValid,
+                    },
+                  }));
+                }
+              } else {
+                const isNameValid = isName(formState.name.value);
+                const isCityValid = isCity(formState.city.value);
+                const isPhoneValid = isMobilePhone(
+                  formState.phone.value,
+                  'uk-UA',
+                  { strictMode: true }
+                );
+
+                if (!isNameValid || !isCityValid || !isPhoneValid) {
+                  setFormState(prevState => ({
+                    ...prevState,
+                    name: {
+                      value: formState.name.value,
+                      isValid: isNameValid,
+                    },
+                    city: {
+                      value: formState.city.value,
+                      isValid: isCityValid,
+                    },
+                    phone: {
+                      value: formState.phone.value,
+                      isValid: isPhoneValid,
+                    },
+                  }));
+
+                  e.preventDefault();
+                }
+              }
             }}
           >
-            Back
-          </FormButton>
-        </div>
-        <FormButton
-          btnType={'submit'}
-          isLoading={isLoading}
-          onClick={e => {
-            if (step === 0) {
-              e.preventDefault();
-              const isEmailValid = isEmail(formState.email.value);
-              const isPasswordValid = isPassword(formState.password.value);
-              const isConfirmPasswordValid =
-                isPasswordValid &&
-                formState.password.value === formState.confirmPassword.value;
-              if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
-                setStep(1);
-              } else {
-                setFormState(prevState => ({
-                  ...prevState,
-                  email: {
-                    value: formState.email.value,
-                    isValid: isEmailValid,
-                  },
-                  password: {
-                    value: formState.password.value,
-                    isValid: isPasswordValid,
-                  },
-                  confirmPassword: {
-                    value: formState.confirmPassword.value,
-                    isValid: isConfirmPasswordValid,
-                  },
-                }));
-              }
-            } else {
-              const isNameValid = isAlpha(formState.name.value);
-              const isCityValid = isCity(formState.city.value);
-              const isPhoneValid = isMobilePhone(
-                formState.phone.value,
-                'uk-UA',
-                { strictMode: true }
-              );
-
-              if (!isNameValid || !isCityValid || !isPhoneValid) {
-                setFormState(prevState => ({
-                  ...prevState,
-                  name: {
-                    value: formState.name.value,
-                    isValid: isNameValid,
-                  },
-                  city: {
-                    value: formState.city.value,
-                    isValid: isCityValid,
-                  },
-                  phone: {
-                    value: formState.phone.value,
-                    isValid: isPhoneValid,
-                  },
-                }));
-
-                e.preventDefault();
-              }
-            }
-          }}
-        >
-          {step === 0 ? 'Next' : 'Register'}
-        </FormButton>
+            {step === 0 ? 'Next' : 'Register'}
+          </MainButton>
+          {step === 1 && (
+            <Button>
+              <MainButton
+                option={'black'}
+                btnType={'submit'}
+                isLoading={isLoading}
+                onClick={() => {
+                  setStep(0);
+                }}
+              >
+                Back
+              </MainButton>
+            </Button>
+          )}
+        </Wrapper>
         <FormText
           text={'Already have an account?'}
           routesPath={'/login'}
           link={'Login'}
         />
-      </FormWrapper>
-    </form>
+      </form>
+    </FormWrapper>
   );
 };
