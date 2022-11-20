@@ -3,7 +3,7 @@ import { device, retina } from 'styles/mediaquery';
 import { bgImgs } from '../../data/img/formPage';
 
 export const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - (${p => p.theme.header.mobileHeight}));
   background-image: url(${bgImgs.curveMobile1x});
   background-position: bottom;
   background-repeat: no-repeat;
@@ -14,6 +14,7 @@ export const Container = styled.div`
   }
 
   ${device.tablet} {
+    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
     background-image: url(${bgImgs.curveTablet1x});
 
     ${retina} {

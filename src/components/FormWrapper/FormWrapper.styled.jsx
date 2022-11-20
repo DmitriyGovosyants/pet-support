@@ -3,7 +3,7 @@ import { device } from 'styles/mediaquery';
 
 export const Wrapper = styled.div`
   ${device.tablet} {
-    margin: 100px auto;
+    margin: 0 auto;
     padding: 50px 80px;
     width: 608px;
     background: #ffffff;
@@ -12,6 +12,6 @@ export const Wrapper = styled.div`
   }
   ${device.desktop} {
     width: 618px;
-    margin-top: 80px;
+    margin-top: 0px;
   }
 `;
