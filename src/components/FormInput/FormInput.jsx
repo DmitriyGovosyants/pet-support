@@ -1,16 +1,25 @@
-import { Wrapper, Input } from './FormInput.styled';
+import { Wrapper, Input, Error } from './FormInput.styled';
 
-export const FormInput = ({ placeholder, type, name, onChange, isValid, errorMessage }) => {
+export const FormInput = ({
+  placeholder,
+  type,
+  name,
+  onChange,
+  isValid,
+  errorMessage,
+}) => {
   return (
-    <Wrapper>
-      <Input
-        placeholder={placeholder}
-        type={type}
-        name={name}
-        onChange={onChange}
-        isValid={ isValid }
-      />
-      {!isValid && <div style={{ color: 'red'}}>{ errorMessage }</div> }
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Input
+          placeholder={placeholder}
+          type={type}
+          name={name}
+          onChange={onChange}
+          isValid={isValid}
+        />
+      </Wrapper>
+      {!isValid && <Error>{errorMessage}</Error>}
+    </>
   );
 };

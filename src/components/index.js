@@ -14,11 +14,11 @@ export * from './UserNav/UserNav';
 
 export * from './RegisterForm/RegisterForm';
 export * from './LoginForm/LoginForm';
-export * from './FormButton/FormButton';
 export * from './FormInput/FormInput';
 export * from './FormText/FormText';
 export * from './FormTitle/FormTitle';
 export * from './FormWrapper/FormWrapper';
+export * from './FormContainer/FormContainer';
 
 export * from './NoticesSearch/NoticesSearch';
 export * from './NoticesCategoriesNav/NoticesCategoriesNav';

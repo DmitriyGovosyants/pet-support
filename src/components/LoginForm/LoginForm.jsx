@@ -8,10 +8,11 @@ import { useLogInMutation } from '../../redux/authApi';
 import {
   FormTitle,
   FormInput,
-  FormButton,
   FormText,
   FormWrapper,
+  MainButton,
 } from 'components';
+import { Wrapper } from './LoginForm.styled';
 import { isPassword } from 'helpers';
 import isEmail from 'validator/lib/isEmail';
 import { dataFormConverter } from 'helpers/dataFormConverter';
@@ -31,7 +32,7 @@ export const LoginForm = () => {
     },
   });
 
-  const [login, { isLoading }] = useLogInMutation();
+  const [login] = useLogInMutation();
 
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
@@ -77,8 +78,8 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormWrapper>
+    <FormWrapper>
+      <form onSubmit={handleSubmit}>
         <FormTitle title={'Login'} />
         <FormInput
           placeholder={'Email'}
@@ -96,15 +97,15 @@ export const LoginForm = () => {
           isValid={formState.password.isValid}
           errorMessage="Invalid Password"
         />
-        <FormButton btnType={'submit'} isLoading={isLoading}>
-          Login
-        </FormButton>
+        <Wrapper>
+          <MainButton type={'submit'}>Login</MainButton>
+        </Wrapper>
         <FormText
           text={"Don't have an account?"}
           routesPath={'/register'}
           link={'Register'}
         />
-      </FormWrapper>
-    </form>
+      </form>
+    </FormWrapper>
   );
 };
