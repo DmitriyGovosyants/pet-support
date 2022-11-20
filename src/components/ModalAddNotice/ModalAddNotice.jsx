@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import maleImg from '../../data/img/male.png';
 import femaleImg from '../../data/img/female.png';
+import plusImg from '../../data/img/plus.png';
 import {
   addNoticeValidationModel,
   isBreed,
@@ -26,10 +27,15 @@ import {
   FormInputLabel,
   RequiredSymbol,
   FormInput,
+  FormTextarea,
   SelectSex,
   SexInput,
   SexLabel,
   ImgWrapper,
+  FormInputLoadWrapper,
+  FormInputLoad,
+  FormInputLoadImg,
+  FormInputLoadPlus,
   BtnBox,
   BtnClose,
 } from './ModalAddNotice.styled';
@@ -37,11 +43,13 @@ import { useAddNoticeMutation } from 'redux/noticesApi';
 import { toast } from 'react-toastify';
 
 export const ModalAddNotice = ({ toggleModal }) => {
+  const [formState, setFormState] = useState(addNoticeValidationModel);
   const [addNotice] = useAddNoticeMutation();
   const [step, setStep] = useState(1);
+  const [avatarData, setAvatarData] = useState();
+  const [avatar, setAvatar] = useState();
+  const [fileError, setFileError] = useState(false);
 
-  const [formState, setFormState] = useState(addNoticeValidationModel);
-  console.log(formState);
   const formData = new FormData();
 
   const handleFirstBtn = () => {
@@ -64,11 +72,12 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
   const validateFirstPage = () => {
     const { category, title, name, birthdate, breed } = formState;
+
     const isCategoryValid = !isEmpty(category.value);
     const isTitleValid = isTitle(title.value);
     const isNameValid = isName(name.value) || isEmpty(name.value);
     const isDateValid =
-      isDate(birthdate.value, { format: 'DD-MM-YYYY' }) ||
+      isDate(birthdate.value, { format: 'DD.MM.YYYY' }) ||
       isEmpty(birthdate.value);
     const isBreedValid = isBreed(breed.value) || isEmpty(breed.value);
 
@@ -109,10 +118,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
   };
 
   const validateSecondPage = () => {
-    const { sex, location, price, comments } = formState;
+    const { sex, location, price, comments, category } = formState;
 
     const handlePriceValidate = () => {
-      if (formState.category.value === 'sell') {
+      if (category.value === 'sell') {
         return isPrice(price.value);
       }
       return true;
@@ -154,9 +163,24 @@ export const ModalAddNotice = ({ toggleModal }) => {
       setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
       return;
     }
+
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
-    formData.append('avatar', file);
+
+    if (file['size'] > 1000000) {
+      setFileError(true);
+      return;
+    }
+
+    setAvatarData(file);
+    setFileError(false);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      setAvatar(base64data);
+    };
   };
 
   const handleSubmit = async () => {
@@ -171,6 +195,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
       }
     }
 
+    if (avatarData) {
+      formData.append('avatar', avatarData);
+    }
+
     try {
       await addNotice(formData);
       toggleModal();
@@ -179,8 +207,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
       console.log(error);
     }
   };
-
-  // enctype = 'multipart/form-data';
 
   return (
     <ModalCard onSubmit={() => handleSubmit()}>
@@ -260,7 +286,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             <FormInputLabel>Date of birth</FormInputLabel>
             <FormInput
               placeholder={'Type date of birth'}
-              type={'date'}
+              type={'text'}
               name={'birthdate'}
               onChange={handleChange}
               isValid={formState.birthdate.isValid}
@@ -364,28 +390,27 @@ export const ModalAddNotice = ({ toggleModal }) => {
           )}
           <InputItem>
             <FormInputLabel>Load the pet’s image</FormInputLabel>
-            <FormInput
-              placeholder={'Type price'}
-              type={'file'}
-              name={'avatar'}
-              onChange={handleChange}
-              id={'file-id'}
-              accept=".png, .jpeg, .jpg, .webp"
-            />
-            {/* {!formState.price.isValid && (
-              <div style={{ color: 'red' }}>
-                Price couldn't start from 0, 1-10 numbers
-              </div>
-            )} */}
+            <FormInputLoadWrapper>
+              <FormInputLoad
+                type={'file'}
+                name={'avatar'}
+                onChange={handleChange}
+                id={'file-id'}
+                accept=".png, .jpeg, .jpg, .webp"
+              />
+              <FormInputLoadPlus src={plusImg} alt="" />
+              {avatar && <FormInputLoadImg src={avatar} alt="" />}
+            </FormInputLoadWrapper>
+            {fileError && <div style={{ color: 'red' }}>File too large</div>}
           </InputItem>
           <InputItem>
             <FormInputLabel>
               Comments<RequiredSymbol>*</RequiredSymbol>
             </FormInputLabel>
-            <FormInput
+            <FormTextarea
               placeholder={'Type comments'}
-              type={'text'}
               name={'comments'}
+              rows={'3'}
               onChange={handleChange}
               isValid={formState.comments.isValid}
             />
