@@ -8,6 +8,7 @@ import {
 } from './AddNoticeButton.styled';
 import { useAuth } from 'redux/useAuth';
 import { toast } from 'react-toastify';
+import { ModalAddNotice } from 'components';
 
 export const AddNoticeButton = () => {
   const [showModal, setShowModal] = useState(false);
@@ -30,10 +31,7 @@ export const AddNoticeButton = () => {
       </Wrapper>
       {showModal && auth.user && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <div>ADD PET MODAL</div>
-          <button type="button" onClick={() => setShowModal(false)}>
-            CLOSE MODAL
-          </button>
+          <ModalAddNotice toggleModal={() => setShowModal(s => !s)} />
         </Modal>
       )}
     </>
