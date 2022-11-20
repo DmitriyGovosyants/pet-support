@@ -37,6 +37,10 @@ export const SelectCategory = styled.div`
   margin-bottom: 32px;
 `
 
+export const CategoryInput = styled.input`
+  display: none;
+`
+
 export const CategoryLabel = styled.label`
   padding: 6px 26px;
 
@@ -67,18 +71,20 @@ export const CategoryLabel = styled.label`
   }
 `
 
-export const CategoryInput = styled.input`
-  display: none;
+export const InputList = styled.ul`
+  display: grid;
+  gap: 16px;
 `
 
-export const InputBox = styled.div`
-  margin-bottom: 40px;
+export const InputItem = styled.li`
+  
 `
 
 export const FormInputLabel = styled.p`
+  margin-bottom: ${p => p.indent === 'big' ? '16px' : '8px'};
+
   font-size: 18px;
   line-height: 1.44;
-
   color: ${p => p.theme.colors.textMain};
 `
 
@@ -111,6 +117,39 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  margin-top: 40px;
+`
+
+export const SelectSex = styled.div`
+  display: flex;
+  gap: 40px;
+  margin-bottom: 32px;
+`
+
+export const SexInput = styled.input`
+  display: none;
+`
+
+export const SexLabel = styled.label`
+  font-size: 18px;
+  line-height: 1.44;
+  color: ${p => p.theme.colors.black};
+
+  cursor: pointer;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  input:checked + & {
+    color: ${p => p.theme.colors.accent};
+  }
+`
+
+export const ImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
 `
 
 export const BtnClose = styled.button`
