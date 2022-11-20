@@ -1,5 +1,5 @@
 import { PetsListStyled } from './PetsList.styled';
-import { useFetchPetsQuery } from 'redux/petApi';
+import { useFetchPetsQuery } from 'redux/usersApi';
 import { PetItem, Spinner } from 'components';
 
 export const PetsList = () => {
