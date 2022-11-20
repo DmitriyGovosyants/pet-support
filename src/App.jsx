@@ -37,7 +37,6 @@ export const App = () => {
   GetCurrentUser();
 
   return (
-    
     <Routes>
     <Route path="/" element={<SharedLayout />}>
       <Route element={<PublicRoute />}>
