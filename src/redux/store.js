@@ -14,7 +14,8 @@ import { noticesApi } from './noticesApi';
 import { friendsApi } from './friendsApi';
 import { authApi } from './authApi';
 import { petApi } from './petApi';
-import {authSlice} from './authSlice';
+import { authSlice } from './authSlice';
+import filterReducer from './filterSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -30,6 +31,7 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [petApi.reducerPath]: petApi.reducer,
     auth: persistReducer(persistConfig, authSlice.reducer),
+    filter: filterReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => [
