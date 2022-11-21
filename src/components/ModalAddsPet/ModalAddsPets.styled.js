@@ -162,6 +162,7 @@ export const FotoWrap = styled.div`
   border-radius: 40px;
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  margin-bottom:79px;
 
   ${device.mobileOnly} {
     height: 208px;
@@ -210,4 +211,9 @@ export const Textarea = styled.textarea`
 
 export const StyledPlusIcon = styled(PlusIcon)`
   width: 48px;
+`;
+
+export const ModalAddImg = styled.img`
+width: 100%;
+z-index: 20;
 `;
