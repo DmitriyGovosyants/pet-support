@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { noticesApi } from './noticesApi';
 import { friendsApi } from './friendsApi';
+import { newsApi } from './newsApi';
 import { authApi } from './authApi';
 import { usersApi } from './usersApi';
 import { authSlice } from './authSlice';
@@ -30,6 +31,7 @@ export const store = configureStore({
     [friendsApi.reducerPath]: friendsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [newsApi.reducerPath]: newsApi.reducer,
     auth: persistReducer(persistConfig, authSlice.reducer),
     filter: filterReducer,
   },
@@ -44,6 +46,7 @@ export const store = configureStore({
     authApi.middleware,
     friendsApi.middleware,
     usersApi.middleware,
+    newsApi.middleware,
   ],
 });
 
