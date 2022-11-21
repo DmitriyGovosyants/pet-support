@@ -1,3 +1,4 @@
+import { Container } from 'components';
 import { NewsItem } from 'components/NewsList/NewsItem';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
@@ -23,30 +24,32 @@ const NewsPage = () => {
 
   return (
     <NewsWrapper>
-      <Title>News</Title>
-      <SearchForm action="" onSubmit={handleSubmitForm}>
-        <NewsInput type="text" name="news" placeholder="Search" />
-        <SearchButton type="submit">
-          <SearchIcon />
-        </SearchButton>
-      </SearchForm>
-      <div>
-        <NewsList>
-          {!error &&
-            data &&
-            data.data.map(({ _id, title, description, url, date }) => {
-              return (
-                <NewsItem
-                  key={_id}
-                  title={title}
-                  url={url}
-                  description={description}
-                  date={date}
-                />
-              );
-            })}
-        </NewsList>
-      </div>
+      <Container>
+        <Title>News</Title>
+        <SearchForm action="" onSubmit={handleSubmitForm}>
+          <NewsInput type="text" name="news" placeholder="Search" />
+          <SearchButton type="submit">
+            <SearchIcon />
+          </SearchButton>
+        </SearchForm>
+        <div>
+          <NewsList>
+            {!error &&
+              data &&
+              data.data.map(({ _id, title, description, url, date }) => {
+                return (
+                  <NewsItem
+                    key={_id}
+                    title={title}
+                    url={url}
+                    description={description}
+                    date={date}
+                  />
+                );
+              })}
+          </NewsList>
+        </div>
+      </Container>
     </NewsWrapper>
   );
 };
