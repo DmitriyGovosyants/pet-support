@@ -13,6 +13,8 @@ import {
   BasicUserDataTitle,
 } from './UserDataItem.styled';
 import { useState } from 'react';
+import { isCity, isUserName } from 'helpers';
+import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
   title,
@@ -27,9 +29,43 @@ export const UserDataItem = ({
 
   const titleNormalized = title.toLowerCase();
 
+  const handleValidation = (valueKey, newData) => {
+    console.log(valueKey, newData);
+    let isValid = false;
+
+    switch (valueKey) {
+      case 'name':
+        isValid = isUserName(newData);
+        break;
+      case 'email':
+        // code block
+        break;
+      case 'birthdate':
+        // code block
+        break;
+      case 'phone':
+        // code block
+        break;
+      case 'city':
+        isValid = isCity(newData);
+        break;
+      default:
+        return;
+    }
+
+    return isValid;
+  };
+
   const handleInputChange = e => {
     const { value } = e.target;
-    setInputValue(value);
+    const isValid = handleValidation(title, value);
+
+    if (!isValid) {
+      toast.error('Error');
+      return;
+    }
+
+    // setInputValue(value);
   };
   const handleSummit = async e => {
     e.preventDefault();

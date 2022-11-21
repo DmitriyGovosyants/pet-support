@@ -38,9 +38,18 @@ export const UserData = () => {
     setIsEditBtnDisabled(true);
   };
 
-  const handleSubmit = newValue => {
-    editContact(newValue);
-    refetch();
+  const handleSubmit = async newValue => {
+    const oldData = fetchData[Object.keys(newValue)];
+    const newData = Object.values(newValue)[0];
+
+    if (oldData !== newData) {
+      try {
+        await editContact(newValue);
+        refetch();
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
     setIsShowForm('');
     setIsEditBtnDisabled(false);
