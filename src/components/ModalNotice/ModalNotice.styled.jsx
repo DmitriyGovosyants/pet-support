@@ -68,6 +68,7 @@ export const ImgWrapper = styled.div`
 
 export const Img = styled.img`
   ${device.tablet} {
+    object-fit: cover;
     height: 100%;
   }
 `;

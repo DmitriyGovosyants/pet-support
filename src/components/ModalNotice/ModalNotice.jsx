@@ -40,6 +40,7 @@ export const ModalNotice = ({
     price,
     sex,
   } = petData;
+  console.log(favorite);
 
   return (
     <Container>
@@ -49,7 +50,13 @@ export const ModalNotice = ({
 
       <Wrapper>
         <ImgWrapper>
-          <Img src={avatarURL || dogImage} alt="pet" />
+          <Img
+            src={avatarURL || dogImage}
+            alt={breed}
+            onError={e => {
+              e.target.src = dogImage;
+            }}
+          />
           <CategoryMark>{category}</CategoryMark>
         </ImgWrapper>
 
