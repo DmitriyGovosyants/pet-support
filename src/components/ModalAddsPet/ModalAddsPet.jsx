@@ -1,8 +1,10 @@
 import { useState } from 'react';
-
-import { isName, isBreed, isComment } from 'helpers';
 import { useCreatePetMutation } from '../../redux/usersApi';
-
+import { 
+  isName, 
+  isBreed, 
+  isComments,
+} from 'helpers';
 import {
   ModalWrap,
   ButtonClose,
@@ -18,17 +20,18 @@ import {
   InputFoto,
   StyledPlusIcon,
   Button,
+  ModalAddImg,
 } from './ModalAddsPets.styled';
+import isDate from 'validator/lib/isDate';
+import isEmpty from 'validator/lib/isEmpty';
+import { toast } from 'react-toastify';
 
 export const ModalAddsPet = ({ toggleModal }) => {
-  //const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
-  const [step, setStep] = useState(0);
   const [addPet] = useCreatePetMutation();
-
-  const onClickCancelBtn = e => {
-    e.preventDefault();
-    toggleModal();
-  };
+  const [avatarData, setAvatarData] = useState();
+  const [avatar, setAvatar] = useState();
+  const [fileError, setFileError] = useState(false);
+  const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
     name: {
@@ -56,64 +59,122 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   console.log(formState);
 
-  const handleChange = ({ target: { name, value, isValid = true } }) =>
-    setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
+  const formData = new FormData();
+  
+  const handleFirstBtn = () => {
+    if (step === 0) {
+      validateFirstPage();
+    }
+    if (step === 1) {
+      validateSecondPage();
+    }
+  };
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const petsData = Object.entries(formState).reduce((acc, itm) => {
-      acc[itm[0]] = itm[1].value;
-      return acc;
-    }, {});
-    console.log(petsData);
+  const handleSecondBtn = () => {
+    if (step === 0) {
+      toggleModal();
+    }
+    if (step === 1) {
+      setStep(0);
+    }
+  };
+
+  const validateFirstPage = () => {
+    const { name, birthdate, breed } = formState;
+
+    const isNameValid = isName(name.value) || !isEmpty(name.value);
+    const isDateValid =
+      isDate(birthdate.value, { format: 'DD.MM.YYYY' }) ||
+      !isEmpty(birthdate.value);
+    const isBreedValid = isBreed(breed.value) || !isEmpty(breed.value);
+
+    if (
+      !isNameValid ||
+      !isDateValid ||
+      !isBreedValid
+    ) {
+      setFormState(prevState => ({
+        ...prevState,
+        name: {
+          value: name.value,
+          isValid: isNameValid,
+        },
+        birthdate: {
+          value: birthdate.value,
+          isValid: isDateValid,
+        },
+        breed: {
+          value: breed.value,
+          isValid: isBreedValid,
+        },
+      }));
+      return;
+    }
+
+    setStep(1);
+  };
+
+  const validateSecondPage = () => {
+    const { comments } = formState;
+
+    const isCommentsValid = isComments(comments.value);
+
+    if (!isCommentsValid) {
+      setFormState(prevState => ({
+        ...prevState,
+        comments: {
+          value: comments.value,
+          isValid: isCommentsValid,
+        },
+      }));
+      return;
+    }
+
+    handleSubmit();
+  };
+
+  const handleChange = ({ target: { name, value, isValid = true } }) => {
+    if (name !== 'avatar') {
+      setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
+      return;
+    }
+
+    const fileInput = document.getElementById('file-id');
+    const file = fileInput.files[0];
+
+    if (file['size'] > 1000000) {
+      setFileError(true);
+      return;
+    }
+
+    setAvatarData(file);
+    setFileError(false);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      setAvatar(base64data);
+    };
+  };
+
+  const handleSubmit = async () => {
+    const data = Object.entries(formState);
+    
+    for (let i = 0; i < data.length; i += 1) {
+      formData.append(data[i][0], data[i][1].value)
+    }
+
+    if (avatarData) {
+      formData.append('avatar', avatarData);
+    }
 
     try {
-      addPet(petsData);
+      await addPet(formData);
+      toggleModal();
+      toast.success('Your notice is added');
     } catch (error) {
       console.log(error);
-    }
-  }
-
-  const onHandleClick = e => {
-    // e.preventDefault();
-    if (step === 0) {
-      e.preventDefault();
-      const isNameValid = isName(formState.name.value);
-      const isDateValid = formState.birthdate.value;
-      const isBreedValid = isBreed(formState.breed.value);
-
-      if (isNameValid && isDateValid && isBreedValid) {
-        setStep(1);
-      } else {
-        setFormState(prevState => ({
-          ...prevState,
-          name: {
-            value: formState.name.value,
-            isValid: isNameValid,
-          },
-          birthdate: {
-            value: formState.birthdate.value,
-            isValid: isDateValid,
-          },
-          breed: {
-            value: formState.breed.value,
-            isValid: isBreedValid,
-          },
-        }));
-      }
-    } else {
-      const isCommentsValid = isComment(formState.comments.value);
-      if (!isCommentsValid) {
-        setFormState(prevState => ({
-          ...prevState,
-          comments: {
-            value: formState.comments.value,
-            isValid: isCommentsValid,
-          },
-        }));
-
-        e.preventDefault();
-      }
     }
   };
 
@@ -128,91 +189,94 @@ export const ModalAddsPet = ({ toggleModal }) => {
             <Title>Add pet</Title>
             <Label htmlFor="name">Name pet</Label>
             <Input
-              type="text"
-              name="name"
+              placeholder={'Type name pet'}
+              type={'text'}
+              name={'name'}
               onChange={handleChange}
-              placeholder="Type name pet"
               isValid={formState.name.isValid}
-              errorMessage="Should be from 2 till 16 characters"
             />
+            {!formState.name.isValid && (
+              <div style={{ color: 'red' }}>
+                Name should have only 2-16 letters
+              </div>
+            )}
             <Label htmlFor="birthdate">Date of birth</Label>
             <Input
-              type="text"
-              name="birthdate"
+              placeholder={'Type date of birth'}
+              type={'text'}
+              name={'birthdate'}
               onChange={handleChange}
-              placeholder="Type date of birth"
               isValid={formState.birthdate.isValid}
-              errorMessage="Should be DD.MM.YYYY"
             />
+            {!formState.birthdate.isValid && (
+              <div style={{ color: 'red' }}>
+                Please, type in DD.MM.YYYY format
+              </div>
+            )}
             <Label htmlFor="breed">Breed</Label>
             <Input
-              type="text"
-              name="breed"
+              placeholder={'Type breed'}
+              type={'text'}
+              name={'breed'}
               onChange={handleChange}
-              placeholder="Type breed"
               isValid={formState.breed.isValid}
-              errorMessage="Should be from 2 till 16 characters"
             />
-            <BtnBox>
-              <Button
-                type={'submit'}
-                size={'medium'}
-                width={'fixed'}
-                onClick={onHandleClick}
-              >
-                Next
-              </Button>
-              <Button
-                option={'black'}
-                size={'medium'}
-                width={'fixed'}
-                onClick={onClickCancelBtn}
-              >
-                Cancel
-              </Button>
-            </BtnBox>
+            {!formState.breed.isValid && (
+              <div style={{ color: 'red' }}>
+                Breed should have only 2-24 letters
+              </div>
+            )}
           </div>
           <div style={{ display: step === 1 ? 'block' : 'none' }}>
             <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
             <FotoWrap>
               <InputFoto
-                type="file"
-                name="file"
-                accept="image/*, image/jpeg, image/jpg"
-                multiple
+                type={'file'}
+                name={'avatar'}
+                accept=".png, .jpeg, .jpg, .webp"
+                id={'file-id'}
                 onChange={handleChange}
               />
-              <StyledPlusIcon />
+              {avatar ? (
+                <ModalAddImg
+                  src={avatar}
+                  alt=""
+                />
+              ) : (
+                <StyledPlusIcon />
+              )}
+              {fileError && <div style={{ color: 'red' }}>File too large</div>}
             </FotoWrap>
             <Textarea
-              name="comments"
+              name={'comments'}
               onChange={handleChange}
-              placeholder="Type comments"
+              placeholder={'Type comments'}
               rows="5"
               isValid={formState.comments.isValid}
-              errorMessage="Should be from 2 till 16 characters"
             />
-            <BtnBox>
+            {!formState.comments.isValid && (
+              <div style={{ color: 'red' }}>
+                Comments should have only 8-120 letters
+              </div>
+            )}
+          </div>
+          <BtnBox>
               <Button
-                type={'submit'}
                 size={'medium'}
                 width={'fixed'}
-                onClick={onHandleClick}
+                onClick={() => handleFirstBtn()}
               >
-                Done
+                {step === 0 ? 'Next' : 'Done'}
               </Button>
               <Button
                 option={'black'}
                 size={'medium'}
                 width={'fixed'}
-                onClick={() => {
-                  setStep(0);
-                }}
+                onClick={() => handleSecondBtn()}
               >
-                Back
+                {step === 0 ? 'Cancel' : 'Back'}
               </Button>
             </BtnBox>
-          </div>
         </Form>
       </ModalWrap>
     </>
