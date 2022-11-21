@@ -78,7 +78,7 @@ export const BasicUserDataEditButton = styled.button`
   background-color: ${theme.colors.bgMain};
   border-radius: 50%;
   cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
-  transition: color ${theme.animation.cubicBezierV2};
+  transition: color ${theme.animation.cubicBezier};
 
   ${device.tablet} {
     width: 32px;
