@@ -1,65 +1,52 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
-import { ReactComponent as Close } from 'data/img/close-icon.svg';
-import { ReactComponent as PlusIcon } from 'data/img/plus-icon.svg';
-import { MainButton } from 'components';
 
-export const ModalWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  max-width: 608px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 50px 20px;
+export const ModalWrap = styled.form`
+  position: relative;
+  max-width: 400px;
+  margin: 0px auto;
+  padding: 40px 20px;
+
   border-radius: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  box-shadow: rgb(199 123 27) 3px 3px 10px, rgb(199 123 27) -3px -3px 10px;
   background-color: ${props => props.theme.colors.bgSecond};
-  transform: translate(-50%, -50%);
+
+  ${device.tablet} {
+    max-width: 608px;
+    padding: 40px 80px;
+  }
 `;
 
-export const ButtonClose = styled.button`
-  display: flex;
-  width: 34px;
-  height: 34px;
-  align-items: center;
-  justify-content: center;
+export const BtnClose = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 9px;
+
+  background-color: ${p => p.theme.colors.bgMain};
+  backdrop-filter: blur(2px);
   border-radius: 50%;
-  background-color: ${props => props.theme.colors.bgMain};
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   :hover,
   :focus {
-    color: ${props => props.theme.colors.accent};
+    background-color: ${p => p.theme.colors.accent};
   }
-`;
-
-export const CloseIcon = styled(Close)`
-  fill: currentColor;
-`;
-
-export const Form = styled.form`
-  ${device.mobile} {
-    padding: 0px 60px;
-  }
-
-  ${device.tablet} {
-    padding: 0px 87px;
-  }
-`;
+`
 
 export const Title = styled.h1`
   margin-bottom: 20px;
-  text-align: center;
+
   font-size: 24px;
   line-height: 1.37;
+  text-align: center;
   color: ${p => p.theme.colors.textMain};
 
   ${device.tablet} {
@@ -69,11 +56,12 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.h2`
-  text-align: center;
   margin-bottom: 20px;
+
   font-size: 16px;
   line-height: 1.37;
   letter-spacing: -0.01em;
+  text-align: center;
   color: ${p => p.theme.colors.textMain};
 
   ${device.tablet} {
@@ -84,18 +72,22 @@ export const SubTitle = styled.h2`
 
 export const Label = styled.label`
   display: block;
-  :not(:first-of-type) {
-    margin-top: 16px;
-  }
   margin-bottom: 8px;
+
   font-size: 18px;
   line-height: 1.4;
   color: ${p => p.theme.colors.textMain};
 
+  :not(:first-of-type) {
+    margin-top: 16px;
+  }
+
   ${device.tablet} {
+    margin-bottom: 12px;
+
     font-size: 24px;
     line-height: 1.08;
-    margin-bottom: 12px;
+    
     :not(:first-of-type) {
       margin-top: 28px;
     }
@@ -104,116 +96,122 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   width: 100%;
-  :not(:last-child) {
-    margin-bottom: 2px;
-  }
   padding: 11px 14px;
+
   border-radius: 40px;
   background: ${p => p.theme.colors.bgMain};
   border: 1px solid rgba(245, 146, 86, 0.5);
 
-  ${device.tablet} {
-    padding: 11px 16px;
+  :not(:last-child) {
+    margin-bottom: 2px;
   }
 
   :focus {
     outline-color: rgba(245, 146, 86, 0.5);
   }
-`;
 
-export const ErrorText = styled.p`
-  margin-left: 10px;
-  &:not(:last-of-type) {
-    margin-bottom: 14px;
+  ${device.tablet} {
+    padding: 11px 16px;
   }
-  font-size: 10px;
-  color: ${p => p.theme.colors.hover};
 `;
 
 export const BtnBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 40px;
 
   ${device.tablet} {
-    display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     gap: 20px;
   }
 `;
 
-export const Button = styled(MainButton)`
-  ${device.mobile} {
-    margin-bottom: 12px;
-  }
-`;
-
-export const FotoWrap = styled.div`
-  height: 182px;
-  width: 182px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 26px;
-  color: #7e7e7e;
-  margin: 0 auto;
-  background: ${props => props.theme.colors.bgMain};
-  border-radius: 40px;
-  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  margin-bottom:79px;
-
-  ${device.mobileOnly} {
-    height: 208px;
-    width: 208px;
-  }
-`;
-
-export const InputFoto = styled.input`
-  opacity: 0;
-  position: absolute;
-`;
-
-export const ErrorTextFoto = styled.p`
-  margin-left: 30px;
-  margin-top: 10px;
-  &:not(:last-of-type) {
-    margin-bottom: 14px;
-  }
-  font-size: 10px;
-  color: ${p => p.theme.colors.hover};
+export const FormInputLoadWrapper = styled.div`
+  position: relative;
+  width: 208px;
+  height: 208px;
+  margin: 0 auto 20px auto;
+  
+  border-radius: 20px;
+  background-color: ${p => p.theme.colors.bgMain};
 
   ${device.tablet} {
-    margin-left: 120px;
+    width: 182px;
+    height: 182px;
+    margin: 0 auto 40px auto;
   }
-`;
+`
+
+export const FormInputLoadPlus = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+`
+
+export const FormInputLoadImg = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+  object-fit: cover;
+  pointer-events: none;
+
+  ${device.tablet} {
+    width: 182px;
+    height: 182px;
+  }
+`
+
+export const FormInputLoad = styled.input`
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  cursor: pointer;
+
+  background-color: ${p => p.theme.colors.bgMain};
+  border-radius: 20px;
+`
 
 export const Textarea = styled.textarea`
   width: 100%;
   padding: 12px 14px;
-  border-radius: 20px;
-  background: ${p => p.theme.colors.bgMain};
-  border: 1px solid rgba(245, 146, 86, 0.5);
+  height: 100px;
 
-  ${device.mobile} {
-    width: 240px;
-    height: 100px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.35;
+
+  background-color: ${p => p.theme.colors.bgMain};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
+  resize: none;
+  
+  ::placeholder {
+    font-size: 14px;
+    line-height: 1.35;
+    color: ${p => p.theme.colors.placeholder};
+  }
+
+  :focus {
+    outline: 1px solid ${p => p.theme.colors.accent};
   }
 
   ${device.tablet} {
-    width: 394px;
     height: 116px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 16px 18px;
+    font-size: 20px;
+
+    ::placeholder {
+      font-size: 16px;
+      line-height: 1.625;
+    }
   }
-`;
-
-export const StyledPlusIcon = styled(PlusIcon)`
-  width: 48px;
-`;
-
-export const ModalAddImg = styled.img`
-width: 100%;
-z-index: 20;
-`;
+`

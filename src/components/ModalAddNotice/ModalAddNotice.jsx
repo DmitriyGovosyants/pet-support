@@ -11,8 +11,9 @@ import {
   isName,
   isPrice,
   isTitle,
+  isDate,
+  isDatePast,
 } from 'helpers';
-import isDate from 'validator/lib/isDate';
 import isEmpty from 'validator/lib/isEmpty';
 import { MainButton } from 'components';
 import {
@@ -50,8 +51,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
   const [avatar, setAvatar] = useState();
   const [fileError, setFileError] = useState(false);
 
-  const formData = new FormData();
-
   const handleFirstBtn = () => {
     if (step === 1) {
       validateFirstPage();
@@ -77,8 +76,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
     const isTitleValid = isTitle(title.value);
     const isNameValid = isName(name.value) || isEmpty(name.value);
     const isDateValid =
-      isDate(birthdate.value, { format: 'DD.MM.YYYY' }) ||
-      isEmpty(birthdate.value);
+      (isDatePast && isDate(birthdate.value)) || isEmpty(birthdate.value);
     const isBreedValid = isBreed(breed.value) || isEmpty(breed.value);
 
     if (
@@ -185,6 +183,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
   const handleSubmit = async () => {
     const data = Object.entries(formState);
+    const formData = new FormData();
 
     for (let i = 0; i < data.length; i += 1) {
       if (formState.category.value === 'sell') {
@@ -222,7 +221,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
             type="radio"
             name="category"
             value="lost-found"
-            isValid={formState.category.isValid}
             onChange={handleChange}
             required
           />
@@ -232,7 +230,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
             type="radio"
             name="category"
             value="in-good-hands"
-            isValid={formState.category.isValid}
             onChange={handleChange}
           />
           <CategoryLabel htmlFor="in-good-hands">In good hands</CategoryLabel>
@@ -241,7 +238,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
             type="radio"
             name="category"
             value="sell"
-            isValid={formState.category.isValid}
             onChange={handleChange}
           />
           <CategoryLabel htmlFor="sell">sell</CategoryLabel>
@@ -259,7 +255,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               type={'text'}
               name={'title'}
               onChange={handleChange}
-              isValid={formState.title.isValid}
             />
             {!formState.title.isValid && (
               <div style={{ color: 'red' }}>
@@ -274,7 +269,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               type={'text'}
               name={'name'}
               onChange={handleChange}
-              isValid={formState.name.isValid}
             />
             {!formState.name.isValid && (
               <div style={{ color: 'red' }}>
@@ -289,11 +283,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               type={'text'}
               name={'birthdate'}
               onChange={handleChange}
-              isValid={formState.birthdate.isValid}
             />
             {!formState.birthdate.isValid && (
               <div style={{ color: 'red' }}>
-                Please, type in DD-MM-YYYY format
+                Please, type in DD.MM.YYYY format and past date
               </div>
             )}
           </InputItem>
@@ -304,7 +297,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               type={'text'}
               name={'breed'}
               onChange={handleChange}
-              isValid={formState.breed.isValid}
             />
             {!formState.breed.isValid && (
               <div style={{ color: 'red' }}>
@@ -324,7 +316,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
             type="radio"
             name="sex"
             value="male"
-            isValid={formState.sex.isValid}
             onChange={handleChange}
           />
           <SexLabel htmlFor="male">
@@ -338,7 +329,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
             type="radio"
             name="sex"
             value="female"
-            isValid={formState.sex.isValid}
             onChange={handleChange}
           />
           <SexLabel htmlFor="female">
@@ -361,7 +351,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               type={'text'}
               name={'location'}
               onChange={handleChange}
-              isValid={formState.location.isValid}
             />
             {!formState.location.isValid && (
               <div style={{ color: 'red' }}>
@@ -379,7 +368,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
                 type={'number'}
                 name={'price'}
                 onChange={handleChange}
-                isValid={formState.price.isValid}
               />
               {!formState.price.isValid && (
                 <div style={{ color: 'red' }}>
@@ -412,7 +400,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'comments'}
               rows={'3'}
               onChange={handleChange}
-              isValid={formState.comments.isValid}
             />
             {!formState.comments.isValid && (
               <div style={{ color: 'red' }}>
