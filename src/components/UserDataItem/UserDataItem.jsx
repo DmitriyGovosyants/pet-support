@@ -4,6 +4,7 @@ import isMobilePhone from 'validator/lib/isMobilePhone';
 import isEmail from 'validator/lib/isEmail';
 import { validationError } from 'constants/constants';
 import {
+  ItemContainer,
   UserDescriptionItem,
   ItemTitle,
   BasicUserDataWrapper,
@@ -12,21 +13,21 @@ import {
   UserFormSubmitButton,
   BasicUserDataEditButton,
   BasicUserDataTitle,
+  Error,
 } from './UserDataItem.styled';
 import { useState } from 'react';
 import { isCity, isDate, isDatePast, isUserName } from 'helpers';
-import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
   title,
   value,
   isShowForm,
   onShowForm,
-  isEditLoading,
   onSubmit,
   isEditBtnDisabled,
 }) => {
   const [inputValue, setInputValue] = useState(value);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const titleNormalized = title.toLowerCase();
 
@@ -68,15 +69,16 @@ export const UserDataItem = ({
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
-      toast.error(validationError[title]);
+      setErrorMsg(validationError[title]);
       return;
     }
 
+    setErrorMsg(null);
     await onSubmit({ [title]: inputValue });
   };
 
   return (
-    <>
+    <ItemContainer>
       <UserDescriptionItem>
         <ItemTitle> {titleNormalized}:</ItemTitle>
 
@@ -108,6 +110,7 @@ export const UserDataItem = ({
           </UserForm>
         )}
       </UserDescriptionItem>
-    </>
+      <Error>{errorMsg}</Error>
+    </ItemContainer>
   );
 };

@@ -2,12 +2,7 @@ import styled from '@emotion/styled';
 import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
-export const UserDescriptionItem = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-
+export const ItemContainer = styled.div`
   &:not(:last-child) {
     margin-bottom: 8px;
 
@@ -15,6 +10,13 @@ export const UserDescriptionItem = styled.li`
       margin-bottom: 12px;
     }
   }
+`;
+
+export const UserDescriptionItem = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const ItemTitle = styled.span`
@@ -142,5 +144,14 @@ export const UserFormSubmitButton = styled.button`
     width: 32px;
     height: 32px;
     margin-left: 24px;
+  }
+`;
+
+export const Error = styled.p`
+  font-size: 12px;
+  color: ${p => p.theme.colors.accent};
+
+  ${device.tablet} {
+    font-size: 16px;
   }
 `;
