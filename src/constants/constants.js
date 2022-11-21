@@ -17,3 +17,11 @@ export const ORDER_USER_FIELDS = [
   'phone',
   'city',
 ];
+
+export const validationError = {
+  name: 'Name should have only letters and don`t start with a space',
+  email: 'email must contain a domain name .com, .net, .org, .ua, .ru, .gov, .ca',
+  birthdate: 'Please, type in DD.MM.YYYY format and past date',
+  phone: 'Please, type + and 12 numbers',
+  city: 'You should type location in format: City, Region',
+}
