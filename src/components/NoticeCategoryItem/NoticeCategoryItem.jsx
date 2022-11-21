@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Modal, ModalNotice } from 'components';
 import {
   ImgWrapper,
+  Image,
   Button,
   StyledFavouriteIcon,
   StyledToFavouriteIcon,
@@ -60,7 +61,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
     <>
       <ImgWrapper>
         <Category>{categoryName}</Category>
-        <img
+        <Image
           src={avatarURL || dogImage}
           alt={breed}
           onError={e => {
