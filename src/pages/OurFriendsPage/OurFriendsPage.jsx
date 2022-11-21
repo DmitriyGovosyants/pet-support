@@ -1,4 +1,4 @@
-import { Container, OurFriendsList, MainButton } from 'components';
+import { Container, OurFriendsList } from 'components';
 import { Title, Section } from './OurFriendsPage.styled';
 
 const OurFriendsPage = () => {
@@ -7,7 +7,7 @@ const OurFriendsPage = () => {
       <Container>
         <Title>Our friends</Title>
         <OurFriendsList />
-        <div>LOGIN</div>
+        {/* <div>LOGIN</div>
         <MainButton type={'submit'}>Login</MainButton>
         <div>REGISTRATION</div>
         <MainButton>Next</MainButton>
@@ -35,7 +35,7 @@ const OurFriendsPage = () => {
           disabled={false}
         >
           sell
-        </MainButton>
+        </MainButton> */}
       </Container>
     </Section>
   );
