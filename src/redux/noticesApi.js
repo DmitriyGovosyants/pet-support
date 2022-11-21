@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const noticesApi = createApi({
   reducerPath: 'notices',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'https://petly-node-rest-api.onrender.com/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
