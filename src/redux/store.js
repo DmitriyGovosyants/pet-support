@@ -43,7 +43,6 @@ export const store = configureStore({
       },
     }),
     noticesApi.middleware,
-    newsApi.middleware,
     authApi.middleware,
     friendsApi.middleware,
     usersApi.middleware,
