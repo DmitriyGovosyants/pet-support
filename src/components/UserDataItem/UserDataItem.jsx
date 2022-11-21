@@ -2,6 +2,7 @@ import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import isEmail from 'validator/lib/isEmail';
+import { validationError } from 'constants/constants';
 import {
   UserDescriptionItem,
   ItemTitle,
@@ -67,7 +68,7 @@ export const UserDataItem = ({
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
-      toast.error('Error');
+      toast.error(validationError[title]);
       return;
     }
 
