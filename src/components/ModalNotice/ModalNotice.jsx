@@ -40,7 +40,6 @@ export const ModalNotice = ({
     price,
     sex,
   } = petData;
-  console.log(favorite);
 
   return (
     <Container>
