@@ -254,7 +254,7 @@ export const BtnBox = styled.div`
   margin-top: 40px;
 
   ${device.tablet} {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
     gap: 20px;
   }
