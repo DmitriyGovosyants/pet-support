@@ -68,7 +68,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
     const { name, birthdate, breed } = formState;
 
     const isNameValid = isName(name.value);
-    const isDateValid = isDatePast && isDate(birthdate.value);
+    const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
     const isBreedValid = isBreed(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
