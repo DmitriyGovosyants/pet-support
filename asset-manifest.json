@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pet-support/static/css/main.9f842b21.css",
-    "main.js": "/pet-support/static/js/main.37b17b81.js",
+    "main.js": "/pet-support/static/js/main.acdb1c52.js",
     "home-page.js": "/pet-support/static/js/home-page.7a51ad0d.chunk.js",
-    "register-page.js": "/pet-support/static/js/register-page.32b8e532.chunk.js",
-    "login-page.js": "/pet-support/static/js/login-page.5bdbeb6a.chunk.js",
-    "news-page.js": "/pet-support/static/js/news-page.0135eae3.chunk.js",
-    "notices-page.js": "/pet-support/static/js/notices-page.54d145b3.chunk.js",
-    "friends-page.js": "/pet-support/static/js/friends-page.052daea7.chunk.js",
-    "user-page.js": "/pet-support/static/js/user-page.d8e801db.chunk.js",
+    "register-page.js": "/pet-support/static/js/register-page.4e512027.chunk.js",
+    "login-page.js": "/pet-support/static/js/login-page.8b5483b2.chunk.js",
+    "news-page.js": "/pet-support/static/js/news-page.9c86b2fe.chunk.js",
+    "notices-page.js": "/pet-support/static/js/notices-page.496904e6.chunk.js",
+    "friends-page.js": "/pet-support/static/js/friends-page.fa6fbfb4.chunk.js",
+    "user-page.js": "/pet-support/static/js/user-page.4effeb24.chunk.js",
     "static/js/820.42d21340.chunk.js": "/pet-support/static/js/820.42d21340.chunk.js",
     "static/media/hp-bckg-tablet@2x.png": "/pet-support/static/media/hp-bckg-tablet@2x.3fb0784854dd7618ec31.png",
     "static/media/hp-bckg-desktop@2x.png": "/pet-support/static/media/hp-bckg-desktop@2x.fab49ebb327c8740a89b.png",
@@ -40,18 +40,18 @@
     "static/media/edit-icon.svg": "/pet-support/static/media/edit-icon.f33e8538d882418b76070d5bd0a94a00.svg",
     "static/media/plus-icon.svg": "/pet-support/static/media/plus-icon.65c74ef373dbf9e8a113c07965b48e3e.svg",
     "main.9f842b21.css.map": "/pet-support/static/css/main.9f842b21.css.map",
-    "main.37b17b81.js.map": "/pet-support/static/js/main.37b17b81.js.map",
+    "main.acdb1c52.js.map": "/pet-support/static/js/main.acdb1c52.js.map",
     "home-page.7a51ad0d.chunk.js.map": "/pet-support/static/js/home-page.7a51ad0d.chunk.js.map",
-    "register-page.32b8e532.chunk.js.map": "/pet-support/static/js/register-page.32b8e532.chunk.js.map",
-    "login-page.5bdbeb6a.chunk.js.map": "/pet-support/static/js/login-page.5bdbeb6a.chunk.js.map",
-    "news-page.0135eae3.chunk.js.map": "/pet-support/static/js/news-page.0135eae3.chunk.js.map",
-    "notices-page.54d145b3.chunk.js.map": "/pet-support/static/js/notices-page.54d145b3.chunk.js.map",
-    "friends-page.052daea7.chunk.js.map": "/pet-support/static/js/friends-page.052daea7.chunk.js.map",
-    "user-page.d8e801db.chunk.js.map": "/pet-support/static/js/user-page.d8e801db.chunk.js.map",
+    "register-page.4e512027.chunk.js.map": "/pet-support/static/js/register-page.4e512027.chunk.js.map",
+    "login-page.8b5483b2.chunk.js.map": "/pet-support/static/js/login-page.8b5483b2.chunk.js.map",
+    "news-page.9c86b2fe.chunk.js.map": "/pet-support/static/js/news-page.9c86b2fe.chunk.js.map",
+    "notices-page.496904e6.chunk.js.map": "/pet-support/static/js/notices-page.496904e6.chunk.js.map",
+    "friends-page.fa6fbfb4.chunk.js.map": "/pet-support/static/js/friends-page.fa6fbfb4.chunk.js.map",
+    "user-page.4effeb24.chunk.js.map": "/pet-support/static/js/user-page.4effeb24.chunk.js.map",
     "820.42d21340.chunk.js.map": "/pet-support/static/js/820.42d21340.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f842b21.css",
-    "static/js/main.37b17b81.js"
+    "static/js/main.acdb1c52.js"
   ]
 }
