@@ -9,6 +9,18 @@ export const ImgWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
+export const Image = styled.img`
+  width: 280px;
+  height: 288px;
+  object-fit: cover;
+  ${device.tablet} {
+    width: 336px;
+  }
+  ${device.desktop} {
+    width: 288px;
+  }
+`;
+
 export const StyledFavouriteIcon = styled(FavouriteIcon)`
   scale: 1;
   stroke: ${props => props.theme.colors.accent};
