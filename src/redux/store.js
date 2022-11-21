@@ -16,7 +16,6 @@ import { authApi } from './authApi';
 import { usersApi } from './usersApi';
 import { authSlice } from './authSlice';
 import filterReducer from './filterSlice';
-import { imagesApi } from './imagesApi';
 
 const persistConfig = {
   key: 'auth',
@@ -31,7 +30,6 @@ export const store = configureStore({
     [friendsApi.reducerPath]: friendsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
-    [imagesApi.reducerPath]: imagesApi.reducer,
     auth: persistReducer(persistConfig, authSlice.reducer),
     filter: filterReducer,
   },
@@ -46,7 +44,6 @@ export const store = configureStore({
     authApi.middleware,
     friendsApi.middleware,
     usersApi.middleware,
-    imagesApi.middleware,
   ],
 });
 

@@ -23,7 +23,6 @@ import {
 } from 'redux/noticesApi';
 import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
-import { useGetImageQuery } from 'redux/imagesApi';
 
 export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =
@@ -39,7 +38,6 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const [removePrivateNotice] = useRemovePrivateNoticeMutation();
   const [AddNoticeToFavourite] = useAddNoticeToFavouriteMutation();
   const [removeNoticeFromFavourite] = useRemoveNoticeFromFavouriteMutation();
-  const { isError, isFetching } = useGetImageQuery(avatarURL);
 
   const toggleFavourites = () => {
     if (!auth.user) {
@@ -63,8 +61,12 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
       <ImgWrapper>
         <Category>{categoryName}</Category>
         <img
-          src={isFetching ? dogImage : isError ? dogImage : avatarURL}
+          src={avatarURL || dogImage}
           alt={breed}
+          onError={e => {
+            e.target.src = dogImage;
+          }}
+          onWaiting={e => console.log('waiting:', e)}
         />
         <Button type="button" onClick={toggleFavourites}>
           {isFavourite ? <StyledFavouriteIcon /> : <StyledToFavouriteIcon />}
