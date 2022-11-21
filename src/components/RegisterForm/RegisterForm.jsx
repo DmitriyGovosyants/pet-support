@@ -55,19 +55,14 @@ export const RegisterForm = () => {
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       const data = dataFormConverter(formState);
       await signUp(data).unwrap();
-      // if (result.data) {
-      //   dispatch(setCredentials(result.data.data.token));
-      //   push('/');
-      // }
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <FormWrapper>
@@ -183,6 +178,8 @@ export const RegisterForm = () => {
                   }));
 
                   e.preventDefault();
+                } else {
+                  handleSubmit();
                 }
               }
             }}

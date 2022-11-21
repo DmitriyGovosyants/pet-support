@@ -65,7 +65,7 @@ export const UserDataItem = ({
       return;
     }
 
-    // setInputValue(value);
+    setInputValue(value);
   };
   const handleSummit = async e => {
     e.preventDefault();
