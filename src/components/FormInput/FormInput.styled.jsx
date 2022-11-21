@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const Wrapper = styled.div`
+${device.mobileOnly} {
+  padding: 0 20px;
+}
   display: flex;
   justify-content: center;
   margin-bottom: 16px;
@@ -16,6 +19,9 @@ export const Error = styled.div`
 `;
 
 export const Input = styled.input`
+${device.mobileOnly} {
+  width: 100%;
+}
   width: 280px;
   height: 40px;
   padding: 11px 60px 12px 14px;

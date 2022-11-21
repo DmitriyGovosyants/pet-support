@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
+import eyeImg from '../../data/img/eye.png';
+import eyeClosedImg from '../../data/img/eye-blocked.png';
 
 import { useSignUpMutation } from '../../redux/authApi';
 // import { setCredentials } from '../../redux/authSlice';
@@ -12,7 +14,7 @@ import {
   FormWrapper,
   MainButton,
 } from 'components';
-import { Wrapper, Button } from './RegisterForm.styled';
+import { Wrapper, Button, EyeBtn, EyeConfBtn } from './RegisterForm.styled';
 import isEmail from 'validator/lib/isEmail';
 import { isCity, isPassword, isName } from 'helpers';
 import isMobilePhone from 'validator/lib/isMobilePhone';
@@ -22,6 +24,8 @@ export const RegisterForm = () => {
   // const dispatch = useDispatch();
   // const { push } = useNavigate();
   const [step, setStep] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+ 
 
   const [formState, setFormState] = useState({
     email: {
@@ -80,19 +84,37 @@ export const RegisterForm = () => {
           <FormInput
             placeholder={'Password'}
             name={'password'}
-            type={'Password'}
+            type={showPassword ? 'text' : 'password'}
+            id={'password'}
             onChange={handleChange}
             isValid={formState.password.isValid}
             errorMessage="Invalid Password"
           />
+          <EyeBtn type='button' onClick={() => setShowPassword(!showPassword)}>
+          {showPassword && (
+            <img src={eyeClosedImg} alt="eye" width={20}/>
+          )}
+          {!showPassword && (
+            <img src={eyeImg} alt="eye" width={20}/>
+          )}
+        </EyeBtn>
           <FormInput
             placeholder={'Confirm Password'}
             name={'confirmPassword'}
-            type={'Password'}
+            type={showPassword ? 'text' : 'password'}
+            id={'password'}
             onChange={handleChange}
             isValid={formState.confirmPassword.isValid}
             errorMessage="Password and Confirm Password are not equal"
           />
+          <EyeConfBtn type='button' onClick={() => setShowPassword(!showPassword)}>
+          {showPassword && (
+            <img src={eyeClosedImg} alt="eye" width={20}/>
+          )}
+          {!showPassword && (
+            <img src={eyeImg} alt="eye" width={20}/>
+          )}
+        </EyeConfBtn>
         </div>
         <div style={{ display: step === 1 ? 'block' : 'none' }}>
           <FormInput
