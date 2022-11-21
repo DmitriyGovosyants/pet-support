@@ -41,12 +41,12 @@ export const ThumbImage = styled.div`
 `;
 
 export const Image = styled.img`
-  max-width: 240px;
+  min-width: 240px;
   height: 240px;
   border-radius: 40px;
 
   ${device.tablet} {
-    max-width: 161px;
+    min-width: 161px;
     height: 161px;
   }
 `;

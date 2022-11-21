@@ -3,6 +3,7 @@ import { device } from 'styles/mediaquery';
 
 export const Section = styled.section`
   padding: 31px 0;
+
   ${device.tablet} {
     padding: 72px 0;
   }
