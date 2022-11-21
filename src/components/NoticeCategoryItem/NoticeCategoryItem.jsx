@@ -25,20 +25,9 @@ import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
 import { useGetImageQuery } from 'redux/imagesApi';
 
-export const NoticeCategoryItem = ({
-  petData: {
-    _id,
-    title,
-    breed,
-    location,
-    birthdate,
-    avatarURL,
-    category,
-    price,
-  },
-  favorite,
-  isPrivate,
-}) => {
+export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
+  const { _id, title, breed, location, birthdate, avatarURL, category, price } =
+    petData;
   const [showModal, setShowModal] = useState(false);
   const [isFavourite, setIsFavourite] = useState(favorite);
   const [age, setAge] = useState('');
