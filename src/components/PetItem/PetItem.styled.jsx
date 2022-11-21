@@ -44,6 +44,7 @@ export const Image = styled.img`
   min-width: 240px;
   height: 240px;
   border-radius: 40px;
+  object-fit: cover;
 
   ${device.tablet} {
     min-width: 161px;
