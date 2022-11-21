@@ -11,21 +11,20 @@ import { useGetNoticesQuery, useGetFavoritesQuery } from 'redux/noticesApi';
 import { useState, useEffect } from 'react';
 import useRequest from 'hooks/useRequest';
 import { useAuth } from 'redux/useAuth';
-import { useSelector } from 'react-redux';
-import { selectKeyWord } from 'redux/filterSlice';
 import { useMediaQuery } from 'react-responsive';
 import { GiJumpingDog } from 'react-icons/gi';
+import { useFilter } from 'hooks/useFilter';
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
   const [skip, setSkip] = useState(true);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const search = useSelector(selectKeyWord);
   const auth = useAuth();
   const { categoryName } = useParams();
   const [request, setRequest] = useState('?category=sell');
   useRequest(categoryName, setRequest);
+  const search = useFilter(categoryName);
   const { data, isSuccess } = useGetNoticesQuery({
     request,
     page,
@@ -81,7 +80,11 @@ const NoticesCategoriesList = () => {
             }
             return (
               <Item key={itm._id}>
-                <NoticeCategoryItem petData={itm} favorite={favorite} />
+                <NoticeCategoryItem
+                  petData={itm}
+                  favorite={favorite}
+                  isPrivate={categoryName === 'my-ads' ? true : false}
+                />
               </Item>
             );
           })}
@@ -105,7 +108,7 @@ const NoticesCategoriesList = () => {
           pageCount={pageCount}
           previousLabel={isMobile ? '<' : 'previous'}
           renderOnZeroPageCount={null}
-          activeClassName="active"
+          activeClassName="selected"
         />
       )}
     </>

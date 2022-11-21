@@ -11,6 +11,7 @@ import {
   About,
   Text,
   LearnMore,
+  StyledDelete,
 } from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
 import useDate from 'hooks/useDate';
@@ -18,11 +19,12 @@ import { useAuth } from 'redux/useAuth';
 import {
   useAddNoticeToFavouriteMutation,
   useRemoveNoticeFromFavouriteMutation,
+  useRemovePrivateNoticeMutation,
 } from 'redux/noticesApi';
 import dogImage from 'data/img/dog.png';
 import { toast } from 'react-toastify';
 
-export const NoticeCategoryItem = ({ petData, favorite }) => {
+export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =
     petData;
   const [showModal, setShowModal] = useState(false);
@@ -33,6 +35,7 @@ export const NoticeCategoryItem = ({ petData, favorite }) => {
   useCategories(category, setCategoryName);
   useDate(birthdate, setAge);
 
+  const [removePrivateNotice] = useRemovePrivateNoticeMutation();
   const [AddNoticeToFavourite] = useAddNoticeToFavouriteMutation();
   const [removeNoticeFromFavourite] = useRemoveNoticeFromFavouriteMutation();
 
@@ -49,14 +52,30 @@ export const NoticeCategoryItem = ({ petData, favorite }) => {
     }
   };
 
+  const removePrivate = () => {
+    removePrivateNotice(_id);
+  };
+
   return (
     <>
       <ImgWrapper>
         <Category>{categoryName}</Category>
-        <img src={avatarURL || dogImage} alt={breed} />
+        <img
+          src={avatarURL || dogImage}
+          alt={breed}
+          onError={e => {
+            e.target.src = dogImage;
+          }}
+          onWaiting={e => console.log('waiting:', e)}
+        />
         <Button type="button" onClick={toggleFavourites}>
           {isFavourite ? <StyledFavouriteIcon /> : <StyledToFavouriteIcon />}
         </Button>
+        {isPrivate && (
+          <Button type="button" onClick={removePrivate}>
+            <StyledDelete size="34px" />
+          </Button>
+        )}
       </ImgWrapper>
       <Title>{title}</Title>
       <About>
