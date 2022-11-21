@@ -107,7 +107,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
         <Modal toggleModal={() => setShowModal(s => !s)}>
           <ModalNotice
             petData={petData}
-            favorite={favorite}
+            favorite={isFavourite}
             toggleModal={() => setShowModal(s => !s)}
             toggleFavourites={toggleFavourites}
           />

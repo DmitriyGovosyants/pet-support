@@ -190,7 +190,6 @@ export const ContactButton = styled.a`
 
   ${device.tablet} {
     width: 160px;
-    margin-right: 20px;
     margin-bottom: 0;
   }
 
@@ -262,5 +261,6 @@ export const BtnWrapper = styled.div`
   ${device.tablet} {
     display: flex;
     flex-direction: row-reverse;
+    padding-right: 20px;
   }
 `;
