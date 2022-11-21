@@ -22,6 +22,7 @@ export const usersApi = createApi({
         url: '/info',
         invalidatesTags: ['Info'],
       }),
+      keepUnusedDataFor: 0,
     }),
     updateUser: builder.mutation({
       query: userField => ({
@@ -35,6 +36,7 @@ export const usersApi = createApi({
     fetchPets: builder.query({
       query: () => `/pets`,
       providesTags: ['Pet'],
+      keepUnusedDataFor: 0,
     }),
 
     //------ useDeletePetMutation -------

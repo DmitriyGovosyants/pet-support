@@ -9,7 +9,7 @@ export const PetsList = () => {
 
   if (isError) {
     if (error?.status === 404) {
-      return <div>...</div>;
+      return <div>...Not Found...</div>;
     }
   }
 
