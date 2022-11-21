@@ -9,7 +9,7 @@ import {
   ItemWrapper,
 } from './NewsItem.styled';
 
-const NewsItem = ({ title, description, url, date }) => {
+export const NewsItem = ({ title, description, url, date }) => {
   function format(date) {
     return date.split('-').reverse().join('/');
   }
@@ -28,5 +28,3 @@ const NewsItem = ({ title, description, url, date }) => {
     </ItemWrapper>
   );
 };
-
-export default NewsItem;

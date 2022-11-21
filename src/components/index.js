@@ -27,3 +27,5 @@ export * from './ModalAddsPet/ModalAddsPet';
 export * from './PetsList/PetsList';
 
 export * from './ModalDelete/ModalDelete';
+
+export * from './NewsList/NewsItem'

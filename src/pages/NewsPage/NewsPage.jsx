@@ -1,4 +1,4 @@
-import NewsItem from 'components/NewsList/NewsItem';
+import { NewsItem } from 'components/NewsList/NewsItem';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
 import {
