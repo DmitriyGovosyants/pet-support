@@ -86,6 +86,7 @@ export const Category = styled.span`
 export const Title = styled.h2`
   margin-bottom: 20px;
   padding: 0 20px;
+  word-break: break-word;
   font-weight: 700;
   font-size: 28px;
   line-height: 1.36;
@@ -115,6 +116,7 @@ export const Text = styled.span`
   font-weight: 500;
   font-size: 16px;
   line-height: 1.375;
+  word-break: break-word;
 `;
 
 export const LearnMore = styled.button`
