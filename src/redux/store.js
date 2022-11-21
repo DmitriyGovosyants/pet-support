@@ -14,6 +14,7 @@ import { noticesApi } from './noticesApi';
 import { authApi } from './authApi';
 import { combineReducers } from 'redux';
 import authReducer from './authSlice';
+import { newsApi } from './newsApi';
 
 const persistConfig = {
   key: 'root',
@@ -26,6 +27,7 @@ const reducers = combineReducers({
   [noticesApi.reducerPath]: noticesApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   auth: authReducer,
+  [newsApi.reducerPath]: newsApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -39,6 +41,7 @@ export const store = configureStore({
       },
     }),
     noticesApi.middleware,
+    newsApi.middleware,
   ],
 });
 
