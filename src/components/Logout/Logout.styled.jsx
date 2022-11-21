@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
 export const LogoutButton = styled.button`
@@ -26,6 +25,6 @@ export const LogoutButton = styled.button`
 
   ${device.desktop} {
     left: 16px;
-    bottom: 40px;
+    top: 600px;
   }
 `;

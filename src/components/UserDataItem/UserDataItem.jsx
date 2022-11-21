@@ -1,7 +1,7 @@
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
-// import { ThreeDots } from 'react-loader-spinner';
-
+import isMobilePhone from 'validator/lib/isMobilePhone';
+import isEmail from 'validator/lib/isEmail';
 import {
   UserDescriptionItem,
   ItemTitle,
@@ -13,7 +13,7 @@ import {
   BasicUserDataTitle,
 } from './UserDataItem.styled';
 import { useState } from 'react';
-import { isCity, isUserName } from 'helpers';
+import { isCity, isDate, isDatePast, isUserName } from 'helpers';
 import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
@@ -30,7 +30,6 @@ export const UserDataItem = ({
   const titleNormalized = title.toLowerCase();
 
   const handleValidation = (valueKey, newData) => {
-    console.log(valueKey, newData);
     let isValid = false;
 
     switch (valueKey) {
@@ -38,13 +37,15 @@ export const UserDataItem = ({
         isValid = isUserName(newData);
         break;
       case 'email':
-        // code block
+        isValid = isEmail(newData);
         break;
       case 'birthdate':
-        // code block
+        isValid = isDatePast(newData) && isDate(newData);
         break;
       case 'phone':
-        // code block
+        isValid = isMobilePhone(newData, 'uk-UA', {
+          strictMode: true,
+        });
         break;
       case 'city':
         isValid = isCity(newData);
@@ -58,17 +59,17 @@ export const UserDataItem = ({
 
   const handleInputChange = e => {
     const { value } = e.target;
-    const isValid = handleValidation(title, value);
+    setInputValue(value);
+  };
+
+  const handleSummit = async e => {
+    e.preventDefault();
+    const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
       toast.error('Error');
       return;
     }
-
-    setInputValue(value);
-  };
-  const handleSummit = async e => {
-    e.preventDefault();
 
     await onSubmit({ [title]: inputValue });
   };
