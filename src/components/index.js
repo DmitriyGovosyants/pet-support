@@ -41,6 +41,6 @@ export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';
 
 
-export * from './NewsList/NewsItem'
+export * from './NewsItem/NewsItem'
 export * from './OurFriendsList/OurFriendsList';
 export * from './OurFriendItem/OurFriendItem';

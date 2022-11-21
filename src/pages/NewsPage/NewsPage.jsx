@@ -1,5 +1,5 @@
 import { Container } from 'components';
-import { NewsItem } from 'components/NewsList/NewsItem';
+import { NewsItem } from 'components/NewsItem/NewsItem';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
 import {
@@ -32,23 +32,21 @@ const NewsPage = () => {
             <SearchIcon />
           </SearchButton>
         </SearchForm>
-        <div>
-          <NewsList>
-            {!error &&
-              data &&
-              data.data.map(({ _id, title, description, url, date }) => {
-                return (
-                  <NewsItem
-                    key={_id}
-                    title={title}
-                    url={url}
-                    description={description}
-                    date={date}
-                  />
-                );
-              })}
-          </NewsList>
-        </div>
+        <NewsList>
+          {!error &&
+            data &&
+            data.data.map(({ _id, title, description, url, date }) => {
+              return (
+                <NewsItem
+                  key={_id}
+                  title={title}
+                  url={url}
+                  description={description}
+                  date={date}
+                />
+              );
+            })}
+        </NewsList>
       </Container>
     </NewsWrapper>
   );
