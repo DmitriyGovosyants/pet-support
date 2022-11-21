@@ -7,7 +7,7 @@ export const HeaderStyled = styled.header`
   padding-top: 16px;
   padding-bottom: 16px;
   min-height: 74px;
-  color: ${p => p.theme.colors.bg};
+  color: ${p => p.theme.colors.bgMain};
   ${device.tablet} {
     min-height: 88px;
     padding-top: 20px;
