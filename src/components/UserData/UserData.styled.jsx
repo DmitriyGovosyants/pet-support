@@ -83,7 +83,24 @@ export const UserDescriptionWrapper = styled.ul`
 /**
  * Avatar block styles
  */
+export const AvatarPhotoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 88px;
+  height: 22px;
 
+  ${device.tablet} {
+    position: absolute;
+    bottom: 24px;
+    right: 40px;
+  }
+
+  ${device.desktop} {
+    top: 230px;
+    right: 16px;
+  }
+`;
 export const AvatarWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -115,8 +132,10 @@ export const Avatar = styled.img`
     margin-bottom: 0;
   }
 `;
-
-export const AvatarPhotoEditButton = styled.button`
+export const InputFile = styled.input`
+  /* display: none; */
+`;
+export const AvatarPhotoEditButton = styled.label`
   display: flex;
   align-items: center;
   gap: 4px;
@@ -127,15 +146,4 @@ export const AvatarPhotoEditButton = styled.button`
   letter-spacing: 0.04em;
   color: ${theme.colors.textMain};
   cursor: pointer;
-
-  ${device.tablet} {
-    position: absolute;
-    bottom: 24px;
-    right: 40px;
-  }
-
-  ${device.desktop} {
-    top: 230px;
-    right: 16px;
-  }
 `;

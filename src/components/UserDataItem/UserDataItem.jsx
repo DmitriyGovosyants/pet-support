@@ -1,5 +1,6 @@
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
+// import { ThreeDots } from 'react-loader-spinner';
 
 import {
   UserDescriptionItem,
@@ -11,47 +12,30 @@ import {
   BasicUserDataEditButton,
   BasicUserDataTitle,
 } from './UserDataItem.styled';
-import React from 'react';
-
-const BasicUserInfoElement = ({ id, info, onShowForm, isEditBtnDisabled }) => {
-  return (
-    <>
-      <BasicUserDataWrapper>
-        <BasicUserDataTitle>{info}</BasicUserDataTitle>
-        <BasicUserDataEditButton
-          id={id}
-          onClick={onShowForm}
-          disabled={isEditBtnDisabled}
-        >
-          <MdEdit />
-        </BasicUserDataEditButton>
-      </BasicUserDataWrapper>
-    </>
-  );
-};
-
-const FormElement = ({ info, onSubmit }) => {
-  return (
-    <>
-      <UserForm onSubmit={onSubmit}>
-        <UserFormInput defaultValue={info} />
-        <UserFormSubmitButton id={info}>
-          <BsCheckLg />
-        </UserFormSubmitButton>
-      </UserForm>
-    </>
-  );
-};
+import { useState } from 'react';
 
 export const UserDataItem = ({
   title,
   value,
   isShowForm,
   onShowForm,
+  isEditLoading,
   onSubmit,
   isEditBtnDisabled,
 }) => {
+  const [inputValue, setInputValue] = useState(value);
+
   const titleNormalized = title.toLowerCase();
+
+  const handleInputChange = e => {
+    const { value } = e.target;
+    setInputValue(value);
+  };
+  const handleSummit = async e => {
+    e.preventDefault();
+
+    await onSubmit({ [title]: inputValue });
+  };
 
   return (
     <>
@@ -59,14 +43,31 @@ export const UserDataItem = ({
         <ItemTitle> {titleNormalized}:</ItemTitle>
 
         {isShowForm !== title ? (
-          <BasicUserInfoElement
-            id={title}
-            info={value}
-            onShowForm={onShowForm}
-            isEditBtnDisabled={isEditBtnDisabled}
-          />
+          <BasicUserDataWrapper>
+            <BasicUserDataTitle>{inputValue}</BasicUserDataTitle>
+
+            <BasicUserDataEditButton
+              id={title}
+              onClick={onShowForm}
+              disabled={isEditBtnDisabled}
+            >
+              <MdEdit />
+            </BasicUserDataEditButton>
+          </BasicUserDataWrapper>
         ) : (
-          <FormElement info={value} onSubmit={onSubmit} />
+          <UserForm onSubmit={handleSummit}>
+            <label htmlFor="">
+              <UserFormInput
+                type="text"
+                name={title}
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+            </label>
+            <UserFormSubmitButton id={title} type={'submit'}>
+              <BsCheckLg />
+            </UserFormSubmitButton>
+          </UserForm>
         )}
       </UserDescriptionItem>
     </>

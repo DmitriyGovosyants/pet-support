@@ -3,6 +3,7 @@ import {
   UserDataTitle,
   UserCardWrapper,
   UserWrapper,
+  AvatarPhotoWrapper,
   AvatarWrapper,
   Avatar,
   AvatarPhotoEditButton,
@@ -14,13 +15,13 @@ import { useState } from 'react';
 import imageNotFound from '../../data/img/no-image.webp';
 import { normalizeData } from '../../helpers';
 import { ORDER_USER_FIELDS } from '../../constants/constants';
-import { useFetchUserQuery } from 'redux/usersApi';
+import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 
 export const UserData = () => {
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
-
-  const { data, isLoading } = useFetchUserQuery();
+  const { data, isLoading, refetch } = useFetchUserQuery();
+  const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
   if (isLoading) return <Spinner />;
 
@@ -37,8 +38,10 @@ export const UserData = () => {
     setIsEditBtnDisabled(true);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = newValue => {
+    editContact(newValue);
+    refetch();
+
     setIsShowForm('');
     setIsEditBtnDisabled(false);
   };
@@ -53,21 +56,24 @@ export const UserData = () => {
               src={avatar || imageNotFound}
               alt={avatar || imageNotFound}
             />
-            <AvatarPhotoEditButton>
-              <HiCamera size={20} color={theme.colors.accent} />
-              <span>Edit photo</span>
-            </AvatarPhotoEditButton>
+            <AvatarPhotoWrapper>
+              <AvatarPhotoEditButton>
+                <HiCamera size={20} color={theme.colors.accent} />
+                <span>Edit photo</span>
+              </AvatarPhotoEditButton>
+            </AvatarPhotoWrapper>
           </AvatarWrapper>
 
           <UserDescriptionWrapper>
-            {normalizedData.map(([title, value]) => (
+            {normalizedData.map(([title, fieldValue]) => (
               <UserDataItem
                 key={title}
                 title={title}
-                value={value}
+                value={fieldValue}
                 isShowForm={isShowForm}
                 onShowForm={handleShowForm}
                 onSubmit={handleSubmit}
+                isEditLoading={isEditLoading}
                 isEditBtnDisabled={isEditBtnDisabled}
               />
             ))}

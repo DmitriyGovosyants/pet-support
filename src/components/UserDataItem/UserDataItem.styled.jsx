@@ -3,13 +3,11 @@ import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
 export const UserDescriptionItem = styled.li`
-  // було div
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 
-  // rows 31-37 were copy from itemwrapper
   &:not(:last-child) {
     margin-bottom: 8px;
 
@@ -17,7 +15,6 @@ export const UserDescriptionItem = styled.li`
       margin-bottom: 12px;
     }
   }
-  //
 `;
 
 export const ItemTitle = styled.span`
@@ -41,12 +38,12 @@ export const BasicUserDataWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 24px;
+  min-height: 24px;
   width: 190px;
   padding-left: 19px;
 
   ${device.tablet} {
-    height: 32px;
+    min-height: 32px;
     width: 272px;
     padding-left: 13px;
   }
@@ -62,6 +59,7 @@ export const BasicUserDataTitle = styled.p`
   line-height: 1.33;
   letter-spacing: 0.04em;
   color: ${theme.colors.textMain};
+  word-break: break-all;
 
   ${device.tablet} {
     font-size: 18px;
@@ -80,6 +78,7 @@ export const BasicUserDataEditButton = styled.button`
   background-color: ${theme.colors.bgMain};
   border-radius: 50%;
   cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
+  transition: color ${theme.animation.cubicBezier};
 
   ${device.tablet} {
     width: 32px;

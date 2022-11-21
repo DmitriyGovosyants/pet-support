@@ -20,8 +20,16 @@ export const usersApi = createApi({
     fetchUser: builder.query({
       query: () => ({
         url: '/info',
+        invalidatesTags: ['Info'],
       }),
-      invalidatesTags: ['Info'],
+    }),
+    updateUser: builder.mutation({
+      query: userField => ({
+        url: '/info',
+        method: 'PATCH',
+        body: userField,
+        invalidatesTags: ['Info'],
+      }),
     }),
     //----- useFetchPetsQuery --------
     fetchPets: builder.query({
@@ -68,6 +76,7 @@ export const usersApi = createApi({
 
 export const {
   useFetchUserQuery,
+  useUpdateUserMutation,
   useFetchPetsQuery,
   useDeletePetMutation,
   useEditPetMutation,

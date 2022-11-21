@@ -23,8 +23,7 @@ export const theme = Object.freeze({
     mobileHeight: '74px',
     tabletAndDesktopHeight: '88px',
   },
-  // animation: {
-  //   cubicBezierAverageSpeed: '250ms cubic-bezier(0.7, 0.98, 0.86, 0.98)',
-  //   cubicBezierMaxSpeed: '400ms cubic-bezier(0.7, 0.98, 0.86, 0.98)',
-  // },
+  animation: {
+    cubicBezier: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+  },
 });
