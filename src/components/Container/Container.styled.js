@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { device, size } from "styles/mediaquery";
+import styled from '@emotion/styled';
+import { device, size } from 'styles/mediaquery';
 
 export const ContainerStyled = styled.div`
   width: 100%;
@@ -20,4 +20,4 @@ export const ContainerStyled = styled.div`
     padding-left: ${p => p.theme.spacing(4)};
     padding-right: ${p => p.theme.spacing(4)};
   }
-`
+`;

@@ -1,28 +1,34 @@
-import { useState } from 'react';
 import {
   NoticesSearch,
   NoticesCategoriesNav,
-  NoticesCategoriesList,
   AddNoticeButton,
 } from 'components';
-
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { routesPath } from 'router';
+import { Container } from 'components';
 import { Title, Section, Wrapper } from './NoticesPage.styled';
 
 const NoticesPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState('sell');
-
-  const changeCategory = newCategory => {
-    setSelectedCategory(newCategory);
-  };
+  const [isFirstMount, setIsFirstMount] = useState(true);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isFirstMount) {
+      navigate(routesPath.sell);
+      setIsFirstMount(false);
+    }
+  }, [navigate, isFirstMount]);
   return (
     <Section>
-      <Title>Find your favorite pet</Title>
-      <NoticesSearch />
-      <Wrapper>
-        <NoticesCategoriesNav changeCategory={changeCategory} />
-        <AddNoticeButton />
-      </Wrapper>
-      <NoticesCategoriesList selectedCategory={selectedCategory} />
+      <Container>
+        <Title>Find your favorite pet</Title>
+        <NoticesSearch />
+        <Wrapper>
+          <NoticesCategoriesNav />
+          <AddNoticeButton />
+        </Wrapper>
+        <Outlet />
+      </Container>
     </Section>
   );
 };

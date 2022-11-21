@@ -1,21 +1,14 @@
-import { useState } from 'react';
-import { Modal, ModalAddsPet, PetsList } from 'components';
+import { PetsList, AddUsersPet } from 'components';
+import { PetsDataStyled, PetsDataHeader, Title } from './PetsData.styled';
 
 export const PetsData = () => {
-  const [showModal, setShowModal] = useState(false);
-
   return (
-    <>
-      <div>PetsData</div>
-      <button type="button" onClick={() => setShowModal(true)}>
-        ADD PET
-      </button>
-      {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)}>
-          <ModalAddsPet toggleModal={() => setShowModal(s => !s)} />
-        </Modal>
-      )}
+    <PetsDataStyled>
+      <PetsDataHeader>
+        <Title>My pets:</Title>
+        <AddUsersPet />
+      </PetsDataHeader>
       <PetsList />
-    </>
+    </PetsDataStyled>
   );
 };

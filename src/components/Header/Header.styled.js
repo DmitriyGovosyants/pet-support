@@ -3,66 +3,75 @@ import { device } from "styles/mediaquery";
 
 export const HeaderStyled = styled.header`
   display: flex;
-  padding-top: 20px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  min-height: 74px;
 
-  ${device.mobileOnly} {
-    padding-top: 12px;
+  ${device.tablet} {
+    min-height: 88px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   ${device.notDesktop} {
-    position: relative;
     align-items: center;
     justify-content: space-between;
   }
 `;
 
 export const NavBox = styled.div`
-  ${device.notDesktop} {
-    justify-content: flex-start;
-    background-color: ${p => p.theme.colors.bgMain};
-    position: absolute;
-    top: 55px;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    transition: 1s;
-    transform: ${p => p.menu ? 'none' : 'translateY(-200vh)'};
-    height: ${p => p.menu ? '200vh' : "100%"};
+  ${device.notDesktop} {  
+    position: fixed;
+    top: ${p => p.theme.header.mobileHeight};
+    left: 0;
     z-index: 10;
+    
+    width: 100vw;
+    height: calc(100vh - (${p => p.theme.header.mobileHeight}));
+
+    background-color: ${p => p.theme.colors.bgMain};
+
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: ${p => p.menu ? 'none' : 'translateX(100%)'};
+    
   }
 
-  ${device.tablet} {
-    top: 65px;
+  ${device.mobileOnly} {
+    padding-top: 30px;
+  }
+
+  ${device.tabletOnly} {
+    top: ${p => p.theme.header.tabletAndDesktopHeight};
+    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
   }
   
   ${device.desktop} {
     display: flex;
     align-items: center;
     margin-left: 80px;
-    margin-top: 5px;
   }
 `;
 
 export const AuthBox = styled.div`
-display: none;
+  display: none;
 
-${device.tablet} {
-  display: flex;
-  margin-right: 25px;
-  margin-left: auto;
-}
+  ${device.tablet} {
+    display: flex;
+    margin-right: 25px;
+    margin-left: auto;
+  }
 
-${device.desktop} {
-  margin-right: 0;
-}
+  ${device.desktop} {
+    margin-right: 0;
+  }
 `;
 
 export const AuthBoxMob = styled.div`
-margin-bottom: 60px;
-margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
 
-${device.tablet} {
-  display: none;
-}
+  ${device.tablet} {
+    display: none;
+  }
 `;

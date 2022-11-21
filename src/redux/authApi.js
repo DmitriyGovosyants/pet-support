@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const authApi = createApi({
-  reducerPath: 'authfetch',
+  reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://unknown', // <-------ВКАЗАТИ БАЗОВИЙ ЮРЛ БЕКУ!!!!!!!!!!!!
+    baseUrl: 'http://localhost:8080/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
@@ -17,12 +17,12 @@ export const authApi = createApi({
   tagTypes: ['Auth'],
   endpoints: builder => ({
     getUser: builder.query({
-      query: () => `/users/current`,
+      query: () => `/auth/current`,
       providesTags: ['Auth'],
     }),
     signUp: builder.mutation({
       query: value => ({
-        url: `/users/signup`,
+        url: `/auth/signup`,
         method: 'POST',
         body: value,
       }),
@@ -30,7 +30,7 @@ export const authApi = createApi({
     }),
     logIn: builder.mutation({
       query: value => ({
-        url: `/users/login`,
+        url: `/auth/login`,
         method: 'POST',
         body: value,
       }),
@@ -38,9 +38,7 @@ export const authApi = createApi({
     }),
     logOut: builder.mutation({
       query: () => ({
-        url: `/users/logout`,
-        method: 'POST',
-        body: '',
+        url: `/auth/logout`,
       }),
       invalidatesTags: ['Auth'],
     }),

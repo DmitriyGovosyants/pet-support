@@ -1,29 +1,41 @@
-import { Logo, Nav, UserNav, AuthNav } from 'components';
+import { useState, useEffect } from 'react';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { useAuth } from 'redux/useAuth';
+import { Logo, Nav, UserNav, AuthNav, BurgerBtn } from 'components';
 import { HeaderStyled, NavBox, AuthBox, AuthBoxMob } from './Header.styled';
-import { useState } from 'react';
-import { BurgerBtn } from 'components/BurgerBtn/BurgerBtn';
+
+const body = document.getElementsByTagName('body')[0];
 
 export const Header = () => {
-  const user = false; 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
-  const showNavBar = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  useEffect(() => {
+    if (isMenuOpen) {
+      disableBodyScroll(body);
+    }
+    if (!isMenuOpen) {
+      enableBodyScroll(body);
+    }
+  }, [isMenuOpen]);
+
+  window.addEventListener('resize', () => setIsMenuOpen(false));
 
   return (
     <HeaderStyled>
       <Logo />
       <NavBox menu={isMenuOpen}>
         <AuthBoxMob>
-          {user ? <UserNav toggleNavBar={showNavBar}/> : <AuthNav toggleNavBar={showNavBar}/>}
+          {user ? (
+            <UserNav toggleNavBar={() => setIsMenuOpen(false)} />
+          ) : (
+            <AuthNav toggleNavBar={() => setIsMenuOpen(false)} />
+          )}
         </AuthBoxMob>
-        <Nav toggleNavBar={showNavBar}/>
+        <Nav toggleNavBar={() => setIsMenuOpen(false)} />
       </NavBox>
-      <AuthBox>
-        {user ? <UserNav toggleNavBar={showNavBar}/> : <AuthNav toggleNavBar={showNavBar}/>}
-      </AuthBox>
-      <BurgerBtn toggleNavBar={showNavBar} />
+      {!isMenuOpen && <AuthBox>{user ? <UserNav /> : <AuthNav />}</AuthBox>}
+      <BurgerBtn toggleNavBar={() => setIsMenuOpen(!isMenuOpen)} />
     </HeaderStyled>
   );
 };

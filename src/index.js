@@ -18,7 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/pet-support">
           <ThemeProvider theme={theme}>
             <Global styles={GlobalStyles} />
-            <ToastContainer autoClose={2500} position="top-center" />
+            <ToastContainer
+              autoClose={2500}
+              position="bottom-right"
+              theme="colored"
+            />
             <App />
           </ThemeProvider>
         </BrowserRouter>

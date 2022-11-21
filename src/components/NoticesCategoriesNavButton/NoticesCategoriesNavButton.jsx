@@ -1,19 +1,29 @@
-import { Button } from './NoticesCategoriesNavButton.styled';
+import {
+  StyledLink,
+  StyledSelectedLink,
+} from './NoticesCategoriesNavButton.styled';
 
 export const NoticesCategoriesNavButton = ({
   category,
   selected,
   categoryToggler,
 }) => {
+  const categoryRoute = category
+    .toLowerCase()
+    .split(' ')
+    .join('-')
+    .split('/')
+    .join('-');
+
   const onClickHandler = () => {
     categoryToggler(category);
   };
+  if (category === selected) {
+    return <StyledSelectedLink>{category}</StyledSelectedLink>;
+  }
   return (
-    <Button
-      onClick={onClickHandler}
-      disabled={category === selected ? true : false}
-    >
+    <StyledLink onClick={onClickHandler} to={categoryRoute} category={category}>
       {category}
-    </Button>
+    </StyledLink>
   );
 };

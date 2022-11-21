@@ -11,29 +11,31 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { noticesApi } from './noticesApi';
-import { authApi } from './authApi';
-import { combineReducers } from 'redux';
-import authReducer from './authSlice';
+import { friendsApi } from './friendsApi';
 import { newsApi } from './newsApi';
+import { authApi } from './authApi';
+import { usersApi } from './usersApi';
+import { authSlice } from './authSlice';
+import filterReducer from './filterSlice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'auth',
   version: 1,
   storage,
-  whitelist: ['auth'],
+  whitelist: ['token'],
 };
 
-const reducers = combineReducers({
-  [noticesApi.reducerPath]: noticesApi.reducer,
-  [authApi.reducerPath]: authApi.reducer,
-  auth: authReducer,
-  [newsApi.reducerPath]: newsApi.reducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, reducers);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    [noticesApi.reducerPath]: noticesApi.reducer,
+    [friendsApi.reducerPath]: friendsApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
+    [newsApi.reducerPath]: newsApi.reducer,
+    auth: persistReducer(persistConfig, authSlice.reducer),
+    filter: filterReducer,
+  },
+  devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
@@ -41,6 +43,10 @@ export const store = configureStore({
       },
     }),
     noticesApi.middleware,
+    newsApi.middleware,
+    authApi.middleware,
+    friendsApi.middleware,
+    usersApi.middleware,
     newsApi.middleware,
   ],
 });

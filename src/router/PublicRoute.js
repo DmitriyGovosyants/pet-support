@@ -1,9 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
-// import { useUser } from 'context/userContext';
+import { useAuth } from 'redux/useAuth';
 
 export const PublicRoute = ({ restricted, redirectTo = '/' }) => {
-  // const { user } = useUser();
-  const user = false; //временная заглушка
+  const { user } = useAuth();
   const shouldRedirect = user && restricted;
 
   return shouldRedirect ? <Navigate to={redirectTo} replace /> : <Outlet />;

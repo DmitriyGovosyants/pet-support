@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components';
 import { routesPath, PrivateRoute, PublicRoute } from 'router';
+import { GetCurrentUser } from 'redux/refreshToken';
 
 const Home = lazy(() =>
   import('pages/HomePage/HomePage' /* webpackChunkName: "home-page" */)
@@ -28,8 +29,13 @@ const Friends = lazy(() =>
 const User = lazy(() =>
   import('pages/UserPage/UserPage' /* webpackChunkName: "user-page" */)
 );
+const NoticesCategoriesList = lazy(() =>
+  import('./components/NoticesCategoriesList/NoticesCategoriesList')
+);
 
 export const App = () => {
+  GetCurrentUser();
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -38,7 +44,12 @@ export const App = () => {
         </Route>
 
         <Route path={routesPath.news} element={<News />} />
-        <Route path={routesPath.notices} element={<Notices />} />
+        <Route path={routesPath.notices} element={<Notices />}>
+          <Route
+            path={routesPath.cantegoryName}
+            element={<NoticesCategoriesList />}
+          />
+        </Route>
         <Route path={routesPath.friends} element={<Friends />} />
 
         <Route element={<PrivateRoute redirectTo={routesPath.login} />}>
