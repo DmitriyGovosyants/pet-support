@@ -4,6 +4,10 @@ import { device } from 'styles/mediaquery';
 export const Wrapper = styled.div`
   position: relative;
   padding-top: 42px;
+  ${device.mobileOnly} {
+    max-width: 450px;
+    margin: 0 auto;
+  }
   ${device.tablet} {
     margin-top: 173px;
     margin-left: auto; 
