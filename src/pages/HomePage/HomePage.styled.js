@@ -3,6 +3,7 @@ import { size, device, retina } from 'styles/mediaquery';
 import { bgImgs } from '../../data/img/homePage';
 
 export const BackgroundWrapper = styled.div`
+  overflow: hidden;
   height: calc(100vh - (${p => p.theme.header.mobileHeight}));
   background-image: url(${bgImgs.curveMobile1x});
   background-position: left 33% bottom -14px;
@@ -38,6 +39,7 @@ export const BackgroundWrapper = styled.div`
 `;
 
 export const HomePageContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -68,6 +70,7 @@ export const HomePageContainer = styled.div`
 `;
 
 export const Title = styled.h1`
+  z-index: 2;
   font-size: 32px;
   font-weight: 700;
   line-height: 1.375;
@@ -94,7 +97,10 @@ export const Title = styled.h1`
 `;
 
 export const PictureStyled = styled.picture`
+  z-index: 1;
   width: 320px;
+  position: absolute;
+  bottom: 0;
 
   ${device.mobileOnly} {
     margin: 0 -20px;
@@ -105,6 +111,7 @@ export const PictureStyled = styled.picture`
   }
 
   ${device.desktop} {
+    left: 656px;
     width: 624px;
     margin-top: auto;
     margin-right: -16px;

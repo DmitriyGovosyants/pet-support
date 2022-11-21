@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 
@@ -17,6 +17,7 @@ import { Wrapper, EyeBtn } from './LoginForm.styled';
 import { isPassword } from 'helpers';
 import isEmail from 'validator/lib/isEmail';
 import { dataFormConverter } from 'helpers/dataFormConverter';
+import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
   // const dispatch = useDispatch();
@@ -35,7 +36,13 @@ export const LoginForm = () => {
     },
   });
 
-  const [login] = useLogInMutation();
+  const [login, { isError }] = useLogInMutation();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Wrong email or password!');
+    }
+  }, [isError]);
 
   const handleChange = ({ target: { name, value, isValid = true } }) =>
     setFormState(prev => ({ ...prev, [name]: { value, isValid } }));

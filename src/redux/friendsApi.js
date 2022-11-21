@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const friendsApi = createApi({
   reducerPath: 'friendsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api',
+    baseUrl: 'https://petly-node-rest-api.onrender.com/api',
   }),
   tagTypes: ['Friends'],
   endpoints: builder => ({
