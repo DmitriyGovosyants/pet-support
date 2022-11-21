@@ -13,10 +13,10 @@ const useRequest = (req, func) => {
         func(`?category=${req}`);
         break;
       case 'favorite-ads':
-        func('/favorites');
+        func('/favorites?');
         break;
       case 'my-ads':
-        func('/private');
+        func('/private?');
         break;
       default:
         func(req);

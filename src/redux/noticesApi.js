@@ -22,7 +22,7 @@ export const noticesApi = createApi({
       providesTags: ['Notices'],
     }),
     getFavorites: builder.query({
-      query: () => '/notices/favorites&page=1&limit=1000',
+      query: () => '/notices/favorites?page=1&limit=1000',
       providesTags: ['Notices'],
     }),
     addNoticeToFavourite: builder.mutation({
