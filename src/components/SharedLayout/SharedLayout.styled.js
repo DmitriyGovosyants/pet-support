@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { device } from "styles/mediaquery";
+import styled from '@emotion/styled';
+import { device } from 'styles/mediaquery';
 
 export const FooterPressWrapper = styled.div`
   display: flex;
@@ -9,4 +9,4 @@ export const FooterPressWrapper = styled.div`
   ${device.tablet} {
     min-height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
   }
-`
+`;
