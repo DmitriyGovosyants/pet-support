@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 
 import { useLogInMutation } from '../../redux/authApi';
 // import { setCredentials } from '../../redux/authSlice';
-
+import eyeImg from '../../data/img/eye.png';
+import eyeClosedImg from '../../data/img/eye-blocked.png';
 import {
   FormTitle,
   FormInput,
@@ -12,7 +13,7 @@ import {
   FormWrapper,
   MainButton,
 } from 'components';
-import { Wrapper } from './LoginForm.styled';
+import { Wrapper, EyeBtn } from './LoginForm.styled';
 import { isPassword } from 'helpers';
 import isEmail from 'validator/lib/isEmail';
 import { dataFormConverter } from 'helpers/dataFormConverter';
@@ -20,6 +21,8 @@ import { dataFormConverter } from 'helpers/dataFormConverter';
 export const LoginForm = () => {
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [formState, setFormState] = useState({
     email: {
@@ -91,12 +94,21 @@ export const LoginForm = () => {
         />
         <FormInput
           placeholder={'Password'}
-          type={'password'}
+          type={showPassword ? 'text' : 'password'}
           name={'password'}
+          id={'password'}
           onChange={handleChange}
           isValid={formState.password.isValid}
           errorMessage="Invalid Password"
         />
+        <EyeBtn type='button' onClick={() => setShowPassword(!showPassword)}>
+          {showPassword && (
+            <img src={eyeClosedImg} alt="eye" width={20}/>
+          )}
+          {!showPassword && (
+            <img src={eyeImg} alt="eye" width={20}/>
+          )}
+        </EyeBtn>
         <Wrapper>
           <MainButton type={'submit'}>Login</MainButton>
         </Wrapper>
