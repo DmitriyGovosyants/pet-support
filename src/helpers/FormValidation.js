@@ -8,4 +8,3 @@ export const isName = name => isLength(name, { min: 2, max: 16 }) && matches(nam
 export const isBreed = breed => isLength(breed, { min: 2, max: 24 }) && matches(breed, /^[^ 0-9][a-zA-Zа-яА-ЯёЁіІїЇєЄ\s]*$/);
 export const isPrice = price => isLength(price, { min: 1, max: 10 }) && matches(price, /^[1-9][0-9]*$/);
 export const isComments = comments => isLength(comments, { min: 8, max: 120 }) && matches(comments, /^[0-9a-zA-Zа-яА-Я!@#$%^&+=*,:;><'"~`?/.|\s]{8,120}$/);
-
