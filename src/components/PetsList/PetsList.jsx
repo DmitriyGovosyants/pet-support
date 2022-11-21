@@ -8,9 +8,9 @@ export const PetsList = () => {
   if (isLoading) return <Spinner />;
 
   if (isError) {
-    // if (error?.status === 404) {
-    //   return <div>...</div>;
-    // }
+    if (error?.status === 404) {
+      return <div>...</div>;
+    }
   }
 
   if (data) {
