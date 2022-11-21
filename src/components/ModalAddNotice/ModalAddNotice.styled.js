@@ -198,10 +198,9 @@ export const FormTextarea = styled.textarea`
 
 export const FormInputLoadWrapper = styled.div`
   position: relative;
-  /* display: flex; */
   width: 116px;
   height: 116px;
-  /* background-color: red; */
+  
   border-radius: 20px;
   background-color: ${p => p.theme.colors.bgMain};
 
