@@ -1,11 +1,4 @@
 export * from './SharedLayout/SharedLayout';
-export * from './Container/Container';
-export * from './Footer/Footer';
-export * from './Modal/Modal';
-export * from './MainButton/MainButton';
-export * from './BurgerBtn/BurgerBtn';
-export * from './Spinner/Spinner';
-
 export * from './Header/Header';
 export * from './Logo/Logo';
 export * from './Nav/Nav';
@@ -25,8 +18,8 @@ export * from './NoticesCategoriesNav/NoticesCategoriesNav';
 export * from './NoticesCategoriesNavButton/NoticesCategoriesNavButton';
 export * from './NoticesCategoriesList/NoticesCategoriesList';
 export * from './NoticeCategoryItem/NoticeCategoryItem';
-export * from './ModalNotice/ModalNotice';
 export * from './AddNoticeButton/AddNoticeButton';
+export * from './ModalNotice/ModalNotice';
 export * from './ModalAddNotice/ModalAddNotice';
 
 export * from './UserData/UserData';
@@ -43,3 +36,11 @@ export * from './ModalDelete/ModalDelete';
 export * from './NewsItem/NewsItem'
 export * from './OurFriendsList/OurFriendsList';
 export * from './OurFriendItem/OurFriendItem';
+
+export * from './Footer/Footer';
+export * from './Container/Container';
+export * from './Modal/Modal';
+export * from './MainButton/MainButton';
+export * from './BurgerBtn/BurgerBtn';
+export * from './Spinner/Spinner';
+export * from './ValidationError/ValidationError';

@@ -2,7 +2,7 @@ import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import isEmail from 'validator/lib/isEmail';
-import { validationError } from 'constants/constants';
+import { validationErrMsg } from 'constants/constants';
 import {
   ItemContainer,
   UserDescriptionItem,
@@ -69,7 +69,7 @@ export const UserDataItem = ({
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
-      setErrorMsg(validationError[title]);
+      setErrorMsg(validationErrMsg[title]);
       return;
     }
 

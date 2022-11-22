@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import isEmpty from 'validator/lib/isEmpty';
+import { toast } from 'react-toastify';
+import { useAddNoticeMutation } from 'redux/noticesApi';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import maleImg from '../../data/img/male.png';
 import femaleImg from '../../data/img/female.png';
@@ -14,8 +17,7 @@ import {
   isDate,
   isDatePast,
 } from 'helpers';
-import isEmpty from 'validator/lib/isEmpty';
-import { MainButton } from 'components';
+import { MainButton, ValidationError } from 'components';
 import {
   ModalCard,
   FormTitle,
@@ -40,8 +42,7 @@ import {
   BtnBox,
   BtnClose,
 } from './ModalAddNotice.styled';
-import { useAddNoticeMutation } from 'redux/noticesApi';
-import { toast } from 'react-toastify';
+import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddNotice = ({ toggleModal }) => {
   const [formState, setFormState] = useState(addNoticeValidationModel);
@@ -49,7 +50,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
   const [step, setStep] = useState(1);
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
-  const [fileError, setFileError] = useState(false);
+  const [isFileValid, setIsFileValid] = useState(true);
 
   const handleFirstBtn = () => {
     if (step === 1) {
@@ -167,12 +168,12 @@ export const ModalAddNotice = ({ toggleModal }) => {
     const file = fileInput.files[0];
 
     if (file['size'] > 1000000) {
-      setFileError(true);
+      setIsFileValid(false);
       return;
     }
 
     setAvatarData(file);
-    setFileError(false);
+    setIsFileValid(true);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -242,9 +243,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
             onChange={handleChange}
           />
           <CategoryLabel htmlFor="sell">sell</CategoryLabel>
-          {!formState.category.isValid && (
-            <div style={{ color: 'red' }}>Choose Category</div>
-          )}
+          <ValidationError
+            message={validationErrMsg.category}
+            isHidden={formState.category.isValid}
+          />
         </SelectCategory>
         <InputList>
           <InputItem>
@@ -257,11 +259,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'title'}
               onChange={handleChange}
             />
-            {!formState.title.isValid && (
-              <div style={{ color: 'red' }}>
-                Title should have only 2-48 letters
-              </div>
-            )}
+            <ValidationError
+              message={validationErrMsg.title}
+              isHidden={formState.title.isValid}
+            />
           </InputItem>
           <InputItem>
             <FormInputLabel>Name pet</FormInputLabel>
@@ -271,11 +272,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'name'}
               onChange={handleChange}
             />
-            {!formState.name.isValid && (
-              <div style={{ color: 'red' }}>
-                Name should have only 2-16 letters
-              </div>
-            )}
+            <ValidationError
+              message={validationErrMsg.petName}
+              isHidden={formState.name.isValid}
+            />
           </InputItem>
           <InputItem>
             <FormInputLabel>Date of birth</FormInputLabel>
@@ -285,11 +285,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'birthdate'}
               onChange={handleChange}
             />
-            {!formState.birthdate.isValid && (
-              <div style={{ color: 'red' }}>
-                Please, type in DD.MM.YYYY format and past date
-              </div>
-            )}
+            <ValidationError
+              message={validationErrMsg.birthdate}
+              isHidden={formState.birthdate.isValid}
+            />
           </InputItem>
           <InputItem>
             <FormInputLabel>Breed</FormInputLabel>
@@ -299,11 +298,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'breed'}
               onChange={handleChange}
             />
-            {!formState.breed.isValid && (
-              <div style={{ color: 'red' }}>
-                Breed should have only 2-24 letters
-              </div>
-            )}
+            <ValidationError
+              message={validationErrMsg.breed}
+              isHidden={formState.breed.isValid}
+            />
           </InputItem>
         </InputList>
       </div>
@@ -338,9 +336,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
             </ImgWrapper>
             Female
           </SexLabel>
-          {!formState.sex.isValid && (
-            <div style={{ color: 'red' }}>Choose Sex</div>
-          )}
+          <ValidationError
+            message={validationErrMsg.sex}
+            isHidden={formState.sex.isValid}
+          />
         </SelectSex>
         <InputList>
           <InputItem>
@@ -353,11 +352,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               name={'location'}
               onChange={handleChange}
             />
-            {!formState.location.isValid && (
-              <div style={{ color: 'red' }}>
-                You should type in City, Region
-              </div>
-            )}
+            <ValidationError
+              message={validationErrMsg.city}
+              isHidden={formState.location.isValid}
+            />
           </InputItem>
           {formState.category.value === 'sell' && (
             <InputItem>
@@ -370,11 +368,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
                 name={'price'}
                 onChange={handleChange}
               />
-              {!formState.price.isValid && (
-                <div style={{ color: 'red' }}>
-                  Price couldn't start from 0, 1-10 numbers
-                </div>
-              )}
+              <ValidationError
+                message={validationErrMsg.price}
+                isHidden={formState.price.isValid}
+              />
             </InputItem>
           )}
           <InputItem>
@@ -390,7 +387,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               <FormInputLoadPlus src={plusImg} alt="" />
               {avatar && <FormInputLoadImg src={avatar} alt="" />}
             </FormInputLoadWrapper>
-            {fileError && <div style={{ color: 'red' }}>File too large</div>}
+            <ValidationError
+              message={validationErrMsg.avatar}
+              isHidden={isFileValid}
+            />
           </InputItem>
           <InputItem>
             <FormInputLabel>
@@ -402,11 +402,10 @@ export const ModalAddNotice = ({ toggleModal }) => {
               rows={'3'}
               onChange={handleChange}
             />
-            {!formState.comments.isValid && (
-              <div style={{ color: 'red' }}>
-                Comments should have only 8-120 letters
-              </div>
-            )}
+            <ValidationError
+              message={validationErrMsg.comments}
+              isHidden={formState.comments.isValid}
+            />
           </InputItem>
         </InputList>
       </div>
