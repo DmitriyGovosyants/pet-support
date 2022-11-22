@@ -82,7 +82,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
       <About>
         <Description>
           <Text>Breed:</Text>
-          <Text>{breed}</Text>
+          <Text>{breed || '-'}</Text>
           <Text>Place:</Text>
           <Text>{location}</Text>
           <Text>Age:</Text>
