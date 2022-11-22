@@ -106,6 +106,7 @@ const NoticesCategoriesList = () => {
           pageRangeDisplayed={isMobile ? 1 : 2}
           marginPagesDisplayed={1}
           pageCount={pageCount}
+          initialPage={page - 1}
           previousLabel={isMobile ? '<' : 'previous'}
           renderOnZeroPageCount={null}
           activeClassName="selected"

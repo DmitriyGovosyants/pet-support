@@ -5,8 +5,11 @@ const useDate = (birthdate, func) => {
     if (!birthdate || birthdate === '') {
       func('Unknown');
     } else {
+      const array = birthdate.split('.');
+      const newBirthdayFormat = [array[1], array[0], array[2]].join('-');
       const petYears = Math.floor(
-        (new Date() - new Date(birthdate)) / (1000 * 60 * 60 * 24 * 365.25)
+        (new Date() - new Date(newBirthdayFormat)) /
+          (1000 * 60 * 60 * 24 * 365.25)
       );
       if (petYears === 0) {
         func('Less the one year');
