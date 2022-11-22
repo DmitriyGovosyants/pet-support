@@ -128,7 +128,7 @@ export const ModalEditPet = ({
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
-
+    // console.log(file);
     if (file['size'] > 1000000) {
       setFileError(true);
       return;
@@ -136,7 +136,7 @@ export const ModalEditPet = ({
 
     setAvatarData(file);
     setFileError(false);
-
+    // console.log(setAvatarData(file));
     switch (name) {
       case 'name':
         setFormState.name(value);
