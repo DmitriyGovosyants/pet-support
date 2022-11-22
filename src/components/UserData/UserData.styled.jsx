@@ -125,6 +125,7 @@ export const Avatar = styled.img`
   width: 230px;
   height: 230px;
   margin-bottom: 12px;
+  object-fit: cover;
 
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   border-radius: 50%;
