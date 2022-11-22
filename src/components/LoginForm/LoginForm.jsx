@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-
+import isEmail from 'validator/lib/isEmail';
+import { toast } from 'react-toastify';
+import { isPassword, dataFormConverter } from 'helpers';
 import { useLogInMutation } from '../../redux/authApi';
-// import { setCredentials } from '../../redux/authSlice';
 import eyeImg from '../../data/img/eye.png';
 import eyeClosedImg from '../../data/img/eye-blocked.png';
 import {
@@ -14,17 +13,10 @@ import {
   MainButton,
 } from 'components';
 import { Wrapper, EyeBtn } from './LoginForm.styled';
-import { isPassword } from 'helpers';
-import isEmail from 'validator/lib/isEmail';
-import { dataFormConverter } from 'helpers/dataFormConverter';
-import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
+  const [login, { isError, isLoading }] = useLogInMutation();
   const [showPassword, setShowPassword] = useState(false);
-
   const [formState, setFormState] = useState({
     email: {
       value: '',
@@ -35,8 +27,6 @@ export const LoginForm = () => {
       isValid: true,
     },
   });
-
-  const [login, { isError }] = useLogInMutation();
 
   useEffect(() => {
     if (isError) {
@@ -61,8 +51,6 @@ export const LoginForm = () => {
       return;
     }
 
-    console.log();
-
     if (!isPassword(formState.password.value)) {
       setFormState(prevState => ({
         ...prevState,
@@ -77,11 +65,6 @@ export const LoginForm = () => {
     try {
       const data = dataFormConverter(formState);
       await login(data).unwrap();
-      // console.log(data);
-      // if (result.data.data.token) {
-      //   dispatch(setCredentials(result.data.data.token));
-      //   navigate('/');
-      // }
     } catch (err) {
       console.log(err);
     }
@@ -108,16 +91,14 @@ export const LoginForm = () => {
           isValid={formState.password.isValid}
           errorMessage="Invalid Password"
         />
-        <EyeBtn type='button' onClick={() => setShowPassword(!showPassword)}>
-          {showPassword && (
-            <img src={eyeClosedImg} alt="eye" width={20}/>
-          )}
-          {!showPassword && (
-            <img src={eyeImg} alt="eye" width={20}/>
-          )}
+        <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
+          {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
+          {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
         </EyeBtn>
         <Wrapper>
-          <MainButton type={'submit'}>Login</MainButton>
+          <MainButton type={'submit'} disabled={isLoading}>
+            Login
+          </MainButton>
         </Wrapper>
         <FormText
           text={"Don't have an account?"}

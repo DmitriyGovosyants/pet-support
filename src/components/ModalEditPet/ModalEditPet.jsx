@@ -136,6 +136,17 @@ export const ModalEditPet = ({
 
     setAvatarData(file);
     setFileError(false);
+    console.log(name);
+    switch (name) {
+      case 'name':
+        setFormState.name(value);
+        break;
+      // case 'number':
+      //   setNumber(value);
+      //   break;
+      default:
+        return;
+    }
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -183,6 +194,7 @@ export const ModalEditPet = ({
           placeholder={'Type name pet'}
           type={'text'}
           name={'name'}
+          value={formState.name.value}
           onChange={handleChange}
         />
         {!formState.name.isValid && (
@@ -193,6 +205,7 @@ export const ModalEditPet = ({
           placeholder={'Type date of birth'}
           type={'text'}
           name={'birthdate'}
+          value={formState.birthdate.value}
           onChange={handleChange}
         />
         {!formState.birthdate.isValid && (
@@ -205,6 +218,7 @@ export const ModalEditPet = ({
           placeholder={'Type breed'}
           type={'text'}
           name={'breed'}
+          value={formState.breed.value}
           onChange={handleChange}
         />
         {!formState.breed.isValid && (
@@ -230,6 +244,7 @@ export const ModalEditPet = ({
         <Label htmlFor="name">Comments</Label>
         <Textarea
           name={'comments'}
+          value={formState.comments.value}
           onChange={handleChange}
           placeholder={'Type comments'}
           rows="3"
