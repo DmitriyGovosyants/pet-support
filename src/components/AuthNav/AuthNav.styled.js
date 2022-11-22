@@ -39,8 +39,8 @@ export const AuthNavLink = styled(NavLink)`
 
   cursor: pointer;
   transition: background-color ${p => p.theme.animation.cubicBezier},
-   border-color 250ms ${p => p.theme.animation.cubicBezier},
-   color 250ms ${p => p.theme.animation.cubicBezier};
+   border-color ${p => p.theme.animation.cubicBezier},
+   color ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {

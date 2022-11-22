@@ -2,13 +2,7 @@ import { Section, Container, MainTitle } from 'components';
 import { NewsItem } from 'components/NewsItem/NewsItem';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
-import {
-  NewsInput,
-  SearchForm,
-  NewsList,
-  SearchButton,
-  SearchIcon,
-} from './NewsPage.styled';
+import { Input, SearchForm, NewsList, Label, Icon } from './NewsPage.styled';
 
 const NewsPage = () => {
   const [newsName, setNewsName] = useState('');
@@ -25,10 +19,10 @@ const NewsPage = () => {
       <Container>
         <MainTitle>News</MainTitle>
         <SearchForm action="" onSubmit={handleSubmitForm}>
-          <NewsInput type="text" name="news" placeholder="Search" />
-          <SearchButton type="submit">
-            <SearchIcon />
-          </SearchButton>
+          <Label>
+            <Input type="text" name="news" placeholder="Search" />
+            <Icon />
+          </Label>
         </SearchForm>
         <NewsList>
           {!error &&
