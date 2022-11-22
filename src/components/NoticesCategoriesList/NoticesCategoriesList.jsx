@@ -62,6 +62,7 @@ const NoticesCategoriesList = () => {
   }, [categoryName, data, isSuccess]);
 
   const handlePageClick = event => {
+    console.log('pageClick:', event.selected + 1, 'setPage:', page);
     setPage(event.selected + 1);
   };
 

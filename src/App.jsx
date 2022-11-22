@@ -30,7 +30,9 @@ const User = lazy(() =>
   import('pages/UserPage/UserPage' /* webpackChunkName: "user-page" */)
 );
 const NoticesCategoriesList = lazy(() =>
-  import('./components/NoticesCategoriesList/NoticesCategoriesList')
+  import(
+    './components/NoticesCategoriesList/NoticesCategoriesList' /* webpackChunkName: "categories-list" */
+  )
 );
 
 export const App = () => {
@@ -46,7 +48,7 @@ export const App = () => {
         <Route path={routesPath.news} element={<News />} />
         <Route path={routesPath.notices} element={<Notices />}>
           <Route
-            path={routesPath.cantegoryName}
+            path={routesPath.categoryName}
             element={<NoticesCategoriesList />}
           />
         </Route>

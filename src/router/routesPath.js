@@ -3,9 +3,7 @@ export const routesPath = {
   login: 'login',
   user: 'user',
   news: 'news',
-  notices: 'notices',
   friends: 'friends',
-  noticesCat: 'notices/:categoryName',
-  cantegoryName: ':categoryName',
-  sell: 'sell',
+  notices: 'notices',
+  categoryName: ':categoryName',
 };
