@@ -50,6 +50,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
   const [fileError, setFileError] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const handleFirstBtn = () => {
     if (step === 1) {
@@ -198,6 +199,8 @@ export const ModalAddNotice = ({ toggleModal }) => {
     if (avatarData) {
       formData.append('avatar', avatarData);
     }
+
+    setDisable(true);
 
     try {
       await addNotice(formData);
@@ -414,6 +417,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
         <MainButton
           size={'medium'}
           width={'fixed'}
+          disabled={disable}
           onClick={() => handleFirstBtn()}
         >
           {step === 1 ? 'Next' : 'Done'}

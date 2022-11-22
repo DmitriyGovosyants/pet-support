@@ -26,6 +26,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
   const [avatar, setAvatar] = useState();
   const [fileError, setFileError] = useState(false);
   const [step, setStep] = useState(0);
+  const [disable, setDisable] = useState(false);
 
   const [formState, setFormState] = useState({
     name: {
@@ -62,13 +63,14 @@ export const ModalAddsPet = ({ toggleModal }) => {
     if (step === 1) {
       setStep(0);
     }
+    console.log('scswdvcecve');
   };
 
   const validateFirstPage = () => {
     const { name, birthdate, breed } = formState;
 
     const isNameValid = isName(name.value);
-    const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
+    const isDateValid = isDatePast && isDate(birthdate.value);
     const isBreedValid = isBreed(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
@@ -148,6 +150,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
     if (avatarData) {
       formData.append('avatar', avatarData);
     }
+
+    setDisable(true);
 
     try {
       await addPet(formData);
@@ -231,6 +235,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         <MainButton
           size={'medium'}
           width={'fixed'}
+          disabled={disable}
           onClick={() => handleFirstBtn()}
         >
           {step === 0 ? 'Next' : 'Done'}
