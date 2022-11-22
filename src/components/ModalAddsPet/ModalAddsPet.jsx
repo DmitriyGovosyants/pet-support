@@ -21,12 +21,11 @@ import { toast } from 'react-toastify';
 import { MainButton } from 'components';
 
 export const ModalAddsPet = ({ toggleModal }) => {
-  const [addPet] = useCreatePetMutation();
+  const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
   const [fileError, setFileError] = useState(false);
   const [step, setStep] = useState(0);
-  const [disable, setDisable] = useState(false);
 
   const [formState, setFormState] = useState({
     name: {
@@ -150,8 +149,6 @@ export const ModalAddsPet = ({ toggleModal }) => {
       formData.append('avatar', avatarData);
     }
 
-    setDisable(true);
-
     try {
       await addPet(formData);
       toggleModal();
@@ -234,7 +231,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         <MainButton
           size={'medium'}
           width={'fixed'}
-          disabled={disable}
+          disabled={isLoading}
           onClick={() => handleFirstBtn()}
         >
           {step === 0 ? 'Next' : 'Done'}
