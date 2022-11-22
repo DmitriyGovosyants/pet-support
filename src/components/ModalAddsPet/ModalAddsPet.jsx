@@ -18,13 +18,14 @@ import {
   FormInputLoadPlus,
 } from './ModalAddsPets.styled';
 import { toast } from 'react-toastify';
-import { MainButton } from 'components';
+import { MainButton, ValidationError } from 'components';
+import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
   const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
-  const [fileError, setFileError] = useState(false);
+  const [isFileValid, setIsFileValid] = useState(true);
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
@@ -122,12 +123,12 @@ export const ModalAddsPet = ({ toggleModal }) => {
     const file = fileInput.files[0];
 
     if (file['size'] > 1000000) {
-      setFileError(true);
+      setIsFileValid(false);
       return;
     }
 
     setAvatarData(file);
-    setFileError(false);
+    setIsFileValid(true);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -172,9 +173,10 @@ export const ModalAddsPet = ({ toggleModal }) => {
           name={'name'}
           onChange={handleChange}
         />
-        {!formState.name.isValid && (
-          <div style={{ color: 'red' }}>Name should have only 2-16 letters</div>
-        )}
+        <ValidationError
+          message={validationErrMsg.petName}
+          isHidden={formState.name.isValid}
+        />
         <Label htmlFor="birthdate">Date of birth</Label>
         <Input
           placeholder={'Type date of birth'}
@@ -182,11 +184,10 @@ export const ModalAddsPet = ({ toggleModal }) => {
           name={'birthdate'}
           onChange={handleChange}
         />
-        {!formState.birthdate.isValid && (
-          <div style={{ color: 'red' }}>
-            Please, type in DD.MM.YYYY format and past date
-          </div>
-        )}
+        <ValidationError
+          message={validationErrMsg.birthdate}
+          isHidden={formState.birthdate.isValid}
+        />
         <Label htmlFor="breed">Breed</Label>
         <Input
           placeholder={'Type breed'}
@@ -194,11 +195,10 @@ export const ModalAddsPet = ({ toggleModal }) => {
           name={'breed'}
           onChange={handleChange}
         />
-        {!formState.breed.isValid && (
-          <div style={{ color: 'red' }}>
-            Breed should have only 2-16 letters
-          </div>
-        )}
+        <ValidationError
+          message={validationErrMsg.breedAddPet}
+          isHidden={formState.breed.isValid}
+        />
       </div>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
         <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
@@ -212,7 +212,10 @@ export const ModalAddsPet = ({ toggleModal }) => {
           />
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
-          {fileError && <div style={{ color: 'red' }}>File too large</div>}
+          <ValidationError
+            message={validationErrMsg.avatar}
+            isHidden={isFileValid}
+          />
         </FormInputLoadWrapper>
         <Label htmlFor="name">Comments</Label>
         <Textarea
@@ -221,11 +224,10 @@ export const ModalAddsPet = ({ toggleModal }) => {
           placeholder={'Type comments'}
           rows="3"
         />
-        {!formState.comments.isValid && (
-          <div style={{ color: 'red' }}>
-            Comments should have only 8-120 letters
-          </div>
-        )}
+        <ValidationError
+          message={validationErrMsg.comments}
+          isHidden={formState.comments.isValid}
+        />
       </div>
       <BtnBox>
         <MainButton

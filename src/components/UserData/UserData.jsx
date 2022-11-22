@@ -19,7 +19,7 @@ import imageNotFound from '../../data/img/no-image.webp';
 import { normalizeData } from '../../helpers';
 import { ORDER_USER_FIELDS } from '../../constants/constants';
 import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
-import { validationError } from '../../constants/constants';
+import { validationErrMsg } from '../../constants/constants';
 
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState('');
@@ -113,7 +113,7 @@ export const UserData = () => {
                 alt={avatar || imageNotFound}
               />
             )}
-            {fileError && <p>{validationError.avatarData}</p>}
+            {fileError && <p>{validationErrMsg.avatar}</p>}
             <AvatarPhotoWrapper>
               {!isShowLoadFile && (
                 <AvatarPhotoEditButton
