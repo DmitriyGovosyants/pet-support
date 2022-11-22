@@ -1,9 +1,8 @@
-import { NoticeCategoryItem } from 'components';
+import { NoticeCategoryItem, Pagination } from 'components';
 import {
   List,
   Item,
   Error,
-  Paginate,
   ErrorWrapper,
 } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router-dom';
@@ -61,10 +60,6 @@ const NoticesCategoriesList = () => {
     }
   }, [categoryName, data, isSuccess]);
 
-  const handlePageClick = event => {
-    setPage(event.selected + 1);
-  };
-
   return (
     <>
       {isSuccess ? (
@@ -99,17 +94,7 @@ const NoticesCategoriesList = () => {
         </ErrorWrapper>
       )}
       {isSuccess && data.total > 12 && (
-        <Paginate
-          breakLabel={isMobile ? '..' : '...'}
-          nextLabel={isMobile ? '>' : 'next'}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={isMobile ? 1 : 2}
-          marginPagesDisplayed={1}
-          pageCount={pageCount}
-          previousLabel={isMobile ? '<' : 'previous'}
-          renderOnZeroPageCount={null}
-          activeClassName="selected"
-        />
+        <Pagination page={page} totalPage={pageCount} setPage={setPage} />
       )}
     </>
   );

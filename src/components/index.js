@@ -44,3 +44,5 @@ export * from './MainButton/MainButton';
 export * from './BurgerBtn/BurgerBtn';
 export * from './Spinner/Spinner';
 export * from './ValidationError/ValidationError';
+export * from './Pagination/Pagination';
+export * from './PaginationArrow/PaginationArrow';
