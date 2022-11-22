@@ -22,12 +22,13 @@ import {
   useRemoveNoticeFromFavouriteMutation,
   useRemovePrivateNoticeMutation,
 } from 'redux/noticesApi';
-import dogImage from 'data/img/dog.png';
+import petTemlate from 'data/img/pet-template.jpg';
 import { toast } from 'react-toastify';
 
 export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =
     petData;
+
   const [showModal, setShowModal] = useState(false);
   const [isFavourite, setIsFavourite] = useState(favorite);
   const [age, setAge] = useState('');
@@ -62,10 +63,10 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
       <ImgWrapper>
         <Category>{categoryName}</Category>
         <Image
-          src={avatarURL || dogImage}
+          src={avatarURL || petTemlate}
           alt={breed}
           onError={e => {
-            e.target.src = dogImage;
+            e.target.src = petTemlate;
           }}
           onWaiting={e => console.log('waiting:', e)}
         />

@@ -12,8 +12,8 @@ export const StyledLink = styled(Link)`
   letter-spacing: 0.04em;
   background-color: ${props => props.theme.colors.textSecond};
   cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
+  transition: background-color ${p => p.theme.animation.cubicBezier};
   :hover,
   :focus {
     background-color: ${props => props.theme.colors.accent};
@@ -33,6 +33,6 @@ export const StyledSelectedLink = styled(Link)`
   background-color: ${props => props.theme.colors.accent};
   color: ${props => props.theme.colors.textSecond};
   cursor: default;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
+  transition: background-color ${p => p.theme.animation.cubicBezier};
 `;

@@ -14,7 +14,7 @@ export const Button = styled.button`
   fill-opacity: 0.6;
   backdrop-filter: blur(2px);
   cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
 
   ${device.tablet} {
     width: 44px;

@@ -12,7 +12,7 @@ export const Button = styled.button`
   border-radius: 50%;
   cursor: pointer;
   background-color: ${props => props.theme.colors.accent};
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color ${p => p.theme.animation.cubicBezier};
   :hover,
   :focus {
     background-color: ${props => props.theme.colors.hover};

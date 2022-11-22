@@ -11,19 +11,6 @@ export const SearchIcon = styled(AiOutlineSearch)`
   }
 `;
 
-export const Title = styled.h2`
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.375;
-  text-align: center;
-  color: ${props => props.theme.colors.textMain};
-  margin-bottom: 28px;
-  ${device.tablet} {
-    font-size: 48px;
-    margin-bottom: 40px;
-  }
-`;
-
 export const NewsInput = styled.input`
   width: 100%;
   height: 40px;
@@ -59,18 +46,6 @@ export const NewsList = styled.ul`
   ${device.desktop} {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 34px;
-  }
-`;
-
-export const NewsWrapper = styled.div`
-  padding-top: 42px;
-  padding-bottom: 100px;
-  ${device.tablet} {
-    padding-top: 92px;
-  }
-  ${device.desktop} {
-    padding-top: 38px;
-    padding-bottom: 200px;
   }
 `;
 

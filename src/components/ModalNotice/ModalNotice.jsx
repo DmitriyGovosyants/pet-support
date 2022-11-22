@@ -19,7 +19,7 @@ import {
 
 import { ReactComponent as HeartIcon } from 'data/img/favourite-icon.svg';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
-import dogImage from 'data/img/dog.png';
+import petTemlate from 'data/img/pet-template.jpg';
 
 export const ModalNotice = ({
   petData,
@@ -40,7 +40,6 @@ export const ModalNotice = ({
     price,
     sex,
   } = petData;
-
   return (
     <Container>
       <CloseBtn type="button" onClick={() => toggleModal()}>
@@ -50,10 +49,10 @@ export const ModalNotice = ({
       <Wrapper>
         <ImgWrapper>
           <Img
-            src={avatarURL || dogImage}
+            src={avatarURL || petTemlate}
             alt={breed}
             onError={e => {
-              e.target.src = dogImage;
+              e.target.src = petTemlate;
             }}
           />
           <CategoryMark>{category}</CategoryMark>

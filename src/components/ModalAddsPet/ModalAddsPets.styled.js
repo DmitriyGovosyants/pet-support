@@ -33,7 +33,7 @@ export const BtnClose = styled.button`
   border-radius: 50%;
   cursor: pointer;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {
@@ -41,7 +41,7 @@ export const BtnClose = styled.button`
   }
 `
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   margin-bottom: 20px;
 
   font-size: 24px;
@@ -55,7 +55,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const SubTitle = styled.h2`
+export const SubTitle = styled.h3`
   margin-bottom: 20px;
 
   font-size: 16px;

@@ -25,24 +25,24 @@ export const StyledFavouriteIcon = styled(FavouriteIcon)`
   scale: 1;
   stroke: ${props => props.theme.colors.accent};
   fill: ${props => props.theme.colors.accent};
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: scale ${p => p.theme.animation.cubicBezier};
+  transition: stroke ${p => p.theme.animation.cubicBezier};
+  transition: fill ${p => p.theme.animation.cubicBezier};
 `;
 
 export const StyledToFavouriteIcon = styled(ToFavouriteIcon)`
   fill: ${props => props.theme.colors.btnTransperent};
   scale: 1;
   stroke: ${props => props.theme.colors.accent};
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: scale ${p => p.theme.animation.cubicBezier};
+  transition: stroke ${p => p.theme.animation.cubicBezier};
 `;
 
 export const StyledDelete = styled(TiDelete)`
   scale: 1;
   fill: ${props => props.theme.colors.accent};
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: scale ${p => p.theme.animation.cubicBezier};
+  transition: fill ${p => p.theme.animation.cubicBezier};
 `;
 
 export const Button = styled.button`
@@ -147,8 +147,8 @@ export const LearnMore = styled.button`
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.accent};
   cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
+  transition: border-color ${p => p.theme.animation.cubicBezier};
   :hover,
   :focus {
     border-color: ${props => props.theme.colors.hover};
