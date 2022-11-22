@@ -141,9 +141,15 @@ export const ModalEditPet = ({
       case 'name':
         setFormState.name(value);
         break;
-      // case 'number':
-      //   setNumber(value);
-      //   break;
+      case 'birthdate':
+        setFormState.birthdate(value);
+        break;
+      case 'breed':
+        setFormState.breed(value);
+        break;
+      case 'comments':
+        setFormState.comments(value);
+        break;
       default:
         return;
     }
