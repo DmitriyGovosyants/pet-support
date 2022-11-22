@@ -19,13 +19,16 @@ import imageNotFound from '../../data/img/no-image.webp';
 import { normalizeData } from '../../helpers';
 import { ORDER_USER_FIELDS } from '../../constants/constants';
 import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { validationError } from '../../constants/constants';
 
 export const UserData = () => {
-  const [file, setFile] = useState('');
+  const [avatarData, setAvatarData] = useState('');
+  const [newAvatar, setNewAvatar] = useState();
+  const [fileError, setFileError] = useState(false);
   const [isShowLoadFile, setIsShowLoadFile] = useState(false);
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
-  const { data, isLoading, refetch } = useFetchUserQuery();
+  const { data, isLoading } = useFetchUserQuery();
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
   if (isLoading) return <Spinner />;
@@ -33,7 +36,6 @@ export const UserData = () => {
   const fetchData = data?.data?.user;
 
   const [normalizedData, avatar] = normalizeData(fetchData, ORDER_USER_FIELDS);
-  console.log(avatar);
 
   const handleShowForm = e => {
     const id = e.currentTarget.id;
@@ -48,7 +50,6 @@ export const UserData = () => {
     if (oldData !== newData) {
       try {
         await editContact(newValue);
-        refetch();
       } catch (error) {
         console.log(error);
       }
@@ -61,21 +62,36 @@ export const UserData = () => {
     setIsShowLoadFile(true);
   };
   const handleFile = e => {
-    const file = e.target.files[0];
-    setFile(file);
+    const fileData = e.target.files[0];
+
+    if (fileData['size'] > 1000000) {
+      setFileError(true);
+      return;
+    }
+
+    setAvatarData(fileData);
+    setFileError(false);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(fileData);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      setNewAvatar(base64data);
+    };
+    console.log(newAvatar);
   };
 
   const onFileSubmit = async () => {
     try {
       const formdata = new FormData();
-      formdata.append('avatar', file);
+      formdata.append('avatar', avatarData);
       await editContact(formdata);
-      await refetch();
     } catch (error) {
       console.log(error);
+      setNewAvatar('');
     } finally {
       setIsShowLoadFile(false);
-      setFile('');
+      setAvatarData('');
     }
   };
 
@@ -85,11 +101,19 @@ export const UserData = () => {
       <UserCardWrapper>
         <UserWrapper>
           <AvatarWrapper>
-            <Avatar
-              src={avatar.avatar || imageNotFound}
-              alt={avatar || imageNotFound}
-            />
-
+            {!newAvatar && (
+              <Avatar
+                src={avatar.avatar || imageNotFound}
+                alt={avatar || imageNotFound}
+              />
+            )}
+            {newAvatar && (
+              <Avatar
+                src={newAvatar || imageNotFound}
+                alt={avatar || imageNotFound}
+              />
+            )}
+            {fileError && <p>{validationError.avatarData}</p>}
             <AvatarPhotoWrapper>
               {!isShowLoadFile && (
                 <AvatarPhotoEditButton
@@ -105,7 +129,7 @@ export const UserData = () => {
                   <form action="" encType="multipart/form-data">
                     <div>
                       <UploadLabel htmlFor="upload-photo">
-                        {!file ? 'search...' : file.name}
+                        {!avatarData ? 'search...' : avatarData.name}
                       </UploadLabel>
                       <UploadInput
                         type="file"
