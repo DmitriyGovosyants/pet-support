@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
 export const UserDataTitle = styled.p`
@@ -9,7 +8,7 @@ export const UserDataTitle = styled.p`
   line-height: 1.35;
   letter-spacing: 0.04em;
 
-  color: ${theme.colors.textMain};
+  color: ${p => p.theme.colors.textMain};
 
   ${device.tablet} {
     padding-left: 32px;
@@ -45,7 +44,7 @@ export const UserCardWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   padding: 20px 0 84px 0;
-  background-color: ${theme.colors.bgSecond};
+  background-color: ${p => p.theme.colors.bgSecond};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
@@ -134,9 +133,6 @@ export const Avatar = styled.img`
     margin-bottom: 0;
   }
 `;
-export const InputFile = styled.input`
-  /* display: none; */
-`;
 export const AvatarPhotoEditButton = styled.label`
   display: flex;
   align-items: center;
@@ -145,7 +141,7 @@ export const AvatarPhotoEditButton = styled.label`
   font-size: 12px;
   line-height: 1.83;
   letter-spacing: 0.04em;
-  color: ${theme.colors.textMain};
+  color: ${p => p.theme.colors.textMain};
   cursor: pointer;
 `;
 
@@ -155,23 +151,19 @@ export const UploadInput = styled.input`
 
 export const UploadLabel = styled.label`
   display: inline-block;
-  padding: 4px 18px;
-
-  height: 24px;
+  height: 30px;
   width: 88px;
-  padding: 4px 18px;
+  padding: 4px 2px;
 
   font-size: 12px;
-  line-height: 1.33;
+  line-height: 1.8;
   letter-spacing: 0.04em;
-  color: ${theme.colors.textMain};
+  color: ${p => p.theme.colors.textMain};
+  text-align: center;
 
-  white-space: normal;
-  word-wrap: break-word;
-  width: 100px;
-  overflow: auto;
+  overflow: hidden;
 
-  background: ${theme.colors.bgMain};
+  background: ${p => p.theme.colors.bgMain};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 8px;
 
@@ -180,10 +172,12 @@ export const UploadLabel = styled.label`
 
 export const ConfirmBtnAvatar = styled.button`
   width: 88px;
-  height: 22px;
+  height: 30px;
   font-size: 12px;
   line-height: 1.83;
   letter-spacing: 0.04em;
-  color: ${theme.colors.textMain};
+  color: ${p => p.theme.colors.textSecond};
+  background-color: ${p => p.theme.colors.accent};
+  border-radius: 8px;
   cursor: pointer;
 `;

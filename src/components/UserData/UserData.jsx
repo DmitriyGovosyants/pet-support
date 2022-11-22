@@ -78,10 +78,14 @@ export const UserData = () => {
       const base64data = reader.result;
       setNewAvatar(base64data);
     };
-    console.log(newAvatar);
   };
 
   const onFileSubmit = async () => {
+    if (!avatarData) {
+      setIsShowLoadFile(false);
+      return;
+    }
+
     try {
       const formdata = new FormData();
       formdata.append('avatar', avatarData);
@@ -139,12 +143,12 @@ export const UserData = () => {
                         onChange={e => handleFile(e)}
                       />
                     </div>
-
                     <ConfirmBtnAvatar
                       type="button"
+                      disabled={isEditLoading}
                       onClick={e => onFileSubmit(e)}
                     >
-                      Confirm
+                      {avatarData ? 'Confirm' : 'Close'}
                     </ConfirmBtnAvatar>
                   </form>
                 </div>
