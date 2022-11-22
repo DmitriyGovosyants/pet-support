@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import { useCreatePetMutation } from '../../redux/usersApi';
-import { isName, isBreed, isComments, isDate, isDatePast } from 'helpers';
+import { isName, isBreedAddPet, isComments, isDate, isDatePast } from 'helpers';
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
@@ -70,7 +70,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
     const isNameValid = isName(name.value);
     const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
-    const isBreedValid = isBreed(breed.value);
+    const isBreedValid = isBreedAddPet(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
       setFormState(prevState => ({
