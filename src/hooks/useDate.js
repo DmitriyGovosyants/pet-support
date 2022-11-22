@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const useDate = (birthdate, func) => {
   useEffect(() => {
     if (!birthdate || birthdate === '') {
-      func('Unknown');
+      func('-');
     } else {
       const array = birthdate.split('.');
       const newBirthdayFormat = [array[1], array[0], array[2]].join('-');

@@ -180,12 +180,13 @@ export const ModalEditPet = ({
 
     try {
       await editPet(id, formData);
-      console.log(editPet(id, formData));
+
       closeModal();
       toast.success('Your pet has been changed');
     } catch (error) {
       console.log(error);
     }
+    console.log(editPet(id, formData));
   };
 
   return (
