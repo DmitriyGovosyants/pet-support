@@ -63,14 +63,13 @@ export const ModalAddsPet = ({ toggleModal }) => {
     if (step === 1) {
       setStep(0);
     }
-    console.log('scswdvcecve');
   };
 
   const validateFirstPage = () => {
     const { name, birthdate, breed } = formState;
 
     const isNameValid = isName(name.value);
-    const isDateValid = isDatePast && isDate(birthdate.value);
+    const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
     const isBreedValid = isBreed(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
