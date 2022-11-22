@@ -1,12 +1,10 @@
-import { Container } from 'components';
+import { Section, Container, MainTitle } from 'components';
 import { NewsItem } from 'components/NewsItem/NewsItem';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
 import {
-  Title,
   NewsInput,
   SearchForm,
-  NewsWrapper,
   NewsList,
   SearchButton,
   SearchIcon,
@@ -23,9 +21,9 @@ const NewsPage = () => {
   };
 
   return (
-    <NewsWrapper>
+    <Section>
       <Container>
-        <Title>News</Title>
+        <MainTitle>News</MainTitle>
         <SearchForm action="" onSubmit={handleSubmitForm}>
           <NewsInput type="text" name="news" placeholder="Search" />
           <SearchButton type="submit">
@@ -48,7 +46,7 @@ const NewsPage = () => {
             })}
         </NewsList>
       </Container>
-    </NewsWrapper>
+    </Section>
   );
 };
 

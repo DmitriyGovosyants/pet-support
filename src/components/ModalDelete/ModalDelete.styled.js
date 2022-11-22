@@ -34,7 +34,7 @@ export const ButtonClose = styled.button`
   right: 15px;
 
   cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {
@@ -67,7 +67,7 @@ export const ButtonDel = styled.button`
   background-color: ${props => props.theme.colors.accent};
   border-radius: 40px;
   color: ${props => props.theme.colors.bgSecond};
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color ${p => p.theme.animation.cubicBezier};
   cursor: pointer;
 
   :hover,
@@ -92,7 +92,7 @@ export const ButtonCancel = styled.button`
   color: #111111;
   cursor: pointer;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {

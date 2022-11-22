@@ -1,17 +1,6 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
-export const Section = styled.div`
-  padding: 45px 0;
-
-  ${device.tablet} {
-    padding: 64px 0;
-  }
-  ${device.desktop} {
-    padding: 37px 0;
-  }
-`;
-
 export const UserPageWrapper = styled.div`
   ${device.desktop} {
     display: flex;

@@ -9,7 +9,7 @@ import {
 } from './PetItem.styled';
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
-import dogImage from 'data/img/dog.png';
+import petTemlate from 'data/img/pet-template.jpg';
 import { Modal, ModalDelete, PetsInterfaceButton } from 'components';
 import { useState } from 'react';
 
@@ -18,7 +18,7 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
   const [showModalEdit, setShowModalEdit] = useState(false);
 
   const addDefaultSrc = ev => {
-    ev.target.src = dogImage;
+    ev.target.src = petTemlate;
   };
 
   return (
@@ -27,7 +27,7 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
         <Image
           width={'161px'}
           onError={addDefaultSrc}
-          src={image || dogImage}
+          src={image || petTemlate}
           alt="pet"
         />
       </ThumbImage>
