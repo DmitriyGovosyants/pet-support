@@ -24,4 +24,5 @@ export const validationError = {
   birthdate: 'Please, type in DD.MM.YYYY format and past date',
   phone: 'Please, type + and 12 numbers',
   city: 'You should type location in format: City, Region',
+  avatarData: 'File too large',
 }
