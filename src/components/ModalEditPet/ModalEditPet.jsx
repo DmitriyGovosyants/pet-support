@@ -31,7 +31,7 @@ export const ModalEditPet = ({
 }) => {
   const [editPet] = useEditPetMutation();
   const [avatarData, setAvatarData] = useState();
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(image);
   const [fileError, setFileError] = useState(false);
   const [step, setStep] = useState(0);
 
@@ -136,7 +136,7 @@ export const ModalEditPet = ({
 
     setAvatarData(file);
     setFileError(false);
-    console.log(name);
+
     switch (name) {
       case 'name':
         setFormState.name(value);
@@ -234,7 +234,7 @@ export const ModalEditPet = ({
         )}
       </div>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
-        <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+        <SubTitle htmlFor="addPhoto">Edit photo and some comments</SubTitle>
         <FormInputLoadWrapper>
           <FormInputLoad
             type={'file'}
