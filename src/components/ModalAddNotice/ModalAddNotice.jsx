@@ -364,7 +364,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
               </FormInputLabel>
               <FormInput
                 placeholder={'Type price'}
-                type={'number'}
+                type={'text'}
                 name={'price'}
                 onChange={handleChange}
               />

@@ -91,7 +91,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
           {categoryName === 'sell' ? (
             <>
               <Text>Price:</Text>
-              <Text>{price}</Text>
+              <Text>{price} $</Text>
             </>
           ) : (
             <>
