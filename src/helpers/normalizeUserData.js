@@ -1,6 +1,6 @@
 export const normalizeData = (object = {}, options = []) => {
   const avatar = {};
-  avatar.avatar = object.avatar;
+  avatar.avatar = object.avatarURL;
   const data = [];
 
   for (let index = 0; index < options.length; index++) {
