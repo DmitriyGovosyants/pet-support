@@ -21,7 +21,7 @@ import { toast } from 'react-toastify';
 import { MainButton } from 'components';
 
 export const ModalAddsPet = ({ toggleModal }) => {
-  const [addPet] = useCreatePetMutation();
+  const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
   const [fileError, setFileError] = useState(false);
@@ -231,6 +231,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         <MainButton
           size={'medium'}
           width={'fixed'}
+          disabled={isLoading}
           onClick={() => handleFirstBtn()}
         >
           {step === 0 ? 'Next' : 'Done'}

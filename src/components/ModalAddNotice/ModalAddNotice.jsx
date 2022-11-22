@@ -45,7 +45,7 @@ import { toast } from 'react-toastify';
 
 export const ModalAddNotice = ({ toggleModal }) => {
   const [formState, setFormState] = useState(addNoticeValidationModel);
-  const [addNotice] = useAddNoticeMutation();
+  const [addNotice, { isLoading }] = useAddNoticeMutation();
   const [step, setStep] = useState(1);
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
@@ -414,6 +414,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
         <MainButton
           size={'medium'}
           width={'fixed'}
+          disabled={isLoading}
           onClick={() => handleFirstBtn()}
         >
           {step === 1 ? 'Next' : 'Done'}
