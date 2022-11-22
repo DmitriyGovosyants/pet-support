@@ -106,6 +106,7 @@ export const AvatarWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+
   padding: 0 25px;
   margin-bottom: 34px;
 
@@ -124,6 +125,7 @@ export const Avatar = styled.img`
   width: 230px;
   height: 230px;
   margin-bottom: 12px;
+  object-fit: cover;
 
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   border-radius: 50%;
@@ -138,7 +140,45 @@ export const InputFile = styled.input`
 export const AvatarPhotoEditButton = styled.label`
   display: flex;
   align-items: center;
-  gap: 4px;
+  width: 88px;
+  height: 22px;
+  font-size: 12px;
+  line-height: 1.83;
+  letter-spacing: 0.04em;
+  color: ${theme.colors.textMain};
+  cursor: pointer;
+`;
+
+export const UploadInput = styled.input`
+  display: none;
+`;
+
+export const UploadLabel = styled.label`
+  display: inline-block;
+  padding: 4px 18px;
+
+  height: 24px;
+  width: 88px;
+  padding: 4px 18px;
+
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: ${theme.colors.textMain};
+
+  white-space: normal;
+  word-wrap: break-word;
+  width: 100px;
+  overflow: auto;
+
+  background: ${theme.colors.bgMain};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 8px;
+
+  cursor: pointer;
+`;
+
+export const ConfirmBtnAvatar = styled.button`
   width: 88px;
   height: 22px;
   font-size: 12px;
