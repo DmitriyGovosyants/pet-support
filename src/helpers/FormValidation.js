@@ -14,4 +14,4 @@ export const isDatePast =  data  => {
   const formatDate = `${data.slice(3, 5)}.${data.slice(0, 2)}.${data.slice(6)}`
   return new Date() > new Date(formatDate);
 };
-export const isUserName = name => matches(name, /^[0-9a-zA-Zа-яА-ЯёЁіІїЇєЄ!@#$%^&+=*,:;><'"~`?_\-()/.|\s]{7,32}$/);
+export const isUserName = name => matches(name, /^[^ 0-9][a-zA-Zа-яА-ЯёЁіІїЇєЄ\s]*$/);
