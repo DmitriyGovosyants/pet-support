@@ -69,6 +69,9 @@ export const LoginForm = () => {
       const data = dataFormConverter(formState);
       await login(data).unwrap();
     } catch (err) {
+      if (err.status === 401) {
+        toast.error(err.data.message);
+      }
       console.log(err);
     }
   }

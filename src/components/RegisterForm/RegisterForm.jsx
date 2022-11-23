@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import isEmail from 'validator/lib/isEmail';
+import { toast } from 'react-toastify';
 import {
   isCity,
   isPassword,
@@ -60,6 +61,9 @@ export const RegisterForm = () => {
       const data = dataFormConverter(formState);
       await signUp(data).unwrap();
     } catch (err) {
+      if (err.status === 409) {
+        toast.error(err.data.message);
+      }
       console.log(err);
     }
   };
