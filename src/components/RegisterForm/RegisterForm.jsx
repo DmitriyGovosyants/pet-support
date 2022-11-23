@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import isEmail from 'validator/lib/isEmail';
-import { isCity, isPassword, isName, dataFormConverter } from 'helpers';
+import {
+  isCity,
+  isPassword,
+  isName,
+  dataFormConverter,
+  isDomenName,
+} from 'helpers';
 import { useSignUpMutation } from '../../redux/authApi';
 import eyeImg from '../../data/img/eye.png';
 import eyeClosedImg from '../../data/img/eye-blocked.png';
@@ -13,6 +19,7 @@ import {
   MainButton,
 } from 'components';
 import { Wrapper, Button, EyeBtn, EyeConfBtn } from './RegisterForm.styled';
+import { validationErrMsg } from 'constants/constants';
 
 export const RegisterForm = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -68,7 +75,7 @@ export const RegisterForm = () => {
             name={'email'}
             onChange={handleChange}
             isValid={formState.email.isValid}
-            errorMessage="Invalid Email"
+            errorMessage={validationErrMsg.email}
           />
           <FormInput
             placeholder={'Password'}
@@ -77,7 +84,7 @@ export const RegisterForm = () => {
             id={'password'}
             onChange={handleChange}
             isValid={formState.password.isValid}
-            errorMessage="Invalid Password"
+            errorMessage={validationErrMsg.password}
           />
           <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
             {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
@@ -133,7 +140,9 @@ export const RegisterForm = () => {
             onClick={e => {
               if (step === 0) {
                 e.preventDefault();
-                const isEmailValid = isEmail(formState.email.value);
+                const isEmailValid =
+                  isEmail(formState.email.value) &&
+                  isDomenName(formState.email.value);
                 const isPasswordValid = isPassword(formState.password.value);
                 const isConfirmPasswordValid =
                   isPasswordValid &&

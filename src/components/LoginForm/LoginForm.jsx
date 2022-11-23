@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import isEmail from 'validator/lib/isEmail';
 import { toast } from 'react-toastify';
-import { isPassword, dataFormConverter } from 'helpers';
+import { isPassword, dataFormConverter, isDomenName } from 'helpers';
 import { useLogInMutation } from '../../redux/authApi';
 import eyeImg from '../../data/img/eye.png';
 import eyeClosedImg from '../../data/img/eye-blocked.png';
@@ -40,7 +40,10 @@ export const LoginForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!isEmail(formState.email.value)) {
+    if (
+      !isEmail(formState.email.value) ||
+      !isDomenName(formState.email.value)
+    ) {
       setFormState(prevState => ({
         ...prevState,
         email: {

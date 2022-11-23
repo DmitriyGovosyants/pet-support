@@ -16,7 +16,7 @@ import {
   Error,
 } from './UserDataItem.styled';
 import { useState } from 'react';
-import { isCity, isDate, isDatePast, isUserName } from 'helpers';
+import { isCity, isDate, isDatePast, isDomenName, isUserName } from 'helpers';
 
 export const UserDataItem = ({
   title,
@@ -41,7 +41,7 @@ export const UserDataItem = ({
         isValid = isUserName(newData);
         break;
       case 'email':
-        isValid = isEmail(newData);
+        isValid = isEmail(newData) && isDomenName(newData);
         break;
       case 'birthdate':
         isValid = isDatePast(newData) && isDate(newData);
