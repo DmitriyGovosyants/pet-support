@@ -71,6 +71,9 @@ export const UserDataItem = ({
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
+      if (title === 'birthdate' && inputValue === '') {
+        return;
+      }
       setErrorMsg(validationErrMsg[title]);
       return;
     }

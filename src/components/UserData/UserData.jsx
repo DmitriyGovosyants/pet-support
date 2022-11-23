@@ -1,4 +1,4 @@
-import { Spinner, UserDataItem } from 'components';
+import { Spinner, UserDataItem, ValidationError } from 'components';
 import {
   UserDataTitle,
   UserCardWrapper,
@@ -24,7 +24,7 @@ import { validationErrMsg } from '../../constants/constants';
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState('');
   const [newAvatar, setNewAvatar] = useState();
-  const [fileError, setFileError] = useState(false);
+  const [isFileValid, setIsFileValid] = useState(true);
   const [isShowLoadFile, setIsShowLoadFile] = useState(false);
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
@@ -35,7 +35,10 @@ export const UserData = () => {
 
   const fetchData = data?.data?.user;
 
-  const [normalizedData, avatar] = normalizeData(fetchData, ORDER_USER_FIELDS);
+  const [normalizedData, { avatar }] = normalizeData(
+    fetchData,
+    ORDER_USER_FIELDS
+  );
 
   const handleShowForm = e => {
     const id = e.currentTarget.id;
@@ -65,12 +68,12 @@ export const UserData = () => {
     const fileData = e.target.files[0];
 
     if (fileData['size'] > 1000000) {
-      setFileError(true);
+      setIsFileValid(false);
       return;
     }
 
     setAvatarData(fileData);
-    setFileError(false);
+    setIsFileValid(true);
 
     const reader = new FileReader();
     reader.readAsDataURL(fileData);
@@ -99,25 +102,25 @@ export const UserData = () => {
     }
   };
 
+  console.log(avatar);
+
   return (
     <>
       <UserDataTitle>My information:</UserDataTitle>
       <UserCardWrapper>
         <UserWrapper>
           <AvatarWrapper>
-            {!newAvatar && (
-              <Avatar
-                src={avatar.avatar || imageNotFound}
-                alt={avatar || imageNotFound}
-              />
-            )}
-            {newAvatar && (
-              <Avatar
-                src={newAvatar || imageNotFound}
-                alt={avatar || imageNotFound}
-              />
-            )}
-            {fileError && <p>{validationErrMsg.avatar}</p>}
+            <Avatar
+              src={newAvatar || avatar || imageNotFound}
+              alt="user-avatar"
+              onError={e => {
+                e.target.src = imageNotFound;
+              }}
+            />
+            <ValidationError
+              message={validationErrMsg.avatar}
+              isHidden={isFileValid}
+            />
             <AvatarPhotoWrapper>
               {!isShowLoadFile && (
                 <AvatarPhotoEditButton
