@@ -12,7 +12,7 @@ import {
   FormWrapper,
   MainButton,
 } from 'components';
-import { Wrapper, EyeBtn } from './LoginForm.styled';
+import { Wrapper, EyeBtn, InputWrapper } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const [login, { isError, isLoading }] = useLogInMutation();
@@ -88,19 +88,24 @@ export const LoginForm = () => {
           isValid={formState.email.isValid}
           errorMessage="Invalid Email"
         />
-        <FormInput
-          placeholder={'Password'}
-          type={showPassword ? 'text' : 'password'}
-          name={'password'}
-          id={'password'}
-          onChange={handleChange}
-          isValid={formState.password.isValid}
-          errorMessage="Invalid Password"
-        />
-        <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-          {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
-          {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
-        </EyeBtn>
+        <InputWrapper>
+          <FormInput
+            placeholder={'Password'}
+            type={showPassword ? 'text' : 'password'}
+            name={'password'}
+            id={'password'}
+            onChange={handleChange}
+            isValid={formState.password.isValid}
+            errorMessage="Invalid Password"
+          />
+          <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
+            <img
+              src={showPassword ? eyeClosedImg : eyeImg}
+              alt="eye"
+              width={20}
+            />
+          </EyeBtn>
+        </InputWrapper>
         <Wrapper>
           <MainButton type={'submit'} disabled={isLoading}>
             Login
