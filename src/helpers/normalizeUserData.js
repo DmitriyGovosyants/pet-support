@@ -12,5 +12,7 @@ export const normalizeData = (object = {}, options = []) => {
     });
   }
 
+  
+
   return [data, avatar];
 };

@@ -26,7 +26,9 @@ export const UserDataItem = ({
   onSubmit,
   isEditBtnDisabled,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(
+    value === '00.00.0000' ? '' : value
+  );
   const [errorMsg, setErrorMsg] = useState(null);
 
   const titleNormalized = title.toLowerCase();
