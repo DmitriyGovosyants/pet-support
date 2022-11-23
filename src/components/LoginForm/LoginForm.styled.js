@@ -9,17 +9,18 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const InputWrapper = styled.div`
+  position: relative;
+`
 
 export const EyeBtn = styled.button`
-position: absolute;
-right: 0;
-cursor: pointer;
-${device.mobileOnly} {
-  top: 175px;
+  position: absolute;
+  top: 10px;
   right: 40px;
-}
-${device.tablet} {
-  top: 215px;
-  right: 100px;
-}
+  cursor: pointer;
+
+  ${device.tablet} {
+    top: 15px;
+    right: 20px;
+  }
 `;

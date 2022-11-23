@@ -19,7 +19,7 @@ import {
   FormWrapper,
   MainButton,
 } from 'components';
-import { Wrapper, Button, EyeBtn, EyeConfBtn } from './RegisterForm.styled';
+import { Wrapper, InputWrapper, Button, EyeBtn } from './RegisterForm.styled';
 import { validationErrMsg } from 'constants/constants';
 
 export const RegisterForm = () => {
@@ -81,35 +81,48 @@ export const RegisterForm = () => {
             isValid={formState.email.isValid}
             errorMessage={validationErrMsg.email}
           />
-          <FormInput
-            placeholder={'Password'}
-            name={'password'}
-            type={showPassword ? 'text' : 'password'}
-            id={'password'}
-            onChange={handleChange}
-            isValid={formState.password.isValid}
-            errorMessage={validationErrMsg.password}
-          />
-          <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
-            {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
-          </EyeBtn>
-          <FormInput
-            placeholder={'Confirm Password'}
-            name={'confirmPassword'}
-            type={showPassword ? 'text' : 'password'}
-            id={'password'}
-            onChange={handleChange}
-            isValid={formState.confirmPassword.isValid}
-            errorMessage="Password and Confirm Password are not equal"
-          />
-          <EyeConfBtn
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
-            {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
-          </EyeConfBtn>
+          <InputWrapper>
+            <FormInput
+              placeholder={'Password'}
+              name={'password'}
+              type={showPassword ? 'text' : 'password'}
+              id={'password'}
+              onChange={handleChange}
+              isValid={formState.password.isValid}
+              errorMessage={validationErrMsg.password}
+            />
+            <EyeBtn
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <img
+                src={showPassword ? eyeClosedImg : eyeImg}
+                alt="eye"
+                width={20}
+              />
+            </EyeBtn>
+          </InputWrapper>
+          <InputWrapper>
+            <FormInput
+              placeholder={'Confirm Password'}
+              name={'confirmPassword'}
+              type={showPassword ? 'text' : 'password'}
+              id={'password'}
+              onChange={handleChange}
+              isValid={formState.confirmPassword.isValid}
+              errorMessage="Password and Confirm Password are not equal"
+            />
+            <EyeBtn
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <img
+                src={showPassword ? eyeClosedImg : eyeImg}
+                alt="eye"
+                width={20}
+              />
+            </EyeBtn>
+          </InputWrapper>
         </div>
         <div style={{ display: step === 1 ? 'block' : 'none' }}>
           <FormInput
