@@ -21,6 +21,7 @@ export const ORDER_USER_FIELDS = [
 export const validationErrMsg = {
   name: 'Name should have only letters and don`t start with a space',
   email: 'email must contain a domain name .com, .net, .org, .ua, .ru, .gov, .ca',
+  password: 'Password length should have at 7 to 32 symbol and does not contain a space',
   birthdate: 'Please, type in DD.MM.YYYY format and past date',
   phone: 'Please, type + and 12 numbers',
   city: 'You should type location in format: City, Region',

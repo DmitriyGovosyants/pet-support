@@ -15,3 +15,12 @@ export const isDatePast =  data  => {
   return new Date() > new Date(formatDate);
 };
 export const isUserName = name => matches(name, /^[^ 0-9][a-zA-Zа-яА-ЯёЁіІїЇєЄ\s]*$/);
+export const isDomenName = email => {
+  const validDomenName = ['com', 'net', 'org', 'ua', 'ru', 'gov', 'ca'];
+  const emailParts = email.split('.')
+  const currentDomenName = emailParts[emailParts.length - 1];
+  if (validDomenName.includes(currentDomenName)) {
+    return true;
+  }
+  return false;
+}
