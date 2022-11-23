@@ -87,22 +87,26 @@ export const ModalNotice = ({
               <FeaturesDescription>The sex:</FeaturesDescription>
               <FeaturesDefinition>{sex}</FeaturesDefinition>
             </FeaturesItem>
-            <FeaturesItem>
-              <FeaturesDescription>Email:</FeaturesDescription>
-              <ContactLink href={`mailto: ${owner?.email}`}>
-                {owner?.email}
-              </ContactLink>
-            </FeaturesItem>
-            <FeaturesItem>
-              <FeaturesDescription>Phone:</FeaturesDescription>
-              <ContactLink href={`tel: ${owner?.phone}`}>
-                {owner?.phone}
-              </ContactLink>
-            </FeaturesItem>
+            {owner && (
+              <>
+                <FeaturesItem>
+                  <FeaturesDescription>Email:</FeaturesDescription>
+                  <ContactLink href={`mailto: ${owner?.email}`}>
+                    {owner?.email}
+                  </ContactLink>
+                </FeaturesItem>
+                <FeaturesItem>
+                  <FeaturesDescription>Phone:</FeaturesDescription>
+                  <ContactLink href={`tel: ${owner?.phone}`}>
+                    {owner?.phone}
+                  </ContactLink>
+                </FeaturesItem>
+              </>
+            )}
             {category.toLowerCase() === 'sell' && (
               <FeaturesItem>
                 <FeaturesDescription>Sell:</FeaturesDescription>
-                <FeaturesDefinition>{price}$</FeaturesDefinition>
+                <FeaturesDefinition>{price} $</FeaturesDefinition>
               </FeaturesItem>
             )}
           </FeaturesList>
