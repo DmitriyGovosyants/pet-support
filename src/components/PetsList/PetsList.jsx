@@ -1,11 +1,9 @@
 import { PetsListStyled } from './PetsList.styled';
 import { useFetchPetsQuery } from 'redux/usersApi';
-import { PetItem, Spinner } from 'components';
+import { PetItem } from 'components';
 
 export const PetsList = () => {
-  const { data, isLoading, isError, error } = useFetchPetsQuery();
-
-  if (isLoading) return <Spinner />;
+  const { data, isError, error } = useFetchPetsQuery();
 
   if (isError) {
     if (error?.status === 404) {

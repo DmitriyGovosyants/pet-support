@@ -1,5 +1,5 @@
 import { Section, Container, MainTitle } from 'components';
-import { NewsItem } from 'components/NewsItem/NewsItem';
+import { NewsItem } from 'components';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
 import { Input, SearchForm, NewsList, Label, Icon } from './NewsPage.styled';
