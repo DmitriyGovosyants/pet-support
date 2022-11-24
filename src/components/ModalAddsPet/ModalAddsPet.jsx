@@ -18,7 +18,7 @@ import {
   FormInputLoadPlus,
 } from './ModalAddsPets.styled';
 import { toast } from 'react-toastify';
-import { MainButton, ValidationError } from 'components';
+import { MainButton, Spinner, ValidationError } from 'components';
 import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
@@ -247,6 +247,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
           {step === 0 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
+      {isLoading && <Spinner button />}
     </ModalWrap>
   );
 };

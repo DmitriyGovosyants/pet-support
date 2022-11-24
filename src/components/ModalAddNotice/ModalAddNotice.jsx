@@ -17,7 +17,7 @@ import {
   isDate,
   isDatePast,
 } from 'helpers';
-import { MainButton, ValidationError } from 'components';
+import { MainButton, Spinner, ValidationError } from 'components';
 import {
   ModalCard,
   FormTitle,
@@ -427,6 +427,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
           {step === 1 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
+      {isLoading && <Spinner button />}
       <BtnClose type="button" onClick={() => toggleModal()}>
         <CloseIcon />
       </BtnClose>
