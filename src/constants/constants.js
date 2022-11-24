@@ -32,6 +32,6 @@ export const validationErrMsg = {
   breedAddPet: 'Breed should have only 2-16 letters',
   breed: 'Breed should have only 2-24 letters',
   sex: 'Choose sex',
-  price: 'Price couldn\'t start from 0, 0-9 numbers',
+  price: 'Price couldn\'t start from 0, only numbers',
   comments: 'Comments should have only 8-120 letters',
 }

@@ -131,7 +131,7 @@ export const RegisterForm = () => {
             name={'name'}
             onChange={handleChange}
             isValid={formState.name.isValid}
-            errorMessage="Name should contain only letters"
+            errorMessage={validationErrMsg.name}
           />
           <FormInput
             placeholder={'City, Region'}
@@ -139,7 +139,7 @@ export const RegisterForm = () => {
             type={'City'}
             onChange={handleChange}
             isValid={formState.city.isValid}
-            errorMessage="Should be in format - City, Region"
+            errorMessage={validationErrMsg.city}
           />
           <FormInput
             placeholder={'Mobile Phone'}
@@ -147,7 +147,7 @@ export const RegisterForm = () => {
             type={'phone'}
             onChange={handleChange}
             isValid={formState.phone.isValid}
-            errorMessage="Should be a correct mobile phone"
+            errorMessage={validationErrMsg.phone}
           />
         </div>
         <Wrapper>
