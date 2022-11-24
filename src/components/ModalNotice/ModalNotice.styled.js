@@ -3,21 +3,15 @@ import { device } from 'styles/mediaquery';
 
 export const Container = styled.div`
   position: relative;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 280px;
+  max-width: 400px;
+  margin: 0px auto;
   padding: 60px 20px 40px;
 
   background-color: ${props => props.theme.colors.bgSecond};
   border-radius: 20px;
 
   ${device.tablet} {
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 704px;
+    max-width: 704px;
     padding: 32px 20px;
   }
 `;
@@ -36,7 +30,7 @@ export const CloseBtn = styled.button`
   border-radius: 50%;
   cursor: pointer;
   background-color: ${props => props.theme.colors.bgMain};
-  transition: background-color 250ms linear;
+  transition: background-color ${p => p.theme.animation.cubicBezier};
 
   &:hover,
   &:focus {
@@ -48,27 +42,45 @@ export const CloseBtn = styled.button`
   }
 `;
 
+export const Wrapper = styled.div`
+  & + p {
+    margin-bottom: 40px;
+  }
+
+  ${device.tablet} {
+    display: grid;
+    grid-template-columns: 288px 356px;
+    gap: 20px;
+    margin-bottom: 28px;
+
+    & + p {
+      margin-bottom: 32px;
+    }
+  }
+`;
+
 export const ImgWrapper = styled.div`
   position: relative;
 
   width: 240px;
   height: 240px;
-  margin-bottom: 16px;
-
+  
   border-radius: 0px 0px 40px 40px;
   overflow: hidden;
+
+  ${device.mobileOnly} {
+    margin: 0 auto 16px auto;
+  }
 
   ${device.tablet} {
     width: 288px;
     height: 328px;
-    margin-right: 20px;
-    margin-bottom: 0;
   }
 `;
 
 export const Img = styled.img`
+  object-fit: cover;
   ${device.tablet} {
-    object-fit: cover;
     height: 100%;
   }
 `;
@@ -93,6 +105,10 @@ export const CategoryMark = styled.span`
   border-bottom-right-radius: 20px;
 `;
 
+export const FeaturesWrapper = styled.div`
+  width: 100%;
+`;
+
 export const Title = styled.h2`
   margin-bottom: 16px;
 
@@ -100,6 +116,7 @@ export const Title = styled.h2`
   font-size: 24px;
   line-height: 1.375;
   letter-spacing: -0.01em;
+  word-wrap: break-word;
 
   ${device.tablet} {
     margin-bottom: 20px;
@@ -141,23 +158,12 @@ export const FeaturesDescription = styled.p`
   }
 `;
 
-export const FeaturesDefinition = styled.p`
-  font-size: 14px;
-  line-height: 1.35;
-  color: ${props => props.theme.colors.black};
-
-  ${device.tablet} {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-`;
-
 export const ContactLink = styled.a`
   font-size: 14px;
   line-height: 1.35;
   color: ${props => props.theme.colors.black};
 
-  transition: color 250ms linear;
+  transition: color ${p => p.theme.animation.cubicBezier};
 
   &:hover,
   &:focus {
@@ -170,11 +176,30 @@ export const ContactLink = styled.a`
   }
 `;
 
+export const FeaturesDefinition = styled.p`
+  font-size: 14px;
+  line-height: 1.35;
+  color: ${props => props.theme.colors.black};
+
+  ${device.tablet} {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+`;
+
+export const BtnWrapper = styled.div`
+  ${device.tablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 20px;
+  }
+`;
+
 export const ContactButton = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
+  width: 100%;
   min-height: 40px;
   margin-bottom: 12px;
 
@@ -186,7 +211,7 @@ export const ContactButton = styled.a`
 
   background-color: ${props => props.theme.colors.accent};
   border-radius: 40px;
-  transition: background-color 250ms linear;
+  transition: background-color ${p => p.theme.animation.cubicBezier};
 
   ${device.tablet} {
     width: 160px;
@@ -203,7 +228,7 @@ export const ChangeFavoriteStatusBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
+  width: 100%;
   min-height: 40px;
 
   font-size: 16px;
@@ -214,7 +239,7 @@ export const ChangeFavoriteStatusBtn = styled.button`
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   cursor: pointer;
-  transition: border-color 250ms linear;
+  transition: border-color ${p => p.theme.animation.cubicBezier};
 
   & > svg {
     width: 16px;
@@ -222,7 +247,7 @@ export const ChangeFavoriteStatusBtn = styled.button`
     margin-left: 8px;
 
     fill: ${props => props.theme.colors.accent};
-    transition: fill 250ms linear;
+    transition: fill ${p => p.theme.animation.cubicBezier};
   }
 
   ${device.tablet} {
@@ -237,30 +262,5 @@ export const ChangeFavoriteStatusBtn = styled.button`
     & > svg {
       fill: ${props => props.theme.colors.hover};
     }
-  }
-`;
-
-export const FeaturesWrapper = styled.div``;
-
-export const Wrapper = styled.div`
-  & + p {
-    margin-bottom: 40px;
-  }
-
-  ${device.tablet} {
-    display: flex;
-    margin-bottom: 28px;
-
-    & + p {
-      margin-bottom: 32px;
-    }
-  }
-`;
-
-export const BtnWrapper = styled.div`
-  ${device.tablet} {
-    display: flex;
-    flex-direction: row-reverse;
-    padding-right: 20px;
   }
 `;
