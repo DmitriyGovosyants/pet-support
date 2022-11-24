@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
 export const Btn = styled.button`
-  position: relative;
   min-width: ${p => p.width === 'small' ? 'unset' : '100%'};
   padding: ${p => p.width === 'small' ? '6px 26px' : '6.5px 0px'};
 
