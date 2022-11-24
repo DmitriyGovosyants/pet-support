@@ -28,10 +28,8 @@ export const UserData = () => {
   const [isShowLoadFile, setIsShowLoadFile] = useState(false);
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
-  const { data, isLoading } = useFetchUserQuery();
+  const { data } = useFetchUserQuery();
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
-
-  if (isLoading) return <Spinner />;
 
   const fetchData = data?.data?.user;
 
@@ -101,8 +99,6 @@ export const UserData = () => {
       setAvatarData('');
     }
   };
-
-  console.log(avatar);
 
   return (
     <>
