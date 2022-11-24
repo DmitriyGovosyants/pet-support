@@ -23,4 +23,5 @@ export const isDomenName = email => {
     return true;
   }
   return false;
-}
+};
+export const isEmail = email => matches(email, /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/);
