@@ -1,7 +1,6 @@
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
-import isEmail from 'validator/lib/isEmail';
 import { validationErrMsg } from 'constants/constants';
 import {
   ItemContainer,
@@ -16,7 +15,14 @@ import {
   Error,
 } from './UserDataItem.styled';
 import { useState } from 'react';
-import { isCity, isDate, isDatePast, isDomenName, isUserName } from 'helpers';
+import {
+  isCity,
+  isDate,
+  isDatePast,
+  isDomenName,
+  isEmail,
+  isUserName,
+} from 'helpers';
 
 export const UserDataItem = ({
   title,

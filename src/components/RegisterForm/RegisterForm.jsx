@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import isMobilePhone from 'validator/lib/isMobilePhone';
-import isEmail from 'validator/lib/isEmail';
 import { toast } from 'react-toastify';
 import {
   isCity,
@@ -8,6 +7,7 @@ import {
   isName,
   dataFormConverter,
   isDomenName,
+  isEmail,
 } from 'helpers';
 import { useSignUpMutation } from '../../redux/authApi';
 import eyeImg from '../../data/img/eye.png';
