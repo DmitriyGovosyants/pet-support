@@ -190,3 +190,7 @@ export const Textarea = styled.textarea`
     }
   }
 `
+
+export const RequiredSymbol = styled.span`
+  color: ${p => p.theme.colors.accent};
+`
