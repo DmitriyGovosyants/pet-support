@@ -86,7 +86,7 @@ export const OurFriendItem = ({
             )}
           </InfoItem>
           <InfoItem>
-            <p>Adress:</p>
+            <p>Address:</p>
             {address && (
               <AddressLink
                 underline
