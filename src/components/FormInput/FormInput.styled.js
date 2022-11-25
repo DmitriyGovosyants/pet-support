@@ -2,9 +2,6 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const Wrapper = styled.div`
-${device.mobileOnly} {
-  padding: 0 20px;
-}
   display: flex;
   justify-content: center;
   margin-bottom: 16px;

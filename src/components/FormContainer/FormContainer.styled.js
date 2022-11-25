@@ -3,7 +3,9 @@ import { device, retina } from 'styles/mediaquery';
 import { bgImgs } from '../../data/img/formPage';
 
 export const Container = styled.div`
-  height: calc(100vh - (${p => p.theme.header.mobileHeight}));
+  padding: 20px 20px 20px 20px;
+  height: 100%;
+  min-height: calc(100vh - (${p => p.theme.header.mobileHeight}));
   background-image: url(${bgImgs.curveMobile1x});
   background-position: bottom;
   background-repeat: no-repeat;
@@ -14,7 +16,8 @@ export const Container = styled.div`
   }
 
   ${device.tablet} {
-    height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
+    padding: 149px 20px 20px 20px;
+    min-height: calc(100vh - (${p => p.theme.header.tabletAndDesktopHeight}));
     background-image: url(${bgImgs.curveTablet1x});
 
     ${retina} {
@@ -23,6 +26,7 @@ export const Container = styled.div`
   }
 
   ${device.desktop} {
+    padding: 60px 20px 20px 20px;
     background-image: url(${bgImgs.curveDesktop1x});
 
     ${retina} {
