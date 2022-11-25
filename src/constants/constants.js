@@ -8,7 +8,7 @@ export const categories = [
 
 export const categoriesWithoutAuth = ['sell', 'lost/found', 'In good hands'];
 
-export const daysOfWeek = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+export const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export const ORDER_USER_FIELDS = [
   'name',
