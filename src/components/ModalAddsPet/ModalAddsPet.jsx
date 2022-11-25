@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import { useCreatePetMutation } from '../../redux/usersApi';
 import { isName, isBreedAddPet, isComments, isDate, isDatePast } from 'helpers';
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
-  BtnClose,
   Label,
   Input,
   BtnBox,
@@ -18,7 +16,12 @@ import {
   FormInputLoadPlus,
 } from './ModalAddsPets.styled';
 import { toast } from 'react-toastify';
-import { MainButton, Spinner, ValidationError } from 'components';
+import {
+  MainButton,
+  ModalBtnClose,
+  Spinner,
+  ValidationError,
+} from 'components';
 import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
@@ -161,9 +164,6 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   return (
     <ModalWrap onSubmit={handleSubmit}>
-      <BtnClose type="button" onClick={() => toggleModal()}>
-        <CloseIcon />
-      </BtnClose>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
         <Title>Add pet</Title>
         <Label htmlFor="name">Name pet</Label>
@@ -247,6 +247,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
           {step === 0 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
+      <ModalBtnClose toggleModal={toggleModal} />
       {isLoading && <Spinner button />}
     </ModalWrap>
   );

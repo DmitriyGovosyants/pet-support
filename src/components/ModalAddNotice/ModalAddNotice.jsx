@@ -2,7 +2,6 @@ import { useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { toast } from 'react-toastify';
 import { useAddNoticeMutation } from 'redux/noticesApi';
-import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import maleImg from '../../data/img/male.png';
 import femaleImg from '../../data/img/female.png';
 import plusImg from '../../data/img/plus.png';
@@ -17,7 +16,12 @@ import {
   isDate,
   isDatePast,
 } from 'helpers';
-import { MainButton, Spinner, ValidationError } from 'components';
+import {
+  MainButton,
+  ModalBtnClose,
+  Spinner,
+  ValidationError,
+} from 'components';
 import {
   ModalCard,
   FormTitle,
@@ -40,7 +44,6 @@ import {
   FormInputLoadImg,
   FormInputLoadPlus,
   BtnBox,
-  BtnClose,
 } from './ModalAddNotice.styled';
 import { validationErrMsg } from 'constants/constants';
 
@@ -428,9 +431,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
         </MainButton>
       </BtnBox>
       {isLoading && <Spinner button />}
-      <BtnClose type="button" onClick={() => toggleModal()}>
-        <CloseIcon />
-      </BtnClose>
+      <ModalBtnClose toggleModal={toggleModal} />
     </ModalCard>
   );
 };

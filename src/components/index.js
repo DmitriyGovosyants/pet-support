@@ -43,6 +43,6 @@ export * from './Section/Section';
 export * from './MainTitle/MainTitle';
 export * from './Modal/Modal';
 export * from './MainButton/MainButton';
-export * from './BurgerBtn/BurgerBtn';
+export * from './ModalBtnClose/ModalBtnClose';
 export * from './Spinner/Spinner';
 export * from './ValidationError/ValidationError';
