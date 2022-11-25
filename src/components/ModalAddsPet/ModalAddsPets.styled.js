@@ -119,6 +119,17 @@ export const FormInputLoadWrapper = styled.div`
   }
 `
 
+export const FormInputLoad = styled.input`
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  cursor: pointer;
+
+  background-color: ${p => p.theme.colors.bgMain};
+  border-radius: 20px;
+`
+
 export const FormInputLoadPlus = styled.img`
   position: absolute;
   top: 50%;
@@ -142,17 +153,6 @@ export const FormInputLoadImg = styled.img`
     width: 182px;
     height: 182px;
   }
-`
-
-export const FormInputLoad = styled.input`
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  color: transparent;
-  cursor: pointer;
-
-  background-color: ${p => p.theme.colors.bgMain};
-  border-radius: 20px;
 `
 
 export const Textarea = styled.textarea`

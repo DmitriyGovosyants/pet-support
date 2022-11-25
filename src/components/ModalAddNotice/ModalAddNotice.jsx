@@ -45,7 +45,7 @@ import {
   FormInputLoadPlus,
   BtnBox,
 } from './ModalAddNotice.styled';
-import { validationErrMsg } from 'constants/constants';
+import { validationErrMsg, validFileExtension } from 'constants/constants';
 
 export const ModalAddNotice = ({ toggleModal }) => {
   const [formState, setFormState] = useState(addNoticeValidationModel);
@@ -53,7 +53,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
   const [step, setStep] = useState(1);
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
-  const [isFileValid, setIsFileValid] = useState(true);
 
   const handleFirstBtn = () => {
     if (step === 1) {
@@ -169,14 +168,26 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
+    const fileNameSplit = file.name.split('.');
+    const isValidFileExtension = validFileExtension.includes(
+      fileNameSplit[fileNameSplit.length - 1]
+    );
 
-    if (file['size'] > 1000000) {
-      setIsFileValid(false);
+    if (file.size > 1000000) {
+      toast.error(validationErrMsg.avatarIsTooLarge);
+      setAvatar();
+      setAvatarData();
+      return;
+    }
+
+    if (!isValidFileExtension) {
+      toast.error(validationErrMsg.avatarExtensionFailure);
+      setAvatar();
+      setAvatarData();
       return;
     }
 
     setAvatarData(file);
-    setIsFileValid(true);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -217,8 +228,8 @@ export const ModalAddNotice = ({ toggleModal }) => {
       <FormTitle>Add pet</FormTitle>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
         <FormText>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-          consectetur
+          You can sell your pet, find your lost pet, create notice with lost pet
+          or give pet in good hands
         </FormText>
         <SelectCategory>
           <CategoryInput
@@ -229,7 +240,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             onChange={handleChange}
             required
           />
-          <CategoryLabel htmlFor="lost-found">lost/found</CategoryLabel>
+          <CategoryLabel htmlFor="lost-found">Lost/found</CategoryLabel>
           <CategoryInput
             id="in-good-hands"
             type="radio"
@@ -245,7 +256,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
             value="sell"
             onChange={handleChange}
           />
-          <CategoryLabel htmlFor="sell">sell</CategoryLabel>
+          <CategoryLabel htmlFor="sell">Sell</CategoryLabel>
           <ValidationError
             message={validationErrMsg.category}
             isHidden={formState.category.isValid}
@@ -390,10 +401,6 @@ export const ModalAddNotice = ({ toggleModal }) => {
               <FormInputLoadPlus src={plusImg} alt="" />
               {avatar && <FormInputLoadImg src={avatar} alt="" />}
             </FormInputLoadWrapper>
-            <ValidationError
-              message={validationErrMsg.avatar}
-              isHidden={isFileValid}
-            />
           </InputItem>
           <InputItem>
             <FormInputLabel>

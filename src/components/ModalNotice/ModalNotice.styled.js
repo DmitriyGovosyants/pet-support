@@ -93,6 +93,7 @@ export const Title = styled.h2`
   word-wrap: break-word;
 
   ${device.tablet} {
+    width: 90%;
     margin-bottom: 20px;
 
     font-size: 28px;
