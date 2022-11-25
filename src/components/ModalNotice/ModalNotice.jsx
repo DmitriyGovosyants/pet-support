@@ -39,6 +39,9 @@ export const ModalNotice = ({
     price,
     sex,
   } = petData;
+
+  const noticeCategory = category.split('-').join(' ');
+
   return (
     <Container>
       <Wrapper>
@@ -50,7 +53,7 @@ export const ModalNotice = ({
               e.target.src = petTemlate;
             }}
           />
-          <CategoryMark>{category}</CategoryMark>
+          <CategoryMark>{noticeCategory}</CategoryMark>
         </ImgWrapper>
 
         <FeaturesWrapper>

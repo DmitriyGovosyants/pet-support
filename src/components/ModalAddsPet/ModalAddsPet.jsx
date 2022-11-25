@@ -23,13 +23,12 @@ import {
   Spinner,
   ValidationError,
 } from 'components';
-import { validationErrMsg } from 'constants/constants';
+import { validationErrMsg, validFileExtension } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
   const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
-  const [isFileValid, setIsFileValid] = useState(true);
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
@@ -125,14 +124,26 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
+    const fileNameSplit = file.name.split('.');
+    const isValidFileExtension = validFileExtension.includes(
+      fileNameSplit[fileNameSplit.length - 1]
+    );
 
-    if (file['size'] > 1000000) {
-      setIsFileValid(false);
+    if (file.size > 1000000) {
+      toast.error(validationErrMsg.avatarIsTooLarge);
+      setAvatar();
+      setAvatarData();
+      return;
+    }
+
+    if (!isValidFileExtension) {
+      toast.error(validationErrMsg.avatarExtensionFailure);
+      setAvatar();
+      setAvatarData();
       return;
     }
 
     setAvatarData(file);
-    setIsFileValid(true);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -165,8 +176,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   return (
     <ModalWrap onSubmit={handleSubmit}>
+      <Title>Add pet</Title>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <Title>Add pet</Title>
         <Label htmlFor="name">
           Name pet<RequiredSymbol>*</RequiredSymbol>
         </Label>
@@ -219,10 +230,6 @@ export const ModalAddsPet = ({ toggleModal }) => {
           />
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
-          <ValidationError
-            message={validationErrMsg.avatar}
-            isHidden={isFileValid}
-          />
         </FormInputLoadWrapper>
         <Label htmlFor="name">
           Comments<RequiredSymbol>*</RequiredSymbol>

@@ -18,6 +18,10 @@ export const ORDER_USER_FIELDS = [
   'city',
 ];
 
+export const validFileExtension = [
+  'png', 'jpeg', 'jpg', 'webp'
+]
+
 export const validationErrMsg = {
   name: 'Name should have only letters and don`t start with a space',
   email: 'Email only on English and with @ and must contain a domain name .com, .net, .org, .ua, .ru, .gov, .ca',
@@ -25,7 +29,9 @@ export const validationErrMsg = {
   birthdate: 'Please, type in DD.MM.YYYY format and past date',
   phone: 'Please, type + and 12 numbers',
   city: 'You should type location in format: City, Region',
-  avatar: 'File too large',
+  avatar: 'File must be < 1MB and contain only .png, .jpeg, .jpg or .webp extension',
+  avatarIsTooLarge: 'File is too large',
+  avatarExtensionFailure: 'File must contain only .png, .jpeg, .jpg or .webp extension',
   category: 'Choose category',
   title: 'Title should have only 2-48 letters',
   petName: 'Name should have only 2-16 letters',
