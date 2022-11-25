@@ -4,8 +4,8 @@ import { device } from "styles/mediaquery";
 
 
 export const NavList = styled.ul`
-  ${device.tabletOnly} {
-    padding-top: 68px;
+  ${device.notDesktop} {
+    padding: 68px 0;
   }
 
   ${device.desktop} {

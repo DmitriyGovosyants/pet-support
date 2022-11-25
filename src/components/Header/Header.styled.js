@@ -27,6 +27,7 @@ export const NavBox = styled.div`
     top: ${p => p.theme.header.mobileHeight};
     left: 0;
     z-index: 10;
+    overflow: scroll;
 
     width: 100vw;
     height: calc(100vh - (${p => p.theme.header.mobileHeight}));
@@ -70,7 +71,6 @@ export const AuthBox = styled.div`
 export const AuthBoxMob = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 60px;
 
   ${device.tablet} {
     display: none;
