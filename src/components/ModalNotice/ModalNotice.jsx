@@ -9,7 +9,6 @@ import {
   FeaturesDefinition,
   ContactButton,
   ChangeFavoriteStatusBtn,
-  CloseBtn,
   CategoryMark,
   ContactLink,
   FeaturesWrapper,
@@ -18,8 +17,8 @@ import {
 } from './ModalNotice.styled';
 
 import { ReactComponent as HeartIcon } from 'data/img/favourite-icon.svg';
-import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import petTemlate from 'data/img/pet-template.jpg';
+import { ModalBtnClose } from 'components';
 
 export const ModalNotice = ({
   petData,
@@ -42,10 +41,6 @@ export const ModalNotice = ({
   } = petData;
   return (
     <Container>
-      <CloseBtn type="button" onClick={() => toggleModal()}>
-        <CloseIcon />
-      </CloseBtn>
-
       <Wrapper>
         <ImgWrapper>
           <Img
@@ -124,6 +119,7 @@ export const ModalNotice = ({
           <HeartIcon />
         </ChangeFavoriteStatusBtn>
       </BtnWrapper>
+      <ModalBtnClose toggleModal={toggleModal} />
     </Container>
   );
 };

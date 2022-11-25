@@ -76,3 +76,17 @@ export const AuthBoxMob = styled.div`
     display: none;
   }
 `;
+
+export const BurgerBtn = styled.button`
+  display: flex;
+  padding: 0;
+  
+  background-color: transparent;
+  border: none;
+  
+  cursor: pointer;
+
+  ${device.desktop} {
+    display: none;
+  }
+`;

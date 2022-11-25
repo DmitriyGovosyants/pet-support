@@ -16,32 +16,6 @@ export const Container = styled.div`
   }
 `;
 
-export const CloseBtn = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 34px;
-  height: 34px;
-
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: ${props => props.theme.colors.bgMain};
-  transition: background-color ${p => p.theme.animation.cubicBezier};
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.colors.hover};
-  }
-
-  ${device.tablet} {
-    top: 12px;
-  }
-`;
-
 export const Wrapper = styled.div`
   & + p {
     margin-bottom: 40px;

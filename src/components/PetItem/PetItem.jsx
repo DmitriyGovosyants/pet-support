@@ -72,7 +72,7 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
         </ListButton>
       </InfoList>
       {showModalDelete && (
-        <Modal toggleModal={() => setShowModalDelete(s => !s)}>
+        <Modal toggleModal={() => setShowModalDelete(s => !s)} main>
           <ModalDelete id={id} closeModal={() => setShowModalDelete(false)} />
         </Modal>
       )}
