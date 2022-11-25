@@ -14,6 +14,7 @@ import {
   FormInputLoad,
   FormInputLoadImg,
   FormInputLoadPlus,
+  RequiredSymbol,
 } from './ModalAddsPets.styled';
 import { toast } from 'react-toastify';
 import {
@@ -166,7 +167,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
     <ModalWrap onSubmit={handleSubmit}>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
         <Title>Add pet</Title>
-        <Label htmlFor="name">Name pet</Label>
+        <Label htmlFor="name">
+          Name pet<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type name pet'}
           type={'text'}
@@ -177,7 +180,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
           message={validationErrMsg.petName}
           isHidden={formState.name.isValid}
         />
-        <Label htmlFor="birthdate">Date of birth</Label>
+        <Label htmlFor="birthdate">
+          Date of birth<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type date of birth'}
           type={'text'}
@@ -188,7 +193,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
           message={validationErrMsg.birthdate}
           isHidden={formState.birthdate.isValid}
         />
-        <Label htmlFor="breed">Breed</Label>
+        <Label htmlFor="breed">
+          Breed<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type breed'}
           type={'text'}
@@ -217,7 +224,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
             isHidden={isFileValid}
           />
         </FormInputLoadWrapper>
-        <Label htmlFor="name">Comments</Label>
+        <Label htmlFor="name">
+          Comments<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Textarea
           name={'comments'}
           onChange={handleChange}
