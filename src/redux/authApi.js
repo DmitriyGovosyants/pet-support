@@ -16,7 +16,7 @@ export const authApi = createApi({
   }),
   tagTypes: ['Auth'],
   endpoints: builder => ({
-    getUser: builder.query({
+    getCurrent: builder.query({
       query: () => `/auth/current`,
       providesTags: ['Auth'],
     }),
@@ -46,7 +46,7 @@ export const authApi = createApi({
 });
 
 export const {
-  useGetUserQuery,
+  useGetCurrentQuery,
   useSignUpMutation,
   useLogInMutation,
   useLogOutMutation,

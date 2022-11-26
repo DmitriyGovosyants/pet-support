@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/pet-support">
+        <BrowserRouter basename="">
           <ThemeProvider theme={theme}>
             <Global styles={GlobalStyles} />
             <ToastContainer
