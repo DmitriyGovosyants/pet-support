@@ -30,7 +30,7 @@ export const ModalEditPet = ({
   comments,
   closeModal,
 }) => {
-  const [editPet] = useEditPetMutation();
+  const [editPet, { isLoading }] = useEditPetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState(image);
   const [step, setStep] = useState(0);
@@ -254,6 +254,7 @@ export const ModalEditPet = ({
         <MainButton
           size={'medium'}
           width={'fixed'}
+          disabled={isLoading}
           onClick={() => handleFirstBtn()}
         >
           {step === 0 ? 'Next' : 'Done'}
