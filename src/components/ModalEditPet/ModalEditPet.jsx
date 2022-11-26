@@ -174,6 +174,7 @@ export const ModalEditPet = ({
     //   formData.append('avatar', avatarData);
     // }
 
+    console.log('1');
     try {
       await editPet(id, formData);
 
