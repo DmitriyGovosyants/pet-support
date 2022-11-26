@@ -1,4 +1,4 @@
-import { useFetchPetsQuery, useFetchUserQuery } from 'redux/usersApi';
+import { useGetPetsQuery, useGetUserQuery } from 'redux/usersApi';
 import {
   Section,
   Container,
@@ -11,9 +11,9 @@ import { UserPageWrapper, UserDataWrapper } from './UserPage.styled';
 
 const UserPage = () => {
   const { isLoading: isUserLoading, isSuccess: isUserSuccess } =
-    useFetchUserQuery();
+    useGetUserQuery();
   const { isLoading: isPetsLoading, isSuccess: isPetsSuccess } =
-    useFetchPetsQuery();
+    useGetPetsQuery();
 
   if (isUserLoading || isPetsLoading) return <Spinner />;
   if (isUserSuccess && isPetsSuccess) {

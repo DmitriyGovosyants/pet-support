@@ -17,12 +17,11 @@ export const usersApi = createApi({
   tagTypes: ['Info', 'Pet'],
   endpoints: builder => ({
     //=========useFetchUserQuery=======
-    fetchUser: builder.query({
+    getUser: builder.query({
       query: () => ({
         url: '/info',
         invalidatesTags: ['Info'],
       }),
-      keepUnusedDataFor: 0,
     }),
     updateUser: builder.mutation({
       query: userField => ({
@@ -33,10 +32,9 @@ export const usersApi = createApi({
       }),
     }),
     //----- useFetchPetsQuery --------
-    fetchPets: builder.query({
+    getPets: builder.query({
       query: () => `/pets`,
       providesTags: ['Pet'],
-      keepUnusedDataFor: 0,
     }),
 
     //------ useDeletePetMutation -------
@@ -77,9 +75,9 @@ export const usersApi = createApi({
 });
 
 export const {
-  useFetchUserQuery,
+  useGetUserQuery,
   useUpdateUserMutation,
-  useFetchPetsQuery,
+  useGetPetsQuery,
   useDeletePetMutation,
   useEditPetMutation,
   useCreatePetMutation,
