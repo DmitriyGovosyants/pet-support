@@ -1,32 +1,28 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { BsCheckLg } from 'react-icons/bs';
 import { HiCamera } from 'react-icons/hi';
 import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import imageNotFound from '../../data/img/no-image.webp';
 import { SpinnerFixed, UserDataItem } from 'components';
-import {
-  orderUserFields,
-  validFileExtension,
-  validationErrMsg,
-} from 'constants/constants';
+import { orderUserFields } from 'constants/constants';
 import {
   UserDataTitle,
   UserCardWrapper,
   AvatarWrapper,
   UserAvatar,
   AvatarForm,
-  UserDescriptionWrapper,
+  UserDataList,
   UploadLabel,
   UploadInput,
   Btn,
   BtnBox,
 } from './UserData.styled';
 import { theme } from 'styles';
+import { handleUploadFile } from 'helpers';
 
 export const UserData = () => {
-  const [avatarData, setAvatarData] = useState('');
+  const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
@@ -62,33 +58,7 @@ export const UserData = () => {
 
   const handleFile = e => {
     const file = e.target.files[0];
-    const fileNameSplit = file.name.split('.');
-    const isValidFileExtension = validFileExtension.includes(
-      fileNameSplit[fileNameSplit.length - 1]
-    );
-
-    if (file.size > 1000000) {
-      toast.error(validationErrMsg.avatarIsTooLarge);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    if (!isValidFileExtension) {
-      toast.error(validationErrMsg.avatarExtensionFailure);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    setAvatarData(file);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const base64data = reader.result;
-      setAvatar(base64data);
-    };
+    handleUploadFile(file, setAvatar, setAvatarData);
   };
 
   const onCancelSubmit = () => {
@@ -149,7 +119,7 @@ export const UserData = () => {
           </AvatarForm>
         </AvatarWrapper>
 
-        <UserDescriptionWrapper>
+        <UserDataList>
           {orderUserFields.map(el => (
             <UserDataItem
               key={el}
@@ -162,7 +132,7 @@ export const UserData = () => {
               isEditBtnDisabled={isEditBtnDisabled}
             />
           ))}
-        </UserDescriptionWrapper>
+        </UserDataList>
       </UserCardWrapper>
       {isEditLoading && <SpinnerFixed />}
     </>

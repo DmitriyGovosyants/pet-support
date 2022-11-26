@@ -154,7 +154,7 @@ export const Btn= styled.button`
   }
 `;
 
-export const UserDescriptionWrapper = styled.ul`
+export const UserDataList = styled.ul`
   ${device.tabletOnly} {
     padding-top: 16px;
     margin-right: 52px;
