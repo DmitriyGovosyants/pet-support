@@ -23,7 +23,7 @@ export const AddNoticeButton = () => {
   return (
     <>
       <Wrapper>
-        <Text>Add pet</Text>
+        <Text>Add notice</Text>
         <Button type="button" onClick={onClickHandler}>
           <StyledPlusIcon />
         </Button>

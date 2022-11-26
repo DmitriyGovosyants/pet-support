@@ -5,7 +5,7 @@ import { categories, categoriesWithoutAuth } from 'constants/constants';
 import { useAuth } from 'redux/useAuth';
 
 export const NoticesCategoriesNav = () => {
-  const [selected, setSelected] = useState('sell');
+  const [selected, setSelected] = useState('Sell');
   const [navCategories, setNavCategories] = useState(categoriesWithoutAuth);
   const auth = useAuth();
 
