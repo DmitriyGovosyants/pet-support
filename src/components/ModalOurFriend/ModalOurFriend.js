@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 
 export const ModalOurFriend = ({ children, toggleModal }) => {
     const isMounted = useRef(false);
-    
+
     useEffect(() => {
         const handleKeyDown = e => {
             if (e.code === 'Escape') {
@@ -22,7 +22,7 @@ export const ModalOurFriend = ({ children, toggleModal }) => {
     
 
     const handleBackdropClick = e => {
-        if (e.currentTarget === e.target) {
+        if (e.target === e.currentTarget) {
             toggleModal();
         }
     };
