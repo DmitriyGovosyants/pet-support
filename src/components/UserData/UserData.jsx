@@ -38,7 +38,6 @@ export const UserData = () => {
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
   const handleShowForm = e => {
-    console.log(e.currentTarget);
     const id = e.currentTarget.id;
     setIsShowForm(id);
     setIsEditBtnDisabled(true);
@@ -99,6 +98,8 @@ export const UserData = () => {
   const onFileSubmit = async e => {
     e.preventDefault();
 
+    if (isShowForm) return;
+
     try {
       const formdata = new FormData();
       formdata.append('avatar', avatarData);
@@ -109,6 +110,11 @@ export const UserData = () => {
     } finally {
       setAvatarData();
     }
+  };
+
+  const onClose = () => {
+    setIsShowForm('');
+    setIsEditBtnDisabled(false);
   };
 
   return (
@@ -129,6 +135,7 @@ export const UserData = () => {
                 <UploadInput
                   type="file"
                   name="photo"
+                  disabled={isEditBtnDisabled}
                   accept=".png, .jpeg, .jpg, .webp"
                   onChange={e => handleFile(e)}
                 />
@@ -160,6 +167,7 @@ export const UserData = () => {
               onSubmit={handleSubmit}
               isEditLoading={isEditLoading}
               isEditBtnDisabled={isEditBtnDisabled}
+              onClose={onClose}
             />
           ))}
         </UserDescriptionWrapper>

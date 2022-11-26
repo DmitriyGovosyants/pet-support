@@ -14,7 +14,7 @@ import {
   BasicUserDataTitle,
   Error,
 } from './UserDataItem.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   isCity,
   isDate,
@@ -31,6 +31,7 @@ export const UserDataItem = ({
   onShowForm,
   onSubmit,
   isEditBtnDisabled,
+  onClose,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? '' : value
@@ -86,6 +87,20 @@ export const UserDataItem = ({
 
     setErrorMsg(null);
     await onSubmit({ [title]: inputValue });
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
+
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      onClose();
+    }
   };
 
   return (
