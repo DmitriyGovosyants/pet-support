@@ -9,7 +9,6 @@ import {
   FeaturesDefinition,
   ContactButton,
   ChangeFavoriteStatusBtn,
-  CloseBtn,
   CategoryMark,
   ContactLink,
   FeaturesWrapper,
@@ -18,8 +17,8 @@ import {
 } from './ModalNotice.styled';
 
 import { ReactComponent as HeartIcon } from 'data/img/favourite-icon.svg';
-import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
-import dogImage from 'data/img/dog.png';
+import petTemlate from 'data/img/pet-template.jpg';
+import { ModalBtnClose } from 'components';
 
 export const ModalNotice = ({
   petData,
@@ -41,22 +40,20 @@ export const ModalNotice = ({
     sex,
   } = petData;
 
+  const noticeCategory = category.split('-').join(' ');
+
   return (
     <Container>
-      <CloseBtn type="button" onClick={() => toggleModal()}>
-        <CloseIcon />
-      </CloseBtn>
-
       <Wrapper>
         <ImgWrapper>
           <Img
-            src={avatarURL || dogImage}
+            src={avatarURL || petTemlate}
             alt={breed}
             onError={e => {
-              e.target.src = dogImage;
+              e.target.src = petTemlate;
             }}
           />
-          <CategoryMark>{category}</CategoryMark>
+          <CategoryMark>{noticeCategory}</CategoryMark>
         </ImgWrapper>
 
         <FeaturesWrapper>
@@ -88,22 +85,26 @@ export const ModalNotice = ({
               <FeaturesDescription>The sex:</FeaturesDescription>
               <FeaturesDefinition>{sex}</FeaturesDefinition>
             </FeaturesItem>
-            <FeaturesItem>
-              <FeaturesDescription>Email:</FeaturesDescription>
-              <ContactLink href={`mailto: ${owner?.email}`}>
-                {owner?.email}
-              </ContactLink>
-            </FeaturesItem>
-            <FeaturesItem>
-              <FeaturesDescription>Phone:</FeaturesDescription>
-              <ContactLink href={`tel: ${owner?.phone}`}>
-                {owner?.phone}
-              </ContactLink>
-            </FeaturesItem>
+            {owner && (
+              <>
+                <FeaturesItem>
+                  <FeaturesDescription>Email:</FeaturesDescription>
+                  <ContactLink href={`mailto: ${owner?.email}`}>
+                    {owner?.email}
+                  </ContactLink>
+                </FeaturesItem>
+                <FeaturesItem>
+                  <FeaturesDescription>Phone:</FeaturesDescription>
+                  <ContactLink href={`tel: ${owner?.phone}`}>
+                    {owner?.phone}
+                  </ContactLink>
+                </FeaturesItem>
+              </>
+            )}
             {category.toLowerCase() === 'sell' && (
               <FeaturesItem>
                 <FeaturesDescription>Sell:</FeaturesDescription>
-                <FeaturesDefinition>{price}$</FeaturesDefinition>
+                <FeaturesDefinition>{price} $</FeaturesDefinition>
               </FeaturesItem>
             )}
           </FeaturesList>
@@ -121,6 +122,7 @@ export const ModalNotice = ({
           <HeartIcon />
         </ChangeFavoriteStatusBtn>
       </BtnWrapper>
+      <ModalBtnClose toggleModal={toggleModal} />
     </Container>
   );
 };

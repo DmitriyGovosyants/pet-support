@@ -1,50 +1,51 @@
-import { Spinner, UserDataItem } from 'components';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { BsCheckLg } from 'react-icons/bs';
+import { HiCamera } from 'react-icons/hi';
+import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
+import imageNotFound from '../../data/img/no-image.webp';
+import { SpinnerFixed, UserDataItem } from 'components';
+import {
+  orderUserFields,
+  validFileExtension,
+  validationErrMsg,
+} from 'constants/constants';
 import {
   UserDataTitle,
   UserCardWrapper,
-  UserWrapper,
-  AvatarPhotoWrapper,
   AvatarWrapper,
-  Avatar,
-  AvatarPhotoEditButton,
+  UserAvatar,
+  AvatarForm,
   UserDescriptionWrapper,
   UploadLabel,
   UploadInput,
-  ConfirmBtnAvatar,
+  Btn,
+  BtnBox,
 } from './UserData.styled';
 import { theme } from 'styles';
-import { HiCamera } from 'react-icons/hi';
-import { useState } from 'react';
-import imageNotFound from '../../data/img/no-image.webp';
-import { normalizeData } from '../../helpers';
-import { ORDER_USER_FIELDS } from '../../constants/constants';
-import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
-import { validationErrMsg } from '../../constants/constants';
 
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState('');
-  const [newAvatar, setNewAvatar] = useState();
-  const [fileError, setFileError] = useState(false);
-  const [isShowLoadFile, setIsShowLoadFile] = useState(false);
+  const [avatar, setAvatar] = useState();
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
-  const { data, isLoading } = useFetchUserQuery();
+  const {
+    data: {
+      data: { user: userData },
+    },
+  } = useFetchUserQuery();
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
-  if (isLoading) return <Spinner />;
-
-  const fetchData = data?.data?.user;
-
-  const [normalizedData, avatar] = normalizeData(fetchData, ORDER_USER_FIELDS);
-
   const handleShowForm = e => {
+    console.log(e.currentTarget);
     const id = e.currentTarget.id;
     setIsShowForm(id);
     setIsEditBtnDisabled(true);
   };
 
   const handleSubmit = async newValue => {
-    const oldData = fetchData[Object.keys(newValue)];
+    const oldData = userData[Object.keys(newValue)];
     const newData = Object.values(newValue)[0];
 
     if (oldData !== newData) {
@@ -58,44 +59,55 @@ export const UserData = () => {
     setIsShowForm('');
     setIsEditBtnDisabled(false);
   };
-  const handleLoadFileForm = () => {
-    setIsShowLoadFile(true);
-  };
-  const handleFile = e => {
-    const fileData = e.target.files[0];
 
-    if (fileData['size'] > 1000000) {
-      setFileError(true);
+  const handleFile = e => {
+    const file = e.target.files[0];
+    const fileNameSplit = file.name.split('.');
+    const isValidFileExtension = validFileExtension.includes(
+      fileNameSplit[fileNameSplit.length - 1]
+    );
+
+    if (file.size > 1000000) {
+      toast.error(validationErrMsg.avatarIsTooLarge);
+      setAvatar();
+      setAvatarData();
       return;
     }
 
-    setAvatarData(fileData);
-    setFileError(false);
+    if (!isValidFileExtension) {
+      toast.error(validationErrMsg.avatarExtensionFailure);
+      setAvatar();
+      setAvatarData();
+      return;
+    }
+
+    setAvatarData(file);
 
     const reader = new FileReader();
-    reader.readAsDataURL(fileData);
+    reader.readAsDataURL(file);
     reader.onloadend = () => {
       const base64data = reader.result;
-      setNewAvatar(base64data);
+      setAvatar(base64data);
     };
   };
 
-  const onFileSubmit = async () => {
-    if (!avatarData) {
-      setIsShowLoadFile(false);
-      return;
-    }
+  const onCancelSubmit = () => {
+    setAvatar();
+    setAvatarData();
+  };
+
+  const onFileSubmit = async e => {
+    e.preventDefault();
 
     try {
       const formdata = new FormData();
       formdata.append('avatar', avatarData);
       await editContact(formdata);
     } catch (error) {
+      onCancelSubmit();
       console.log(error);
-      setNewAvatar('');
     } finally {
-      setIsShowLoadFile(false);
-      setAvatarData('');
+      setAvatarData();
     }
   };
 
@@ -103,75 +115,56 @@ export const UserData = () => {
     <>
       <UserDataTitle>My information:</UserDataTitle>
       <UserCardWrapper>
-        <UserWrapper>
-          <AvatarWrapper>
-            {!newAvatar && (
-              <Avatar
-                src={avatar.avatar || imageNotFound}
-                alt={avatar || imageNotFound}
-              />
+        <AvatarWrapper>
+          <UserAvatar
+            src={avatar || userData?.avatarURL || imageNotFound}
+            alt="user avatar"
+            onError={e => {
+              e.target.src = imageNotFound;
+            }}
+          />
+          <AvatarForm action="" onSubmit={onFileSubmit}>
+            {!avatarData && (
+              <UploadLabel>
+                <UploadInput
+                  type="file"
+                  name="photo"
+                  accept=".png, .jpeg, .jpg, .webp"
+                  onChange={e => handleFile(e)}
+                />
+                <HiCamera size={20} color={theme.colors.accent} />
+                Edit photo
+              </UploadLabel>
             )}
-            {newAvatar && (
-              <Avatar
-                src={newAvatar || imageNotFound}
-                alt={avatar || imageNotFound}
-              />
+            {avatarData && (
+              <BtnBox>
+                <Btn type="button" onClick={() => onCancelSubmit()}>
+                  <CloseIcon style={{ fill: 'black' }} />
+                </Btn>
+                <Btn type="submit">
+                  <BsCheckLg />
+                </Btn>
+              </BtnBox>
             )}
-            {fileError && <p>{validationErrMsg.avatar}</p>}
-            <AvatarPhotoWrapper>
-              {!isShowLoadFile && (
-                <AvatarPhotoEditButton
-                  type="button"
-                  onClick={handleLoadFileForm}
-                >
-                  <HiCamera size={20} color={theme.colors.accent} />
-                  <span>Edit photo</span>
-                </AvatarPhotoEditButton>
-              )}
-              {isShowLoadFile && (
-                <div>
-                  <form action="" encType="multipart/form-data">
-                    <div>
-                      <UploadLabel htmlFor="upload-photo">
-                        {!avatarData ? 'search...' : avatarData.name}
-                      </UploadLabel>
-                      <UploadInput
-                        type="file"
-                        name="photo"
-                        id="upload-photo"
-                        aria-hidden="true"
-                        onChange={e => handleFile(e)}
-                      />
-                    </div>
-                    <ConfirmBtnAvatar
-                      type="button"
-                      disabled={isEditLoading}
-                      onClick={e => onFileSubmit(e)}
-                    >
-                      {avatarData ? 'Confirm' : 'Close'}
-                    </ConfirmBtnAvatar>
-                  </form>
-                </div>
-              )}
-            </AvatarPhotoWrapper>
-          </AvatarWrapper>
+          </AvatarForm>
+        </AvatarWrapper>
 
-          <UserDescriptionWrapper>
-            {normalizedData.map(([title, fieldValue]) => (
-              <UserDataItem
-                key={title}
-                title={title}
-                value={fieldValue}
-                isShowForm={isShowForm}
-                onShowForm={handleShowForm}
-                onSubmit={handleSubmit}
-                isEditLoading={isEditLoading}
-                isEditBtnDisabled={isEditBtnDisabled}
-              />
-            ))}
-          </UserDescriptionWrapper>
-        </UserWrapper>
+        <UserDescriptionWrapper>
+          {orderUserFields.map(el => (
+            <UserDataItem
+              key={el}
+              title={el}
+              value={userData[el]}
+              isShowForm={isShowForm}
+              onShowForm={handleShowForm}
+              onSubmit={handleSubmit}
+              isEditLoading={isEditLoading}
+              isEditBtnDisabled={isEditBtnDisabled}
+            />
+          ))}
+        </UserDescriptionWrapper>
       </UserCardWrapper>
+      {isEditLoading && <SpinnerFixed />}
     </>
   );
 };

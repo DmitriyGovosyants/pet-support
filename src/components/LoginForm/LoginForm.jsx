@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import isEmail from 'validator/lib/isEmail';
 import { toast } from 'react-toastify';
-import { isPassword, dataFormConverter } from 'helpers';
+import { isPassword, dataFormConverter, isDomenName, isEmail } from 'helpers';
 import { useLogInMutation } from '../../redux/authApi';
 import eyeImg from '../../data/img/eye.png';
 import eyeClosedImg from '../../data/img/eye-blocked.png';
@@ -11,8 +10,9 @@ import {
   FormText,
   FormWrapper,
   MainButton,
+  SpinnerFixed,
 } from 'components';
-import { Wrapper, EyeBtn } from './LoginForm.styled';
+import { Wrapper, EyeBtn, InputWrapper } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const [login, { isError, isLoading }] = useLogInMutation();
@@ -40,7 +40,10 @@ export const LoginForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!isEmail(formState.email.value)) {
+    if (
+      !isEmail(formState.email.value) ||
+      !isDomenName(formState.email.value)
+    ) {
       setFormState(prevState => ({
         ...prevState,
         email: {
@@ -66,6 +69,9 @@ export const LoginForm = () => {
       const data = dataFormConverter(formState);
       await login(data).unwrap();
     } catch (err) {
+      if (err.status === 401) {
+        toast.error(err.data.message);
+      }
       console.log(err);
     }
   }
@@ -82,19 +88,24 @@ export const LoginForm = () => {
           isValid={formState.email.isValid}
           errorMessage="Invalid Email"
         />
-        <FormInput
-          placeholder={'Password'}
-          type={showPassword ? 'text' : 'password'}
-          name={'password'}
-          id={'password'}
-          onChange={handleChange}
-          isValid={formState.password.isValid}
-          errorMessage="Invalid Password"
-        />
-        <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-          {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
-          {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
-        </EyeBtn>
+        <InputWrapper>
+          <FormInput
+            placeholder={'Password'}
+            type={showPassword ? 'text' : 'password'}
+            name={'password'}
+            id={'password'}
+            onChange={handleChange}
+            isValid={formState.password.isValid}
+            errorMessage="Invalid Password"
+          />
+          <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
+            <img
+              src={showPassword ? eyeClosedImg : eyeImg}
+              alt="eye"
+              width={20}
+            />
+          </EyeBtn>
+        </InputWrapper>
         <Wrapper>
           <MainButton type={'submit'} disabled={isLoading}>
             Login
@@ -106,6 +117,7 @@ export const LoginForm = () => {
           link={'Register'}
         />
       </form>
+      {isLoading && <SpinnerFixed />}
     </FormWrapper>
   );
 };

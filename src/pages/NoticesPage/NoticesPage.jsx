@@ -1,13 +1,15 @@
 import {
+  Section,
+  Container,
   NoticesSearch,
   NoticesCategoriesNav,
   AddNoticeButton,
+  MainTitle,
 } from 'components';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { routesPath } from 'router';
-import { Container } from 'components';
-import { Title, Section, Wrapper } from './NoticesPage.styled';
+import { Wrapper } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [isFirstMount, setIsFirstMount] = useState(true);
@@ -21,7 +23,7 @@ const NoticesPage = () => {
   return (
     <Section>
       <Container>
-        <Title>Find your favorite pet</Title>
+        <MainTitle>Find your favorite pet</MainTitle>
         <NoticesSearch />
         <Wrapper>
           <NoticesCategoriesNav />

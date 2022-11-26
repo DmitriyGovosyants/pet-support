@@ -1,7 +1,6 @@
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
-import isEmail from 'validator/lib/isEmail';
 import { validationErrMsg } from 'constants/constants';
 import {
   ItemContainer,
@@ -16,7 +15,14 @@ import {
   Error,
 } from './UserDataItem.styled';
 import { useState } from 'react';
-import { isCity, isDate, isDatePast, isUserName } from 'helpers';
+import {
+  isCity,
+  isDate,
+  isDatePast,
+  isDomenName,
+  isEmail,
+  isUserName,
+} from 'helpers';
 
 export const UserDataItem = ({
   title,
@@ -26,7 +32,9 @@ export const UserDataItem = ({
   onSubmit,
   isEditBtnDisabled,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(
+    value === '00.00.0000' ? '' : value
+  );
   const [errorMsg, setErrorMsg] = useState(null);
 
   const titleNormalized = title.toLowerCase();
@@ -39,7 +47,7 @@ export const UserDataItem = ({
         isValid = isUserName(newData);
         break;
       case 'email':
-        isValid = isEmail(newData);
+        isValid = isEmail(newData) && isDomenName(newData);
         break;
       case 'birthdate':
         isValid = isDatePast(newData) && isDate(newData);
@@ -69,6 +77,9 @@ export const UserDataItem = ({
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
+      if (title === 'birthdate' && inputValue === '') {
+        return;
+      }
       setErrorMsg(validationErrMsg[title]);
       return;
     }
@@ -78,8 +89,8 @@ export const UserDataItem = ({
   };
 
   return (
-    <ItemContainer>
-      <UserDescriptionItem>
+    <UserDescriptionItem>
+      <ItemContainer>
         <ItemTitle> {titleNormalized}:</ItemTitle>
 
         {isShowForm !== title ? (
@@ -109,8 +120,8 @@ export const UserDataItem = ({
             </UserFormSubmitButton>
           </UserForm>
         )}
-      </UserDescriptionItem>
+      </ItemContainer>
       <Error>{errorMsg}</Error>
-    </ItemContainer>
+    </UserDescriptionItem>
   );
 };

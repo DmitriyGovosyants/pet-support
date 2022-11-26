@@ -1,17 +1,10 @@
+import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
-//все коменты расскоментировать, после petApi
 import { useDeletePetMutation } from 'redux/usersApi';
-import {
-  ModalContainer,
-  ButtonClose,
-  CloseIcon,
-  TittleModal,
-  ButtonDel,
-  ButtonCancel,
-} from './ModalDelete.styled';
+import { ModalContainer, TittleModal, BtnBox } from './ModalDelete.styled';
 
 export const ModalDelete = ({ id, closeModal }) => {
-  const [deletePet] = useDeletePetMutation();
+  const [deletePet, { isLoading }] = useDeletePetMutation();
 
   const handleDelete = async () => {
     try {
@@ -34,16 +27,17 @@ export const ModalDelete = ({ id, closeModal }) => {
 
   return (
     <ModalContainer>
-      <ButtonClose type="button" onClick={() => closeModal()}>
-        <CloseIcon />
-      </ButtonClose>
       <TittleModal>Are you sure you want to delete it?</TittleModal>
-      <ButtonDel type="button" onClick={() => handleDelete()}>
-        DELETE
-      </ButtonDel>
-      <ButtonCancel type="button" onClick={() => closeModal()}>
-        CANCEL
-      </ButtonCancel>
+      <BtnBox>
+        <MainButton disabled={isLoading} onClick={() => handleDelete()}>
+          DELETE
+        </MainButton>
+        <MainButton option={'black'} onClick={() => closeModal()}>
+          CANCEL
+        </MainButton>
+      </BtnBox>
+      <ModalBtnClose toggleModal={closeModal} />
+      {isLoading && <SpinnerFixed />}
     </ModalContainer>
   );
 };

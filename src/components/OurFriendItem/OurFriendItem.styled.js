@@ -8,7 +8,7 @@ export const Card = styled.li`
   border-radius: 20px;
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadow};
 
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {
@@ -31,7 +31,7 @@ export const FriendTitle = styled.h2`
   text-decoration-line: underline;
   color: ${p => p.theme.colors.accent};
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {
@@ -114,7 +114,7 @@ export const InfoItem = styled.li`
 export const AddressLink = styled.a`
   text-decoration: ${p => p.underline ? 'underline' : 'none'};
   
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier};
 
   :hover,
   :focus {

@@ -16,32 +16,7 @@ export const ModalWrap = styled.form`
   }
 `;
 
-export const BtnClose = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 34px;
-  height: 34px;
-  padding: 9px;
-
-  background-color: ${p => p.theme.colors.bgMain};
-  backdrop-filter: blur(2px);
-  border-radius: 50%;
-  cursor: pointer;
-
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  :hover,
-  :focus {
-    background-color: ${p => p.theme.colors.accent};
-  }
-`
-
-export const Title = styled.h1`
+export const Title = styled.h2`
   margin-bottom: 20px;
 
   font-size: 24px;
@@ -55,7 +30,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const SubTitle = styled.h2`
+export const SubTitle = styled.h3`
   margin-bottom: 20px;
 
   font-size: 16px;
@@ -144,6 +119,17 @@ export const FormInputLoadWrapper = styled.div`
   }
 `
 
+export const FormInputLoad = styled.input`
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  cursor: pointer;
+
+  background-color: ${p => p.theme.colors.bgMain};
+  border-radius: 20px;
+`
+
 export const FormInputLoadPlus = styled.img`
   position: absolute;
   top: 50%;
@@ -167,17 +153,6 @@ export const FormInputLoadImg = styled.img`
     width: 182px;
     height: 182px;
   }
-`
-
-export const FormInputLoad = styled.input`
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  color: transparent;
-  cursor: pointer;
-
-  background-color: ${p => p.theme.colors.bgMain};
-  border-radius: 20px;
 `
 
 export const Textarea = styled.textarea`
@@ -214,4 +189,8 @@ export const Textarea = styled.textarea`
       line-height: 1.625;
     }
   }
+`
+
+export const RequiredSymbol = styled.span`
+  color: ${p => p.theme.colors.accent};
 `

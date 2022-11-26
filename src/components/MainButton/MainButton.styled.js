@@ -25,9 +25,9 @@ export const Btn = styled.button`
   border-color: ${p => p.option === 'black' ?  p.theme.colors.accent : 'transparent'};
   cursor: pointer;
   
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-   background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-   border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${p => p.theme.animation.cubicBezier},
+   background-color ${p => p.theme.animation.cubicBezier},
+   border-color ${p => p.theme.animation.cubicBezier};
 
   :hover {
     color: ${p => p.theme.colors.textSecond};

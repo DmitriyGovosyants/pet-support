@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import isMobilePhone from 'validator/lib/isMobilePhone';
-import isEmail from 'validator/lib/isEmail';
-import { isCity, isPassword, isName, dataFormConverter } from 'helpers';
+import { toast } from 'react-toastify';
+import {
+  isCity,
+  isPassword,
+  isName,
+  dataFormConverter,
+  isDomenName,
+  isEmail,
+} from 'helpers';
 import { useSignUpMutation } from '../../redux/authApi';
 import eyeImg from '../../data/img/eye.png';
 import eyeClosedImg from '../../data/img/eye-blocked.png';
@@ -11,8 +18,10 @@ import {
   FormText,
   FormWrapper,
   MainButton,
+  SpinnerFixed,
 } from 'components';
-import { Wrapper, Button, EyeBtn, EyeConfBtn } from './RegisterForm.styled';
+import { Wrapper, InputWrapper, Button, EyeBtn } from './RegisterForm.styled';
+import { validationErrMsg } from 'constants/constants';
 
 export const RegisterForm = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -53,6 +62,9 @@ export const RegisterForm = () => {
       const data = dataFormConverter(formState);
       await signUp(data).unwrap();
     } catch (err) {
+      if (err.status === 409) {
+        toast.error(err.data.message);
+      }
       console.log(err);
     }
   };
@@ -68,37 +80,50 @@ export const RegisterForm = () => {
             name={'email'}
             onChange={handleChange}
             isValid={formState.email.isValid}
-            errorMessage="Invalid Email"
+            errorMessage={validationErrMsg.email}
           />
-          <FormInput
-            placeholder={'Password'}
-            name={'password'}
-            type={showPassword ? 'text' : 'password'}
-            id={'password'}
-            onChange={handleChange}
-            isValid={formState.password.isValid}
-            errorMessage="Invalid Password"
-          />
-          <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
-            {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
-          </EyeBtn>
-          <FormInput
-            placeholder={'Confirm Password'}
-            name={'confirmPassword'}
-            type={showPassword ? 'text' : 'password'}
-            id={'password'}
-            onChange={handleChange}
-            isValid={formState.confirmPassword.isValid}
-            errorMessage="Password and Confirm Password are not equal"
-          />
-          <EyeConfBtn
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword && <img src={eyeClosedImg} alt="eye" width={20} />}
-            {!showPassword && <img src={eyeImg} alt="eye" width={20} />}
-          </EyeConfBtn>
+          <InputWrapper>
+            <FormInput
+              placeholder={'Password'}
+              name={'password'}
+              type={showPassword ? 'text' : 'password'}
+              id={'password'}
+              onChange={handleChange}
+              isValid={formState.password.isValid}
+              errorMessage={validationErrMsg.password}
+            />
+            <EyeBtn
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <img
+                src={showPassword ? eyeClosedImg : eyeImg}
+                alt="eye"
+                width={20}
+              />
+            </EyeBtn>
+          </InputWrapper>
+          <InputWrapper>
+            <FormInput
+              placeholder={'Confirm Password'}
+              name={'confirmPassword'}
+              type={showPassword ? 'text' : 'password'}
+              id={'password'}
+              onChange={handleChange}
+              isValid={formState.confirmPassword.isValid}
+              errorMessage="Password and Confirm Password are not equal"
+            />
+            <EyeBtn
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <img
+                src={showPassword ? eyeClosedImg : eyeImg}
+                alt="eye"
+                width={20}
+              />
+            </EyeBtn>
+          </InputWrapper>
         </div>
         <div style={{ display: step === 1 ? 'block' : 'none' }}>
           <FormInput
@@ -107,7 +132,7 @@ export const RegisterForm = () => {
             name={'name'}
             onChange={handleChange}
             isValid={formState.name.isValid}
-            errorMessage="Name should contain only letters"
+            errorMessage={validationErrMsg.name}
           />
           <FormInput
             placeholder={'City, Region'}
@@ -115,7 +140,7 @@ export const RegisterForm = () => {
             type={'City'}
             onChange={handleChange}
             isValid={formState.city.isValid}
-            errorMessage="Should be in format - City, Region"
+            errorMessage={validationErrMsg.city}
           />
           <FormInput
             placeholder={'Mobile Phone'}
@@ -123,7 +148,7 @@ export const RegisterForm = () => {
             type={'phone'}
             onChange={handleChange}
             isValid={formState.phone.isValid}
-            errorMessage="Should be a correct mobile phone"
+            errorMessage={validationErrMsg.phone}
           />
         </div>
         <Wrapper>
@@ -133,7 +158,9 @@ export const RegisterForm = () => {
             onClick={e => {
               if (step === 0) {
                 e.preventDefault();
-                const isEmailValid = isEmail(formState.email.value);
+                const isEmailValid =
+                  isEmail(formState.email.value) &&
+                  isDomenName(formState.email.value);
                 const isPasswordValid = isPassword(formState.password.value);
                 const isConfirmPasswordValid =
                   isPasswordValid &&
@@ -213,6 +240,7 @@ export const RegisterForm = () => {
           link={'Login'}
         />
       </form>
+      {isLoading && <SpinnerFixed />}
     </FormWrapper>
   );
 };

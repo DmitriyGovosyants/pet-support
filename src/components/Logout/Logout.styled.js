@@ -19,12 +19,12 @@ export const LogoutButton = styled.button`
   color: rgba(17, 17, 17, 0.6);
 
   ${device.tablet} {
-    left: 32px;
+    left: 0;
     bottom: 24px;
   }
 
   ${device.desktop} {
-    left: 16px;
-    top: 600px;
+    left: 0;
+    top: 610px;
   }
 `;

@@ -23,7 +23,7 @@ export const Icon = styled(SearchIcon)`
   height: 20px;
   pointer-events: none;
   fill: ${props => props.theme.colors.textMain};
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill ${p => p.theme.animation.cubicBezier};
   ${device.tablet} {
     width: 24px;
     height: 24px;
@@ -42,7 +42,7 @@ export const Input = styled.input`
   background: ${props => props.theme.colors.textSecond};
   box-shadow: 7px 4px 14px ${props => props.theme.colors.shadow};
   outline: none;
-  transition: outline-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: outline-color ${p => p.theme.animation.cubicBezier};
   :hover,
   :focus {
     & + ${Icon} {

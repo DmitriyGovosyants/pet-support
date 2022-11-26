@@ -1,6 +1,6 @@
-import { LogoutButton } from './Logout.styled';
 import { TbLogout } from 'react-icons/tb';
 import { useLogOutMutation } from 'redux/authApi';
+import { LogoutButton } from './Logout.styled';
 
 export const Logout = () => {
   const [logout] = useLogOutMutation();

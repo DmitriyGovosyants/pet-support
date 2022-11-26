@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import { useCreatePetMutation } from '../../redux/usersApi';
-import { isName, isBreed, isComments, isDate, isDatePast } from 'helpers';
+import { isName, isBreedAddPet, isComments, isDate, isDatePast } from 'helpers';
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
-  BtnClose,
   Label,
   Input,
   BtnBox,
@@ -16,16 +14,21 @@ import {
   FormInputLoad,
   FormInputLoadImg,
   FormInputLoadPlus,
+  RequiredSymbol,
 } from './ModalAddsPets.styled';
 import { toast } from 'react-toastify';
-import { MainButton, ValidationError } from 'components';
-import { validationErrMsg } from 'constants/constants';
+import {
+  MainButton,
+  ModalBtnClose,
+  SpinnerFixed,
+  ValidationError,
+} from 'components';
+import { validationErrMsg, validFileExtension } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
   const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
-  const [isFileValid, setIsFileValid] = useState(true);
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
@@ -70,7 +73,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
     const isNameValid = isName(name.value);
     const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
-    const isBreedValid = isBreed(breed.value);
+    const isBreedValid = isBreedAddPet(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
       setFormState(prevState => ({
@@ -121,14 +124,26 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
+    const fileNameSplit = file.name.split('.');
+    const isValidFileExtension = validFileExtension.includes(
+      fileNameSplit[fileNameSplit.length - 1]
+    );
 
-    if (file['size'] > 1000000) {
-      setIsFileValid(false);
+    if (file.size > 1000000) {
+      toast.error(validationErrMsg.avatarIsTooLarge);
+      setAvatar();
+      setAvatarData();
+      return;
+    }
+
+    if (!isValidFileExtension) {
+      toast.error(validationErrMsg.avatarExtensionFailure);
+      setAvatar();
+      setAvatarData();
       return;
     }
 
     setAvatarData(file);
-    setIsFileValid(true);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -161,12 +176,11 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   return (
     <ModalWrap onSubmit={handleSubmit}>
-      <BtnClose type="button" onClick={() => toggleModal()}>
-        <CloseIcon />
-      </BtnClose>
+      <Title>Add pet</Title>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <Title>Add pet</Title>
-        <Label htmlFor="name">Name pet</Label>
+        <Label htmlFor="name">
+          Name pet<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type name pet'}
           type={'text'}
@@ -177,7 +191,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
           message={validationErrMsg.petName}
           isHidden={formState.name.isValid}
         />
-        <Label htmlFor="birthdate">Date of birth</Label>
+        <Label htmlFor="birthdate">
+          Date of birth<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type date of birth'}
           type={'text'}
@@ -188,7 +204,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
           message={validationErrMsg.birthdate}
           isHidden={formState.birthdate.isValid}
         />
-        <Label htmlFor="breed">Breed</Label>
+        <Label htmlFor="breed">
+          Breed<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type breed'}
           type={'text'}
@@ -212,12 +230,10 @@ export const ModalAddsPet = ({ toggleModal }) => {
           />
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
-          <ValidationError
-            message={validationErrMsg.avatar}
-            isHidden={isFileValid}
-          />
         </FormInputLoadWrapper>
-        <Label htmlFor="name">Comments</Label>
+        <Label htmlFor="name">
+          Comments<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Textarea
           name={'comments'}
           onChange={handleChange}
@@ -247,6 +263,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
           {step === 0 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
+      <ModalBtnClose toggleModal={toggleModal} />
+      {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
 };
