@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsCheckLg } from 'react-icons/bs';
 import { HiCamera } from 'react-icons/hi';
-import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import imageNotFound from '../../data/img/no-image.webp';
 import { SpinnerFixed, UserDataItem } from 'components';
@@ -20,6 +20,7 @@ import {
 } from './UserData.styled';
 import { theme } from 'styles';
 import { handleUploadFile } from 'helpers';
+import { toast } from 'react-toastify';
 
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState();
@@ -30,7 +31,8 @@ export const UserData = () => {
     data: {
       data: { user: userData },
     },
-  } = useFetchUserQuery();
+    refetch,
+  } = useGetUserQuery();
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
   const handleShowForm = e => {
@@ -44,16 +46,23 @@ export const UserData = () => {
     const oldData = userData[Object.keys(newValue)];
     const newData = Object.values(newValue)[0];
 
+    // DELETE THIS
+    console.log(oldData, newData);
+
     if (oldData !== newData) {
       try {
-        await editContact(newValue);
+        await editContact(newValue).unwrap();
       } catch (error) {
         console.log(error);
+        if (error.status === 500) {
+          toast.error('Invalid email try again');
+        }
       }
     }
 
     setIsShowForm('');
     setIsEditBtnDisabled(false);
+    refetch();
   };
 
   const handleFile = e => {
@@ -100,7 +109,7 @@ export const UserData = () => {
                   type="file"
                   name="photo"
                   accept=".png, .jpeg, .jpg, .webp"
-                  onChange={e => handleFile(e)}
+                  onChange={handleFile}
                 />
                 <HiCamera size={20} color={theme.colors.accent} />
                 Edit photo
@@ -108,10 +117,14 @@ export const UserData = () => {
             )}
             {avatarData && (
               <BtnBox>
-                <Btn type="button" onClick={() => onCancelSubmit()}>
+                <Btn
+                  type="button"
+                  disabled={isEditLoading}
+                  onClick={() => onCancelSubmit()}
+                >
                   <CloseIcon style={{ fill: 'black' }} />
                 </Btn>
-                <Btn type="submit">
+                <Btn type="submit" disabled={isEditLoading}>
                   <BsCheckLg />
                 </Btn>
               </BtnBox>
