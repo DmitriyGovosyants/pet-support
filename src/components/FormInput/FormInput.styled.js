@@ -16,15 +16,15 @@ export const Error = styled.div`
 `;
 
 export const Input = styled.input`
-${device.mobileOnly} {
-  width: 100%;
-}
+  ${device.mobileOnly} {
+    width: 100%;
+  }
   width: 280px;
   height: 40px;
   padding: 11px 60px 12px 14px;
   border-radius: 40px;
   border: 1px solid
-    ${props => (props.isValid ? 'rgba(245, 146, 86, 0.5)' : 'red')};
+    ${props => (props.isvalid ? 'rgba(245, 146, 86, 0.5)' : 'red')};
   font-weight: 400;
   font-size: 14px;
   line-height: 1.35;

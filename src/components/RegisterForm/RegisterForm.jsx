@@ -80,7 +80,7 @@ export const RegisterForm = () => {
             type={'Email'}
             name={'email'}
             onChange={handleChange}
-            isValid={formState.email.isValid}
+            isvalid={formState.email.isValid ? 1 : 0}
             errorMessage={validationErrMsg.email}
           />
           <InputWrapper>
@@ -90,7 +90,7 @@ export const RegisterForm = () => {
               type={showPassword ? 'text' : 'password'}
               id={'password'}
               onChange={handleChange}
-              isValid={formState.password.isValid}
+              isvalid={formState.password.isValid ? 1 : 0}
               errorMessage={validationErrMsg.password}
             />
             <EyeBtn
@@ -111,7 +111,7 @@ export const RegisterForm = () => {
               type={showPassword ? 'text' : 'password'}
               id={'password'}
               onChange={handleChange}
-              isValid={formState.confirmPassword.isValid}
+              isvalid={formState.confirmPassword.isValid ? 1 : 0}
               errorMessage="Password and Confirm Password are not equal"
             />
             <EyeBtn
@@ -132,7 +132,7 @@ export const RegisterForm = () => {
             type={'name'}
             name={'name'}
             onChange={handleChange}
-            isValid={formState.name.isValid}
+            isvalid={formState.name.isValid ? 1 : 0}
             errorMessage={validationErrMsg.name}
           />
           <FormInput
@@ -140,7 +140,7 @@ export const RegisterForm = () => {
             name={'city'}
             type={'City'}
             onChange={handleChange}
-            isValid={formState.city.isValid}
+            isvalid={formState.city.isValid ? 1 : 0}
             errorMessage={validationErrMsg.city}
           />
           <MaskInput
@@ -149,7 +149,7 @@ export const RegisterForm = () => {
             name={'phone'}
             type={'phone'}
             onChange={handleChange}
-            isValid={formState.phone.isValid}
+            isvalid={formState.phone.isValid ? 1 : 0}
             errorMessage={validationErrMsg.phone}
           />
         </div>

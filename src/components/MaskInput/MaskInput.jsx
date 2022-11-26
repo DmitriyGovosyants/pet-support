@@ -6,7 +6,7 @@ export const MaskInput = ({
   type,
   name,
   onChange,
-  isValid,
+  isvalid,
   errorMessage,
 }) => {
   return (
@@ -18,10 +18,10 @@ export const MaskInput = ({
           type={type}
           name={name}
           onChange={onChange}
-          isValid={isValid}
+          isvalid={isvalid}
         />
       </Wrapper>
-      {!isValid && <Error>{errorMessage}</Error>}
+      {!isvalid && <Error>{errorMessage}</Error>}
     </>
   );
 };
