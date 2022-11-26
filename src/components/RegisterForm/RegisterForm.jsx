@@ -15,6 +15,7 @@ import eyeClosedImg from '../../data/img/eye-blocked.png';
 import {
   FormTitle,
   FormInput,
+  MaskInput,
   FormText,
   FormWrapper,
   MainButton,
@@ -142,8 +143,9 @@ export const RegisterForm = () => {
             isValid={formState.city.isValid}
             errorMessage={validationErrMsg.city}
           />
-          <FormInput
+          <MaskInput
             placeholder={'Mobile Phone'}
+            mask={'+380999999999'}
             name={'phone'}
             type={'phone'}
             onChange={handleChange}
