@@ -128,7 +128,7 @@ export const ModalEditPet = ({
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
-    // console.log(file);
+
     if (file['size'] > 1000000) {
       setFileError(true);
       return;
@@ -136,7 +136,7 @@ export const ModalEditPet = ({
 
     setAvatarData(file);
     setFileError(false);
-    // console.log(setAvatarData(file));
+
     switch (name) {
       case 'name':
         setFormState.name(value);
@@ -170,23 +170,21 @@ export const ModalEditPet = ({
       formData.append(data[i][0], data[i][1].value);
     }
 
-    if (avatarData) {
-      formData.append('avatar', avatarData);
-    }
+    // if (avatarData) {
+    //   formData.append('avatar', avatarData);
+    // }
 
-    for (let input of formData.entries()) {
-      console.log(input[0], input[1]); //Выведет в консоль всю форму в виде "КЛЮЧ ЗНАЧЕНИЕ"
-    }
+    // for (let input of formData.entries()) {
+    //   console.log(input[0], input[1]); //Выведет в консоль всю форму в виде "КЛЮЧ ЗНАЧЕНИЕ"
+    // }
 
     try {
       await editPet(id, formData);
-
       closeModal();
       toast.success('Your pet has been changed');
     } catch (error) {
       console.log(error);
     }
-    console.log(editPet(id, formData));
   };
 
   return (
