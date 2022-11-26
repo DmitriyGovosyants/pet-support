@@ -38,12 +38,30 @@ export const OurFriendItem = ({
     setWorkDay(oneDay);
   }, [workDays]);
 
-  const closeDetails = ('click', (e) => {
+  const div = document.querySelector( '#button');
+ 
+document.addEventListener( 'click', (e) => {
+	const showDetails = e.composedPath().includes(div);
+ 
+	if ( ! showDetails ) {
+		div.style.display = 'none'; // скрываем элемент т к клик был за его пределами
+	}
+})
+
+document.addEventListener('keydown', function(e) {
+	if( e.code === 'Escape' ){ 
+		div.style.display = 'none';
+	}
+});
+
+  const closeDetails = () => {
     if (showDetails) {
       setShowDetails(false);
     }
-  });
+  };
 
+
+  
   return (
     <Card onClick={() => closeDetails()}>
       <FriendTitle>
