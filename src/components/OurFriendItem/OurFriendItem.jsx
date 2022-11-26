@@ -38,30 +38,28 @@ export const OurFriendItem = ({
     setWorkDay(oneDay);
   }, [workDays]);
 
-  const div = document.querySelector( '#button');
- 
-document.addEventListener( 'click', (e) => {
-	const showDetails = e.composedPath().includes(div);
- 
-	if ( ! showDetails ) {
-		div.style.display = 'none'; // скрываем элемент т к клик был за его пределами
-	}
-})
-
-document.addEventListener('keydown', function(e) {
-	if( e.code === 'Escape' ){ 
-		div.style.display = 'none';
-	}
-});
-
   const closeDetails = () => {
     if (showDetails) {
       setShowDetails(false);
     }
+
+    const div = document.querySelector( '#button');
+ 
+    document.addEventListener( 'click', (e) => {
+      const showDetails = e.composedPath().includes(div);// возвращает путь события, представляющий собой массив объектов, на которых будут вызваны обработчики событий.
+    
+      if ( ! showDetails ) {
+        div.style.display = 'none'; // скрываем элемент т к клик был за его пределами
+      }
+    })
+  
+    document.addEventListener('keydown', function(e) {
+      if( e.code === 'Escape' ){ 
+        div.style.display = 'none';
+      }
+    });
   };
 
-
-  
   return (
     <Card onClick={() => closeDetails()}>
       <FriendTitle>
