@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
+import CurrencyInput from 'react-currency-input-field';
 
 export const ModalCard = styled.form`
   position: relative;
@@ -299,5 +300,37 @@ export const ImgWrapper = styled.div`
     width: 60px;
     height: 60px;
     margin-bottom: 20px;
+  }
+`
+export const InputCurrency = styled(CurrencyInput)`
+  width: 100%;
+  padding: 11px 14px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.35;
+
+  background-color: ${p => p.theme.colors.bgMain};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  
+  ::placeholder {
+    font-size: 14px;
+    line-height: 1.35;
+    color: ${p => p.theme.colors.placeholder};
+  }
+
+  :focus {
+    outline: 1px solid ${p => p.theme.colors.accent};
+  }
+
+  ${device.tablet} {
+    padding: 11px 16px;
+    font-size: 20px;
+
+    ::placeholder {
+      font-size: 16px;
+      line-height: 1.625;
+    }
   }
 `

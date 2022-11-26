@@ -44,6 +44,7 @@ import {
   FormInputLoadImg,
   FormInputLoadPlus,
   BtnBox,
+  InputCurrency
 } from './ModalAddNotice.styled';
 import { validationErrMsg, validFileExtension } from 'constants/constants';
 
@@ -376,11 +377,12 @@ export const ModalAddNotice = ({ toggleModal }) => {
               <FormInputLabel>
                 Price<RequiredSymbol>*</RequiredSymbol>
               </FormInputLabel>
-              <FormInput
+              <InputCurrency
                 placeholder={'Type price'}
                 type={'text'}
                 name={'price'}
                 onChange={handleChange}
+                suffix={' $'}
               />
               <ValidationError
                 message={validationErrMsg.price}
