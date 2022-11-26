@@ -43,20 +43,12 @@ export const UserData = () => {
   };
 
   const handleSubmit = async newValue => {
-    const oldData = userData[Object.keys(newValue)];
-    const newData = Object.values(newValue)[0];
-
-    // DELETE THIS
-    console.log(oldData, newData);
-
-    if (oldData !== newData) {
-      try {
-        await editContact(newValue).unwrap();
-      } catch (error) {
-        console.log(error);
-        if (error.status === 500) {
-          toast.error('Invalid email try again');
-        }
+    try {
+      await editContact(newValue).unwrap();
+    } catch (error) {
+      console.log(error);
+      if (error.status === 500) {
+        toast.error('Invalid email try again');
       }
     }
 
@@ -143,6 +135,9 @@ export const UserData = () => {
               onSubmit={handleSubmit}
               isEditLoading={isEditLoading}
               isEditBtnDisabled={isEditBtnDisabled}
+              allUserData={userData}
+              setIsShowForm={setIsShowForm}
+              setIsEditBtnDisabled={setIsEditBtnDisabled}
             />
           ))}
         </UserDataList>

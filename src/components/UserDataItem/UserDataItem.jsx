@@ -31,6 +31,9 @@ export const UserDataItem = ({
   onShowForm,
   onSubmit,
   isEditBtnDisabled,
+  allUserData,
+  setIsShowForm,
+  setIsEditBtnDisabled,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? '' : value
@@ -74,6 +77,15 @@ export const UserDataItem = ({
 
   const handleSummit = async e => {
     e.preventDefault();
+
+    const oldData = allUserData[title];
+
+    if (oldData === inputValue) {
+      setIsShowForm('');
+      setIsEditBtnDisabled(false);
+      return;
+    }
+
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
