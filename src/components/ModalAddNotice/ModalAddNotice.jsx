@@ -379,7 +379,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
               </FormInputLabel>
               <InputCurrency
                 placeholder={'Type price'}
-                type={'text'}
+                type={'number'}
                 name={'price'}
                 onChange={handleChange}
                 suffix={' $'}
