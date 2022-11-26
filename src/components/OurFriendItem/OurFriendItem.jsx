@@ -38,11 +38,11 @@ export const OurFriendItem = ({
     setWorkDay(oneDay);
   }, [workDays]);
 
-  const closeDetails = () => {
+  const closeDetails = ('click', (e) => {
     if (showDetails) {
       setShowDetails(false);
     }
-  };
+  });
 
   return (
     <Card onClick={() => closeDetails()}>
