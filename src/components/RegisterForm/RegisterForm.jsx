@@ -143,6 +143,7 @@ export const RegisterForm = () => {
             errorMessage={validationErrMsg.city}
           />
           <FormInput
+            mask = {'+38 (099) 999 99'}
             placeholder={'Mobile Phone'}
             name={'phone'}
             type={'phone'}

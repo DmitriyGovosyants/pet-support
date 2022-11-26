@@ -1,6 +1,7 @@
 import { Wrapper, Input, Error } from './FormInput.styled';
 
 export const FormInput = ({
+  mask,
   placeholder,
   type,
   name,
@@ -12,6 +13,7 @@ export const FormInput = ({
     <>
       <Wrapper>
         <Input
+          mask = {mask}
           placeholder={placeholder}
           type={type}
           name={name}

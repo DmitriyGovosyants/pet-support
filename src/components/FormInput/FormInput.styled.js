@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
+import InputMask from 'react-input-mask';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ export const Error = styled.div`
   margin-top: -13px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(InputMask)`
 ${device.mobileOnly} {
   width: 100%;
 }
