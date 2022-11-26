@@ -49,6 +49,7 @@ export const UserCardWrapper = styled.div`
   }
 
   ${device.desktop} {
+    min-width: 420px;
     align-items: flex-end;
     margin-left: -16px;
     padding: 20px 16px 103px 16px;
@@ -155,8 +156,9 @@ export const Btn= styled.button`
 `;
 
 export const UserDataList = styled.ul`
+  width: 100%;
   ${device.tabletOnly} {
     padding-top: 16px;
-    margin-right: 52px;
+    margin-right: 40px;
   }
 `;

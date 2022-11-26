@@ -25,6 +25,6 @@ export const LogoutButton = styled.button`
 
   ${device.desktop} {
     left: 0;
-    top: 610px;
+    top: 585px;
   }
 `;

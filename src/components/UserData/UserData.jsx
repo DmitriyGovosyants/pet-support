@@ -6,6 +6,7 @@ import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import imageNotFound from '../../data/img/no-image.webp';
 import { SpinnerFixed, UserDataItem } from 'components';
 import { orderUserFields } from 'constants/constants';
+import { handleUploadFile } from 'helpers';
 import {
   UserDataTitle,
   UserCardWrapper,
@@ -19,8 +20,6 @@ import {
   BtnBox,
 } from './UserData.styled';
 import { theme } from 'styles';
-import { handleUploadFile } from 'helpers';
-import { toast } from 'react-toastify';
 
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState();
@@ -40,29 +39,6 @@ export const UserData = () => {
     const id = e.currentTarget.id;
     setIsShowForm(id);
     setIsEditBtnDisabled(true);
-  };
-
-  const handleSubmit = async newValue => {
-    const oldData = userData[Object.keys(newValue)];
-    const newData = Object.values(newValue)[0];
-
-    // DELETE THIS
-    console.log(oldData, newData);
-
-    if (oldData !== newData) {
-      try {
-        await editContact(newValue).unwrap();
-      } catch (error) {
-        console.log(error);
-        if (error.status === 500) {
-          toast.error('Invalid email try again');
-        }
-      }
-    }
-
-    setIsShowForm('');
-    setIsEditBtnDisabled(false);
-    refetch();
   };
 
   const handleFile = e => {
@@ -87,6 +63,8 @@ export const UserData = () => {
       console.log(error);
     } finally {
       setAvatarData();
+      setAvatar();
+      refetch();
     }
   };
 
@@ -140,9 +118,10 @@ export const UserData = () => {
               value={userData[el]}
               isShowForm={isShowForm}
               onShowForm={handleShowForm}
-              onSubmit={handleSubmit}
-              isEditLoading={isEditLoading}
               isEditBtnDisabled={isEditBtnDisabled}
+              allUserData={userData}
+              setIsShowForm={setIsShowForm}
+              setIsEditBtnDisabled={setIsEditBtnDisabled}
             />
           ))}
         </UserDataList>
