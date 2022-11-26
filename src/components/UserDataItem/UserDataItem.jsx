@@ -83,8 +83,6 @@ export const UserDataItem = ({
 
     const oldData = allUserData[title];
 
-    console.log(oldData === inputValue, oldData, inputValue);
-
     if (oldData === inputValue) {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
