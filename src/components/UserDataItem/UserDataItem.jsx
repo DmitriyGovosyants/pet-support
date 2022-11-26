@@ -23,13 +23,14 @@ import {
   isEmail,
   isUserName,
 } from 'helpers';
+import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
   title,
   value,
   isShowForm,
   onShowForm,
-  onSubmit,
   isEditBtnDisabled,
   allUserData,
   setIsShowForm,
@@ -39,6 +40,8 @@ export const UserDataItem = ({
     value === '00.00.0000' ? '' : value
   );
   const [errorMsg, setErrorMsg] = useState(null);
+  const [editContact] = useUpdateUserMutation();
+  const { refetch } = useGetUserQuery();
 
   const titleNormalized = title.toLowerCase();
 
@@ -80,6 +83,8 @@ export const UserDataItem = ({
 
     const oldData = allUserData[title];
 
+    console.log(oldData === inputValue, oldData, inputValue);
+
     if (oldData === inputValue) {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
@@ -97,7 +102,20 @@ export const UserDataItem = ({
     }
 
     setErrorMsg(null);
-    await onSubmit({ [title]: inputValue });
+
+    try {
+      await editContact({ [title]: inputValue }).unwrap();
+    } catch (error) {
+      console.log(error);
+      if (error.status === 500) {
+        setInputValue(oldData);
+        toast.error('Invalid email try again');
+      }
+    } finally {
+      setIsShowForm('');
+      setIsEditBtnDisabled(false);
+      refetch();
+    }
   };
 
   return (
