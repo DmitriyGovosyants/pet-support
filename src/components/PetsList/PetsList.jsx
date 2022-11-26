@@ -1,9 +1,9 @@
 import { PetsListStyled } from './PetsList.styled';
-import { useFetchPetsQuery } from 'redux/usersApi';
+import { useGetPetsQuery } from 'redux/usersApi';
 import { PetItem } from 'components';
 
 export const PetsList = () => {
-  const { data, isError, error } = useFetchPetsQuery();
+  const { data, isError, error } = useGetPetsQuery();
 
   if (isError) {
     if (error?.status === 404) {

@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useCreatePetMutation } from '../../redux/usersApi';
-import { isName, isBreedAddPet, isComments, isDate, isDatePast } from 'helpers';
+import {
+  isName,
+  isBreedAddPet,
+  isComments,
+  isDate,
+  isDatePast,
+  handleUploadFile,
+} from 'helpers';
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
@@ -23,7 +30,7 @@ import {
   SpinnerFixed,
   ValidationError,
 } from 'components';
-import { validationErrMsg, validFileExtension } from 'constants/constants';
+import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
   const [addPet, { isLoading }] = useCreatePetMutation();
@@ -124,33 +131,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
-    const fileNameSplit = file.name.split('.');
-    const isValidFileExtension = validFileExtension.includes(
-      fileNameSplit[fileNameSplit.length - 1]
-    );
 
-    if (file.size > 1000000) {
-      toast.error(validationErrMsg.avatarIsTooLarge);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    if (!isValidFileExtension) {
-      toast.error(validationErrMsg.avatarExtensionFailure);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    setAvatarData(file);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const base64data = reader.result;
-      setAvatar(base64data);
-    };
+    handleUploadFile(file, setAvatar, setAvatarData);
   };
 
   const handleSubmit = async () => {

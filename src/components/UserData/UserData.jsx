@@ -1,32 +1,29 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { BsCheckLg } from 'react-icons/bs';
 import { HiCamera } from 'react-icons/hi';
-import { useFetchUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import imageNotFound from '../../data/img/no-image.webp';
 import { SpinnerFixed, UserDataItem } from 'components';
-import {
-  orderUserFields,
-  validFileExtension,
-  validationErrMsg,
-} from 'constants/constants';
+import { orderUserFields } from 'constants/constants';
 import {
   UserDataTitle,
   UserCardWrapper,
   AvatarWrapper,
   UserAvatar,
   AvatarForm,
-  UserDescriptionWrapper,
+  UserDataList,
   UploadLabel,
   UploadInput,
   Btn,
   BtnBox,
 } from './UserData.styled';
 import { theme } from 'styles';
+import { handleUploadFile } from 'helpers';
+import { toast } from 'react-toastify';
 
 export const UserData = () => {
-  const [avatarData, setAvatarData] = useState('');
+  const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
@@ -34,7 +31,8 @@ export const UserData = () => {
     data: {
       data: { user: userData },
     },
-  } = useFetchUserQuery();
+    refetch,
+  } = useGetUserQuery();
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
   const handleShowForm = e => {
@@ -48,47 +46,28 @@ export const UserData = () => {
     const oldData = userData[Object.keys(newValue)];
     const newData = Object.values(newValue)[0];
 
+    // DELETE THIS
+    console.log(oldData, newData);
+
     if (oldData !== newData) {
       try {
-        await editContact(newValue);
+        await editContact(newValue).unwrap();
       } catch (error) {
         console.log(error);
+        if (error.status === 500) {
+          toast.error('Invalid email try again');
+        }
       }
     }
 
     setIsShowForm('');
     setIsEditBtnDisabled(false);
+    refetch();
   };
 
   const handleFile = e => {
     const file = e.target.files[0];
-    const fileNameSplit = file.name.split('.');
-    const isValidFileExtension = validFileExtension.includes(
-      fileNameSplit[fileNameSplit.length - 1]
-    );
-
-    if (file.size > 1000000) {
-      toast.error(validationErrMsg.avatarIsTooLarge);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    if (!isValidFileExtension) {
-      toast.error(validationErrMsg.avatarExtensionFailure);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    setAvatarData(file);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const base64data = reader.result;
-      setAvatar(base64data);
-    };
+    handleUploadFile(file, setAvatar, setAvatarData);
   };
 
   const onCancelSubmit = () => {
@@ -130,7 +109,7 @@ export const UserData = () => {
                   type="file"
                   name="photo"
                   accept=".png, .jpeg, .jpg, .webp"
-                  onChange={e => handleFile(e)}
+                  onChange={handleFile}
                 />
                 <HiCamera size={20} color={theme.colors.accent} />
                 Edit photo
@@ -138,10 +117,14 @@ export const UserData = () => {
             )}
             {avatarData && (
               <BtnBox>
-                <Btn type="button" onClick={() => onCancelSubmit()}>
+                <Btn
+                  type="button"
+                  disabled={isEditLoading}
+                  onClick={() => onCancelSubmit()}
+                >
                   <CloseIcon style={{ fill: 'black' }} />
                 </Btn>
-                <Btn type="submit">
+                <Btn type="submit" disabled={isEditLoading}>
                   <BsCheckLg />
                 </Btn>
               </BtnBox>
@@ -149,7 +132,7 @@ export const UserData = () => {
           </AvatarForm>
         </AvatarWrapper>
 
-        <UserDescriptionWrapper>
+        <UserDataList>
           {orderUserFields.map(el => (
             <UserDataItem
               key={el}
@@ -162,7 +145,7 @@ export const UserData = () => {
               isEditBtnDisabled={isEditBtnDisabled}
             />
           ))}
-        </UserDescriptionWrapper>
+        </UserDataList>
       </UserCardWrapper>
       {isEditLoading && <SpinnerFixed />}
     </>

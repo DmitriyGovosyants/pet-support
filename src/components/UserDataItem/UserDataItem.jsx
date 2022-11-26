@@ -3,15 +3,15 @@ import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { validationErrMsg } from 'constants/constants';
 import {
-  ItemContainer,
-  UserDescriptionItem,
+  ItemWrapper,
+  UserDescription,
   ItemTitle,
-  BasicUserDataWrapper,
+  ItemInfo,
   UserForm,
-  UserFormInput,
-  UserFormSubmitButton,
-  BasicUserDataEditButton,
-  BasicUserDataTitle,
+  UserInput,
+  UserSubmitBtn,
+  InfoEditBtn,
+  Info,
   Error,
 } from './UserDataItem.styled';
 import { useState } from 'react';
@@ -89,39 +89,37 @@ export const UserDataItem = ({
   };
 
   return (
-    <UserDescriptionItem>
-      <ItemContainer>
+    <UserDescription>
+      <ItemWrapper>
         <ItemTitle> {titleNormalized}:</ItemTitle>
 
         {isShowForm !== title ? (
-          <BasicUserDataWrapper>
-            <BasicUserDataTitle>{inputValue}</BasicUserDataTitle>
+          <ItemInfo>
+            <Info>{inputValue}</Info>
 
-            <BasicUserDataEditButton
+            <InfoEditBtn
               id={title}
               onClick={onShowForm}
               disabled={isEditBtnDisabled}
             >
               <MdEdit />
-            </BasicUserDataEditButton>
-          </BasicUserDataWrapper>
+            </InfoEditBtn>
+          </ItemInfo>
         ) : (
           <UserForm onSubmit={handleSummit}>
-            <label htmlFor="">
-              <UserFormInput
-                type="text"
-                name={title}
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-            </label>
-            <UserFormSubmitButton id={title} type={'submit'}>
+            <UserInput
+              type="text"
+              name={title}
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            <UserSubmitBtn id={title} type={'submit'}>
               <BsCheckLg />
-            </UserFormSubmitButton>
+            </UserSubmitBtn>
           </UserForm>
         )}
-      </ItemContainer>
+      </ItemWrapper>
       <Error>{errorMsg}</Error>
-    </UserDescriptionItem>
+    </UserDescription>
   );
 };
