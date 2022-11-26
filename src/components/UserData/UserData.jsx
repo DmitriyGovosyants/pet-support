@@ -35,7 +35,6 @@ export const UserData = () => {
   const [editContact, { isLoading: isEditLoading }] = useUpdateUserMutation();
 
   const handleShowForm = e => {
-    console.log(e.currentTarget);
     const id = e.currentTarget.id;
     setIsShowForm(id);
     setIsEditBtnDisabled(true);
