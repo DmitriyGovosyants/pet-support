@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import isMobilePhone from 'validator/lib/isMobilePhone';
 import { toast } from 'react-toastify';
 import {
   isCity,
@@ -143,7 +142,7 @@ export const RegisterForm = () => {
             errorMessage={validationErrMsg.city}
           />
           <FormInput
-            mask = {'+38 (099) 999 99'}
+            mask = {'+38 (099) 999 99 99'}
             placeholder={'Mobile Phone'}
             name={'phone'}
             type={'phone'}
@@ -188,11 +187,8 @@ export const RegisterForm = () => {
               } else {
                 const isNameValid = isName(formState.name.value);
                 const isCityValid = isCity(formState.city.value);
-                const isPhoneValid = isMobilePhone(
-                  formState.phone.value,
-                  'uk-UA',
-                  { strictMode: true }
-                );
+                const isPhoneValid = formState.phone.value;
+                  
 
                 if (!isNameValid || !isCityValid || !isPhoneValid) {
                   setFormState(prevState => ({
