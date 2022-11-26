@@ -19,6 +19,7 @@ import {
 } from './ModalEditPet.styled';
 import { toast } from 'react-toastify';
 import { MainButton } from 'components';
+import { validationErrMsg, validFileExtension } from 'constants/constants';
 
 export const ModalEditPet = ({
   id,
@@ -32,7 +33,6 @@ export const ModalEditPet = ({
   const [editPet] = useEditPetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState(image);
-  const [fileError, setFileError] = useState(false);
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
@@ -128,31 +128,26 @@ export const ModalEditPet = ({
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
+    const fileNameSplit = file.name.split('.');
+    const isValidFileExtension = validFileExtension.includes(
+      fileNameSplit[fileNameSplit.length - 1]
+    );
 
-    if (file['size'] > 1000000) {
-      setFileError(true);
+    if (file.size > 1000000) {
+      toast.error(validationErrMsg.avatarIsTooLarge);
+      setAvatar();
+      setAvatarData();
+      return;
+    }
+
+    if (!isValidFileExtension) {
+      toast.error(validationErrMsg.avatarExtensionFailure);
+      setAvatar();
+      setAvatarData();
       return;
     }
 
     setAvatarData(file);
-    setFileError(false);
-
-    switch (name) {
-      case 'name':
-        setFormState.name(value);
-        break;
-      case 'birthdate':
-        setFormState.birthdate(value);
-        break;
-      case 'breed':
-        setFormState.breed(value);
-        break;
-      case 'comments':
-        setFormState.comments(value);
-        break;
-      default:
-        return;
-    }
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -170,19 +165,12 @@ export const ModalEditPet = ({
       formData.append(data[i][0], data[i][1].value);
     }
 
-    // if (avatarData) {
-    //   formData.append('avatar', avatarData);
-    // }
+    if (avatarData) {
+      formData.append('avatar', avatarData);
+    }
 
-    console.log('1');
     try {
-      await editPet(id, formData);
-
-      console.log(id);
-      for (let input of formData.entries()) {
-        console.log(input[0], input[1]); //Выведет в консоль всю форму в виде "КЛЮЧ ЗНАЧЕНИЕ"
-      }
-
+      await editPet({ id, formData });
       closeModal();
       toast.success('Your pet has been changed');
     } catch (error) {
@@ -247,7 +235,6 @@ export const ModalEditPet = ({
           />
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
-          {fileError && <div style={{ color: 'red' }}>File too large</div>}
         </FormInputLoadWrapper>
         <Label htmlFor="name">Comments</Label>
         <Textarea

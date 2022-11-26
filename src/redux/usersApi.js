@@ -50,10 +50,10 @@ export const usersApi = createApi({
 
     //------ useEditPetMutation ---------
     editPet: builder.mutation({
-      query: (PetId, pet) => ({
-        url: `/pets/${PetId}`,
+      query: ({ id, formData }) => ({
+        url: `/pets/${id}`,
         method: 'PUT',
-        body: pet,
+        body: formData,
       }),
       invalidatesTags: ['Pet'],
     }),
