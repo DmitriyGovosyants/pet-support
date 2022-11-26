@@ -50,8 +50,8 @@ export const usersApi = createApi({
 
     //------ useEditPetMutation ---------
     editPet: builder.mutation({
-      query: (id, pet) => ({
-        url: `/pets/${id}`,
+      query: (PetId, pet) => ({
+        url: `/pets/${PetId}`,
         method: 'PUT',
         body: pet,
       }),

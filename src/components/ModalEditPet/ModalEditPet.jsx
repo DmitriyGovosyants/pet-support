@@ -174,12 +174,14 @@ export const ModalEditPet = ({
     //   formData.append('avatar', avatarData);
     // }
 
-    // for (let input of formData.entries()) {
-    //   console.log(input[0], input[1]); //Выведет в консоль всю форму в виде "КЛЮЧ ЗНАЧЕНИЕ"
-    // }
-
     try {
       await editPet(id, formData);
+
+      console.log(id);
+      for (let input of formData.entries()) {
+        console.log(input[0], input[1]); //Выведет в консоль всю форму в виде "КЛЮЧ ЗНАЧЕНИЕ"
+      }
+
       closeModal();
       toast.success('Your pet has been changed');
     } catch (error) {

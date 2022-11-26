@@ -10,7 +10,12 @@ import {
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
 import petTemlate from 'data/img/pet-template.jpg';
-import { Modal, ModalDelete, PetsInterfaceButton } from 'components';
+import {
+  Modal,
+  ModalDelete,
+  ModalEditPet,
+  PetsInterfaceButton,
+} from 'components';
 import { useState } from 'react';
 
 export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
