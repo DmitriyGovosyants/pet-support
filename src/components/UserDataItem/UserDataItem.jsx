@@ -89,8 +89,8 @@ export const UserDataItem = ({
   };
 
   return (
-    <ItemContainer>
-      <UserDescriptionItem>
+    <UserDescriptionItem>
+      <ItemContainer>
         <ItemTitle> {titleNormalized}:</ItemTitle>
 
         {isShowForm !== title ? (
@@ -120,8 +120,8 @@ export const UserDataItem = ({
             </UserFormSubmitButton>
           </UserForm>
         )}
-      </UserDescriptionItem>
+      </ItemContainer>
       <Error>{errorMsg}</Error>
-    </ItemContainer>
+    </UserDescriptionItem>
   );
 };

@@ -45,4 +45,5 @@ export * from './Modal/Modal';
 export * from './MainButton/MainButton';
 export * from './ModalBtnClose/ModalBtnClose';
 export * from './Spinner/Spinner';
+export * from './SpinnerFixed/SpinnerFixed';
 export * from './ValidationError/ValidationError';

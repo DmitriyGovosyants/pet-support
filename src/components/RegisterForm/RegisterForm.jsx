@@ -18,7 +18,7 @@ import {
   FormText,
   FormWrapper,
   MainButton,
-  Spinner,
+  SpinnerFixed,
 } from 'components';
 import { Wrapper, InputWrapper, Button, EyeBtn } from './RegisterForm.styled';
 import { validationErrMsg } from 'constants/constants';
@@ -234,13 +234,13 @@ export const RegisterForm = () => {
             </Button>
           )}
         </Wrapper>
-        {isLoading && <Spinner button />}
         <FormText
           text={'Already have an account?'}
           routesPath={'/login'}
           link={'Login'}
         />
       </form>
+      {isLoading && <SpinnerFixed />}
     </FormWrapper>
   );
 };

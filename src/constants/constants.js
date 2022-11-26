@@ -10,7 +10,7 @@ export const categoriesWithoutAuth = ['sell', 'lost/found', 'In good hands'];
 
 export const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-export const ORDER_USER_FIELDS = [
+export const orderUserFields = [
   'name',
   'email',
   'birthdate',

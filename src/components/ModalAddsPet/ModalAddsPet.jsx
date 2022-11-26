@@ -20,7 +20,7 @@ import { toast } from 'react-toastify';
 import {
   MainButton,
   ModalBtnClose,
-  Spinner,
+  SpinnerFixed,
   ValidationError,
 } from 'components';
 import { validationErrMsg, validFileExtension } from 'constants/constants';
@@ -264,7 +264,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         </MainButton>
       </BtnBox>
       <ModalBtnClose toggleModal={toggleModal} />
-      {isLoading && <Spinner button />}
+      {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
 };

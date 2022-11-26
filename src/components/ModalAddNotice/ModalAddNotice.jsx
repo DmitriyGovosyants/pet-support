@@ -19,7 +19,7 @@ import {
 import {
   MainButton,
   ModalBtnClose,
-  Spinner,
+  SpinnerFixed,
   ValidationError,
 } from 'components';
 import {
@@ -437,8 +437,8 @@ export const ModalAddNotice = ({ toggleModal }) => {
           {step === 1 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
-      {isLoading && <Spinner button />}
       <ModalBtnClose toggleModal={toggleModal} />
+      {isLoading && <SpinnerFixed />}
     </ModalCard>
   );
 };
