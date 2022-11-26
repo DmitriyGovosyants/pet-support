@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const SpinnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 100;
 `

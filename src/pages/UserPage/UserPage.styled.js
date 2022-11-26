@@ -10,15 +10,12 @@ export const UserPageWrapper = styled.div`
 
 export const UserDataWrapper = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 40px;
 
-  ${device.tablet} {
-    margin-left: -32px;
-    margin-bottom: 20px;
+  ${device.mobileOnly} {
+    margin-bottom: 40px;
   }
-  ${device.desktop} {
-    margin-left: -16px;
+  
+  ${device.tabletOnly} {
+    margin-bottom: 20px;
   }
 `;

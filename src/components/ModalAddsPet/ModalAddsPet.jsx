@@ -264,7 +264,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         </MainButton>
       </BtnBox>
       <ModalBtnClose toggleModal={toggleModal} />
-      {isLoading && <Spinner button />}
+      {isLoading && <Spinner h={'60'} w={'60'} />}
     </ModalWrap>
   );
 };

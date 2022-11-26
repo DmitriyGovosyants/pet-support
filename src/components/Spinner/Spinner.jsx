@@ -1,13 +1,13 @@
 import { Dna } from 'react-loader-spinner';
 import { SpinnerWrapper } from './Spinner.styled';
 
-export const Spinner = ({ button }) => {
+export const Spinner = ({ h = '140', w = '140' }) => {
   return (
-    <SpinnerWrapper button={button}>
+    <SpinnerWrapper>
       <Dna
         visible={true}
-        height={button ? '80' : '180'}
-        width={button ? '80' : '180'}
+        height={h}
+        width={w}
         ariaLabel="dna-loading"
         wrapperStyle={{}}
         wrapperClass="dna-wrapper"

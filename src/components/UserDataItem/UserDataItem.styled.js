@@ -2,17 +2,13 @@ import styled from '@emotion/styled';
 import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
-export const ItemContainer = styled.div`
+export const UserDescriptionItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 8px;
-
-    ${device.tablet} {
-      margin-bottom: 12px;
-    }
   }
 `;
 
-export const UserDescriptionItem = styled.li`
+export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,25 +28,21 @@ export const ItemTitle = styled.span`
     line-height: 1.39;
   }
 `;
-/**
- * Basic data and editability
- */
 
 export const BasicUserDataWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 24px;
-  width: 190px;
-  padding-left: 19px;
+  width: 170px;
+  margin-left: 20px;
 
   ${device.tablet} {
     min-height: 32px;
     width: 272px;
-    padding-left: 13px;
+    margin-left: 24px;
+    padding-left: 12px;
   }
-
-  /* було для десктопа */
 `;
 
 export const BasicUserDataTitle = styled.p`

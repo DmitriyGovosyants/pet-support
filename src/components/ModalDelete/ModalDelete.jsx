@@ -1,4 +1,4 @@
-import { MainButton, ModalBtnClose, Spinner } from 'components';
+import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
 import { useDeletePetMutation } from 'redux/usersApi';
 import { ModalContainer, TittleModal, BtnBox } from './ModalDelete.styled';
@@ -37,7 +37,7 @@ export const ModalDelete = ({ id, closeModal }) => {
         </MainButton>
       </BtnBox>
       <ModalBtnClose toggleModal={closeModal} />
-      {isLoading && <Spinner button />}
+      {isLoading && <SpinnerFixed />}
     </ModalContainer>
   );
 };

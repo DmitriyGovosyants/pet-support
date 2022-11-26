@@ -10,7 +10,7 @@ import {
   FormText,
   FormWrapper,
   MainButton,
-  Spinner,
+  SpinnerFixed,
 } from 'components';
 import { Wrapper, EyeBtn, InputWrapper } from './LoginForm.styled';
 
@@ -111,13 +111,13 @@ export const LoginForm = () => {
             Login
           </MainButton>
         </Wrapper>
-        {isLoading && <Spinner button />}
         <FormText
           text={"Don't have an account?"}
           routesPath={'/register'}
           link={'Register'}
         />
       </form>
+      {isLoading && <SpinnerFixed />}
     </FormWrapper>
   );
 };

@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
 
 export const UserDataTitle = styled.p`
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 18px;
   font-weight: 500;
   font-size: 20px;
@@ -11,30 +13,13 @@ export const UserDataTitle = styled.p`
   color: ${p => p.theme.colors.textMain};
 
   ${device.tablet} {
-    padding-left: 32px;
-    margin-bottom: 40px;
+    margin-bottom: 26px;
     font-size: 28px;
     line-height: 1.36;
   }
 
   ${device.desktop} {
-    padding-left: 16px;
     margin-bottom: 24px;
-  }
-`;
-
-/**
- * Main wrapper styles
- */
-
-export const UserWrapper = styled.div`
-  ${device.tabletOnly} {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-
-  ${device.desktop} {
-    flex-direction: column;
   }
 `;
 
@@ -42,142 +27,136 @@ export const UserCardWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  padding: 20px 0 84px 0;
+  padding: 20px 12px 84px 16px;
+
   background-color: ${p => p.theme.colors.bgSecond};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
+  ${device.mobileOnly} {
+    align-items: flex-end;
+  }
+
   ${device.tablet} {
+    margin-left: -32px;
     border-radius: 0px 40px 40px 0px;
-    padding: 0 40px 0 32px;
+    padding: 24px 40px 24px 32px;
+  }
+
+  ${device.tabletOnly} {
+    flex-direction: row-reverse;
+    justify-content: start;
   }
 
   ${device.desktop} {
-    width: 410px;
-    padding: 20px 0 103px 0;
-  }
-`;
-/**
- * Description block styles
- */
-
-export const UserDescriptionWrapper = styled.ul`
-  //був div
-  padding: 0 16px;
-
-  ${device.tablet} {
-    width: 380px;
-    padding: 40px 0 80px 0;
-    margin-right: 52px;
-  }
-
-  ${device.desktop} {
-    width: auto;
-    padding: 0 16px;
-    margin-right: 0;
+    align-items: flex-end;
+    margin-left: -16px;
+    padding: 20px 16px 103px 16px;
   }
 `;
 
-/**
- * Avatar block styles
- */
-export const AvatarPhotoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  width: 88px;
-  height: 22px;
-
-  ${device.tablet} {
-    position: absolute;
-    bottom: 24px;
-    right: 40px;
-  }
-
-  ${device.desktop} {
-    top: 230px;
-    right: 16px;
-  }
-`;
 export const AvatarWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: flex-end;
+  
+  ${device.mobileOnly} {
+    padding: 0 11px 0 8px;
+    margin-bottom: 34px;
+  }
 
-  padding: 0 25px;
-  margin-bottom: 34px;
+  ${device.tabletOnly} {
+    flex-shrink: 0;
+  }
 
-  ${device.tablet} {
-    align-items: center;
-    padding: 25px 0 55px 0;
-    margin-bottom: 0;
+  ${device.notDesktop} {
+    flex-direction: column;
   }
 
   ${device.desktop} {
-    padding: 0 90px;
-    margin-bottom: 34px;
+    margin-bottom: 32px;
   }
 `;
-export const Avatar = styled.img`
-  width: 230px;
-  height: 230px;
-  margin-bottom: 12px;
+
+
+export const UserAvatar = styled.img`
+  width: 233px;
+  height: 233px;
   object-fit: cover;
 
-  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 50%;
 
-  ${device.tablet} {
-    margin-bottom: 0;
+  ${device.mobileOnly} {
+    margin-bottom: 12px;
+  }
+  
+  ${device.tabletOnly} {
+    margin-bottom: 8px;
   }
 `;
-export const AvatarPhotoEditButton = styled.label`
-  display: flex;
-  align-items: center;
-  width: 88px;
+
+export const AvatarForm = styled.form`
+  position: relative;
+  width: 86px;
   height: 22px;
+
+  ${device.desktop} {
+    margin-left: -13px;
+  }
+`;
+
+export const UploadLabel = styled.label`
+  display: flex;
+  gap: 2px;
+
   font-size: 12px;
-  line-height: 1.83;
+  line-height: 1.8;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.textMain};
   cursor: pointer;
 `;
 
 export const UploadInput = styled.input`
-  display: none;
-`;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
 
-export const UploadLabel = styled.label`
-  display: inline-block;
-  height: 30px;
-  width: 88px;
-  padding: 4px 2px;
+  width: 100%;
+  height: 100%;
 
-  font-size: 12px;
-  line-height: 1.8;
-  letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.textMain};
-  text-align: center;
-
-  overflow: hidden;
-
-  background: ${p => p.theme.colors.bgMain};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 8px;
-
+  font-size: 0;
   cursor: pointer;
 `;
 
-export const ConfirmBtnAvatar = styled.button`
-  width: 88px;
-  height: 30px;
-  font-size: 12px;
-  line-height: 1.83;
-  letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.textSecond};
-  background-color: ${p => p.theme.colors.accent};
-  border-radius: 8px;
+export const BtnBox = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  float: right;
+`
+
+export const Btn= styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: ${p => p.theme.colors.accent};
+  background-color: ${p => p.theme.colors.bgMain};
+  border-radius: 50%;
   cursor: pointer;
+
+  ${device.tablet} {
+    width: 32px;
+    height: 32px;
+  }
+`;
+
+export const UserDescriptionWrapper = styled.ul`
+  ${device.tabletOnly} {
+    padding-top: 16px;
+    margin-right: 52px;
+  }
 `;
