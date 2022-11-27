@@ -30,7 +30,7 @@ export const ModalOurFriend = ({ children, toggleModal }) => {
   return (
     <div 
     onClick={handleBackdropClick}
-    mounted={isMounted.current}
+    mounted={isMounted.current.toString()}
     >
         {children}
     </div>
