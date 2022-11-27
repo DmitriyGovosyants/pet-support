@@ -16,6 +16,7 @@ export const Text = styled.p`
   font-size: 16px;
   line-height: 2;
   color: ${p => p.theme.colors.textMain};
+  cursor: ${p => p.cursor ? p.cursor : 'auto'};
 
   ${device.tablet} {
     font-size: 20px;
@@ -37,3 +38,5 @@ export const StyledFavouriteIcon = styled(FavouriteIcon)`
     scale: 1.5;
   }
 `;
+
+
