@@ -57,6 +57,11 @@ font-size: 16px;
 line-height: 22px;
 text-decoration: underline;
 color: ${props => props.theme.colors.accent};
+
+:hover,
+:focus {
+  color: ${props => props.theme.colors.hover};
+}
 `;
 
 export const Wrapper = styled.div`
