@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Modal, ModalAddsPet } from 'components';
 import { Button, Wrapper, Text, StyledPlusIcon } from './AddUsersPet.styled';
+import { useAuth } from 'redux/useAuth';
 
 export const AddUsersPet = () => {
   const [showModal, setShowModal] = useState(false);
-  const user = true; //временная заглушка
+  const { user } = useAuth();
 
   const handleAddPet = () => {
     user ? setShowModal(true) : toast.error('Please login');
