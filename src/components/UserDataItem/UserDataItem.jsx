@@ -15,7 +15,7 @@ import {
   Info,
   Error,
 } from './UserDataItem.styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   isCity,
   isDate,
@@ -36,7 +36,6 @@ export const UserDataItem = ({
   allUserData,
   setIsShowForm,
   setIsEditBtnDisabled,
-  isCancelEdit,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? '' : value
@@ -85,6 +84,8 @@ export const UserDataItem = ({
 
     const oldData = allUserData[title];
 
+    console.log(oldData, inputValue);
+
     if (oldData === inputValue) {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
@@ -118,13 +119,6 @@ export const UserDataItem = ({
       refetch();
     }
   };
-
-  useEffect(() => {
-    return () => {
-      setErrorMsg(null);
-      setInputValue(allUserData[title]);
-    };
-  }, [isCancelEdit, allUserData, title]);
 
   return (
     <UserDescription>
@@ -171,5 +165,4 @@ UserDataItem.propTypes = {
   allUserData: PropTypes.object.isRequired,
   setIsShowForm: PropTypes.func.isRequired,
   setIsEditBtnDisabled: PropTypes.func.isRequired,
-  isCancelEdit: PropTypes.bool.isRequired,
 };
