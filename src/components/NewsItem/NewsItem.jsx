@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Title,
   NewsText,
@@ -26,4 +27,11 @@ export const NewsItem = ({ title, description, url, date }) => {
       </Wrapper>
     </ItemWrapper>
   );
+};
+
+NewsItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  date: PropTypes.string,
 };

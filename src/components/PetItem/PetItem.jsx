@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   PetItemStyled,
   ThumbImage,
@@ -77,12 +78,12 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
         </ListButton>
       </InfoList>
       {showModalDelete && (
-        <Modal toggleModal={() => setShowModalDelete(s => !s)} main>
+        <Modal toggleModal={() => setShowModalDelete(s => !s)}>
           <ModalDelete id={id} closeModal={() => setShowModalDelete(false)} />
         </Modal>
       )}
       {showModalEdit && (
-        <Modal toggleModal={() => setShowModalEdit(s => !s)} main>
+        <Modal toggleModal={() => setShowModalEdit(s => !s)}>
           <ModalEditPet
             id={id}
             image={image}
@@ -96,4 +97,13 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
       )}
     </PetItemStyled>
   );
+};
+
+PetItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  dateOfBirth: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired,
 };

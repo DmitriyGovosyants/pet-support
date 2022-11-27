@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { toast } from 'react-toastify';
@@ -337,7 +338,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
               Location<RequiredSymbol>*</RequiredSymbol>
             </FormInputLabel>
             <FormInput
-              placeholder={'Type location'}
+              placeholder={'City, Region'}
               type={'text'}
               name={'location'}
               onChange={handleChange}
@@ -417,4 +418,8 @@ export const ModalAddNotice = ({ toggleModal }) => {
       {isLoading && <SpinnerFixed />}
     </ModalCard>
   );
+};
+
+ModalAddNotice.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
 };

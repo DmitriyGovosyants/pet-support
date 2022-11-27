@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { daysOfWeek } from '../../constants/constants';
 import partnerImg from '../../data/img/partner.png';
@@ -117,4 +118,15 @@ export const OurFriendItem = ({
       </InfoWrapper>
     </Card>
   );
+};
+
+OurFriendItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  imageUrl: PropTypes.string,
+  workDays: PropTypes.any,
+  address: PropTypes.string,
+  addressUrl: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
 };

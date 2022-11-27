@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import { useEditPetMutation } from '../../redux/usersApi';
@@ -252,4 +253,14 @@ export const ModalEditPet = ({
       {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
+};
+
+ModalEditPet.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  birthdate: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };

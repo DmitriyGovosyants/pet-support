@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useCreatePetMutation } from '../../redux/usersApi';
 import {
@@ -249,4 +250,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
       {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
+};
+
+ModalAddsPet.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
 };
