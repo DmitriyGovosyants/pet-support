@@ -54,9 +54,8 @@ export const ImgWrapper = styled.div`
 
 export const Img = styled.img`
   object-fit: cover;
-  ${device.tablet} {
-    height: 100%;
-  }
+  width: 100%;
+  height: 100%;
 `;
 
 export const CategoryMark = styled.span`
@@ -137,6 +136,8 @@ export const ContactLink = styled.a`
   font-size: 14px;
   line-height: 1.35;
   color: ${props => props.theme.colors.black};
+  overflow: hidden;
+  word-wrap: break-word;
 
   transition: color ${p => p.theme.animation.cubicBezier};
 
