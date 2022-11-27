@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 import { Wrapper, Label, Input, Icon } from './NoticesSearch.styled';
-import { setWord } from 'redux/filterSlice';
-import { useDispatch } from 'react-redux';
+import { setWord, selectKeyWord } from 'redux/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 
 export const NoticesSearch = () => {
-  const [keyWord, setKeyWord] = useState('');
   const dispatch = useDispatch();
+  const word = useSelector(selectKeyWord);
+  const [keyWord, setKeyWord] = useState(word);
 
   const changeInputValue = e => {
     setKeyWord(e.target.value);
