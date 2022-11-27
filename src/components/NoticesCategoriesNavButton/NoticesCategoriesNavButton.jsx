@@ -3,18 +3,14 @@ import {
   StyledSelectedLink,
 } from './NoticesCategoriesNavButton.styled';
 import PropTypes from 'prop-types';
+import { fromCategoryToRoute } from 'helpers';
 
 export const NoticesCategoriesNavButton = ({
   category,
   selected,
   categoryToggler,
 }) => {
-  const categoryRoute = category
-    .toLowerCase()
-    .split(' ')
-    .join('-')
-    .split('/')
-    .join('-');
+  const categoryRoute = fromCategoryToRoute(category);
 
   const onClickHandler = () => {
     categoryToggler(category);
