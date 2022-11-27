@@ -1,9 +1,15 @@
-import { PetsListStyled } from './PetsList.styled';
+import { PetsListStyled, EmptyTemplate } from './PetsList.styled';
 import { useGetPetsQuery } from 'redux/usersApi';
 import { PetItem } from 'components';
 
 export const PetsList = () => {
-  const { data, isError, error } = useGetPetsQuery();
+  const {
+    data: {
+      data: { pet: pets },
+    },
+    isError,
+    error,
+  } = useGetPetsQuery();
 
   if (isError) {
     if (error?.status === 404) {
@@ -11,11 +17,11 @@ export const PetsList = () => {
     }
   }
 
-  if (data) {
-    const {
-      data: { pet: pets },
-    } = data;
+  if (pets.length === 0) {
+    return <EmptyTemplate>Add your cute pets here</EmptyTemplate>;
+  }
 
+  if (pets) {
     return (
       <PetsListStyled>
         {pets.map(({ _id, avatarURL, name, birthdate, breed, comments }) => {
