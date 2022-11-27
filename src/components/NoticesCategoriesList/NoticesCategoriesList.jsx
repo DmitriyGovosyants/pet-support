@@ -17,7 +17,7 @@ import { useFilter } from 'hooks/useFilter';
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
-  const [skip, setSkip] = useState(true);
+  const [skip, setSkip] = useState(false);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const auth = useAuth();
