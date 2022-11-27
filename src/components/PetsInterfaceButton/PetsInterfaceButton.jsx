@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Button } from './PetsInterfaceButton.styled';
 
 export const PetsInterfaceButton = ({ children, onClick }) => {
@@ -6,4 +7,9 @@ export const PetsInterfaceButton = ({ children, onClick }) => {
       {children}
     </Button>
   );
+};
+
+PetsInterfaceButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

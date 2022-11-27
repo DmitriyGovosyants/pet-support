@@ -59,7 +59,7 @@ export const UserCardWrapper = styled.div`
 export const AvatarWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  
+
   ${device.mobileOnly} {
     padding: 0 11px 0 8px;
     margin-bottom: 34px;
@@ -78,7 +78,6 @@ export const AvatarWrapper = styled.div`
   }
 `;
 
-
 export const UserAvatar = styled.img`
   width: 233px;
   height: 233px;
@@ -90,7 +89,7 @@ export const UserAvatar = styled.img`
   ${device.mobileOnly} {
     margin-bottom: 12px;
   }
-  
+
   ${device.tabletOnly} {
     margin-bottom: 8px;
   }
@@ -114,7 +113,6 @@ export const UploadLabel = styled.label`
   line-height: 1.8;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.textMain};
-  cursor: pointer;
 `;
 
 export const UploadInput = styled.input`
@@ -128,7 +126,7 @@ export const UploadInput = styled.input`
   height: 100%;
 
   font-size: 0;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
 `;
 
 export const BtnBox = styled.div`
@@ -136,9 +134,9 @@ export const BtnBox = styled.div`
   grid-auto-flow: column;
   gap: 10px;
   float: right;
-`
+`;
 
-export const Btn= styled.button`
+export const Btn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;

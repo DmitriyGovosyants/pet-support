@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Wrapper, Input, Error } from './FormInput.styled';
 
 export const FormInput = ({
@@ -22,4 +23,13 @@ export const FormInput = ({
       {!isvalid && <Error>{errorMessage}</Error>}
     </>
   );
+};
+
+FormInput.propTypes = {
+  placeholder: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isvalid: PropTypes.number.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };

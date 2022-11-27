@@ -7,14 +7,16 @@ export const useFilter = category => {
   const [search, setSearch] = useState('');
   const keyWord = useSelector(selectKeyWord);
   useEffect(() => {
-    if (category === 'favorite-ads' || category === 'my-ads') {
+    if (
+      (keyWord.trim() !== '' && category === 'favorite-ads') ||
+      (keyWord.trim() !== '' && category === 'my-ads')
+    ) {
       setSearch('');
-      keyWord.trim() !== '' &&
-        toast.warn(
-          `Sorry, but you can not search by key word in ${
-            category === 'my-ads' ? 'private' : 'favorites'
-          } section`
-        );
+      toast.warn(
+        `Sorry, but you can not search by key word in ${
+          category === 'my-ads' ? 'private' : 'favorites'
+        } section`
+      );
     } else {
       setSearch(`&search=${keyWord.trim()}`);
     }

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useCreatePetMutation } from '../../redux/usersApi';
+import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
+import { useEditPetMutation } from '../../redux/usersApi';
 import {
   isName,
-  isBreedAddPet,
+  isBreed,
   isComments,
   isDate,
   isDatePast,
@@ -12,6 +13,7 @@ import {
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
+  BtnClose,
   Label,
   Input,
   BtnBox,
@@ -22,38 +24,39 @@ import {
   FormInputLoad,
   FormInputLoadImg,
   FormInputLoadPlus,
-  RequiredSymbol,
-} from './ModalAddsPets.styled';
+} from './ModalEditPet.styled';
 import { toast } from 'react-toastify';
-import {
-  MainButton,
-  ModalBtnClose,
-  SpinnerFixed,
-  ValidationError,
-} from 'components';
-import { validationErrMsg } from 'constants/constants';
+import { MainButton, SpinnerFixed } from 'components';
 
-export const ModalAddsPet = ({ toggleModal }) => {
-  const [addPet, { isLoading }] = useCreatePetMutation();
+export const ModalEditPet = ({
+  id,
+  image,
+  name,
+  birthdate,
+  breed,
+  comments,
+  closeModal,
+}) => {
+  const [editPet, { isLoading }] = useEditPetMutation();
   const [avatarData, setAvatarData] = useState();
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(image);
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
     name: {
-      value: '',
+      value: name,
       isValid: true,
     },
     birthdate: {
-      value: '',
+      value: birthdate,
       isValid: true,
     },
     breed: {
-      value: '',
+      value: breed,
       isValid: true,
     },
     comments: {
-      value: '',
+      value: comments,
       isValid: true,
     },
   });
@@ -69,7 +72,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   const handleSecondBtn = () => {
     if (step === 0) {
-      toggleModal();
+      closeModal();
     }
     if (step === 1) {
       setStep(0);
@@ -81,7 +84,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
     const isNameValid = isName(name.value);
     const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
-    const isBreedValid = isBreedAddPet(breed.value);
+    const isBreedValid = isBreed(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
       setFormState(prevState => ({
@@ -149,9 +152,9 @@ export const ModalAddsPet = ({ toggleModal }) => {
     }
 
     try {
-      await addPet(formData);
-      toggleModal();
-      toast.success('Your pet is added');
+      await editPet({ id, formData }).unwrap();
+      closeModal();
+      toast.success('Your pet has been changed');
     } catch (error) {
       console.log(error);
     }
@@ -159,50 +162,51 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   return (
     <ModalWrap onSubmit={handleSubmit}>
-      <Title>Add pet</Title>
+      <BtnClose type="button" onClick={() => closeModal()}>
+        <CloseIcon />
+      </BtnClose>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <Label htmlFor="name">
-          Name pet<RequiredSymbol>*</RequiredSymbol>
-        </Label>
+        <Title>Edit pet</Title>
+        <Label htmlFor="name">Name pet</Label>
         <Input
           placeholder={'Type name pet'}
           type={'text'}
           name={'name'}
+          value={formState.name.value}
           onChange={handleChange}
         />
-        <ValidationError
-          message={validationErrMsg.petName}
-          isHidden={formState.name.isValid}
-        />
-        <Label htmlFor="birthdate">
-          Date of birth<RequiredSymbol>*</RequiredSymbol>
-        </Label>
+        {!formState.name.isValid && (
+          <div style={{ color: 'red' }}>Name should have only 2-16 letters</div>
+        )}
+        <Label htmlFor="birthdate">Date of birth</Label>
         <Input
           placeholder={'Type date of birth'}
           type={'text'}
           name={'birthdate'}
+          value={formState.birthdate.value}
           onChange={handleChange}
         />
-        <ValidationError
-          message={validationErrMsg.birthdate}
-          isHidden={formState.birthdate.isValid}
-        />
-        <Label htmlFor="breed">
-          Breed<RequiredSymbol>*</RequiredSymbol>
-        </Label>
+        {!formState.birthdate.isValid && (
+          <div style={{ color: 'red' }}>
+            Please, type in DD.MM.YYYY format and past date
+          </div>
+        )}
+        <Label htmlFor="breed">Breed</Label>
         <Input
           placeholder={'Type breed'}
           type={'text'}
           name={'breed'}
+          value={formState.breed.value}
           onChange={handleChange}
         />
-        <ValidationError
-          message={validationErrMsg.breedAddPet}
-          isHidden={formState.breed.isValid}
-        />
+        {!formState.breed.isValid && (
+          <div style={{ color: 'red' }}>
+            Breed should have only 2-16 letters
+          </div>
+        )}
       </div>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
-        <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
+        <SubTitle htmlFor="addPhoto">Edit photo and some comments</SubTitle>
         <FormInputLoadWrapper>
           <FormInputLoad
             type={'file'}
@@ -214,19 +218,19 @@ export const ModalAddsPet = ({ toggleModal }) => {
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
         </FormInputLoadWrapper>
-        <Label htmlFor="name">
-          Comments<RequiredSymbol>*</RequiredSymbol>
-        </Label>
+        <Label htmlFor="name">Comments</Label>
         <Textarea
           name={'comments'}
+          value={formState.comments.value}
           onChange={handleChange}
           placeholder={'Type comments'}
           rows="3"
         />
-        <ValidationError
-          message={validationErrMsg.comments}
-          isHidden={formState.comments.isValid}
-        />
+        {!formState.comments.isValid && (
+          <div style={{ color: 'red' }}>
+            Comments should have only 8-120 letters
+          </div>
+        )}
       </div>
       <BtnBox>
         <MainButton
@@ -246,12 +250,17 @@ export const ModalAddsPet = ({ toggleModal }) => {
           {step === 0 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
-      <ModalBtnClose toggleModal={toggleModal} />
       {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
 };
 
-ModalAddsPet.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
+ModalEditPet.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  birthdate: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
