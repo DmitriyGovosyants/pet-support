@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
 import { useDeletePetMutation } from 'redux/usersApi';
@@ -40,4 +41,9 @@ export const ModalDelete = ({ id, closeModal }) => {
       {isLoading && <SpinnerFixed />}
     </ModalContainer>
   );
+};
+
+ModalDelete.propTypes = {
+  id: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };

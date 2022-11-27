@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   z-index: 100;
   width: 100%;
   height: 100%;
-  padding: ${p => p.main ? '158px 20px 60px 20px' : '0'};
+  padding: 158px 20px 60px 20px;
 
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
 import { useRemovePrivateNoticeMutation } from 'redux/noticesApi';
@@ -44,4 +45,9 @@ export const ModalDeleteNotice = ({ id, closeModal }) => {
       {isLoading && <SpinnerFixed />}
     </ModalContainer>
   );
+};
+
+ModalDeleteNotice.propTypes = {
+  id: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };

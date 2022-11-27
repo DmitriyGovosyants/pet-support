@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { NavLinkStyled, NavItem, NavList } from './Nav.styled';
 import { routesPath } from 'router';
 
@@ -23,4 +24,8 @@ export const Nav = ({ toggleNavBar }) => {
       </NavList>
     </nav>
   );
+};
+
+Nav.propTypes = {
+  toggleNavBar: PropTypes.func,
 };

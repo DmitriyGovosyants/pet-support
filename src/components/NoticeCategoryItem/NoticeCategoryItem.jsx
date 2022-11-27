@@ -102,7 +102,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
         </LearnMore>
       </About>
       {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)} main>
+        <Modal toggleModal={() => setShowModal(s => !s)}>
           <ModalNotice
             petData={petData}
             favorite={isFavourite}
@@ -112,7 +112,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
         </Modal>
       )}
       {showModalDelete && (
-        <Modal toggleModal={() => setShowModalDelete(s => !s)} main>
+        <Modal toggleModal={() => setShowModalDelete(s => !s)}>
           <ModalDeleteNotice
             id={_id}
             closeModal={() => setShowModalDelete(false)}

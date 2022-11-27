@@ -21,7 +21,7 @@ export const AddUsersPet = () => {
         </Button>
       </Wrapper>
       {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)} main>
+        <Modal toggleModal={() => setShowModal(s => !s)}>
           <ModalAddsPet toggleModal={() => setShowModal(false)} />
         </Modal>
       )}

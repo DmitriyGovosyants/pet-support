@@ -1,12 +1,11 @@
-import { Section, Container, MainTitle } from 'components';
-import { NewsItem } from 'components';
 import React, { useState } from 'react';
 import { useGetAllNewsQuery } from 'redux/newsApi';
+import { Section, Container, MainTitle, Spinner, NewsItem } from 'components';
 import { Input, SearchForm, NewsList, Label, Icon } from './NewsPage.styled';
 
 const NewsPage = () => {
   const [newsName, setNewsName] = useState('');
-  const { data, error } = useGetAllNewsQuery(newsName);
+  const { data, error, isLoading } = useGetAllNewsQuery(newsName);
 
   const handleSubmitForm = evt => {
     evt.preventDefault();
@@ -24,6 +23,7 @@ const NewsPage = () => {
             <Icon />
           </Label>
         </SearchForm>
+        {isLoading && <Spinner />}
         <NewsList>
           {!error &&
             data &&

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Wrapper, Input, Error } from './MaskInput.styled';
 
 export const MaskInput = ({
@@ -24,4 +25,14 @@ export const MaskInput = ({
       {!isvalid && <Error>{errorMessage}</Error>}
     </>
   );
+};
+
+MaskInput.propTypes = {
+  placeholder: PropTypes.string,
+  mask: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isvalid: PropTypes.number.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };

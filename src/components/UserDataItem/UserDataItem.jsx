@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
@@ -159,4 +160,16 @@ export const UserDataItem = ({
       <Error>{errorMsg}</Error>
     </UserDescription>
   );
+};
+
+UserDataItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  isShowForm: PropTypes.string,
+  onShowForm: PropTypes.func.isRequired,
+  isEditBtnDisabled: PropTypes.bool.isRequired,
+  allUserData: PropTypes.object.isRequired,
+  setIsShowForm: PropTypes.func.isRequired,
+  setIsEditBtnDisabled: PropTypes.func.isRequired,
+  isCancelEdit: PropTypes.bool.isRequired,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { AuthNavItem, AuthNavList, AuthNavLink } from './AuthNav.styled';
 import { routesPath } from 'router';
 
@@ -20,4 +21,8 @@ export const AuthNav = ({ toggleNavBar }) => {
       </AuthNavItem>
     </AuthNavList>
   );
+};
+
+AuthNav.propTypes = {
+  toggleNavBar: PropTypes.func,
 };

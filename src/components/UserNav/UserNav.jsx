@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { routesPath } from 'router';
 import { UserNavLink, UserIcon } from './UserNav.styled';
 
@@ -8,4 +9,8 @@ export const UserNav = ({ toggleNavBar }) => {
       Account
     </UserNavLink>
   );
+};
+
+UserNav.propTypes = {
+  toggleNavBar: PropTypes.func,
 };

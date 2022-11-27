@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Container,
   ImgWrapper,
@@ -125,4 +126,26 @@ export const ModalNotice = ({
       <ModalBtnClose toggleModal={toggleModal} />
     </Container>
   );
+};
+
+ModalNotice.propTypes = {
+  petData: PropTypes.shape({
+    avatarURL: PropTypes.string,
+    birthdate: PropTypes.string.isRequired,
+    breed: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string,
+    sex: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    owner: PropTypes.shape({
+      phone: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+    }),
+  }),
+  favorite: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  toggleFavourites: PropTypes.func.isRequired,
 };

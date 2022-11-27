@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Btn } from './MainButton.styled';
 
 export const MainButton = ({
@@ -21,4 +22,14 @@ export const MainButton = ({
       {children}
     </Btn>
   );
+};
+
+Btn.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  option: PropTypes.string,
+  size: PropTypes.string,
+  width: PropTypes.string,
+  disabled: PropTypes.bool,
 };
