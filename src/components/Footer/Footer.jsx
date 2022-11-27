@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { routesPath } from 'router';
 import { Container } from 'components';
@@ -7,8 +8,6 @@ import {
   TextAccent,
   StyledFavouriteIcon,
 } from './Footer.styled';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 export const Footer = () => {
   const [isShow, setIsShow] = useState(true);
