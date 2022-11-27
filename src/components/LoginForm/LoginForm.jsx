@@ -85,7 +85,7 @@ export const LoginForm = () => {
           type={'text'}
           name={'email'}
           onChange={handleChange}
-          isValid={formState.email.isValid}
+          isvalid={formState.email.isValid ? 1 : 0}
           errorMessage="Invalid Email"
         />
         <InputWrapper>
@@ -95,7 +95,7 @@ export const LoginForm = () => {
             name={'password'}
             id={'password'}
             onChange={handleChange}
-            isValid={formState.password.isValid}
+            isvalid={formState.password.isValid ? 1 : 0}
             errorMessage="Invalid Password"
           />
           <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>

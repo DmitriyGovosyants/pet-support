@@ -1,7 +1,8 @@
-import { Wrapper, Input, Error } from './FormInput.styled';
+import { Wrapper, Input, Error } from './MaskInput.styled';
 
-export const FormInput = ({
+export const MaskInput = ({
   placeholder,
+  mask,
   type,
   name,
   onChange,
@@ -13,6 +14,7 @@ export const FormInput = ({
       <Wrapper>
         <Input
           placeholder={placeholder}
+          mask={mask}
           type={type}
           name={name}
           onChange={onChange}

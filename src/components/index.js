@@ -8,6 +8,7 @@ export * from './UserNav/UserNav';
 export * from './RegisterForm/RegisterForm';
 export * from './LoginForm/LoginForm';
 export * from './FormInput/FormInput';
+export * from './MaskInput/MaskInput';
 export * from './FormText/FormText';
 export * from './FormTitle/FormTitle';
 export * from './FormWrapper/FormWrapper';
@@ -33,7 +34,7 @@ export * from './PetsInterfaceButton/PetsInterfaceButton';
 export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';
 
-export * from './NewsItem/NewsItem'
+export * from './NewsItem/NewsItem';
 export * from './OurFriendsList/OurFriendsList';
 export * from './OurFriendItem/OurFriendItem';
 
