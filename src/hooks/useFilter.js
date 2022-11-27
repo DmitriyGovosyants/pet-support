@@ -9,7 +9,7 @@ export const useFilter = category => {
   useEffect(() => {
     if (
       (keyWord.trim() !== '' && category === 'favorite-ads') ||
-      category === 'my-ads'
+      (keyWord.trim() !== '' && category === 'my-ads')
     ) {
       setSearch('');
       toast.warn(
