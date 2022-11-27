@@ -14,7 +14,7 @@ import {
   Info,
   Error,
 } from './UserDataItem.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   isCity,
   isDate,
@@ -35,6 +35,7 @@ export const UserDataItem = ({
   allUserData,
   setIsShowForm,
   setIsEditBtnDisabled,
+  isCancelEdit,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? '' : value
@@ -115,6 +116,10 @@ export const UserDataItem = ({
       refetch();
     }
   };
+
+  useEffect(() => {
+    return setInputValue(allUserData[title]);
+  }, [isCancelEdit, allUserData, title]);
 
   return (
     <UserDescription>
