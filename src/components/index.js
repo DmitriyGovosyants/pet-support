@@ -21,6 +21,7 @@ export * from './NoticeCategoryItem/NoticeCategoryItem';
 export * from './AddNoticeButton/AddNoticeButton';
 export * from './ModalNotice/ModalNotice';
 export * from './ModalAddNotice/ModalAddNotice';
+export * from './ModalDeleteNotice/ModalDeleteNotice';
 
 export * from './UserData/UserData';
 export * from './UserDataItem/UserDataItem';
@@ -33,7 +34,7 @@ export * from './PetsInterfaceButton/PetsInterfaceButton';
 export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';
 
-export * from './NewsItem/NewsItem'
+export * from './NewsItem/NewsItem';
 export * from './OurFriendsList/OurFriendsList';
 export * from './OurFriendItem/OurFriendItem';
 

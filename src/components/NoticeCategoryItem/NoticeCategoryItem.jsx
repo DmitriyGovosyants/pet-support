@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, ModalNotice } from 'components';
+import { Modal, ModalNotice, ModalDeleteNotice } from 'components';
 import {
   ImgWrapper,
   Image,
@@ -20,7 +20,6 @@ import { useAuth } from 'redux/useAuth';
 import {
   useAddNoticeToFavouriteMutation,
   useRemoveNoticeFromFavouriteMutation,
-  useRemovePrivateNoticeMutation,
 } from 'redux/noticesApi';
 import petTemlate from 'data/img/pet-template.jpg';
 import { toast } from 'react-toastify';
@@ -28,7 +27,7 @@ import { toast } from 'react-toastify';
 export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =
     petData;
-
+  const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isFavourite, setIsFavourite] = useState(favorite);
   const [age, setAge] = useState('');
@@ -36,8 +35,6 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const auth = useAuth();
   useCategories(category, setCategoryName);
   useDate(birthdate, setAge);
-
-  const [removePrivateNotice] = useRemovePrivateNoticeMutation();
   const [AddNoticeToFavourite] = useAddNoticeToFavouriteMutation();
   const [removeNoticeFromFavourite] = useRemoveNoticeFromFavouriteMutation();
 
@@ -55,7 +52,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   };
 
   const removePrivate = () => {
-    removePrivateNotice(_id);
+    setShowModalDelete(true);
   };
 
   return (
@@ -111,6 +108,14 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
             favorite={isFavourite}
             toggleModal={() => setShowModal(s => !s)}
             toggleFavourites={toggleFavourites}
+          />
+        </Modal>
+      )}
+      {showModalDelete && (
+        <Modal toggleModal={() => setShowModalDelete(s => !s)} main>
+          <ModalDeleteNotice
+            id={_id}
+            closeModal={() => setShowModalDelete(false)}
           />
         </Modal>
       )}
