@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { daysOfWeek } from '../../constants/constants';
 import partnerImg from '../../data/img/partner.png';
+import { ModalOurFriend } from 'components';
 import {
   Card,
   FriendTitle,
@@ -72,18 +73,20 @@ export const OurFriendItem = ({
               )}
             </TimeBtn>
             {showDetails && (
-              <TimeDetails>
-                {workDays.map((el, idx) => {
-                  return (
-                    <TimeDetailsItem key={daysOfWeek[idx]}>
-                      <span>{daysOfWeek[idx]}</span>
-                      <span>
-                        {el.from} - {el.to}
-                      </span>
-                    </TimeDetailsItem>
-                  );
-                })}
-              </TimeDetails>
+              <ModalOurFriend toggleModal={() => setShowDetails(s => !s)}>
+                <TimeDetails>
+                  {workDays.map((el, idx) => {
+                    return (
+                      <TimeDetailsItem key={daysOfWeek[idx]}>
+                        <span>{daysOfWeek[idx]}</span>
+                        <span>
+                          {el.from} - {el.to}
+                        </span>
+                      </TimeDetailsItem>
+                    );
+                  })}
+                </TimeDetails>
+              </ModalOurFriend>
             )}
           </InfoItem>
           <InfoItem>

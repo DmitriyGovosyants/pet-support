@@ -50,4 +50,5 @@ export * from './ModalBtnClose/ModalBtnClose';
 export * from './Spinner/Spinner';
 export * from './SpinnerFixed/SpinnerFixed';
 export * from './ValidationError/ValidationError';
+export * from './ModalOurFriend/ModalOurFriend';
 export * from './ModalTeam/ModalTeam';
