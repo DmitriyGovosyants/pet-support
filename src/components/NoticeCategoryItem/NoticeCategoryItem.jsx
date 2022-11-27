@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, ModalNotice } from 'components';
+import { Modal, ModalNotice, ModalDeleteNotice } from 'components';
 import {
   ImgWrapper,
   Image,
@@ -20,15 +20,15 @@ import { useAuth } from 'redux/useAuth';
 import {
   useAddNoticeToFavouriteMutation,
   useRemoveNoticeFromFavouriteMutation,
-  useRemovePrivateNoticeMutation,
 } from 'redux/noticesApi';
 import petTemlate from 'data/img/pet-template.jpg';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =
     petData;
-
+  const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isFavourite, setIsFavourite] = useState(favorite);
   const [age, setAge] = useState('');
@@ -36,8 +36,6 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const auth = useAuth();
   useCategories(category, setCategoryName);
   useDate(birthdate, setAge);
-
-  const [removePrivateNotice] = useRemovePrivateNoticeMutation();
   const [AddNoticeToFavourite] = useAddNoticeToFavouriteMutation();
   const [removeNoticeFromFavourite] = useRemoveNoticeFromFavouriteMutation();
 
@@ -55,7 +53,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   };
 
   const removePrivate = () => {
-    removePrivateNotice(_id);
+    setShowModalDelete(true);
   };
 
   return (
@@ -105,7 +103,7 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
         </LearnMore>
       </About>
       {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)} main>
+        <Modal toggleModal={() => setShowModal(s => !s)}>
           <ModalNotice
             petData={petData}
             favorite={isFavourite}
@@ -114,6 +112,29 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
           />
         </Modal>
       )}
+      {showModalDelete && (
+        <Modal toggleModal={() => setShowModalDelete(s => !s)}>
+          <ModalDeleteNotice
+            id={_id}
+            closeModal={() => setShowModalDelete(false)}
+          />
+        </Modal>
+      )}
     </>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  petData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    breed: PropTypes.string,
+    location: PropTypes.string.isRequired,
+    birthdate: PropTypes.string,
+    avatarURL: PropTypes.string,
+    category: PropTypes.string.isRequired,
+    price: PropTypes.string,
+  }).isRequired,
+  favorite: PropTypes.bool.isRequired,
+  isPrivate: PropTypes.bool.isRequired,
 };

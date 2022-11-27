@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { Wrapper, Input, Error } from './FormInput.styled';
+import { Wrapper, Input, Error } from './MaskInput.styled';
 
-export const FormInput = ({
+export const MaskInput = ({
   placeholder,
+  mask,
   type,
   name,
   onChange,
@@ -14,6 +15,7 @@ export const FormInput = ({
       <Wrapper>
         <Input
           placeholder={placeholder}
+          mask={mask}
           type={type}
           name={name}
           onChange={onChange}
@@ -25,8 +27,9 @@ export const FormInput = ({
   );
 };
 
-FormInput.propTypes = {
+MaskInput.propTypes = {
   placeholder: PropTypes.string,
+  mask: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

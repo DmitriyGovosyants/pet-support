@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types';
 import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
-import { useDeletePetMutation } from 'redux/usersApi';
-import { ModalContainer, TittleModal, BtnBox } from './ModalDelete.styled';
+import { useRemovePrivateNoticeMutation } from 'redux/noticesApi';
+import {
+  ModalContainer,
+  TittleModal,
+  BtnBox,
+} from './ModalDeleteNotice.styled';
 
-export const ModalDelete = ({ id, closeModal }) => {
-  const [deletePet, { isLoading }] = useDeletePetMutation();
+export const ModalDeleteNotice = ({ id, closeModal }) => {
+  const [removePrivateNotice, { isLoading }] = useRemovePrivateNoticeMutation();
 
   const handleDelete = async () => {
     try {
-      await deletePet(id).unwrap();
+      await removePrivateNotice(id).unwrap();
       toast.success('Successfully removed');
     } catch (error) {
       if (error.status === 401) {
@@ -43,7 +47,7 @@ export const ModalDelete = ({ id, closeModal }) => {
   );
 };
 
-ModalDelete.propTypes = {
+ModalDeleteNotice.propTypes = {
   id: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { toast } from 'react-toastify';
@@ -201,7 +202,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
   return (
     <ModalCard onSubmit={() => handleSubmit()}>
-      <FormTitle>Add pet</FormTitle>
+      <FormTitle>Add notice</FormTitle>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
         <FormText>
           You can sell your pet, find your lost pet, create notice with lost pet
@@ -337,7 +338,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
               Location<RequiredSymbol>*</RequiredSymbol>
             </FormInputLabel>
             <FormInput
-              placeholder={'Type location'}
+              placeholder={'City, Region'}
               type={'text'}
               name={'location'}
               onChange={handleChange}
@@ -417,4 +418,8 @@ export const ModalAddNotice = ({ toggleModal }) => {
       {isLoading && <SpinnerFixed />}
     </ModalCard>
   );
+};
+
+ModalAddNotice.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
 };

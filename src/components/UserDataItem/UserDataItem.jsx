@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
@@ -14,7 +15,7 @@ import {
   Info,
   Error,
 } from './UserDataItem.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   isCity,
   isDate,
@@ -35,6 +36,7 @@ export const UserDataItem = ({
   allUserData,
   setIsShowForm,
   setIsEditBtnDisabled,
+  isCancelEdit,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? '' : value
@@ -86,6 +88,7 @@ export const UserDataItem = ({
     if (oldData === inputValue) {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
+      setErrorMsg(null);
       return;
     }
 
@@ -115,6 +118,13 @@ export const UserDataItem = ({
       refetch();
     }
   };
+
+  useEffect(() => {
+    return () => {
+      setErrorMsg(null);
+      setInputValue(allUserData[title]);
+    };
+  }, [isCancelEdit, allUserData, title]);
 
   return (
     <UserDescription>
@@ -150,4 +160,16 @@ export const UserDataItem = ({
       <Error>{errorMsg}</Error>
     </UserDescription>
   );
+};
+
+UserDataItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  isShowForm: PropTypes.string,
+  onShowForm: PropTypes.func.isRequired,
+  isEditBtnDisabled: PropTypes.bool.isRequired,
+  allUserData: PropTypes.object.isRequired,
+  setIsShowForm: PropTypes.func.isRequired,
+  setIsEditBtnDisabled: PropTypes.func.isRequired,
+  isCancelEdit: PropTypes.bool.isRequired,
 };
