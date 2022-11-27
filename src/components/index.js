@@ -34,6 +34,7 @@ export * from './PetItem/PetItem';
 export * from './PetsInterfaceButton/PetsInterfaceButton';
 export * from './AddUsersPet/AddUsersPet';
 export * from './ModalDelete/ModalDelete';
+export * from './ModalEditPet/ModalEditPet';
 
 export * from './NewsItem/NewsItem';
 export * from './OurFriendsList/OurFriendsList';

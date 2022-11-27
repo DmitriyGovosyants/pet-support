@@ -10,7 +10,12 @@ import {
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
 import petTemlate from 'data/img/pet-template.jpg';
-import { Modal, ModalDelete, PetsInterfaceButton } from 'components';
+import {
+  Modal,
+  ModalDelete,
+  ModalEditPet,
+  PetsInterfaceButton,
+} from 'components';
 import { useState } from 'react';
 
 export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
@@ -77,17 +82,16 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
         </Modal>
       )}
       {showModalEdit && (
-        <Modal toggleModal={() => setShowModalEdit(s => !s)}>
-          {/* раскоментить когда появится компонент ModalEdit
-                <ModalEdit
-                  id={id}
-                  image={image}
-                  name={name}
-                  dateOfBirth={dateOfBirth}
-                  breed={breed}
-                  comments={comments}
-                  closeModal={() => setShowModalDelete(false)}
-                /> */}
+        <Modal toggleModal={() => setShowModalEdit(s => !s)} main>
+          <ModalEditPet
+            id={id}
+            image={image}
+            name={name}
+            birthdate={dateOfBirth}
+            breed={breed}
+            comments={comments}
+            closeModal={() => setShowModalEdit(false)}
+          />
         </Modal>
       )}
     </PetItemStyled>
