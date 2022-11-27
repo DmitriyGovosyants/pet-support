@@ -79,7 +79,11 @@ export const AuthBoxMob = styled.div`
 
 export const BurgerBtn = styled.button`
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
+  width: 40px;
+  height: 40px;
   
   background-color: transparent;
   border: none;
