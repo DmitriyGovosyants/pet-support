@@ -23,6 +23,7 @@ import {
 } from 'redux/noticesApi';
 import petTemlate from 'data/img/pet-template.jpg';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =
@@ -121,4 +122,19 @@ export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
       )}
     </>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  petData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    breed: PropTypes.string,
+    location: PropTypes.string.isRequired,
+    birthdate: PropTypes.string,
+    avatarURL: PropTypes.string,
+    category: PropTypes.string.isRequired,
+    price: PropTypes.string,
+  }).isRequired,
+  favorite: PropTypes.bool.isRequired,
+  isPrivate: PropTypes.bool.isRequired,
 };
