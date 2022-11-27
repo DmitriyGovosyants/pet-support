@@ -17,6 +17,7 @@ import { authApi } from './authApi';
 import { usersApi } from './usersApi';
 import { authSlice } from './authSlice';
 import filterReducer from './filterSlice';
+import categoryReducer from './categorySlice';
 
 const persistConfig = {
   key: 'auth',
@@ -34,6 +35,7 @@ export const store = configureStore({
     [newsApi.reducerPath]: newsApi.reducer,
     auth: persistReducer(persistConfig, authSlice.reducer),
     filter: filterReducer,
+    category: categoryReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => [

@@ -8,18 +8,21 @@ import {
 } from 'components';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { routesPath } from 'router';
 import { Wrapper } from './NoticesPage.styled';
+import { selectCategory } from 'redux/categorySlice';
+import { useSelector } from 'react-redux';
+import { fromCategoryToRoute } from 'helpers';
 
 const NoticesPage = () => {
+  const selected = useSelector(selectCategory);
   const [isFirstMount, setIsFirstMount] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     if (isFirstMount) {
-      navigate(routesPath.sell);
+      navigate(fromCategoryToRoute(selected));
       setIsFirstMount(false);
     }
-  }, [navigate, isFirstMount]);
+  }, [navigate, isFirstMount, selected]);
   return (
     <Section>
       <Container>

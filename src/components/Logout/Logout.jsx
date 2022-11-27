@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useLogOutMutation } from 'redux/authApi';
 import { usersApi } from 'redux/usersApi';
 import { LogoutButton } from './Logout.styled';
+import { setCategory } from 'redux/categorySlice';
 
 export const Logout = () => {
   const [logout] = useLogOutMutation();
@@ -14,6 +15,7 @@ export const Logout = () => {
       onClick={() => {
         logout();
         dispatch(usersApi.util.resetApiState());
+        dispatch(setCategory('Sell'));
       }}
     >
       <TbLogout size={18} color="F59256" />
