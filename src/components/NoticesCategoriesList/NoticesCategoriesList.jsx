@@ -17,7 +17,7 @@ import { useFilter } from 'hooks/useFilter';
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
-  const [skip, setSkip] = useState(true);
+  const [skip, setSkip] = useState(false);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const auth = useAuth();
@@ -30,9 +30,10 @@ const NoticesCategoriesList = () => {
     page,
     search,
   });
-  const { data: favoritesPets } = useGetFavoritesQuery('', {
-    skip,
-  });
+  const { data: favoritesPets, isSuccess: isSuccessFavorites } =
+    useGetFavoritesQuery('', {
+      skip,
+    });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {isSuccess ? (
+      {isSuccess && isSuccessFavorites ? (
         <List>
           {pets.map(itm => {
             let favorite;
