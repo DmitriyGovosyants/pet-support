@@ -33,7 +33,7 @@ export const Footer = () => {
           <Text>
             ©2022 - Pe<TextAccent>t</TextAccent>ly. All Rights Reserved.
           </Text>
-          <Text onClick={() => setShowModal(s => !s)}> 
+          <Text onClick={() => setShowModal(s => !s)} cursor={'pointer'}>
             Developed with <StyledFavouriteIcon /> by GoIT Students.
           </Text>
           {showModal && (

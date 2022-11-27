@@ -4,8 +4,11 @@ import { device } from 'styles/mediaquery';
 export const TeamTitle = styled.h2`
   text-align: center;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 1.375;
+  color: ${p => p.theme.colors.textSecond};
+  text-decoration: underline;
+  margin-bottom: 30px;
 
   ${device.tablet} {
     font-size: 50px;
@@ -14,14 +17,17 @@ export const TeamTitle = styled.h2`
 
 export const TeamList = styled.ul`
   display: grid;
-  gap: 12px;
-  margin-top: 60px;
+  gap: 30px;
+  max-width: 300px;
+  margin: 0 auto;
 
   ${device.tablet} {
+    max-width: 700px;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
   ${device.desktop} {
+    max-width: 1000px;
     grid-template-columns: repeat(3, 1fr);
   }
 `;
@@ -36,13 +42,11 @@ export const TeamItem = styled.li`
   }
 `;
 
-export const ImgTeam = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 20px;
+export const Img = styled.img`
   width: 400px;
-  padding-top: 10px;
+  margin-bottom: 10px;
+
+  border-radius: 20px;
 
   ${device.tablet} {
     width: 450px;
@@ -54,21 +58,20 @@ export const ImgTeam = styled.img`
   }
 `;
 
-export const NameMemberTeam = styled.p`
+export const MemberName = styled.p`
+  margin-bottom: 10px;
+  font-size: 36px;
   text-align: center;
 `;
 
 export const Position = styled.p`
+  margin-bottom: 10px;
   text-align: center;
-  font-size: 36px;
+  font-size: 24px;
 `;
 
 export const WrapperSocial = styled.div`
   display: flex;
   justify-content: center;
-`;
-
-export const SocialLink = styled.a`
-  text-align: center;
-  width: 20px;
+  gap: 10px;
 `;

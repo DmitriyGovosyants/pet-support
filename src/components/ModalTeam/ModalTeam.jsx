@@ -1,4 +1,4 @@
-import { Container } from 'components';
+import { ModalBtnClose } from 'components';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 
 import team from '../../data/json/team.json';
@@ -6,46 +6,46 @@ import {
   TeamList,
   TeamItem,
   TeamTitle,
-  ImgTeam,
-  NameMemberTeam,
+  Img,
+  MemberName,
   Position,
   WrapperSocial,
-  SocialLink,
 } from './ModalTeam.styled';
 
 export const ModalTeam = () => {
   return (
-    <Container>
-      <TeamTitle>Team</TeamTitle>
+    <>
+      <TeamTitle>Developers Team</TeamTitle>
       <TeamList>
         {team.map(
           ({ name, position, imageMember, socialLinkGit, socialLinkedLn }) => {
             return (
               <TeamItem key={socialLinkGit}>
-                <ImgTeam src={imageMember} alt={name} />
-                <NameMemberTeam>{name}</NameMemberTeam>
+                <Img src={imageMember} alt={name} />
+                <MemberName>{name}</MemberName>
                 <Position>{position}</Position>
                 <WrapperSocial>
-                  <SocialLink
+                  <a
                     href={socialLinkGit}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <AiFillGithub />
-                  </SocialLink>
-                  <SocialLink
+                    <AiFillGithub size={'40'} />
+                  </a>
+                  <a
                     href={socialLinkedLn}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <AiFillLinkedin />
-                  </SocialLink>
+                    <AiFillLinkedin size={'40'} color={'#2867B2'} />
+                  </a>
                 </WrapperSocial>
               </TeamItem>
             );
           }
         )}
       </TeamList>
-    </Container>
+      <ModalBtnClose />
+    </>
   );
 };
