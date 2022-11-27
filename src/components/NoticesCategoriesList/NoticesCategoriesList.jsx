@@ -23,6 +23,7 @@ const NoticesCategoriesList = () => {
   const auth = useAuth();
   const { categoryName } = useParams();
   const [request, setRequest] = useState('?category=sell');
+
   useRequest(categoryName, setRequest);
   const search = useFilter(categoryName);
   const { data, isSuccess, isLoading, isError } = useGetNoticesQuery({
@@ -30,13 +31,10 @@ const NoticesCategoriesList = () => {
     page,
     search,
   });
-  const {
-    data: favoritesPets,
-    isSuccess: isSuccessFavorites,
-    isFetching: isFetchingFavorites,
-  } = useGetFavoritesQuery('', {
-    skip,
-  });
+  const { data: favoritesPets, isSuccess: isSuccessFavorites } =
+    useGetFavoritesQuery('', {
+      skip,
+    });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   useEffect(() => {
