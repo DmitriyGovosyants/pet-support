@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import InputMask from 'comigo-tech-react-input-mask';
 import { device } from 'styles/mediaquery';
 
 export const Wrapper = styled.div`
@@ -15,7 +16,7 @@ export const Error = styled.div`
   margin-top: -13px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(InputMask)`
   ${device.mobileOnly} {
     width: 100%;
   }

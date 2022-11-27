@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useCreatePetMutation } from '../../redux/usersApi';
-import { isName, isBreedAddPet, isComments, isDate, isDatePast } from 'helpers';
+import {
+  isName,
+  isBreedAddPet,
+  isComments,
+  isDate,
+  isDatePast,
+  handleUploadFile,
+} from 'helpers';
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
@@ -20,7 +27,7 @@ import { toast } from 'react-toastify';
 import {
   MainButton,
   ModalBtnClose,
-  Spinner,
+  SpinnerFixed,
   ValidationError,
 } from 'components';
 import { validationErrMsg } from 'constants/constants';
@@ -29,7 +36,6 @@ export const ModalAddsPet = ({ toggleModal }) => {
   const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
-  const [isFileValid, setIsFileValid] = useState(true);
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
@@ -126,20 +132,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
 
-    if (file['size'] > 1000000) {
-      setIsFileValid(false);
-      return;
-    }
-
-    setAvatarData(file);
-    setIsFileValid(true);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const base64data = reader.result;
-      setAvatar(base64data);
-    };
+    handleUploadFile(file, setAvatar, setAvatarData);
   };
 
   const handleSubmit = async () => {
@@ -165,8 +158,8 @@ export const ModalAddsPet = ({ toggleModal }) => {
 
   return (
     <ModalWrap onSubmit={handleSubmit}>
+      <Title>Add pet</Title>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <Title>Add pet</Title>
         <Label htmlFor="name">
           Name pet<RequiredSymbol>*</RequiredSymbol>
         </Label>
@@ -219,10 +212,6 @@ export const ModalAddsPet = ({ toggleModal }) => {
           />
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
-          <ValidationError
-            message={validationErrMsg.avatar}
-            isHidden={isFileValid}
-          />
         </FormInputLoadWrapper>
         <Label htmlFor="name">
           Comments<RequiredSymbol>*</RequiredSymbol>
@@ -257,7 +246,7 @@ export const ModalAddsPet = ({ toggleModal }) => {
         </MainButton>
       </BtnBox>
       <ModalBtnClose toggleModal={toggleModal} />
-      {isLoading && <Spinner button />}
+      {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
 };

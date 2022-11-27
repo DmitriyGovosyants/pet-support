@@ -10,7 +10,7 @@ import {
   FormText,
   FormWrapper,
   MainButton,
-  Spinner,
+  SpinnerFixed,
 } from 'components';
 import { Wrapper, EyeBtn, InputWrapper } from './LoginForm.styled';
 
@@ -85,7 +85,7 @@ export const LoginForm = () => {
           type={'text'}
           name={'email'}
           onChange={handleChange}
-          isValid={formState.email.isValid}
+          isvalid={formState.email.isValid ? 1 : 0}
           errorMessage="Invalid Email"
         />
         <InputWrapper>
@@ -95,7 +95,7 @@ export const LoginForm = () => {
             name={'password'}
             id={'password'}
             onChange={handleChange}
-            isValid={formState.password.isValid}
+            isvalid={formState.password.isValid ? 1 : 0}
             errorMessage="Invalid Password"
           />
           <EyeBtn type="button" onClick={() => setShowPassword(!showPassword)}>
@@ -111,13 +111,13 @@ export const LoginForm = () => {
             Login
           </MainButton>
         </Wrapper>
-        {isLoading && <Spinner button />}
         <FormText
           text={"Don't have an account?"}
           routesPath={'/register'}
           link={'Register'}
         />
       </form>
+      {isLoading && <SpinnerFixed />}
     </FormWrapper>
   );
 };

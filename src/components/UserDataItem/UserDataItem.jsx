@@ -3,15 +3,15 @@ import { BsCheckLg } from 'react-icons/bs';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { validationErrMsg } from 'constants/constants';
 import {
-  ItemContainer,
-  UserDescriptionItem,
+  ItemWrapper,
+  UserDescription,
   ItemTitle,
-  BasicUserDataWrapper,
+  ItemInfo,
   UserForm,
-  UserFormInput,
-  UserFormSubmitButton,
-  BasicUserDataEditButton,
-  BasicUserDataTitle,
+  UserInput,
+  UserSubmitBtn,
+  InfoEditBtn,
+  Info,
   Error,
 } from './UserDataItem.styled';
 import { useState } from 'react';
@@ -23,19 +23,25 @@ import {
   isEmail,
   isUserName,
 } from 'helpers';
+import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
   title,
   value,
   isShowForm,
   onShowForm,
-  onSubmit,
   isEditBtnDisabled,
+  allUserData,
+  setIsShowForm,
+  setIsEditBtnDisabled,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? '' : value
   );
   const [errorMsg, setErrorMsg] = useState(null);
+  const [editContact] = useUpdateUserMutation();
+  const { refetch } = useGetUserQuery();
 
   const titleNormalized = title.toLowerCase();
 
@@ -74,6 +80,16 @@ export const UserDataItem = ({
 
   const handleSummit = async e => {
     e.preventDefault();
+
+    const oldData = allUserData[title];
+
+    if (oldData === inputValue) {
+      setIsShowForm('');
+      setIsEditBtnDisabled(false);
+      setErrorMsg(null);
+      return;
+    }
+
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
@@ -85,43 +101,54 @@ export const UserDataItem = ({
     }
 
     setErrorMsg(null);
-    await onSubmit({ [title]: inputValue });
+
+    try {
+      await editContact({ [title]: inputValue }).unwrap();
+    } catch (error) {
+      console.log(error);
+      if (error.status === 500) {
+        setInputValue(oldData);
+        toast.error('Invalid email try again');
+      }
+    } finally {
+      setIsShowForm('');
+      setIsEditBtnDisabled(false);
+      refetch();
+    }
   };
 
   return (
-    <ItemContainer>
-      <UserDescriptionItem>
+    <UserDescription>
+      <ItemWrapper>
         <ItemTitle> {titleNormalized}:</ItemTitle>
 
         {isShowForm !== title ? (
-          <BasicUserDataWrapper>
-            <BasicUserDataTitle>{inputValue}</BasicUserDataTitle>
+          <ItemInfo>
+            <Info>{inputValue}</Info>
 
-            <BasicUserDataEditButton
+            <InfoEditBtn
               id={title}
               onClick={onShowForm}
               disabled={isEditBtnDisabled}
             >
               <MdEdit />
-            </BasicUserDataEditButton>
-          </BasicUserDataWrapper>
+            </InfoEditBtn>
+          </ItemInfo>
         ) : (
           <UserForm onSubmit={handleSummit}>
-            <label htmlFor="">
-              <UserFormInput
-                type="text"
-                name={title}
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-            </label>
-            <UserFormSubmitButton id={title} type={'submit'}>
+            <UserInput
+              type="text"
+              name={title}
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            <UserSubmitBtn id={title} type={'submit'}>
               <BsCheckLg />
-            </UserFormSubmitButton>
+            </UserSubmitBtn>
           </UserForm>
         )}
-      </UserDescriptionItem>
+      </ItemWrapper>
       <Error>{errorMsg}</Error>
-    </ItemContainer>
+    </UserDescription>
   );
 };

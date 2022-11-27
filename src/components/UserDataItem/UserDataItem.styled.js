@@ -2,21 +2,17 @@ import styled from '@emotion/styled';
 import { theme } from 'styles';
 import { device } from 'styles/mediaquery';
 
-export const ItemContainer = styled.div`
+export const UserDescription = styled.li`
+  width: 100%;
   &:not(:last-child) {
     margin-bottom: 8px;
-
-    ${device.tablet} {
-      margin-bottom: 12px;
-    }
   }
 `;
 
-export const UserDescriptionItem = styled.li`
+export const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
 `;
 
 export const ItemTitle = styled.span`
@@ -32,30 +28,27 @@ export const ItemTitle = styled.span`
     line-height: 1.39;
   }
 `;
-/**
- * Basic data and editability
- */
 
-export const BasicUserDataWrapper = styled.div`
+export const ItemInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 24px;
-  width: 190px;
-  padding-left: 19px;
+  width: 170px;
+  margin-left: 20px;
 
   ${device.tablet} {
     min-height: 32px;
     width: 272px;
-    padding-left: 13px;
+    margin-left: 24px;
+    padding-left: 12px;
   }
-
-  /* було для десктопа */
 `;
 
-export const BasicUserDataTitle = styled.p`
+export const Info = styled.p`
   display: flex;
   align-items: center;
+
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
@@ -68,7 +61,7 @@ export const BasicUserDataTitle = styled.p`
     line-height: 1.39;
   }
 `;
-export const BasicUserDataEditButton = styled.button`
+export const InfoEditBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,16 +82,12 @@ export const BasicUserDataEditButton = styled.button`
   }
 `;
 
-/**
- * Form styles
- */
-
 export const UserForm = styled.form`
   display: flex;
   align-items: center;
 `;
 
-export const UserFormInput = styled.input`
+export const UserInput = styled.input`
   display: flex;
   align-items: center;
   width: 160px;
@@ -128,7 +117,7 @@ export const UserFormInput = styled.input`
   }
 `;
 
-export const UserFormSubmitButton = styled.button`
+export const UserSubmitBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;

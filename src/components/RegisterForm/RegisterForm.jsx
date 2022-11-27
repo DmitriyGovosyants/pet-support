@@ -15,10 +15,11 @@ import eyeClosedImg from '../../data/img/eye-blocked.png';
 import {
   FormTitle,
   FormInput,
+  MaskInput,
   FormText,
   FormWrapper,
   MainButton,
-  Spinner,
+  SpinnerFixed,
 } from 'components';
 import { Wrapper, InputWrapper, Button, EyeBtn } from './RegisterForm.styled';
 import { validationErrMsg } from 'constants/constants';
@@ -79,7 +80,7 @@ export const RegisterForm = () => {
             type={'Email'}
             name={'email'}
             onChange={handleChange}
-            isValid={formState.email.isValid}
+            isvalid={formState.email.isValid ? 1 : 0}
             errorMessage={validationErrMsg.email}
           />
           <InputWrapper>
@@ -89,7 +90,7 @@ export const RegisterForm = () => {
               type={showPassword ? 'text' : 'password'}
               id={'password'}
               onChange={handleChange}
-              isValid={formState.password.isValid}
+              isvalid={formState.password.isValid ? 1 : 0}
               errorMessage={validationErrMsg.password}
             />
             <EyeBtn
@@ -110,7 +111,7 @@ export const RegisterForm = () => {
               type={showPassword ? 'text' : 'password'}
               id={'password'}
               onChange={handleChange}
-              isValid={formState.confirmPassword.isValid}
+              isvalid={formState.confirmPassword.isValid ? 1 : 0}
               errorMessage="Password and Confirm Password are not equal"
             />
             <EyeBtn
@@ -131,7 +132,7 @@ export const RegisterForm = () => {
             type={'name'}
             name={'name'}
             onChange={handleChange}
-            isValid={formState.name.isValid}
+            isvalid={formState.name.isValid ? 1 : 0}
             errorMessage={validationErrMsg.name}
           />
           <FormInput
@@ -139,15 +140,16 @@ export const RegisterForm = () => {
             name={'city'}
             type={'City'}
             onChange={handleChange}
-            isValid={formState.city.isValid}
+            isvalid={formState.city.isValid ? 1 : 0}
             errorMessage={validationErrMsg.city}
           />
-          <FormInput
+          <MaskInput
             placeholder={'Mobile Phone'}
+            mask={'+380999999999'}
             name={'phone'}
             type={'phone'}
             onChange={handleChange}
-            isValid={formState.phone.isValid}
+            isvalid={formState.phone.isValid ? 1 : 0}
             errorMessage={validationErrMsg.phone}
           />
         </div>
@@ -234,13 +236,13 @@ export const RegisterForm = () => {
             </Button>
           )}
         </Wrapper>
-        {isLoading && <Spinner button />}
         <FormText
           text={'Already have an account?'}
           routesPath={'/login'}
           link={'Login'}
         />
       </form>
+      {isLoading && <SpinnerFixed />}
     </FormWrapper>
   );
 };
