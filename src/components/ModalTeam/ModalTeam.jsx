@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ModalBtnClose } from 'components';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 
@@ -12,7 +13,7 @@ import {
   WrapperSocial,
 } from './ModalTeam.styled';
 
-export const ModalTeam = () => {
+export const ModalTeam = ({ toggleModal }) => {
   return (
     <>
       <TeamTitle>Developers Team</TeamTitle>
@@ -45,7 +46,11 @@ export const ModalTeam = () => {
           }
         )}
       </TeamList>
-      <ModalBtnClose />
+      <ModalBtnClose toggleModal={toggleModal} />
     </>
   );
+};
+
+ModalTeam.propTypes = {
+  toggleModal: PropTypes.func,
 };
