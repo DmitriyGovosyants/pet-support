@@ -30,9 +30,10 @@ const NoticesCategoriesList = () => {
     page,
     search,
   });
-  const { data: favoritesPets } = useGetFavoritesQuery('', {
-    skip,
-  });
+  const { data: favoritesPets, isSuccess: isSuccessFavorites } =
+    useGetFavoritesQuery('', {
+      skip,
+    });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {isSuccess ? (
+      {isSuccess && isSuccessFavorites ? (
         <List>
           {pets.map(itm => {
             let favorite;
