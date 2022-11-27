@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { daysOfWeek } from '../../constants/constants';
 import partnerImg from '../../data/img/partner.png';
-import {ModalOurFriend} from '../ModalOurFriend/ModalOurFriend'
+import { ModalOurFriend } from 'components';
 import {
   Card,
   FriendTitle,
@@ -39,28 +39,26 @@ export const OurFriendItem = ({
     setWorkDay(oneDay);
   }, [workDays]);
 
-  
+  // const div = document.querySelector( '#button');
 
-    // const div = document.querySelector( '#button');
- 
-    // document.addEventListener( 'click', (e) => {
-    //   const showDetails = e.composedPath().includes(div);// возвращает путь события, представляющий собой массив объектов, на которых будут вызваны обработчики событий.
-    
-    //   if ( ! showDetails ) {
-    //     div.style.display = 'none'; // скрываем элемент т к клик был за его пределами
-    //   }
-    // })
-  
-    // document.addEventListener('keydown', function(e) {
-    //   if( e.code === 'Escape' ){ 
-    //     div.style.display = 'none';
-    //   }
-    // });
-    const closeDetails = () => {
-      if (showDetails) {
-        setShowDetails(false);
-      }
+  // document.addEventListener( 'click', (e) => {
+  //   const showDetails = e.composedPath().includes(div);// возвращает путь события, представляющий собой массив объектов, на которых будут вызваны обработчики событий.
+
+  //   if ( ! showDetails ) {
+  //     div.style.display = 'none'; // скрываем элемент т к клик был за его пределами
+  //   }
+  // })
+
+  // document.addEventListener('keydown', function(e) {
+  //   if( e.code === 'Escape' ){
+  //     div.style.display = 'none';
+  //   }
+  // });
+  const closeDetails = () => {
+    if (showDetails) {
+      setShowDetails(false);
     }
+  };
 
   return (
     <Card onClick={() => closeDetails()}>
@@ -89,20 +87,20 @@ export const OurFriendItem = ({
               )}
             </TimeBtn>
             {showDetails && (
-            <ModalOurFriend toggleModal={() => setShowDetails(s => !s)}>
-              <TimeDetails>
-                {workDays.map((el, idx) => {
-                  return (
-                    <TimeDetailsItem key={daysOfWeek[idx]}>
-                      <span>{daysOfWeek[idx]}</span>
-                      <span>
-                        {el.from} - {el.to}
-                      </span>
-                    </TimeDetailsItem>
-                  );
-                })}
-              </TimeDetails>
-            </ModalOurFriend>
+              <ModalOurFriend toggleModal={() => setShowDetails(s => !s)}>
+                <TimeDetails>
+                  {workDays.map((el, idx) => {
+                    return (
+                      <TimeDetailsItem key={daysOfWeek[idx]}>
+                        <span>{daysOfWeek[idx]}</span>
+                        <span>
+                          {el.from} - {el.to}
+                        </span>
+                      </TimeDetailsItem>
+                    );
+                  })}
+                </TimeDetails>
+              </ModalOurFriend>
             )}
           </InfoItem>
           <InfoItem>
