@@ -118,7 +118,10 @@ export const UserDataItem = ({
   };
 
   useEffect(() => {
-    return setInputValue(allUserData[title]);
+    return () => {
+      setErrorMsg(null);
+      setInputValue(allUserData[title]);
+    };
   }, [isCancelEdit, allUserData, title]);
 
   return (
