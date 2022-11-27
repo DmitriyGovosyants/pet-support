@@ -1,3 +1,4 @@
+import { Container } from 'components';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 
 import team from '../../data/json/team.json';
@@ -14,8 +15,8 @@ import {
 
 export const ModalTeam = () => {
   return (
-    <TeamTitle>
-      Team.......
+    <Container>
+      <TeamTitle>Team</TeamTitle>
       <TeamList>
         {team.map(
           ({ name, position, imageMember, socialLinkGit, socialLinkedLn }) => {
@@ -45,6 +46,6 @@ export const ModalTeam = () => {
           }
         )}
       </TeamList>
-    </TeamTitle>
+    </Container>
   );
 };

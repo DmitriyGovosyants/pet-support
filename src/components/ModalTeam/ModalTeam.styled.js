@@ -4,22 +4,22 @@ import { device } from 'styles/mediaquery';
 export const TeamTitle = styled.h2`
   text-align: center;
   font-weight: 700;
-  font-size: ${p => p.theme.spacing(10)};
+  font-size: 40px;
   line-height: 1.375;
 
   ${device.tablet} {
-    font-size: ${p => p.theme.spacing(12)};
+    font-size: 50px;
   }
 `;
 
 export const TeamList = styled.ul`
   display: grid;
-  gap: ${p => p.theme.spacing(3)};
-  margin-top: ${p => p.theme.spacing(15)};
+  gap: 12px;
+  margin-top: 60px;
 
   ${device.tablet} {
     grid-template-columns: repeat(2, 1fr);
-    gap: ${p => p.theme.spacing(8)};
+    gap: 32px;
   }
   ${device.desktop} {
     grid-template-columns: repeat(3, 1fr);
@@ -28,11 +28,11 @@ export const TeamList = styled.ul`
 
 export const TeamItem = styled.li`
   background-color: ${p => p.theme.colors.bgSecond};
-  border-radius: ${p => p.theme.spacing(5)};
+  border-radius: 20px;
 
   ${device.tablet} {
-    padding: ${p => p.theme.spacing(4)};
-    border-radius: ${p => p.theme.spacing(10)};
+    padding: 16px;
+    border-radius: 40px;
   }
 `;
 
@@ -40,17 +40,17 @@ export const ImgTeam = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-radius: ${p => p.theme.spacing(5)};
-  width: ${p => p.theme.spacing(100)};
+  border-radius: 20px;
+  width: 400px;
   padding-top: 10px;
 
   ${device.tablet} {
     width: 450px;
-    border-radius: ${p => p.theme.spacing(10)};
+    border-radius: 40px;
   }
   ${device.desktop} {
-    width: ${p => p.theme.spacing(125)};
-    border-radius: ${p => p.theme.spacing(10)};
+    width: 500px;
+    border-radius: 40px;
   }
 `;
 
@@ -60,7 +60,7 @@ export const NameMemberTeam = styled.p`
 
 export const Position = styled.p`
   text-align: center;
-  font-size: ${p => p.theme.spacing(9)};
+  font-size: 36px;
 `;
 
 export const WrapperSocial = styled.div`
@@ -70,5 +70,5 @@ export const WrapperSocial = styled.div`
 
 export const SocialLink = styled.a`
   text-align: center;
-  width: ${p => p.theme.spacing(5)};
+  width: 20px;
 `;
