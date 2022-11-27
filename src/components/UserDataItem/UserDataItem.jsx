@@ -38,7 +38,7 @@ export const UserDataItem = ({
   setIsEditBtnDisabled,
 }) => {
   const [inputValue, setInputValue] = useState(
-    value === '00.00.0000' ? '' : value
+    value === '00.00.0000' ? 'unknown' : value
   );
   const [errorMsg, setErrorMsg] = useState(null);
   const [editContact] = useUpdateUserMutation();
@@ -84,8 +84,6 @@ export const UserDataItem = ({
 
     const oldData = allUserData[title];
 
-    console.log(oldData, inputValue);
-
     if (oldData === inputValue) {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
@@ -96,7 +94,9 @@ export const UserDataItem = ({
     const isValid = handleValidation(title, inputValue);
 
     if (!isValid) {
-      if (title === 'birthdate' && inputValue === '') {
+      if (title === 'birthdate' && inputValue === 'unknown') {
+        setIsShowForm('');
+        setIsEditBtnDisabled(false);
         return;
       }
       setErrorMsg(validationErrMsg[title]);
