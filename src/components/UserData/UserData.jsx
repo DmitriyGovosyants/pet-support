@@ -72,7 +72,6 @@ export const UserData = () => {
   };
 
   const handleKeyDown = e => {
-    console.log(e);
     if (e.code === 'Escape') {
       onClose();
     }
