@@ -201,7 +201,7 @@ export const ModalAddNotice = ({ toggleModal }) => {
 
   return (
     <ModalCard onSubmit={() => handleSubmit()}>
-      <FormTitle>Add pet</FormTitle>
+      <FormTitle>Add notice</FormTitle>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
         <FormText>
           You can sell your pet, find your lost pet, create notice with lost pet
