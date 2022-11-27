@@ -22,6 +22,7 @@ export * from './NoticeCategoryItem/NoticeCategoryItem';
 export * from './AddNoticeButton/AddNoticeButton';
 export * from './ModalNotice/ModalNotice';
 export * from './ModalAddNotice/ModalAddNotice';
+export * from './ModalDeleteNotice/ModalDeleteNotice';
 
 export * from './UserData/UserData';
 export * from './UserDataItem/UserDataItem';

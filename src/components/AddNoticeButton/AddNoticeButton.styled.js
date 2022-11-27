@@ -56,7 +56,7 @@ export const Text = styled.span`
   color: ${props => props.theme.colors.textSecond};
   ${device.mobileOnly} {
     position: absolute;
-    left: 18px;
+    left: 10px;
     top: 48px;
     pointer-events: none;
   }
