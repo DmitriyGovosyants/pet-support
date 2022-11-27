@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useAuth } from 'redux/useAuth';
+import { GrClose, GrMenu } from 'react-icons/gr';
 import { Logo, Nav, UserNav, AuthNav } from 'components';
 import {
   HeaderStyled,
@@ -41,22 +42,16 @@ export const Header = () => {
         <Nav toggleNavBar={() => setIsMenuOpen(false)} />
       </NavBox>
       {!isMenuOpen && <AuthBox>{user ? <UserNav /> : <AuthNav />}</AuthBox>}
-      <BurgerBtn onClick={() => setIsMenuOpen(!isMenuOpen)} type="button">
-        <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clipPath="url(#clip0_201_1503)">
-            <path
-              d="M5 30H35V26.6667H5V30ZM5 21.6667H35V18.3333H5V21.6667ZM5 10V13.3333H35V10H5Z"
-              fill="#212121"
-            />
-          </g>
-        </svg>
-      </BurgerBtn>
+      {!isMenuOpen && (
+        <BurgerBtn onClick={() => setIsMenuOpen(!isMenuOpen)} type="button">
+          <GrMenu size={40} />
+        </BurgerBtn>
+      )}
+      {isMenuOpen && (
+        <BurgerBtn onClick={() => setIsMenuOpen(!isMenuOpen)} type="button">
+          <GrClose size={30} />
+        </BurgerBtn>
+      )}
     </HeaderStyled>
   );
 };
