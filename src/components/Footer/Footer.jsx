@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { routesPath } from 'router';
-import { Container } from 'components';
+import { Container, Modal, ModalTeam } from 'components';
 import {
   FooterStyled,
   Text,
@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 
 export const Footer = () => {
   const [isShow, setIsShow] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -33,9 +34,14 @@ export const Footer = () => {
           <Text>
             ©2022 - Pe<TextAccent>t</TextAccent>ly. All Rights Reserved.
           </Text>
-          <Text>
+          <Text onClick={() => setShowModal(s => !s)}> 
             Developed with <StyledFavouriteIcon /> by GoIT Students.
           </Text>
+          {showModal && (
+            <Modal toggleModal={() => setShowModal(s => !s)} main>
+              <ModalTeam toggleModal={() => setShowModal(s => !s)} />
+            </Modal>
+          )}
         </Container>
       </FooterStyled>
     )

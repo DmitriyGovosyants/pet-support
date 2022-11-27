@@ -37,3 +37,5 @@ export const StyledFavouriteIcon = styled(FavouriteIcon)`
     scale: 1.5;
   }
 `;
+
+

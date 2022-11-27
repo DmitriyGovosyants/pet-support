@@ -46,3 +46,4 @@ export * from './MainButton/MainButton';
 export * from './ModalBtnClose/ModalBtnClose';
 export * from './Spinner/Spinner';
 export * from './ValidationError/ValidationError';
+export * from './ModalTeam/ModalTeam';
