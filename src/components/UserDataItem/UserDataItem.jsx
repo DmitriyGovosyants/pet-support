@@ -86,6 +86,7 @@ export const UserDataItem = ({
     if (oldData === inputValue) {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
+      setErrorMsg(null);
       return;
     }
 
