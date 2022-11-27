@@ -53,6 +53,9 @@ export const Paginate = styled(ReactPaginate)`
   gap: 2px;
   margin-top: 40px;
   list-style-type: none;
+  ${device.tablet} {
+    gap: 8px;
+  }
   li a {
     border: 2px solid ${props => props.theme.colors.accent};
     border-radius: 40px;
