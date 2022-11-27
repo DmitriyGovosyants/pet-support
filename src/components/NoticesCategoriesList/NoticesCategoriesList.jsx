@@ -1,4 +1,4 @@
-import { NoticeCategoryItem } from 'components';
+import { NoticeCategoryItem, Spinner } from 'components';
 import {
   List,
   Item,
@@ -25,15 +25,18 @@ const NoticesCategoriesList = () => {
   const [request, setRequest] = useState('?category=sell');
   useRequest(categoryName, setRequest);
   const search = useFilter(categoryName);
-  const { data, isSuccess } = useGetNoticesQuery({
+  const { data, isSuccess, isLoading, isError } = useGetNoticesQuery({
     request,
     page,
     search,
   });
-  const { data: favoritesPets, isSuccess: isSuccessFavorites } =
-    useGetFavoritesQuery('', {
-      skip,
-    });
+  const {
+    data: favoritesPets,
+    isSuccess: isSuccessFavorites,
+    isFetching: isFetchingFavorites,
+  } = useGetFavoritesQuery('', {
+    skip,
+  });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   useEffect(() => {
@@ -68,7 +71,8 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {(isSuccess && isSuccessFavorites) || !auth.user ? (
+      {isLoading && <Spinner />}
+      {isSuccess && (isSuccessFavorites || !auth.user) && (
         <List>
           {pets.map(itm => {
             let favorite;
@@ -90,7 +94,8 @@ const NoticesCategoriesList = () => {
             );
           })}
         </List>
-      ) : (
+      )}
+      {(isError || (isSuccess && pets.length === 0)) && (
         <ErrorWrapper>
           <Error>There is no any animals on your query!</Error>
           <GiJumpingDog
@@ -99,7 +104,7 @@ const NoticesCategoriesList = () => {
           />
         </ErrorWrapper>
       )}
-      {isSuccess && data.total > 12 && (
+      {isSuccess && (isSuccessFavorites || !auth.user) && data.total > 12 && (
         <Paginate
           breakLabel={isMobile ? '..' : '...'}
           nextLabel={isMobile ? '>' : 'next'}
