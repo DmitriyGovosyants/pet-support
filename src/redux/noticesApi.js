@@ -19,6 +19,7 @@ export const noticesApi = createApi({
     getNotices: builder.query({
       query: ({ request, page, search }) =>
         `/notices${request}&page=${page}${search}`,
+      keepUnusedDataFor: 60,
       providesTags: ['Notices'],
     }),
     getFavorites: builder.query({
