@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import { useEditPetMutation } from '../../redux/usersApi';
-import { isName, isBreed, isComments, isDate, isDatePast } from 'helpers';
+import {
+  isName,
+  isBreed,
+  isComments,
+  isDate,
+  isDatePast,
+  handleUploadFile,
+} from 'helpers';
 import plusImg from '../../data/img/plus.png';
 import {
   ModalWrap,
@@ -18,8 +25,7 @@ import {
   FormInputLoadPlus,
 } from './ModalEditPet.styled';
 import { toast } from 'react-toastify';
-import { MainButton } from 'components';
-import { validationErrMsg, validFileExtension } from 'constants/constants';
+import { MainButton, SpinnerFixed } from 'components';
 
 export const ModalEditPet = ({
   id,
@@ -128,33 +134,8 @@ export const ModalEditPet = ({
 
     const fileInput = document.getElementById('file-id');
     const file = fileInput.files[0];
-    const fileNameSplit = file.name.split('.');
-    const isValidFileExtension = validFileExtension.includes(
-      fileNameSplit[fileNameSplit.length - 1]
-    );
 
-    if (file.size > 1000000) {
-      toast.error(validationErrMsg.avatarIsTooLarge);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    if (!isValidFileExtension) {
-      toast.error(validationErrMsg.avatarExtensionFailure);
-      setAvatar();
-      setAvatarData();
-      return;
-    }
-
-    setAvatarData(file);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const base64data = reader.result;
-      setAvatar(base64data);
-    };
+    handleUploadFile(file, setAvatar, setAvatarData);
   };
 
   const handleSubmit = async () => {
@@ -170,7 +151,7 @@ export const ModalEditPet = ({
     }
 
     try {
-      await editPet({ id, formData });
+      await editPet({ id, formData }).unwrap();
       closeModal();
       toast.success('Your pet has been changed');
     } catch (error) {
@@ -268,6 +249,7 @@ export const ModalEditPet = ({
           {step === 0 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
+      {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
 };

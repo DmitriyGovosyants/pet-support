@@ -82,7 +82,7 @@ export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
         </Modal>
       )}
       {showModalEdit && (
-        <Modal toggleModal={() => setShowModalEdit(s => !s)}>
+        <Modal toggleModal={() => setShowModalEdit(s => !s)} main>
           <ModalEditPet
             id={id}
             image={image}
