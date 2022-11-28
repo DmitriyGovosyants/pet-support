@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.9f842b21.css",
-    "main.js": "/static/js/main.0b67adf8.js",
-    "home-page.js": "/static/js/home-page.e546e48a.chunk.js",
-    "register-page.js": "/static/js/register-page.94b18334.chunk.js",
-    "login-page.js": "/static/js/login-page.710a1ef3.chunk.js",
-    "news-page.js": "/static/js/news-page.6cb57378.chunk.js",
-    "notices-page.js": "/static/js/notices-page.8b80f1b1.chunk.js",
-    "friends-page.js": "/static/js/friends-page.653a1582.chunk.js",
-    "user-page.js": "/static/js/user-page.5c4c5ae0.chunk.js",
+    "main.js": "/static/js/main.350d0e20.js",
+    "home-page.js": "/static/js/home-page.3064b51a.chunk.js",
+    "register-page.js": "/static/js/register-page.5d9df8f4.chunk.js",
+    "login-page.js": "/static/js/login-page.7fbfd620.chunk.js",
+    "news-page.js": "/static/js/news-page.50937583.chunk.js",
+    "notices-page.js": "/static/js/notices-page.40939d6f.chunk.js",
+    "friends-page.js": "/static/js/friends-page.102bcc23.chunk.js",
+    "user-page.js": "/static/js/user-page.aac061b8.chunk.js",
     "static/media/hp-bckg-tablet@2x.png": "/static/media/hp-bckg-tablet@2x.bc98ab167ad7c72aa8b3.png",
     "static/media/hp-woman-tablet@2x.png": "/static/media/hp-woman-tablet@2x.62bb3752380c3d1ad1b7.png",
     "static/media/hp-woman-desktop@2x.png": "/static/media/hp-woman-desktop@2x.fe3423e665d3f171f4f1.png",
@@ -17,6 +17,8 @@
     "static/media/hp-bckg-tablet@1x.png": "/static/media/hp-bckg-tablet@1x.3cd47c1b01c3a504f5a7.png",
     "static/media/fp-bckg-tablet@2x.png": "/static/media/fp-bckg-tablet@2x.d17deb7da765a7c9fc4d.png",
     "static/media/hp-bckg-mobile@2x.png": "/static/media/hp-bckg-mobile@2x.2162713642609e142c34.png",
+    "static/media/cat-animation.gif": "/static/media/cat-animation.1034967b87bd38b9a457.gif",
+    "static/media/bird-animation.gif": "/static/media/bird-animation.c3024c3469c98771c604.gif",
     "static/media/hp-woman-tablet@1x.png": "/static/media/hp-woman-tablet@1x.0b4e667a68391811042e.png",
     "static/media/user-pets-template-tablet.jpg": "/static/media/user-pets-template-tablet.d4280666643b90b0a644.jpg",
     "static/media/hp-woman-mobile@2x.png": "/static/media/hp-woman-mobile@2x.40d28d4cc897ec55af35.png",
@@ -40,17 +42,17 @@
     "static/media/edit-icon.svg": "/static/media/edit-icon.f33e8538d882418b76070d5bd0a94a00.svg",
     "static/media/plus-icon.svg": "/static/media/plus-icon.65c74ef373dbf9e8a113c07965b48e3e.svg",
     "main.9f842b21.css.map": "/static/css/main.9f842b21.css.map",
-    "main.0b67adf8.js.map": "/static/js/main.0b67adf8.js.map",
-    "home-page.e546e48a.chunk.js.map": "/static/js/home-page.e546e48a.chunk.js.map",
-    "register-page.94b18334.chunk.js.map": "/static/js/register-page.94b18334.chunk.js.map",
-    "login-page.710a1ef3.chunk.js.map": "/static/js/login-page.710a1ef3.chunk.js.map",
-    "news-page.6cb57378.chunk.js.map": "/static/js/news-page.6cb57378.chunk.js.map",
-    "notices-page.8b80f1b1.chunk.js.map": "/static/js/notices-page.8b80f1b1.chunk.js.map",
-    "friends-page.653a1582.chunk.js.map": "/static/js/friends-page.653a1582.chunk.js.map",
-    "user-page.5c4c5ae0.chunk.js.map": "/static/js/user-page.5c4c5ae0.chunk.js.map"
+    "main.350d0e20.js.map": "/static/js/main.350d0e20.js.map",
+    "home-page.3064b51a.chunk.js.map": "/static/js/home-page.3064b51a.chunk.js.map",
+    "register-page.5d9df8f4.chunk.js.map": "/static/js/register-page.5d9df8f4.chunk.js.map",
+    "login-page.7fbfd620.chunk.js.map": "/static/js/login-page.7fbfd620.chunk.js.map",
+    "news-page.50937583.chunk.js.map": "/static/js/news-page.50937583.chunk.js.map",
+    "notices-page.40939d6f.chunk.js.map": "/static/js/notices-page.40939d6f.chunk.js.map",
+    "friends-page.102bcc23.chunk.js.map": "/static/js/friends-page.102bcc23.chunk.js.map",
+    "user-page.aac061b8.chunk.js.map": "/static/js/user-page.aac061b8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f842b21.css",
-    "static/js/main.0b67adf8.js"
+    "static/js/main.350d0e20.js"
   ]
 }
