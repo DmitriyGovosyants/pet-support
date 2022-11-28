@@ -53,3 +53,4 @@ export * from './ValidationError/ValidationError';
 export * from './ModalOurFriend/ModalOurFriend';
 export * from './ModalTeam/ModalTeam';
 export * from './AnimationCat/AnimationCat';
+export * from './AnimationBird/AnimationBird';

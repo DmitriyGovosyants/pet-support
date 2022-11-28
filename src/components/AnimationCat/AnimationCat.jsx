@@ -1,6 +1,6 @@
-import racoonGif from '../../data/img/Racoon-gif.gif';
+import catGif from '../../data/img/cat-animation.gif';
 import { Cat } from './AnimationCat.styled';
 
 export const AnimationCat = () => {
-  return <Cat src={racoonGif} alt="crazy cat" />;
+  return <Cat src={catGif} alt="crazy cat" />;
 };

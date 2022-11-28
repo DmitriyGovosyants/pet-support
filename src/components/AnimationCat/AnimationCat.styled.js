@@ -6,7 +6,8 @@ export const Cat = styled.img`
   bottom: -18px;
   right: 0;
   z-index: 10;
-  transform: translateX(200%);
+  pointer-events: none;
+  opacity: 0;
 
   width: 200px;
 
@@ -15,7 +16,6 @@ export const Cat = styled.img`
   animation-timing-function: linear;
   animation-delay: 1000ms;
   animation-iteration-count: 1;
-  animation-direction: normal;
 
   ${device.tablet} {
     animation-duration: 4500ms;
@@ -28,7 +28,7 @@ export const Cat = styled.img`
   }
 
   @keyframes catWalk {
-    0% {transform: translateX(200%)}
-    100% {transform: translateX(-100vw)}
+    0% {transform: translateX(200%); opacity: 1;}
+    100% {transform: translateX(-100vw); opacity: 1;}
   }
 `
