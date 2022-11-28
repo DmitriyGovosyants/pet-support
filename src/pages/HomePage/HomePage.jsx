@@ -1,11 +1,13 @@
 import { contImgs } from '../../data/img/homePage';
 import { size } from 'styles/mediaquery';
+
 import {
   BackgroundWrapper,
   HomePageContainer,
   Title,
   PictureStyled,
 } from './HomePage.styled';
+import { AnimationCat } from 'components';
 
 const HomePage = () => {
   return (
@@ -34,6 +36,7 @@ const HomePage = () => {
           />
         </PictureStyled>
       </HomePageContainer>
+      <AnimationCat />
     </BackgroundWrapper>
   );
 };

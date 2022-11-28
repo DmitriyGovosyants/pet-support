@@ -24,4 +24,3 @@ export const newsApi = createApi({
 });
 
 export const { useGetAllNewsQuery, useGetSearchNewsQuery } = newsApi;
-// news${'?search='${newsName}}`
