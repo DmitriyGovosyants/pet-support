@@ -63,6 +63,7 @@ export const Info = styled.p`
 `;
 export const InfoEditBtn = styled.button`
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 20px;
