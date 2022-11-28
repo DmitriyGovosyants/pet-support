@@ -3,6 +3,7 @@ import { size, device, retina } from 'styles/mediaquery';
 import { bgImgs } from '../../data/img/homePage';
 
 export const BackgroundWrapper = styled.div`
+  position: relative;
   overflow: hidden;
   height: calc(100vh - (${p => p.theme.header.mobileHeight}));
   background-image: url(${bgImgs.curveMobile1x});

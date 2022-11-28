@@ -3,6 +3,7 @@ import { device, retina } from 'styles/mediaquery';
 import { bgImgs } from '../../data/img/formPage';
 
 export const Container = styled.div`
+  position: relative;
   padding: 20px 20px 20px 20px;
   height: 100%;
   min-height: calc(100vh - (${p => p.theme.header.mobileHeight}));
