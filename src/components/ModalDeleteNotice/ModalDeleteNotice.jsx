@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
 import { useRemovePrivateNoticeMutation } from 'redux/noticesApi';
+import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import {
   ModalContainer,
   TittleModal,

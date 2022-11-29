@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
+import { fromCategoryToRoute } from 'helpers';
 import {
   StyledLink,
   StyledSelectedLink,
 } from './NoticesCategoriesNavButton.styled';
-import PropTypes from 'prop-types';
-import { fromCategoryToRoute } from 'helpers';
 
 export const NoticesCategoriesNavButton = ({
   category,

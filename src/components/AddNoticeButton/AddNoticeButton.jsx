@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useAuth } from 'redux/useAuth';
+import { toast } from 'react-toastify';
 import { Modal, ModalAddNotice } from 'components';
 import {
   Button,
@@ -6,8 +8,6 @@ import {
   Text,
   StyledPlusIcon,
 } from './AddNoticeButton.styled';
-import { useAuth } from 'redux/useAuth';
-import { toast } from 'react-toastify';
 
 export const AddNoticeButton = () => {
   const [showModal, setShowModal] = useState(false);

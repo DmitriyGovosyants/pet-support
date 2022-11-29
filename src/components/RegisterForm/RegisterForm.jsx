@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { toast } from 'react-toastify';
+import eyeImg from '../../data/img/eye.png';
+import eyeClosedImg from '../../data/img/eye-blocked.png';
+import { useSignUpMutation } from '../../redux/authApi';
+import { validationErrMsg } from 'constants/constants';
 import {
   isCity,
   isPassword,
@@ -9,9 +13,6 @@ import {
   isDomenName,
   isEmail,
 } from 'helpers';
-import { useSignUpMutation } from '../../redux/authApi';
-import eyeImg from '../../data/img/eye.png';
-import eyeClosedImg from '../../data/img/eye-blocked.png';
 import {
   FormTitle,
   FormInput,
@@ -22,7 +23,6 @@ import {
   SpinnerFixed,
 } from 'components';
 import { Wrapper, InputWrapper, Button, EyeBtn } from './RegisterForm.styled';
-import { validationErrMsg } from 'constants/constants';
 
 export const RegisterForm = () => {
   const [signUp, { isLoading }] = useSignUpMutation();

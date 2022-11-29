@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import { ModalBtnClose } from 'components';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
-
+import { ModalBtnClose } from 'components';
 import team from '../../data/json/team.json';
 import {
   TeamList,

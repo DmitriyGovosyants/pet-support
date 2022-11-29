@@ -1,5 +1,5 @@
-import { TbLogout } from 'react-icons/tb';
 import { useDispatch } from 'react-redux';
+import { TbLogout } from 'react-icons/tb';
 import { useLogOutMutation } from 'redux/authApi';
 import { usersApi } from 'redux/usersApi';
 import { noticesApi } from 'redux/noticesApi';

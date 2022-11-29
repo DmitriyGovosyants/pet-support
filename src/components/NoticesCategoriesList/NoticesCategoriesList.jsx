@@ -1,4 +1,12 @@
 import { NoticeCategoryItem, Spinner } from 'components';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import { GiJumpingDog } from 'react-icons/gi';
+import { useGetNoticesQuery, useGetFavoritesQuery } from 'redux/noticesApi';
+import { useAuth } from 'redux/useAuth';
+import useRequest from 'hooks/useRequest';
+import { useFilter } from 'hooks/useFilter';
 import {
   List,
   Item,
@@ -6,14 +14,6 @@ import {
   Paginate,
   ErrorWrapper,
 } from './NoticesCategoriesList.styled';
-import { useParams } from 'react-router-dom';
-import { useGetNoticesQuery, useGetFavoritesQuery } from 'redux/noticesApi';
-import { useState, useEffect } from 'react';
-import useRequest from 'hooks/useRequest';
-import { useAuth } from 'redux/useAuth';
-import { useMediaQuery } from 'react-responsive';
-import { GiJumpingDog } from 'react-icons/gi';
-import { useFilter } from 'hooks/useFilter';
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);

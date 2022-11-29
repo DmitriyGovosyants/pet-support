@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { BsCheckLg } from 'react-icons/bs';
 import { HiCamera } from 'react-icons/hi';
-import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import { theme } from 'styles';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
 import imageNotFound from '../../data/img/no-image.webp';
-import { SpinnerFixed, UserDataItem } from 'components';
+import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 import { orderUserFields } from 'constants/constants';
+import { SpinnerFixed, UserDataItem } from 'components';
 import { handleUploadFile } from 'helpers';
 import {
   UserDataTitle,
@@ -19,7 +20,6 @@ import {
   Btn,
   BtnBox,
 } from './UserData.styled';
-import { theme } from 'styles';
 
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState();

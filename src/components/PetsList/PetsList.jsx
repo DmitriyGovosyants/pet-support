@@ -1,6 +1,6 @@
-import { PetsListStyled, EmptyTemplate } from './PetsList.styled';
 import { useGetPetsQuery } from 'redux/usersApi';
 import { PetItem } from 'components';
+import { PetsListStyled, EmptyTemplate } from './PetsList.styled';
 
 export const PetsList = () => {
   const {

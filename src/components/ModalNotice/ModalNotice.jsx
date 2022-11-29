@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import { ReactComponent as HeartIcon } from 'data/img/favourite-icon.svg';
+import petTemlate from 'data/img/pet-template.jpg';
+import { ModalBtnClose } from 'components';
 import {
   Container,
   ImgWrapper,
@@ -16,10 +19,6 @@ import {
   Wrapper,
   BtnWrapper,
 } from './ModalNotice.styled';
-
-import { ReactComponent as HeartIcon } from 'data/img/favourite-icon.svg';
-import petTemlate from 'data/img/pet-template.jpg';
-import { ModalBtnClose } from 'components';
 
 export const ModalNotice = ({
   petData,

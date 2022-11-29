@@ -1,10 +1,10 @@
-import { List, Item } from './NoticesCategoriesNav.styled';
-import { NoticesCategoriesNavButton } from 'components';
 import { useState, useEffect } from 'react';
-import { categories, categoriesWithoutAuth } from 'constants/constants';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from 'redux/useAuth';
 import { setCategory, selectCategory } from 'redux/categorySlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { categories, categoriesWithoutAuth } from 'constants/constants';
+import { NoticesCategoriesNavButton } from 'components';
+import { List, Item } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
   const dispatch = useDispatch();

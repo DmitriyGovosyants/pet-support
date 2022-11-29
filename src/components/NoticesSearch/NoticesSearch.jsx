@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react';
-import { Wrapper, Label, Input, Icon } from './NoticesSearch.styled';
-import { setWord, selectKeyWord } from 'redux/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { setWord, selectKeyWord } from 'redux/filterSlice';
+import { Wrapper, Label, Input, Icon } from './NoticesSearch.styled';
 
 export const NoticesSearch = () => {
   const dispatch = useDispatch();
