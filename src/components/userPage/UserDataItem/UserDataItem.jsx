@@ -132,8 +132,9 @@ export const UserDataItem = ({
     if (!isCancelEdit) return;
 
     return () => {
+      const actualData = incomingData.current;
       setErrorMsg(null);
-      setInputValue(incomingData.current);
+      setInputValue(actualData);
     };
   }, [isCancelEdit]);
 
@@ -182,4 +183,7 @@ UserDataItem.propTypes = {
   allUserData: PropTypes.object.isRequired,
   setIsShowForm: PropTypes.func.isRequired,
   setIsEditBtnDisabled: PropTypes.func.isRequired,
+  isCancelEdit: PropTypes.bool.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
+  setIsCancelEdit: PropTypes.func.isRequired,
 };
