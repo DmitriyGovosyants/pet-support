@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import partnerImg from '../../data/img/partner.png';
-import { daysOfWeek } from '../../constants/constants';
+import partnerImg from 'data/img/partner.png';
+import { daysOfWeek } from 'constants/constants';
 import { ModalOurFriend } from 'components';
 import {
   Card,

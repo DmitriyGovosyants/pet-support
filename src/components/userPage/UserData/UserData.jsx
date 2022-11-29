@@ -3,7 +3,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import { HiCamera } from 'react-icons/hi';
 import { theme } from 'styles';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
-import imageNotFound from '../../data/img/no-image.webp';
+import imageNotFound from 'data/img/no-image.webp';
 import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 import { orderUserFields } from 'constants/constants';
 import { SpinnerFixed, UserDataItem } from 'components';

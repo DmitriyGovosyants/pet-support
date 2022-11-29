@@ -1,4 +1,4 @@
-import { contImgs } from '../../data/img/homePage';
+import { contImgs } from 'data/img/homePage';
 import { size } from 'styles/mediaquery';
 
 import {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { toast } from 'react-toastify';
-import eyeImg from '../../data/img/eye.png';
-import eyeClosedImg from '../../data/img/eye-blocked.png';
-import { useSignUpMutation } from '../../redux/authApi';
+import eyeImg from 'data/img/eye.png';
+import eyeClosedImg from 'data/img/eye-blocked.png';
+import { useSignUpMutation } from 'redux/authApi';
 import { validationErrMsg } from 'constants/constants';
 import {
   isCity,

@@ -3,9 +3,9 @@ import { useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { toast } from 'react-toastify';
 import { useAddNoticeMutation } from 'redux/noticesApi';
-import maleImg from '../../data/img/male.png';
-import femaleImg from '../../data/img/female.png';
-import plusImg from '../../data/img/plus.png';
+import maleImg from 'data/img/male.png';
+import femaleImg from 'data/img/female.png';
+import plusImg from 'data/img/plus.png';
 import { validationErrMsg } from 'constants/constants';
 import {
   addNoticeValidationModel,

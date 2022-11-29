@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { size, device, retina } from 'styles/mediaquery';
-import { bgImgs } from '../../data/img/homePage';
+import { bgImgs } from 'data/img/homePage';
 
 export const BackgroundWrapper = styled.div`
   position: relative;

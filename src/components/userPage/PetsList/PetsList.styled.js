@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaquery';
-import petsTemplateMobile from '../../data/img/user-pets-template-mobile.jpg';
-import petsTemplateTablet from '../../data/img/user-pets-template-tablet.jpg';
+import petsTemplateMobile from 'data/img/user-pets-template-mobile.jpg';
+import petsTemplateTablet from 'data/img/user-pets-template-tablet.jpg';
 
 export const PetsListStyled = styled.ul`
   display: flex;
