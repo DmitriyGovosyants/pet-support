@@ -24,6 +24,7 @@ import {
 export const UserData = () => {
   const [avatarData, setAvatarData] = useState();
   const [avatar, setAvatar] = useState();
+  const [isCancelEdit, setIsCancelEdit] = useState(false);
   const [isShowForm, setIsShowForm] = useState('');
   const [isEditBtnDisabled, setIsEditBtnDisabled] = useState(false);
   const {
@@ -38,6 +39,8 @@ export const UserData = () => {
     const id = e.currentTarget.id;
     setIsShowForm(id);
     setIsEditBtnDisabled(true);
+    setIsCancelEdit(true);
+    window.addEventListener('keydown', handleKeyDown);
   };
 
   const handleFile = e => {
@@ -67,10 +70,29 @@ export const UserData = () => {
     }
   };
 
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      onClose();
+    }
+  };
+
+  const handleCardWrapper = e => {
+    if (e.currentTarget === e.target) {
+      onClose();
+    }
+  };
+
+  const onClose = () => {
+    setIsShowForm('');
+    setIsEditBtnDisabled(false);
+    setIsCancelEdit(false);
+    window.removeEventListener('keydown', handleKeyDown);
+  };
+
   return (
     <>
       <UserDataTitle>My information:</UserDataTitle>
-      <UserCardWrapper>
+      <UserCardWrapper onClick={handleCardWrapper}>
         <AvatarWrapper>
           <UserAvatar
             src={avatar || userData?.avatarURL || imageNotFound}
@@ -122,6 +144,9 @@ export const UserData = () => {
               allUserData={userData}
               setIsShowForm={setIsShowForm}
               setIsEditBtnDisabled={setIsEditBtnDisabled}
+              isCancelEdit={isCancelEdit}
+              setIsCancelEdit={setIsCancelEdit}
+              onKeyDown={handleKeyDown}
             />
           ))}
         </UserDataList>

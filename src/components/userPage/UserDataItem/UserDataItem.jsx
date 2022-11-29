@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
 import isMobilePhone from 'validator/lib/isMobilePhone';
@@ -36,6 +36,9 @@ export const UserDataItem = ({
   allUserData,
   setIsShowForm,
   setIsEditBtnDisabled,
+  isCancelEdit,
+  onKeyDown,
+  setIsCancelEdit,
 }) => {
   const [inputValue, setInputValue] = useState(
     value === '00.00.0000' ? 'unknown' : value
@@ -43,6 +46,8 @@ export const UserDataItem = ({
   const [errorMsg, setErrorMsg] = useState(null);
   const [editContact] = useUpdateUserMutation();
   const { refetch } = useGetUserQuery();
+
+  const incomingData = useRef(allUserData[title]);
 
   const titleNormalized = title.toLowerCase();
 
@@ -107,6 +112,7 @@ export const UserDataItem = ({
 
     try {
       await editContact({ [title]: inputValue }).unwrap();
+      incomingData.current = inputValue;
     } catch (error) {
       console.log(error);
       if (error.status === 500) {
@@ -116,9 +122,21 @@ export const UserDataItem = ({
     } finally {
       setIsShowForm('');
       setIsEditBtnDisabled(false);
+      window.removeEventListener('keydown', onKeyDown);
+      setIsCancelEdit(false);
       refetch();
     }
   };
+
+  useEffect(() => {
+    if (!isCancelEdit) return;
+
+    return () => {
+      const actualData = incomingData.current;
+      setErrorMsg(null);
+      setInputValue(actualData);
+    };
+  }, [isCancelEdit]);
 
   return (
     <UserDescription>
@@ -165,4 +183,7 @@ UserDataItem.propTypes = {
   allUserData: PropTypes.object.isRequired,
   setIsShowForm: PropTypes.func.isRequired,
   setIsEditBtnDisabled: PropTypes.func.isRequired,
+  isCancelEdit: PropTypes.bool.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
+  setIsCancelEdit: PropTypes.func.isRequired,
 };
