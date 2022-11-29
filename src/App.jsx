@@ -30,7 +30,7 @@ const User = lazy(() =>
   import('pages/UserPage/UserPage' /* webpackChunkName: "user-page" */)
 );
 const NoticesCategoriesList = lazy(() =>
-  import('./components/NoticesCategoriesList/NoticesCategoriesList')
+  import('./components/notices/NoticesCategoriesList/NoticesCategoriesList')
 );
 
 export const App = () => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { isPassword, dataFormConverter, isDomenName, isEmail } from 'helpers';
-import { useLogInMutation } from '../../redux/authApi';
-import eyeImg from '../../data/img/eye.png';
-import eyeClosedImg from '../../data/img/eye-blocked.png';
+import { useLogInMutation } from 'redux/authApi';
+import eyeImg from 'data/img/eye.png';
+import eyeClosedImg from 'data/img/eye-blocked.png';
 import {
   FormTitle,
   FormInput,

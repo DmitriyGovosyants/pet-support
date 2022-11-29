@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { device, retina } from 'styles/mediaquery';
-import { bgImgs } from '../../data/img/formPage';
+import { bgImgs } from 'data/img/formPage';
 
 export const Container = styled.div`
   position: relative;

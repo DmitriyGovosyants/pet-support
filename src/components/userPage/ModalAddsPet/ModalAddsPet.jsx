@@ -1,21 +1,25 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
-import plusImg from '../../data/img/plus.png';
-import { useEditPetMutation } from '../../redux/usersApi';
+import { useCreatePetMutation } from 'redux/usersApi';
+import plusImg from 'data/img/plus.png';
+import { validationErrMsg } from 'constants/constants';
 import {
   isName,
-  isBreed,
+  isBreedAddPet,
   isComments,
   isDate,
   isDatePast,
   handleUploadFile,
 } from 'helpers';
-import { MainButton, SpinnerFixed } from 'components';
+import {
+  MainButton,
+  ModalBtnClose,
+  SpinnerFixed,
+  ValidationError,
+} from 'components';
 import {
   ModalWrap,
-  BtnClose,
   Label,
   Input,
   BtnBox,
@@ -26,37 +30,30 @@ import {
   FormInputLoad,
   FormInputLoadImg,
   FormInputLoadPlus,
-} from './ModalEditPet.styled';
+  RequiredSymbol,
+} from './ModalAddsPets.styled';
 
-export const ModalEditPet = ({
-  id,
-  image,
-  name,
-  birthdate,
-  breed,
-  comments,
-  closeModal,
-}) => {
-  const [editPet, { isLoading }] = useEditPetMutation();
+export const ModalAddsPet = ({ toggleModal }) => {
+  const [addPet, { isLoading }] = useCreatePetMutation();
   const [avatarData, setAvatarData] = useState();
-  const [avatar, setAvatar] = useState(image);
+  const [avatar, setAvatar] = useState();
   const [step, setStep] = useState(0);
 
   const [formState, setFormState] = useState({
     name: {
-      value: name,
+      value: '',
       isValid: true,
     },
     birthdate: {
-      value: birthdate,
+      value: '',
       isValid: true,
     },
     breed: {
-      value: breed,
+      value: '',
       isValid: true,
     },
     comments: {
-      value: comments,
+      value: '',
       isValid: true,
     },
   });
@@ -72,7 +69,7 @@ export const ModalEditPet = ({
 
   const handleSecondBtn = () => {
     if (step === 0) {
-      closeModal();
+      toggleModal();
     }
     if (step === 1) {
       setStep(0);
@@ -84,7 +81,7 @@ export const ModalEditPet = ({
 
     const isNameValid = isName(name.value);
     const isDateValid = isDatePast(birthdate.value) && isDate(birthdate.value);
-    const isBreedValid = isBreed(breed.value);
+    const isBreedValid = isBreedAddPet(breed.value);
 
     if (!isNameValid || !isDateValid || !isBreedValid) {
       setFormState(prevState => ({
@@ -152,9 +149,9 @@ export const ModalEditPet = ({
     }
 
     try {
-      await editPet({ id, formData }).unwrap();
-      closeModal();
-      toast.success('Your pet has been changed');
+      await addPet(formData);
+      toggleModal();
+      toast.success('Your pet is added');
     } catch (error) {
       console.log(error);
     }
@@ -162,51 +159,50 @@ export const ModalEditPet = ({
 
   return (
     <ModalWrap onSubmit={handleSubmit}>
-      <BtnClose type="button" onClick={() => closeModal()}>
-        <CloseIcon />
-      </BtnClose>
+      <Title>Add pet</Title>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <Title>Edit pet</Title>
-        <Label htmlFor="name">Name pet</Label>
+        <Label htmlFor="name">
+          Name pet<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type name pet'}
           type={'text'}
           name={'name'}
-          value={formState.name.value}
           onChange={handleChange}
         />
-        {!formState.name.isValid && (
-          <div style={{ color: 'red' }}>Name should have only 2-16 letters</div>
-        )}
-        <Label htmlFor="birthdate">Date of birth</Label>
+        <ValidationError
+          message={validationErrMsg.petName}
+          isHidden={formState.name.isValid}
+        />
+        <Label htmlFor="birthdate">
+          Date of birth<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type date of birth'}
           type={'text'}
           name={'birthdate'}
-          value={formState.birthdate.value}
           onChange={handleChange}
         />
-        {!formState.birthdate.isValid && (
-          <div style={{ color: 'red' }}>
-            Please, type in DD.MM.YYYY format and past date
-          </div>
-        )}
-        <Label htmlFor="breed">Breed</Label>
+        <ValidationError
+          message={validationErrMsg.birthdate}
+          isHidden={formState.birthdate.isValid}
+        />
+        <Label htmlFor="breed">
+          Breed<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Input
           placeholder={'Type breed'}
           type={'text'}
           name={'breed'}
-          value={formState.breed.value}
           onChange={handleChange}
         />
-        {!formState.breed.isValid && (
-          <div style={{ color: 'red' }}>
-            Breed should have only 2-16 letters
-          </div>
-        )}
+        <ValidationError
+          message={validationErrMsg.breedAddPet}
+          isHidden={formState.breed.isValid}
+        />
       </div>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
-        <SubTitle htmlFor="addPhoto">Edit photo and some comments</SubTitle>
+        <SubTitle htmlFor="addPhoto">Add photo and some comments</SubTitle>
         <FormInputLoadWrapper>
           <FormInputLoad
             type={'file'}
@@ -218,19 +214,19 @@ export const ModalEditPet = ({
           <FormInputLoadPlus src={plusImg} alt="" />
           {avatar && <FormInputLoadImg src={avatar} alt="" />}
         </FormInputLoadWrapper>
-        <Label htmlFor="name">Comments</Label>
+        <Label htmlFor="name">
+          Comments<RequiredSymbol>*</RequiredSymbol>
+        </Label>
         <Textarea
           name={'comments'}
-          value={formState.comments.value}
           onChange={handleChange}
           placeholder={'Type comments'}
           rows="3"
         />
-        {!formState.comments.isValid && (
-          <div style={{ color: 'red' }}>
-            Comments should have only 8-120 letters
-          </div>
-        )}
+        <ValidationError
+          message={validationErrMsg.comments}
+          isHidden={formState.comments.isValid}
+        />
       </div>
       <BtnBox>
         <MainButton
@@ -250,17 +246,12 @@ export const ModalEditPet = ({
           {step === 0 ? 'Cancel' : 'Back'}
         </MainButton>
       </BtnBox>
+      <ModalBtnClose toggleModal={toggleModal} />
       {isLoading && <SpinnerFixed />}
     </ModalWrap>
   );
 };
 
-ModalEditPet.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  birthdate: PropTypes.string.isRequired,
-  breed: PropTypes.string.isRequired,
-  comments: PropTypes.string.isRequired,
-  closeModal: PropTypes.func.isRequired,
+ModalAddsPet.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
 };
