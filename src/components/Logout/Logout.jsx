@@ -2,8 +2,9 @@ import { TbLogout } from 'react-icons/tb';
 import { useDispatch } from 'react-redux';
 import { useLogOutMutation } from 'redux/authApi';
 import { usersApi } from 'redux/usersApi';
-import { LogoutButton } from './Logout.styled';
+import { noticesApi } from 'redux/noticesApi';
 import { setCategory } from 'redux/categorySlice';
+import { LogoutButton } from './Logout.styled';
 
 export const Logout = () => {
   const [logout] = useLogOutMutation();
@@ -15,6 +16,7 @@ export const Logout = () => {
       onClick={() => {
         logout();
         dispatch(usersApi.util.resetApiState());
+        dispatch(noticesApi.util.resetApiState());
         dispatch(setCategory('Sell'));
       }}
     >
