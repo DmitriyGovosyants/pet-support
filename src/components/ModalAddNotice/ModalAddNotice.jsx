@@ -6,6 +6,7 @@ import { useAddNoticeMutation } from 'redux/noticesApi';
 import maleImg from '../../data/img/male.png';
 import femaleImg from '../../data/img/female.png';
 import plusImg from '../../data/img/plus.png';
+import { validationErrMsg } from 'constants/constants';
 import {
   addNoticeValidationModel,
   isBreed,
@@ -47,7 +48,6 @@ import {
   FormInputLoadPlus,
   BtnBox,
 } from './ModalAddNotice.styled';
-import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddNotice = ({ toggleModal }) => {
   const [formState, setFormState] = useState(addNoticeValidationModel);

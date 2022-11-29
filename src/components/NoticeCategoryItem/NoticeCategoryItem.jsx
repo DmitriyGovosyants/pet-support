@@ -1,4 +1,14 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import petTemlate from 'data/img/pet-template.jpg';
+import useCategories from 'hooks/useCategories';
+import useDate from 'hooks/useDate';
+import { useAuth } from 'redux/useAuth';
+import {
+  useAddNoticeToFavouriteMutation,
+  useRemoveNoticeFromFavouriteMutation,
+} from 'redux/noticesApi';
 import { Modal, ModalNotice, ModalDeleteNotice } from 'components';
 import {
   ImgWrapper,
@@ -14,16 +24,6 @@ import {
   LearnMore,
   StyledDelete,
 } from './NoticeCategoryItem.styled';
-import useCategories from 'hooks/useCategories';
-import useDate from 'hooks/useDate';
-import { useAuth } from 'redux/useAuth';
-import {
-  useAddNoticeToFavouriteMutation,
-  useRemoveNoticeFromFavouriteMutation,
-} from 'redux/noticesApi';
-import petTemlate from 'data/img/pet-template.jpg';
-import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 
 export const NoticeCategoryItem = ({ petData, favorite, isPrivate }) => {
   const { _id, title, breed, location, birthdate, avatarURL, category, price } =

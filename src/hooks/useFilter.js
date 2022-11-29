@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { selectKeyWord } from 'redux/filterSlice';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { selectKeyWord } from 'redux/filterSlice';
 
 export const useFilter = category => {
   const [search, setSearch] = useState('');

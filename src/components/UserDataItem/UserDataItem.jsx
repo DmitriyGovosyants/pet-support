@@ -1,8 +1,19 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 import { MdEdit } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
-import isMobilePhone from 'validator/lib/isMobilePhone';
 import { validationErrMsg } from 'constants/constants';
+import {
+  isCity,
+  isDate,
+  isDatePast,
+  isDomenName,
+  isEmail,
+  isUserName,
+} from 'helpers';
 import {
   ItemWrapper,
   UserDescription,
@@ -15,17 +26,6 @@ import {
   Info,
   Error,
 } from './UserDataItem.styled';
-import { useState } from 'react';
-import {
-  isCity,
-  isDate,
-  isDatePast,
-  isDomenName,
-  isEmail,
-  isUserName,
-} from 'helpers';
-import { useGetUserQuery, useUpdateUserMutation } from 'redux/usersApi';
-import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
   title,

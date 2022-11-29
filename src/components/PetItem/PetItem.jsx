@@ -1,13 +1,5 @@
 import PropTypes from 'prop-types';
-import {
-  PetItemStyled,
-  ThumbImage,
-  Image,
-  InfoList,
-  InfoRow,
-  Info,
-  ListButton,
-} from './PetItem.styled';
+import { useState } from 'react';
 import { ReactComponent as EditIcon } from 'data/img/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from 'data/img/fluent_delete-16-filled.svg';
 import petTemlate from 'data/img/pet-template.jpg';
@@ -17,7 +9,15 @@ import {
   ModalEditPet,
   PetsInterfaceButton,
 } from 'components';
-import { useState } from 'react';
+import {
+  PetItemStyled,
+  ThumbImage,
+  Image,
+  InfoList,
+  InfoRow,
+  Info,
+  ListButton,
+} from './PetItem.styled';
 
 export const PetItem = ({ id, image, name, dateOfBirth, breed, comments }) => {
   const [showModalDelete, setShowModalDelete] = useState(false);

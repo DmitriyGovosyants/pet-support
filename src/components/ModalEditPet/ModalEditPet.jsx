@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { ReactComponent as CloseIcon } from 'data/img/close-icon.svg';
+import plusImg from '../../data/img/plus.png';
 import { useEditPetMutation } from '../../redux/usersApi';
 import {
   isName,
@@ -10,7 +12,7 @@ import {
   isDatePast,
   handleUploadFile,
 } from 'helpers';
-import plusImg from '../../data/img/plus.png';
+import { MainButton, SpinnerFixed } from 'components';
 import {
   ModalWrap,
   BtnClose,
@@ -25,8 +27,6 @@ import {
   FormInputLoadImg,
   FormInputLoadPlus,
 } from './ModalEditPet.styled';
-import { toast } from 'react-toastify';
-import { MainButton, SpinnerFixed } from 'components';
 
 export const ModalEditPet = ({
   id,

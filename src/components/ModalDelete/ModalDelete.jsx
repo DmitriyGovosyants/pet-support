@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { toast } from 'react-toastify';
 import { useDeletePetMutation } from 'redux/usersApi';
+import { MainButton, ModalBtnClose, SpinnerFixed } from 'components';
 import { ModalContainer, TittleModal, BtnBox } from './ModalDelete.styled';
 
 export const ModalDelete = ({ id, closeModal }) => {

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useAuth } from 'redux/useAuth';
 import { Modal, ModalAddsPet } from 'components';
 import { Button, Wrapper, Text, StyledPlusIcon } from './AddUsersPet.styled';
-import { useAuth } from 'redux/useAuth';
 
 export const AddUsersPet = () => {
   const [showModal, setShowModal] = useState(false);

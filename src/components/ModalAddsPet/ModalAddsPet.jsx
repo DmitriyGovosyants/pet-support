@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useCreatePetMutation } from '../../redux/usersApi';
+import plusImg from '../../data/img/plus.png';
+import { validationErrMsg } from 'constants/constants';
 import {
   isName,
   isBreedAddPet,
@@ -9,7 +12,12 @@ import {
   isDatePast,
   handleUploadFile,
 } from 'helpers';
-import plusImg from '../../data/img/plus.png';
+import {
+  MainButton,
+  ModalBtnClose,
+  SpinnerFixed,
+  ValidationError,
+} from 'components';
 import {
   ModalWrap,
   Label,
@@ -24,14 +32,6 @@ import {
   FormInputLoadPlus,
   RequiredSymbol,
 } from './ModalAddsPets.styled';
-import { toast } from 'react-toastify';
-import {
-  MainButton,
-  ModalBtnClose,
-  SpinnerFixed,
-  ValidationError,
-} from 'components';
-import { validationErrMsg } from 'constants/constants';
 
 export const ModalAddsPet = ({ toggleModal }) => {
   const [addPet, { isLoading }] = useCreatePetMutation();

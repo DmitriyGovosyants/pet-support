@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { useAuth } from 'redux/useAuth';
 import { GrClose, GrMenu } from 'react-icons/gr';
+import { useAuth } from 'redux/useAuth';
 import { Logo, Nav, UserNav, AuthNav } from 'components';
 import {
   HeaderStyled,
